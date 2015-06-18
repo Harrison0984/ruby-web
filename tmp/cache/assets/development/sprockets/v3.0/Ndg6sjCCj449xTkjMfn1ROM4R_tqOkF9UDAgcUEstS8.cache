@@ -1,0 +1,31 @@
+I"D(function() {
+  $(function() {
+    $('button[data-toggle="page-alert"]').click(function(e) {
+      var alert, delay, id, timeOut;
+      e.preventDefault();
+      id = $(this).attr('data-toggle-id');
+      alert = $('#alert-' + id);
+      timeOut = void 0;
+      alert.appendTo('.page-alerts');
+      alert.slideDown();
+      delay = $(this).attr('data-delay');
+      if (delay !== void 0) {
+        delay = parseInt(delay);
+        clearTimeout(timeOut);
+        timeOut = window.setTimeout((function() {
+          alert.slideUp();
+        }), delay);
+      }
+    });
+    $('.page-alert .close').click(function(e) {
+      e.preventDefault();
+      $(this).closest('.page-alert').slideUp();
+    });
+    $('.clear-page-alerts').click(function(e) {
+      e.preventDefault();
+      $('.page-alert').slideUp();
+    });
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,22 @@
+<h1>index</h1>
+
+<%= link_to 'list', controller: 'users' %>
+<%= link_to 'new user', new_user_path %>
+
+<table>
+  <tr>
+    <th>账号</th>
+    <th>昵称</th>
+    <th>金币</th>
+  </tr>
+ 
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.account %></td>
+      <td><%= user.nickname %></td>
+      <td><%= user.coin %></td>
+      <td><%= link_to '编辑', edit_user_path(user) %></td>
+      <td><%= link_to '删除', user_path(user), method: :delete, data: {confirm: '确认删除?'} %></td>      
+    </tr>
+  <% end %>
+</table>

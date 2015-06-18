@@ -1,0 +1,26 @@
+<% if @error %>
+<div class="alert alert-success page-alert" id="alert-1">
+    <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+    <%= @error %>
+</div>
+<% end %>
+
+
+<div class="container">
+    <div class="card card-container">
+    	<%= form_for :session, url: sessions_path do |f| %>
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <%= f.text_field :account, class: "form-control", placeholder: "User account", required: true, autofocus: true, :value => @defaultname[:account] %>
+            <%= f.password_field :password, class: "form-control", placeholder: "Password", required: true %>
+            <div id="remember" class="checkbox">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+            </div>
+            <%= f.submit "Sign in", class: "btn btn-lg btn-primary btn-block btn-signin" %>
+        </form>
+        <% end %>
+    </div>
+</div>
+
+
