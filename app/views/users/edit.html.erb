@@ -1,5 +1,60 @@
-<h1>edit</h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'dataTables.responsive', 'data-turbolinks-eval' => true %>
+  <%= stylesheet_link_tag 'dataTables.bootstrap', 'data-turbolinks-eval' => true %>
+  <%= javascript_include_tag 'jquery.dataTables.min', 'data-turbolinks-eval' => true %>
+  <%= javascript_include_tag 'dataTables.bootstrap.min', 'data-turbolinks-eval' => true %>
+<% end %>
 
-
-<%= render 'userform' %>
-<%= link_to 'Back', users_path %>
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header">用户管理</h1>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                编辑用户
+            </div>
+            <%= form_for :user do |f| %>
+			  <% if @user.errors.any? %>
+			  <div id="error_explanation">
+			    <h2><%= pluralize(@user.errors.count, "error") %>:</h2>
+			    <ul>
+			    <% @user.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+			    </ul>
+			  </div>
+			  <% end %>
+			  <p>
+			    <%= f.label :account, '账号:' %>
+			    <%= f.text_field :account, class:"form-control", placeholder:"账号" %>
+			  </p>
+			  <p>
+			    <%= f.label :password, '用户密码:' %>
+			    <%= f.text_field :password, class:"form-control", placeholder:"密码" %>
+			  </p>
+			  <p>
+			    <%= f.label :nickname, '用户昵称:' %>
+			    <%= f.text_field :nickname, class:"form-control", placeholder:"昵称" %>
+			  </p>
+			  <p>
+			    <%= f.label :coin, '金币数量:' %>
+			    <%= f.text_field :coin, class:"form-control", placeholder:"金币" %>
+			  </p>
+			  <p>
+		  	  <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" <% if(@user.level!=1) %> checked <% end %>>普通用户
+              </label>
+              <label>
+                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" <% if(@user.level==1) %> checked <% end %> >管理员
+              </label>
+			  </p>
+			  <p>
+			    <%= f.submit '保存', data: {confirm: '确认修改数据?'} %>
+			  </p>
+			<% end %>
+        </div>
+    </div>
+</div>

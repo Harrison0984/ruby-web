@@ -1,4 +1,60 @@
-<h1>new</h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag 'dataTables.responsive', 'data-turbolinks-eval' => true %>
+  <%= stylesheet_link_tag 'dataTables.bootstrap', 'data-turbolinks-eval' => true %>
+  <%= javascript_include_tag 'jquery.dataTables.min', 'data-turbolinks-eval' => true %>
+  <%= javascript_include_tag 'dataTables.bootstrap.min', 'data-turbolinks-eval' => true %>
+<% end %>
 
-<%= render 'userform' %>
-<%= link_to '返回', users_path %>
+<div class="row">
+<div class="col-lg-12">
+    <h1 class="page-header">用户管理</h1>
+</div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                添加用户
+            </div>
+            <%= form_for @user, url: {action: "create"}, method: :post do |f| %>
+			  <% if @user.errors.any? %>
+			  <div id="error_explanation">
+			    <h2><%= pluralize(@user.errors.count, "error") %>:</h2>
+			    <ul>
+			    <% @user.errors.full_messages.each do |msg| %>
+			      <li><%= msg %></li>
+			    <% end %>
+			    </ul>
+			  </div>
+			  <% end %>
+			  <p>
+			    <%= f.label :account, '账号:' %>
+			    <%= f.text_field :account, class:"form-control", placeholder:"账号" %>
+			  </p>
+			  <p>
+			    <%= f.label :password, '用户密码:' %>
+			    <%= f.text_field :password, class:"form-control", placeholder:"密码" %>
+			  </p>
+			  <p>
+			    <%= f.label :nickname, '用户昵称:' %>
+			    <%= f.text_field :nickname, class:"form-control", placeholder:"昵称" %>
+			  </p>
+			  <p>
+			    <%= f.label :coin, '金币数量:' %>
+			    <%= f.text_field :coin, class:"form-control", placeholder:"金币", value:"5000"%>
+			  </p>
+			  <p>
+			  	<%= f.radio_button :level, "0", checked:"checked" %>普通用户
+			  	<%= f.radio_button :level, "1" %>管理员
+			  </p>
+			  <p>
+			    <%= f.submit "保存" %>
+			  </p>
+			<% end %>
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>

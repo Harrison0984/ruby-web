@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616084422) do
+ActiveRecord::Schema.define(version: 20150620164030) do
+
+  create_table "operlogs", force: :cascade do |t|
+    t.string   "maname"
+    t.string   "username"
+    t.integer  "coin"
+    t.string   "action"
+    t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tracelogs", force: :cascade do |t|
     t.integer  "type"
@@ -32,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150616084422) do
     t.integer  "coin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "level"
   end
 
 end
