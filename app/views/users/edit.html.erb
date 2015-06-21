@@ -16,7 +16,7 @@
             <div class="panel-heading">
                 编辑用户
             </div>
-            <%= form_for :user do |f| %>
+            <%= form_for @user, url: {action: "update"}, mothod: :post do |f| %>
 			  <% if @user.errors.any? %>
 			  <div id="error_explanation">
 			    <h2><%= pluralize(@user.errors.count, "error") %>:</h2>
@@ -29,7 +29,7 @@
 			  <% end %>
 			  <p>
 			    <%= f.label :account, '账号:' %>
-			    <%= f.text_field :account, class:"form-control", placeholder:"账号" %>
+			    <%= f.text_field :account, class:"form-control", placeholder:"账号", disabled:"disabled"%>
 			  </p>
 			  <p>
 			    <%= f.label :password, '用户密码:' %>
@@ -45,10 +45,13 @@
 			  </p>
 			  <p>
 		  	  <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="0" <% if(@user.level!=1) %> checked <% end %>>普通用户
-              </label>
-              <label>
-                  <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" <% if(@user.level==1) %> checked <% end %> >管理员
+		  	  	<% if (@user.level != 1) %>
+		  	  	  <%= f.radio_button :level, "0", checked:"checked" %>普通用户
+			  	  <%= f.radio_button :level, "1" %>管理员
+			  	<% else %>
+			  	  <%= f.radio_button :level, "0" %>普通用户
+			  	  <%= f.radio_button :level, "1", checked:"checked" %>管理员
+			  	<% end %>
               </label>
 			  </p>
 			  <p>

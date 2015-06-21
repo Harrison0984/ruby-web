@@ -35,9 +35,19 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(params[:id])
+		coin = @user.coin
 
-		if @user.update(params.require(:user).permit(:account, :password, :nickname, :coin))
-			redirect_to @user
+		if @user.update(params.require(:user).permit(:password, :nickname, :coin))
+
+			curtime = Time.new
+			@operlog = Operlog.new()
+			@operlog.username = @user.account
+			@operlog.coin = @user.coin - coin
+			@operlog.action = '修改'
+			@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+			@operlog.save
+
+			redirect_to :action => 'index'
 		else
 			render 'edit'
 		end
@@ -46,6 +56,14 @@ class UsersController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		@user.destroy
+
+		curtime = Time.new
+		@operlog = Operlog.new()
+		@operlog.username = @user.account
+		@operlog.coin = -@user.coin
+		@operlog.action = '删除'
+		@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+		@operlog.save
 
 		redirect_to users_path
 	end

@@ -1,2 +1,0 @@
-class TracelogController < ApplicationController
-end
