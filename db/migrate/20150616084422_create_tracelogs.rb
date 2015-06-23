@@ -8,6 +8,7 @@ class CreateTracelogs < ActiveRecord::Migration
       t.integer :status
       t.datetime :time
       t.integer :userid
+      t.string :useraccount
 
       t.timestamps null: false
     end

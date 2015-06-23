@@ -121,16 +121,16 @@
 	                            <!-- /input-group -->
 	                        </li>
 	                        <li>
-	                            <a href="#"><i class="fa fa-dashboard fa-fw"></i>仪表板</a>
+	                        	<%= link_to '仪表板', controller: 'task', action: 'index' %>
 	                        </li>
 	                        <li>
 	                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>数据日志<span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
 	                                <li>
-	                                    <a href="flot.html">游戏日志</a>
+	                                	<%= link_to '游戏日志', controller: 'gridgame', action: 'index' %>
 	                                </li>
 	                                <li>
-	                                    <a href="morris.html">用户日志</a>
+	                                	<%= link_to '用户日志', controller: 'tracelogs', action: 'index' %>
 	                                </li>
 	                                <li>
 	                                	<%= link_to '操作日志', controller: 'operlogs', action: 'index' %>
@@ -178,6 +178,7 @@
 	                responsive: true
 	        });
 	    });
+	    <%= yield :script %>
 	    </script>
 	</body>
 </html>

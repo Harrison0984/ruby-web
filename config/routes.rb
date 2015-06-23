@@ -12,9 +12,13 @@ Rails.application.routes.draw do
 
   resources :manage, only: [:index, :show]
 
-  resources :tracelog, only: [:new, :create, :show, :destroy]
+  resources :tracelogs, only: [:index]
 
   resources :operlogs, only: [:index]
+
+  resources :gridgame, only: [:index]
+
+  resources :task, only: [:index]
   
   # You can have the root of your site routed with "root"
   root 'welcome#index'

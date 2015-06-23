@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621164804) do
+ActiveRecord::Schema.define(version: 20150621172140) do
 
   create_table "grids", force: :cascade do |t|
     t.integer  "x1"
@@ -38,17 +38,30 @@ ActiveRecord::Schema.define(version: 20150621164804) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tasklogs", force: :cascade do |t|
+    t.integer  "totalbar"
+    t.integer  "currentbar"
+    t.integer  "errorbar"
+    t.integer  "totalmoney"
+    t.integer  "prizemoney"
+    t.datetime "runtime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date     "taskdate"
+  end
+
   create_table "tracelogs", force: :cascade do |t|
     t.integer  "gametype"
     t.integer  "pos"
     t.integer  "coin"
     t.datetime "time"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "gameid"
     t.integer  "status"
     t.integer  "userid"
+    t.string   "useraccount"
   end
 
   add_index "tracelogs", ["user_id"], name: "index_tracelogs_on_user_id"
