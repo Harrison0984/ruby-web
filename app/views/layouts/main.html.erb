@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>游戏大厅</title>
+	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	<%= stylesheet_link_tag 'mainstyle', 'data-turbolinks-eval' => true %>
+	<%= stylesheet_link_tag 'default', 'data-turbolinks-eval' => true %>
+	<%= javascript_include_tag 'wow.min', 'data-turbolinks-eval' => true %>
+	<%= javascript_include_tag 'custom', 'data-turbolinks-eval' => true %>
+	<%= csrf_meta_tags %>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <h1>游戏大厅</h1>
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="#intro">游戏大厅</a></li>
+		        <li><a href="#about"></a></li>
+				<li><a href="#test">历史记录</a></li>
+		        <li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">昵称<b class="caret"></b></a>
+		          <ul class="dropdown-menu">
+		            <li><a href="#">个人信息</a></li>
+		            <li><a href="#">退出</a></li>
+		          </ul>
+		        </li>
+		      </ul>
+		    </div>
+	    </div>
+    </nav>
+
+    <%= yield %>
+
+	<footer>
+		<div class="container">
+			<div class="col-md-6 col-lg-12">
+				<div class="wow shake" data-wow-delay="0.4s">
+				<div class="page-scroll marginbot-30">
+					<a href="#intro" id="totop" class="btn btn-circle">
+						<i class="fa fa-angle-double-up animated"></i>
+					</a>
+				</div>
+				</div>
+				<p>&copy;Copyright 2015 - All rights reserved. </p>
+			</div>
+		</div>
+	</footer>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>游戏大厅</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'sb-admin-2', 'data-turbolinks-eval' => true %>
+  <%= stylesheet_link_tag 'form-elements', 'data-turbolinks-eval' => true %>
+  <%= stylesheet_link_tag 'style', 'data-turbolinks-eval' => true %>
+  <%= javascript_include_tag 'scripts', 'data-turbolinks-eval' => true %>
+  <%= javascript_include_tag 'jquery.backstretch.min', 'data-turbolinks-eval' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+<%= yield %>
+</body>
+
+</html>
