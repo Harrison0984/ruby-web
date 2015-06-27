@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  maname: MyString
+  username: MyString
+  coin: 1
+  action: 1
+  time: 2015-06-21 00:28:51
+
+two:
+  maname: MyString
+  username: MyString
+  coin: 1
+  action: 1
+  time: 2015-06-21 00:28:51

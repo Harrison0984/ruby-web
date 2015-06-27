@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  x1: 1
+  x2: 1
+  x3: 1
+  y1: 1
+  y2: 1
+  y3: 1
+  z1: 1
+  z2: 1
+  z3: 1
+  time: 2015-06-21 22:51:50
+
+two:
+  x1: 1
+  x2: 1
+  x3: 1
+  y1: 1
+  y2: 1
+  y3: 1
+  z1: 1
+  z2: 1
+  z3: 1
+  time: 2015-06-21 22:51:50

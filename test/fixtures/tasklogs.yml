@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  totalbar: 1
+  currentbar: 1
+  errorbar: 1
+  totalprizes: 1
+  dayprizes: 1
+  totalmoney: 1
+  prizemoney: 1
+  runtime: 2015-06-22 01:21:40
+
+two:
+  totalbar: 1
+  currentbar: 1
+  errorbar: 1
+  totalprizes: 1
+  dayprizes: 1
+  totalmoney: 1
+  prizemoney: 1
+  runtime: 2015-06-22 01:21:40
