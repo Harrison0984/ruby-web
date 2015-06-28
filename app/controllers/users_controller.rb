@@ -9,24 +9,47 @@ class UsersController < ApplicationController
 	end
 	
 	def create
-		@user = User.new(params.require(:user).permit(:account, :password, :nickname, :coin, :level))
+		if isadmin(session[:userid])
+			@user = User.new(params.require(:user).permit(:account, :password, :nickname, :coin, :level))
 
-		if @user.save
-			curtime = Time.new
-			@operlog = Operlog.new()
-			@operlog.username = @user.account
-			@operlog.coin = @user.coin
-			@operlog.action = '新建'
-			@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-			@operlog.save
-			redirect_to :action => 'index'
-		else
-			render 'new'
+			if @user.save
+				curtime = Time.new
+				@operlog = Operlog.new()
+
+				admin = User.find(session[:userid])
+				@operlog.maname = admin.account
+
+				@operlog.username = @user.account
+				@operlog.coin = @user.coin
+				@operlog.action = '新建'
+				@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+				@operlog.save
+				redirect_to :action => 'index'
+			else
+				render 'new'
+			end
 		end
 	end
 	
 	def index
-		@users = User.all
+		if isadmin(session[:userid]) == false
+			redirect_to url_for(:controller => :welcome, :action => :index)
+		else
+			@users = User.all
+		end
+	end
+
+	def isadmin (userid)
+		if session.has_key?(:userid) == false || session[:userid] == 0
+			return false
+		else
+			@user = User.find(session[:userid])
+			if @user == nil || @user.level != 1
+				return false
+			else
+				return true
+			end
+		end
 	end
 
 	def edit
@@ -34,37 +57,49 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		@user = User.find(params[:id])
-		coin = @user.coin
+		if isadmin(session[:userid])
+			@user = User.find(params[:id])
+			coin = @user.coin
 
-		if @user.update(params.require(:user).permit(:password, :nickname, :coin))
+			if @user.update(params.require(:user).permit(:password, :nickname, :coin))
 
-			curtime = Time.new
-			@operlog = Operlog.new()
-			@operlog.username = @user.account
-			@operlog.coin = @user.coin - coin
-			@operlog.action = '修改'
-			@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-			@operlog.save
+				curtime = Time.new
+				@operlog = Operlog.new()
 
-			redirect_to :action => 'index'
-		else
-			render 'edit'
+				admin = User.find(session[:userid])
+				@operlog.maname = admin.account
+
+				@operlog.username = @user.account
+				@operlog.coin = @user.coin - coin
+				@operlog.action = '修改'
+				@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+				@operlog.save
+
+				redirect_to :action => 'index'
+			else
+				render 'edit'
+			end
 		end
 	end
 
 	def destroy
-		@user = User.find(params[:id])
-		@user.destroy
+		if isadmin(session[:userid])
+			@user = User.find(params[:id])
+			@user.destroy
 
-		curtime = Time.new
-		@operlog = Operlog.new()
-		@operlog.username = @user.account
-		@operlog.coin = -@user.coin
-		@operlog.action = '删除'
-		@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-		@operlog.save
+			curtime = Time.new
+			@operlog = Operlog.new()
 
-		redirect_to users_path
+			admin = User.find(session[:userid])
+			@operlog.maname = admin.account
+
+			@operlog.username = @user.account
+			@operlog.coin = -@user.coin
+			@operlog.action = '删除'
+			@operlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+			@operlog.save
+
+			redirect_to users_path
+		end
 	end
 end

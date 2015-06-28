@@ -43,15 +43,15 @@
                               <td><%= log.useraccount %></td>
                               <td><%= log.gameid %></td>
                               <% if log.gametype == 1 %>
-                                <td>same</td>
+                                <td>豹子</td>
                               <% elsif log.gametype == 2 %>
-                                <td>order</td>
+                                <td>顺子</td>
                               <% elsif log.gametype == 3 %>
-                                <td>small</td>
+                                <td>小</td>
                               <% elsif log.gametype == 4 %>
-                                <td>big</td>
+                                <td>大</td>
                               <% elsif log.gametype == 5 %>
-                                <td>color</td>
+                                <td>清色</td>
                               <% else %>
                                 <td>error</td>
                               <% end %>
@@ -71,7 +71,7 @@
                                 <td>error</td>
                               <% end %>
                               <td><%= log.coin %></td>
-                              <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>中奖<% else %> 未中奖 <% end %></td>
+                              <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>猜中<% else %> 未中 <% end %></td>
                               <td><%= log.time %></td>
                           </tr>
                         <% end %>

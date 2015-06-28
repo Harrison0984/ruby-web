@@ -12,12 +12,14 @@ class SessionsController < ApplicationController
         	session[:userid] = @user.id
 			redirect_to url_for(:controller => :main, :action => :index)
 		else
-			@error = "Incorrect username or password."
+			@error = "无效的用户名或密码"
 			@defaultname = {:account => useraccount}
 			render :template => 'welcome/index'
       	end
 	end
 
 	def destroy
+		session[:userid] = 0
+		redirect_to url_for(:controller => :welcome, :action => :index)
 	end
 end

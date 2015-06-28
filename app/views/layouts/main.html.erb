@@ -29,13 +29,12 @@
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 		      <ul class="nav navbar-nav">
 		        <li class="active"><a href="#intro">游戏大厅</a></li>
-		        <li><a href="#about"></a></li>
 				<li><a href="#test">历史记录</a></li>
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">昵称<b class="caret"></b></a>
 		          <ul class="dropdown-menu">
 		            <li><a href="#">个人信息</a></li>
-		            <li><a href="#">退出</a></li>
+		            <li><%= link_to "退出", session_path(id:0), method: "delete" %></li>
 		          </ul>
 		        </li>
 		      </ul>
