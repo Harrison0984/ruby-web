@@ -353,3 +353,16 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.program-bar{
+    width: 220px;
+    margin: 40px auto;
+}
+
+.gird-config  
+{
+    margin: 40px auto;  
+    width: 420px;
+    margin-left: 20px;
+    float: left;  
+}

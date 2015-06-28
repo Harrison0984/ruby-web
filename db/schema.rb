@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621172140) do
+ActiveRecord::Schema.define(version: 20150628061436) do
+
+  create_table "gridconfigs", force: :cascade do |t|
+    t.integer  "gridtype"
+    t.float    "probability"
+    t.float    "mulbability"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "grids", force: :cascade do |t|
     t.integer  "x1"

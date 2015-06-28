@@ -1,0 +1,53 @@
+
+<div class="row">
+  <div class="col-lg-12">
+    <h1 class="page-header">游戏配置</h1>
+  </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                九宫格
+            </div>
+              <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>类型</th>
+                                <th>概率</th>
+                                <th>倍率</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <% @gridconfigs.each do |config| %>
+                          <tr class="odd gradeX">
+                              <% if config.gridtype == 1 %>
+                                <td>豹子</td>
+                              <% elsif config.gridtype == 2 %>
+                                <td>顺子</td>
+                              <% elsif config.gridtype == 3 %>
+                                <td>小</td>
+                              <% elsif config.gridtype == 4 %>
+                                <td>大</td>
+                              <% elsif config.gridtype == 5 %>
+                                <td>清色</td>
+                              <% else %>
+                                <td>error</td>
+                              <% end %>
+                              <td><%= config.probability %></td>
+                              <td><%= config.mulbability %></td>
+                              <td><%= link_to '编辑', edit_gridconfig_path(config) %></td>
+                          </tr>
+                        <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+<%= content_for :script do %>
+$('.btn-number').click(function(e){
+    e.preventDefault();
+    
+    fieldName = $(this).attr('data-field');
+    type      = $(this).attr('data-type');
+    var input = $("input[name='"+fieldName+"']");
+    var currentVal = parseFloat(input.val());
+    if (!isNaN(currentVal)) {
+        if(type == 'minus') {
+            
+            if(currentVal > input.attr('min')) {
+                input.val((currentVal - 0.1).toFixed(1)).change();
+            } 
+            if(parseFloat(input.val()) == input.attr('min')) {
+                $(this).attr('disabled', true);
+            }
+
+        } else if(type == 'plus') {
+
+            if(currentVal < input.attr('max')) {
+                input.val((currentVal + 0.1).toFixed(1)).change();
+            }
+            if(parseFloat(input.val()) == input.attr('max')) {
+                $(this).attr('disabled', true);
+            }
+
+        }
+    } else {
+        input.val(0);
+    }
+});
+$('.input-number').focusin(function(){
+   $(this).data('oldValue', $(this).val());
+});
+$('.input-number').change(function() {
+    
+    minValue =  parseFloat($(this).attr('min'));
+    maxValue =  parseFloat($(this).attr('max'));
+    valueCurrent = parseFloat($(this).val());
+    
+    name = $(this).attr('name');
+    if(valueCurrent >= minValue) {
+        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+    } else {
+        $(this).val($(this).data('oldValue'));
+    }
+    if(valueCurrent <= maxValue) {
+        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+    } else {
+        $(this).val($(this).data('oldValue'));
+    }
+    
+    
+});
+<% end %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                九宫格
+            </div>
+            <%= form_for @gridconfig, url:{action: "update"}, mothod: :post do |f| %>
+            <% if @gridconfig.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@gridconfig.errors.count, "error") %>:</h2>
+                <ul>
+                <% @gridconfig.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+              <% end %>
+            <div class="gird-config">
+              <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>相同<% elsif @gridconfig.gridtype == 2 %>顺子<% elsif @gridconfig.gridtype == 3 %>小
+                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同色<% end %>概率</button>
+                    <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="probability">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </span>
+                <%= f.text_field :probability, class: "form-control input-number", name: "probability", value: @gridconfig.probability, min: "0.1", max: "1.0"%>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="probability">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+              </div>
+            </div>
+
+            <div class="gird-config">
+              <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>相同<% elsif @gridconfig.gridtype == 2 %>顺子<% elsif @gridconfig.gridtype == 3 %>小
+                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同色<% end %>倍率</button>
+                    <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="mulbability">
+                        <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                </span>
+                <%= f.text_field :mulbability, class: "form-control input-number", name: "mulbability", value: @gridconfig.mulbability, min: "0.1", max: "100.0"%>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="mulbability">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </span>
+              </div>
+            </div>
+            <p><%= f.submit "保存", class: "btn btn-lg btn-primary btn-block btn-signin" %></p>
+            <% end %>
+        </div>
+    </div>
+</div>
