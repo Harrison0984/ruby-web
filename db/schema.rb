@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 20150628061436) do
     t.integer  "status"
     t.integer  "userid"
     t.string   "useraccount"
+    t.float    "mulbability"
   end
 
   add_index "tracelogs", ["user_id"], name: "index_tracelogs_on_user_id"

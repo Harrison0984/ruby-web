@@ -2,7 +2,12 @@ class WelcomeController < ApplicationController
   def index
   	@defaultname = {:account => ""}
   	if session[:userid] != nil and session[:userid] > 0
-		redirect_to url_for(:controller => :main, :action => :index)
+  		user = User.find(session[:userid])
+  		if user.level == 1
+  			redirect_to url_for(:controller => :manage, :action => :index)
+  		else
+			redirect_to url_for(:controller => :main, :action => :index)
+		end
 	end
   end
 end

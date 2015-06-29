@@ -6,6 +6,7 @@ class CreateTracelogs < ActiveRecord::Migration
       t.integer :pos
       t.integer :coin
       t.integer :status
+      t.float :mulbability
       t.datetime :time
       t.integer :userid
       t.string :useraccount
