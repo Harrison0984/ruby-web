@@ -202,24 +202,25 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	task = Rufus::Scheduler.new
 	task.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 do
 
+		first_run = false
 		if !first_run
 			grid = Grid.new
-			grid.x1 = objects[objindex][0][0]
-			grid.x2 = objects[objindex][0][1]
-			grid.x3 = objects[objindex][0][2]
-			grid.y1 = objects[objindex][0][3]
-			grid.y2 = objects[objindex][0][4]
-			grid.y3 = objects[objindex][0][5]
-			grid.z1 = objects[objindex][0][6]
-			grid.z2 = objects[objindex][0][7]
-			grid.z3 = objects[objindex][0][8]
+			grid.x1 = objects[objindex][0]
+			grid.x2 = objects[objindex][1]
+			grid.x3 = objects[objindex][2]
+			grid.y1 = objects[objindex][3]
+			grid.y2 = objects[objindex][4]
+			grid.y3 = objects[objindex][5]
+			grid.z1 = objects[objindex][6]
+			grid.z2 = objects[objindex][7]
+			grid.z3 = objects[objindex][8]
 
 			curtime = Time.new
 			grid.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 			grid.save	
 
 			objindex += 1
-			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex][0])
+			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
 
 			for i in 0..9
 				tracelog = Tracelog.new
