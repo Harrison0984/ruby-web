@@ -81,7 +81,7 @@ $(function() {
         data: [
             <% tasklog = Tasklog.last(30) %>
             <% tasklog.each do |log| %>
-            [<%= log.runtime.to_i()*1000 %>, <%= log.totalmoney %>],
+            [<%= log.runtime.to_i()*1000 %>, <%= log.totalcoin %>],
             <% end %>
         ]
     };

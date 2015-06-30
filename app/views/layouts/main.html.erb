@@ -10,6 +10,7 @@
 	<%= stylesheet_link_tag 'default', 'data-turbolinks-eval' => true %>
 	<%= javascript_include_tag 'wow.min', 'data-turbolinks-eval' => true %>
 	<%= javascript_include_tag 'custom', 'data-turbolinks-eval' => true %>
+	<%= yield :head %>
 	<%= csrf_meta_tags %>
 </head>
 
@@ -28,12 +29,13 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#intro">游戏大厅</a></li>
-				<li><a href="#test">历史记录</a></li>
+		      	<li class="active"><%= link_to "游戏大厅", controller: 'main', action: 'index' %></li>
+		        <li><%= link_to "历史记录", controller: 'mainhistory', action: 'index' %>
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown">昵称<b class="caret"></b></a>
+		          <%= link_to "#", class: "dropdown-toggle", :'data-toggle' => "dropdown" do%>
+		          <%= @user.account %><b class= 'caret'></b>
+		          <% end %>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">个人信息</a></li>
 		            <li><%= link_to "退出", session_path(id:0), method: "delete" %></li>
 		          </ul>
 		        </li>
@@ -58,6 +60,9 @@
 			</div>
 		</div>
 	</footer>
-</body>
 
+	<script type="text/javascript">
+	<%= yield :script %>
+	</script>>
+</body>
 </html>

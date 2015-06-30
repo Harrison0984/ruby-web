@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150630015537) do
   create_table "loginlogs", force: :cascade do |t|
     t.string   "username"
     t.integer  "action"
-    t.time     "datetime"
+    t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.integer  "totalbar"
     t.integer  "currentbar"
     t.integer  "errorbar"
-    t.integer  "totalmoney"
-    t.integer  "prizemoney"
+    t.integer  "totalcoin"
+    t.integer  "prizecoin"
     t.datetime "runtime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -67,21 +67,18 @@ ActiveRecord::Schema.define(version: 20150630015537) do
   end
 
   create_table "tracelogs", force: :cascade do |t|
+    t.integer  "gameid"
     t.integer  "gametype"
     t.integer  "pos"
     t.integer  "coin"
-    t.datetime "time"
-    t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "gameid"
     t.integer  "status"
+    t.float    "mulbability"
+    t.datetime "time"
     t.integer  "userid"
     t.string   "useraccount"
-    t.float    "mulbability"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "tracelogs", ["user_id"], name: "index_tracelogs_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "account"

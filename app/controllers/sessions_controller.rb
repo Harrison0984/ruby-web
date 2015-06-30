@@ -35,16 +35,19 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		loginlog = Loginlog.new
-		user = User.find(session[:userid])
-		loginlog.username = user.account
-		loginlog.action = 0
 
-		curtime = Time.new
-		loginlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-		loginlog.save
+		if session[:userid] != 0
+			loginlog = Loginlog.new
+			user = User.find(session[:userid])
+			loginlog.username = user.account
+			loginlog.action = 0
 
-		session[:userid] = 0
-		redirect_to url_for(:controller => :welcome, :action => :index)
+			curtime = Time.new
+			loginlog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+			loginlog.save
+
+			session[:userid] = 0
+			redirect_to url_for(:controller => :welcome, :action => :index)
+		end
 	end
 end

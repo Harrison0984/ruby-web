@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   resources :gridconfig
 
   resources :loginlogs, only: [:index]
+
+  resources :mainhistory, only: [:index]
   
   # You can have the root of your site routed with "root"
   root 'welcome#index'
