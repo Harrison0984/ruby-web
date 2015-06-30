@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   resources :task, only: [:index]
 
   resources :gridconfig
+
+  resources :loginlogs, only: [:index]
   
   # You can have the root of your site routed with "root"
   root 'welcome#index'

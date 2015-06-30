@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150628061436) do
+ActiveRecord::Schema.define(version: 20150630015537) do
 
   create_table "gridconfigs", force: :cascade do |t|
     t.integer  "gridtype"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 20150628061436) do
     t.integer  "z2"
     t.integer  "z3"
     t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loginlogs", force: :cascade do |t|
+    t.string   "username"
+    t.integer  "action"
+    t.time     "datetime"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

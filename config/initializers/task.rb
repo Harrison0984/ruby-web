@@ -59,6 +59,16 @@ def ismequal (o1, o2)
 	end
 end
 
+def processprize (userid, coin)
+	user = User.find(userid)
+	if user != nil
+		totalcoin = user.coin + coin
+		user.update(coin: totalcoin)
+	else
+		Rails.logger.error "can't find user #{userid}"
+	end
+end
+
 def checkGrid (object)
 
 	lssame = []
@@ -188,9 +198,6 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects[i] = tmp
 	end
 
-	for i in 0..227
-		Rails.logger.debug objects[i]
-	end
 	Rails.logger.debug day_same
 	Rails.logger.debug day_order
 	Rails.logger.debug day_small
@@ -202,7 +209,6 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	task = Rufus::Scheduler.new
 	task.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 do
 
-		first_run = false
 		if !first_run
 			grid = Grid.new
 			grid.x1 = objects[objindex][0]
@@ -236,24 +242,29 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tracelog.save
 			end
 
-			totalmoney = 0
-			prizemoney = 0
+			totalcoin = 0
+			prizecoin = 0
 			Tracelog.where("gameid = ?", grid.id).each do |log|
-				totalmoney += log.coin
+				totalcoin += log.coin
 	  			if log.gametype = 1 and lssame.include?(log.pos)
-	  				prizemoney += log.coin * mul_same
+	  				prizecoin = log.coin * mul_same
+	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
 	  			elsif log.gametype = 2 and lsorder.include?(log.pos)
-	  				prizemoney += log.coin * mul_order
+	  				prizecoin = log.coin * mul_order
+	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
 	  			elsif log.gametype = 3 and lssmall.include?(log.pos)
-	  				prizemoney += log.coin
-	  				log.update(status: 1) * mul_small
+	  				prizecoin = log.coin * mul_small
+	  				processprize(log.userid, prizecoin)
+	  				log.update(status: 1)
 	  			elsif log.gametype = 4 and lsbig.include?(log.pos)
-	  				prizemoney += log.coin
-	  				log.update(status: 1) * mul_big
+	  				prizecoin = log.coin * mul_big
+	  				processprize(log.userid, prizecoin)
+	  				log.update(status: 1)
 	  			elsif log.gametype = 5 and lscolor.include?(log.pos)
-	  				prizemoney += log.coin * mul_color
+	  				prizecoin = log.coin * mul_color
+	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
 	  			else
 	  				log.update(status: -1)
@@ -266,13 +277,13 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.totalbar = 228
 				tasklog.currentbar = objindex+1
 				tasklog.errorbar = 0
-				tasklog.totalmoney = totalmoney
-				tasklog.prizemoney = prizemoney
+				tasklog.totalcoin = totalcoin
+				tasklog.prizecoin = prizecoin
 				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
 				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M:%S")
 				tasklog.save
 			else
-				tasklog.update(currentbar: objindex+1, totalmoney: totalmoney, prizemoney: prizemoney, runtime: curtime.strftime("%Y-%m-%d %H:%M:%S"))
+				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M:%S"))
 			end
 		else
 			first_run = false

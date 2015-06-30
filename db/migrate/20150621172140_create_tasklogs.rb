@@ -4,8 +4,8 @@ class CreateTasklogs < ActiveRecord::Migration
       t.integer :totalbar
       t.integer :currentbar
       t.integer :errorbar
-      t.integer :totalmoney
-      t.integer :prizemoney
+      t.integer :totalcoin
+      t.integer :prizecoin
       t.datetime :runtime
 
       t.timestamps null: false
