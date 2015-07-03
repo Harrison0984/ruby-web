@@ -7,6 +7,7 @@ class CreateTasklogs < ActiveRecord::Migration
       t.integer :totalcoin
       t.integer :prizecoin
       t.datetime :runtime
+      t.datetime :nexttime
 
       t.timestamps null: false
     end

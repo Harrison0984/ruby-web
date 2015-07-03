@@ -271,6 +271,7 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	  			end
 			end
 
+			nexttime = curtime + 5*60;
 			tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d"))
 			if tasklog == nil
 				tasklog = Tasklog.new
@@ -281,9 +282,12 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.prizecoin = prizecoin
 				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
 				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M:%S")
+				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M:%S")
 				tasklog.save
 			else
-				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M:%S"))
+				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, 
+					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M:%S"),
+					nexttime: nexttime.strftime("%Y-%m-%d %H:%M:%S"))
 			end
 		else
 			first_run = false

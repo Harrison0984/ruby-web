@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date     "taskdate"
+    t.datetime "nexttime"
   end
 
   create_table "tracelogs", force: :cascade do |t|
