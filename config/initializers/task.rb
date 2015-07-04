@@ -151,7 +151,7 @@ def checkGrid (object)
 	return lssame,lsorder,lssmall,lsbig,lscolor
 end
 
-s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
+s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	#get game config information
 	gridconfigs = Gridconfig.all
@@ -212,7 +212,7 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	first_run = true
 
 	task = Rufus::Scheduler.new
-	task.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 do
+	task.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 + 5*60 do
 
 		if !first_run
 			grid = Grid.new
@@ -276,7 +276,13 @@ s.cron '30 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	  			end
 			end
 
-			nexttime = curtime + 5*60;
+			#if the end time
+			if curtime.hour == 1
+				nexttime = curtime + 5*60*60
+			else
+				nexttime = curtime + 5*60
+			end
+
 			tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d"))
 			if tasklog == nil
 				tasklog = Tasklog.new
