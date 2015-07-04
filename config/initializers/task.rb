@@ -34,12 +34,17 @@ day_color = 0
 mul_color = 1.0
 
 def randomGrid
-	object = Array[rand(53),rand(53),rand(53),
-					rand(53),rand(53),rand(53),
-					rand(53),rand(53),rand(53)]
+
+	object = []
+	for i in 0..8 do
+		begin
+			idx = rand(53)
+		end while object.include?(idx)
+
+		object[i] = idx
+	end
 
 	lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(object)
-
 	return object,lssame.length,lsorder.length,lssmall.length,lsbig.length,lscolor.length
 end
 
