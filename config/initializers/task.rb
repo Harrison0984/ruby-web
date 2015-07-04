@@ -197,7 +197,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	end
 
 	for i in 0..227
-		index = rand(227)
+		index = rand(228)
 		tmp = objects[index]
 		objects[index] = objects[i]
 		objects[i] = tmp
@@ -233,6 +233,10 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			objindex += 1
 			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
 
+			Tracelog.where("action != 1").each do |log|
+				log.destroy
+			end
+
 			for i in 0..9
 				tracelog = Tracelog.new
 				tracelog.gameid = grid.id
@@ -243,6 +247,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tracelog.userid = 2
 				tracelog.useraccount = "test"
 				tracelog.mulbability = 1.0
+				tracelog.action = rand(2)
 				tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 				tracelog.save
 			end
@@ -276,7 +281,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	  			end
 			end
 
-			#if the end time
+			#if the end time of day
 			if curtime.hour == 1
 				nexttime = curtime + 5*60*60
 			else

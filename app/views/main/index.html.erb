@@ -1,3 +1,55 @@
+<%= content_for :script do %>
+$(document).ready(
+  function(){
+    setInterval(countdown, 1000)
+  });
+
+  function countdown() {
+    var label = document.getElementById("leftSconds");
+    var newSeconds = parseInt(label.innerText) - 1;
+    if (newSeconds <= 0) {
+      location.reload();
+    }
+    if (!isNaN(newSeconds)) {
+      label.innerHTML = newSeconds;
+    }
+  }
+$('.btn-primary').click(function(e){
+    e.preventDefault();
+    
+    fieldValue = $(this).attr('value');
+    var input = $("input[name='main[coin]']");
+    var currentVal = parseFloat(input.val());
+    if (!isNaN(currentVal)) {
+
+        var newVal = currentVal * fieldValue;
+        if (newVal < 1.1) {
+          newVal = 1
+        }
+        if(newVal < input.attr('max')) {
+          input.val((newVal).toFixed(0)).change();
+        } else {
+          input.val(input.attr('max'))
+        }
+    } else {
+        input.val(0);
+    }
+});
+$('.input-primary').focusin(function(){
+   $(this).data('oldValue', $(this).val());
+});
+$('.input-primary').change(function() {
+    
+    maxValue = $(this).attr('max');
+    valueCurrent = $(this).val();
+    
+    name = $(this).attr('name');
+    if(valueCurrent <= maxValue) {
+        $(this).val($(this).data('oldValue'));
+    }
+});
+<% end %>
+
 <div class="section section-white">
 <div class="container">
 <div class="row">
@@ -8,18 +60,22 @@
     </h4>
   </div>
 
+<div id='time_div'>
+<%= render :partial => 'undetermined' %>
+</div>
+
 <% if @grids.length > 0 %>
   <div class="row last-div">
     <div class="col-xs-12">
     <ul class="" style="width: 300px;">
       <li style="float: left;">
-        <%= image_tag("#{@grids[0].x1}.png", class: "img-responsive last-img") %>
+        <%= image_tag("#{@grids[@grids.length-1].x1}.png", class: "img-responsive last-img") %>
       </li>
       <li style="float: left; display: inline;">
-        <%= image_tag("#{@grids[0].x2}.png", class: "img-responsive last-img") %>
+        <%= image_tag("#{@grids[@grids.length-1].x2}.png", class: "img-responsive last-img") %>
       </li>
       <li style="float: left;display: inline;">
-        <%= image_tag("#{@grids[0].x3}.png", class: "img-responsive last-img") %>
+        <%= image_tag("#{@grids[@grids.length-1].x3}.png", class: "img-responsive last-img") %>
       </li>
         </ul>
     </div>
@@ -27,13 +83,13 @@
     <div class="col-xs-12">
       <ul class="" style="width: 300px;">
       <li style="float: left;/* display: none; */">
-          <%= image_tag("#{@grids[0].y1}.png", class: "img-responsive last-img") %>
+          <%= image_tag("#{@grids[@grids.length-1].y1}.png", class: "img-responsive last-img") %>
       </li>
       <li style="float: left;display: inline;">
-          <%= image_tag("#{@grids[0].y2}.png", class: "img-responsive last-img") %>
+          <%= image_tag("#{@grids[@grids.length-1].y2}.png", class: "img-responsive last-img") %>
       </li>
       <li style="float: left;display: inline;">
-          <%= image_tag("#{@grids[0].y3}.png", class: "img-responsive last-img") %>
+          <%= image_tag("#{@grids[@grids.length-1].y3}.png", class: "img-responsive last-img") %>
       </li>
       </ul>
     </div>
@@ -41,13 +97,13 @@
     <div class="col-xs-12">
       <ul class="" style="width: 300px;">
       <li style="float: left;/* display: none; */">
-          <%= image_tag("#{@grids[0].z1}.png", class: "img-responsive last-img") %>
+          <%= image_tag("#{@grids[@grids.length-1].z1}.png", class: "img-responsive last-img") %>
       </li>
       <li style="float: left;display: inline;">
-          <%= image_tag("#{@grids[0].z2}.png", class: "img-responsive last-img") %>
+          <%= image_tag("#{@grids[@grids.length-1].z2}.png", class: "img-responsive last-img") %>
       </li>
       <li style="float: left;display: inline;">
-          <%= image_tag("#{@grids[0].z3}.png", class: "img-responsive last-img") %>
+          <%= image_tag("#{@grids[@grids.length-1].z3}.png", class: "img-responsive last-img") %>
       </li>
       </ul>
     </div>
@@ -59,12 +115,12 @@
   </h4>
 </div>
 <div class="row-fluid">
-  <% for i in 1..3 %>
+  <% for i in 0..2 %>
   <% if @grids.length > i %>
   <div class="col-xs-4">
     <div class="row-fluid last-div2">
       <div class="span12" style="text-align: center;">
-        第120期
+        第<%= @grids[i].id %>期
       </div>
       <div class="" style="display:block;text-align:center">
         <ul style="width: 120px;">
@@ -113,49 +169,48 @@
 </div>
 <div class="col-xs-6">
 <div class="row">
-<h4 class="text-info well" style="display:block;text-align:center">
-    距离第123期 还有98秒开奖
+<h4 class="text-info well" nexttime="<%= "#{@nexttime}" %>" style="display:block;text-align:center">
+    距离第<%= @nextbar %>期 还有<label id="leftSconds"><%= @seconds %></label>秒开奖
 </h4>
 </div>
 <div class="row">
 <div class="col-xs-6">
 <div class="form-group">
 <div class=""> 
-<label class="radio-inline nofull default left" for="radios-0">
-  <input type="radio" class="iCheck" name="iCheck" id="iCheck" value="1" checked="checked">横一</label> 
-<label class="radio-inline" for="radios-1">
-  <input type="radio" name="iCheck" id="radios-1" value="2">横二</label> 
-<label class="radio-inline" for="radios-2">
-  <input type="radio" name="iCheck" id="radios-2" value="3">横三</label> 
+<%= form_for :main, url: sessions_path do |f| %>
+<% for i in 0..2 %>
+<label class="radio-inline" for=<%= "main_pos_#{i+1}" %>>
+<% if i == 0 %>
+  <%= f.radio_button :pos, i+1, :checked => true %>
+<% else %>
+  <%= f.radio_button :pos, i+1 %>
+<% end %>
+<%if i == 0 %>横一<% elsif i == 1 %>横二<% elsif i == 2 %>横三<% end %>
+</label>
+<% end %>
 </div>
 </div>
+
 <div class=""> 
-<label class="radio-inline nofull default left" for="radios-3">
-  <input type="radio" name="iCheck" id="radios-3" value="4">竖一</label> 
-<label class="radio-inline" for="radios-4">
-  <input type="radio" name="iCheck" id="radios-4" value="5">竖二</label> 
-<label class="radio-inline" for="radios-5">
-  <input type="radio" name="iCheck" id="radios-5" value="6">竖三</label> 
+<% for i in 3..5 %>
+<label class="radio-inline" for=<%= "main_pos_#{i+1}" %>>
+  <%= f.radio_button :pos, i+1 %>
+<%if i == 3 %>竖一<% elsif i == 4 %>竖二<% elsif i == 5 %>竖三<% end %>
+</label>
+<% end %>
 </div>
 </div>
 
 <div class="col-xs-6"> 
 <div class="form-group">
 <div class=""> 
-<%if @gridconfigs[i].gridtype == 1 %>
-<% elsif @gridconfigs[i].gridtype == 2 %>
-<% tt = "d" %>
-<% elsif @gridconfigs[i].gridtype == 3 %>
-<% elsif @gridconfigs[i].gridtype == 4 %>
-<% elsif @gridconfigs[i].gridtype == 5 %>
-<% end %>
 
 <% for i in 0..2 %> 
-  <label class="radio-inline" for=<%= "radios_#{i+1}"%>>
+  <label class="radio-inline" for=<%= "main_gametype_#{i+1}"%>>
 <% if i == 0 %>
-  <input type="radio" name="radios" id=<%= "radios_#{i+1}" %> value=<%= "#{i+1}" %> check="checked" >
+  <%= f.radio_button :gametype, i+1, :checked => true %>
 <% else %>
-  <input type="radio" name="radios" id=<%= "radios_#{i+1}" %> value=<%= "#{i+1}" %>>
+  <%= f.radio_button :gametype, i+1 %>
 <% end %>
 
   <%if @gridconfigs[i].gridtype == 1 %>豹子<% elsif @gridconfigs[i].gridtype == 2 %>顺子
@@ -172,7 +227,7 @@
 <div class="">
 <% for i in 3..4 %>
   <label class="radio-inline" for=<%= "radios_#{i+1}"%>>
-  <input type="radio" name="radios" id=<%= "radios_#{i+1}" %> value=<%= "#{i+1}" %>>
+  <%= f.radio_button :gametype, i+1 %>
 
   <%if @gridconfigs[i].gridtype == 1 %>豹子<% elsif @gridconfigs[i].gridtype == 2 %>顺子
   <% elsif @gridconfigs[i].gridtype == 3 %>小牌
@@ -187,30 +242,31 @@
 </div>
 <div class="row">
 <div class="col-xs-12">
-    <div class="row">
-        <div class="col-xs-4">
-            <div class="input-group">
-           <input type="text" class="form-control">
-           <span class="input-group-btn">
-          <button class="btn btn-default" type="button">添加</button>
-       </span>
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="input-group">
+       <%= f.text_field :coin, class:"form-control", value:"100", max:"1000" %>
+       <span class="input-group-btn">
+       <%= f.submit "添加", class: "btn btn-default" %>
+      <% end %>
+     </span>
     </div>
     </div>
     <div class="col-xs-8" style="padding-top:1px; margin-left:0px;">
         <div class="btn-group">
-            <button type="button" class="btn btn-primary">0.1倍</button>
-            <button type="button" class="btn btn-primary">0.5倍</button>
-            <button type="button" class="btn btn-primary">1.2倍</button>
-            <button type="button" class="btn btn-primary">2倍</button>
-            <button type="button" class="btn btn-primary">5倍</button>
-            <button type="button" class="btn btn-primary">10倍</button>
+            <button type="button" class="btn btn-primary" value="0.1">0.1倍</button>
+            <button type="button" class="btn btn-primary" value="0.5">0.5倍</button>
+            <button type="button" class="btn btn-primary" value="1.2">1.2倍</button>
+            <button type="button" class="btn btn-primary" value="2">2倍</button>
+            <button type="button" class="btn btn-primary" value="5">5倍</button>
+            <button type="button" class="btn btn-primary" value="10">10倍</button>
         </div>
     </div>
 </div>
 <p>&nbsp;</p>
 <div class="row">
     <div class="well" style="display:block;text-align:center">
-        <table class="table table-striped">
+        <table class="table table-striped table-bordered table-hover">
             <thead>
                 <tr>
                     <th>编号</th>
@@ -220,40 +276,44 @@
                 </tr>
             </thead>
             <tbody>
+                <% @tracelogs.each do |log| %>
                 <tr>
-                    <td>1</td>
-                    <td>横一</td>
-                    <td>顺子</td>
-                    <td>1000</td>
+                    <td><%= log.id %></td>
+                    <% if log.pos == 1 %>
+                        <td>横一</td>
+                      <% elsif log.pos == 2 %>
+                        <td>横二</td>
+                      <% elsif log.pos == 3 %>
+                        <td>横三</td>
+                      <% elsif log.pos == 4 %>
+                        <td>纵一</td>
+                      <% elsif log.pos == 5 %>
+                        <td>纵二</td>
+                      <% elsif log.pos == 6 %>
+                        <td>纵三</td>
+                      <% else %>
+                        <td>error</td>
+                    <% end %>
+                    <% if log.gametype == 1 %>
+                        <td>豹子</td>
+                      <% elsif log.gametype == 2 %>
+                        <td>顺子</td>
+                      <% elsif log.gametype == 3 %>
+                        <td>小牌</td>
+                      <% elsif log.gametype == 4 %>
+                        <td>大牌</td>
+                      <% elsif log.gametype == 5 %>
+                        <td>清色</td>
+                      <% else %>
+                        <td>error</td>
+                    <% end %>
+                    <td><%= log.coin %></td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>横一</td>
-                    <td>顺子</td>
-                    <td>1000</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>横一</td>
-                    <td>顺子</td>
-                    <td>1000</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>横一</td>
-                    <td>顺子</td>
-                    <td>1000</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>横一</td>
-                    <td>顺子</td>
-                    <td>1000</td>
-                </tr>
+                <% end %>
             </tbody>
               </table>
-              <button class="btn btn-primary" type="button">投注</button>
-              <button class="btn btn-primary" type="button">清空</button>
+              <button class="btn" type="button">投注</button>
+              <button class="btn" type="button">清空</button>
           </div>
       </div>
   </div>

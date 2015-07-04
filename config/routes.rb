@@ -8,8 +8,12 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :main, only: [:index, :show]
+  resources :main, only: [:index]
 
+  match 'main/time', :to => 'main#time', 
+                       :via => :get, 
+                       :as => :time_main
+  
   resources :manage, only: [:index, :show]
 
   resources :tracelogs, only: [:index]
