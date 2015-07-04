@@ -11,56 +11,56 @@
 <% content_for :script do %>
 $(document).ready(function () {
     $('#dataTables-example').DataTable({
-                  responsive: true
-          });
+        responsive: true
+    });
 });
 <% end %>
 
 <div class="section section-white">
 <div class="container">
 <div class="row-fluid">
-  <% for i in 1..60 %>
+  <% @grids.each do |log| %>
   <div class="col-xs-4">
     <div class="row-fluid last-div2">
       <div class="span12" style="text-align: center;">
-        第120期
+        第<%= log.id %>期
       </div>
       <div class="" style="display:block;text-align:center">
         <ul style="width: 120px;">
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.x1}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.x2}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.x3}.png", class: "img-responsive last-img2") %>
           </li>
         </ul>
       </div>
       <div class="" style="display:block;text-align:center">
         <ul style="width: 120px;">
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.y1}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.y2}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.y3}.png", class: "img-responsive last-img2") %>
           </li>
         </ul>
       </div>
       <div class="" style="display:block;text-align:center">
         <ul style="width: 120px;">
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.z1}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.z2}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{log.z3}.png", class: "img-responsive last-img2") %>
           </li>
         </ul>
       </div>

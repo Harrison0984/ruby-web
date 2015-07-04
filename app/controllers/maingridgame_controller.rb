@@ -5,7 +5,7 @@ class MaingridgameController < ApplicationController
 		if session.has_key?(:userid) == false || session[:userid] == 0
 			redirect_to url_for(:controller => :welcome, :action => :index)
 		else
-			@grids = Grid.all
+			@grids = Grid.last(60)
 			@user = User.find(session[:userid])
 		end
 	end
