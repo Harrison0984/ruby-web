@@ -3,58 +3,64 @@
 <div class="row">
 <div class="col-xs-6">
   <div class="row-fluid">
-      <h4 class="text-info well" style="display:block;text-align:center">
-        本期开奖结果
-      </h4>
+    <h4 class="text-info well" style="display:block;text-align:center">
+      本期开奖结果
+    </h4>
   </div>
-<div class="row last-div">
-<div class="col-xs-12">
-<ul class="" style="width: 300px;">
-  <li style="float: left;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-  </li>
-  <li style="float: left; display: inline;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-  </li>
-  <li style="float: left;display: inline;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-  </li>
-    </ul>
-</div>
 
+<% if @grids.length > 0 %>
+  <div class="row last-div">
+    <div class="col-xs-12">
+    <ul class="" style="width: 300px;">
+      <li style="float: left;">
+        <%= image_tag("#{@grids[0].x1}.png", class: "img-responsive last-img") %>
+      </li>
+      <li style="float: left; display: inline;">
+        <%= image_tag("#{@grids[0].x2}.png", class: "img-responsive last-img") %>
+      </li>
+      <li style="float: left;display: inline;">
+        <%= image_tag("#{@grids[0].x3}.png", class: "img-responsive last-img") %>
+      </li>
+        </ul>
+    </div>
 
-<div class="col-xs-12">
-<ul class="" style="width: 300px;">
-<li style="float: left;/* display: none; */">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-</li>
-<li style="float: left;display: inline;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-</li>
-<li style="float: left;display: inline;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-</li>
-</ul>
-</div><div class="col-xs-12">
-<ul class="" style="width: 300px;">
-<li style="float: left;/* display: none; */">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-</li>
-<li style="float: left;display: inline;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-</li>
-<li style="float: left;display: inline;">
-    <%= image_tag("1.png", class: "img-responsive last-img") %>
-</li>
-</ul>
-</div>
-</div>
+    <div class="col-xs-12">
+      <ul class="" style="width: 300px;">
+      <li style="float: left;/* display: none; */">
+          <%= image_tag("#{@grids[0].y1}.png", class: "img-responsive last-img") %>
+      </li>
+      <li style="float: left;display: inline;">
+          <%= image_tag("#{@grids[0].y2}.png", class: "img-responsive last-img") %>
+      </li>
+      <li style="float: left;display: inline;">
+          <%= image_tag("#{@grids[0].y3}.png", class: "img-responsive last-img") %>
+      </li>
+      </ul>
+    </div>
+
+    <div class="col-xs-12">
+      <ul class="" style="width: 300px;">
+      <li style="float: left;/* display: none; */">
+          <%= image_tag("#{@grids[0].z1}.png", class: "img-responsive last-img") %>
+      </li>
+      <li style="float: left;display: inline;">
+          <%= image_tag("#{@grids[0].z2}.png", class: "img-responsive last-img") %>
+      </li>
+      <li style="float: left;display: inline;">
+          <%= image_tag("#{@grids[0].z3}.png", class: "img-responsive last-img") %>
+      </li>
+      </ul>
+    </div>
+  </div>
+<%end%>
 <div class="row-fluid text-center">
   <h4 class="text-info well" style="display:block;text-align:center">
     前三期开奖记录
   </h4>
 </div>
 <div class="row-fluid">
+  <% for i in 1..3 %>
+  <% if @grids.length > i %>
   <div class="col-xs-4">
     <div class="row-fluid last-div2">
       <div class="span12" style="text-align: center;">
@@ -63,139 +69,46 @@
       <div class="" style="display:block;text-align:center">
         <ul style="width: 120px;">
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{@grids[i].x1}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{@grids[i].x2}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-      </div>
-      <div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{@grids[i].x3}.png", class: "img-responsive last-img2") %>
           </li>
         </ul>
       </div>
       <div class="" style="display:block;text-align:center">
         <ul style="width: 120px;">
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{@grids[i].y1}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{@grids[i].y2}.png", class: "img-responsive last-img2") %>
           </li>
           <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
+            <%= image_tag("#{@grids[i].y3}.png", class: "img-responsive last-img2") %>
+          </li>
+        </ul>
+      </div>
+      <div class="" style="display:block;text-align:center">
+        <ul style="width: 120px;">
+          <li style="float: left;">
+            <%= image_tag("#{@grids[i].z1}.png", class: "img-responsive last-img2") %>
+          </li>
+          <li style="float: left;">
+            <%= image_tag("#{@grids[i].z2}.png", class: "img-responsive last-img2") %>
+          </li>
+          <li style="float: left;">
+            <%= image_tag("#{@grids[i].z3}.png", class: "img-responsive last-img2") %>
           </li>
         </ul>
       </div>
     </div>
   </div>
-<div class="col-xs-4">
-    <div class="row-fluid last-div2">
-      <div class="span12" style="text-align: center;">
-        第121期
-      </div>
-      <div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-      </div>
-    <div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-        
-        
-      </div><div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div><div class="col-xs-4">
-    <div class="row-fluid last-div2">
-      <div class="span12" style="text-align: center;">
-        第122期
-      </div>
-      <div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-        
-        
-      </div>
-    <div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-        
-        
-      </div><div class="" style="display:block;text-align:center">
-        <ul style="width: 120px;">
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-          <li style="float: left;">
-            <%= image_tag("1.png", class: "img-responsive last-img2") %>
-          </li>
-        </ul>
-      </div>
-      </div>
-  </div>
+  <% end %>
+  <% end %>
   </div>
 </div>
 <div class="col-xs-6">
@@ -225,23 +138,49 @@
   <input type="radio" name="iCheck" id="radios-5" value="6">竖三</label> 
 </div>
 </div>
+
 <div class="col-xs-6"> 
 <div class="form-group">
 <div class=""> 
-<label class="radio-inline" for="radios-6">
-  <input type="radio" name="radios2" id="radios-6" value="1" checked="checked">清色(1.2)</label> 
-<label class="radio-inline" for="radios-7">
-  <input type="radio" name="radios2" id="radios-7" value="2">大牌(1.2)</label> 
-<label class="radio-inline" for="radios-8">
-  <input type="radio" name="radios2" id="radios-8" value="3">小牌(1.2)</label> 
+<%if @gridconfigs[i].gridtype == 1 %>
+<% elsif @gridconfigs[i].gridtype == 2 %>
+<% tt = "d" %>
+<% elsif @gridconfigs[i].gridtype == 3 %>
+<% elsif @gridconfigs[i].gridtype == 4 %>
+<% elsif @gridconfigs[i].gridtype == 5 %>
+<% end %>
+
+<% for i in 0..2 %> 
+  <label class="radio-inline" for=<%= "radios_#{i+1}"%>>
+<% if i == 0 %>
+  <input type="radio" name="radios" id=<%= "radios_#{i+1}" %> value=<%= "#{i+1}" %> check="checked" >
+<% else %>
+  <input type="radio" name="radios" id=<%= "radios_#{i+1}" %> value=<%= "#{i+1}" %>>
+<% end %>
+
+  <%if @gridconfigs[i].gridtype == 1 %>豹子<% elsif @gridconfigs[i].gridtype == 2 %>顺子
+  <% elsif @gridconfigs[i].gridtype == 3 %>小牌
+  <% elsif @gridconfigs[i].gridtype == 4 %>大牌<% elsif @gridconfigs[i].gridtype == 5 %>同色
+  <% end %>
+  (<%= @gridconfigs[i].mulbability %>)
+
+<% end %>
+
 </div>
 </div>  
 <div class="form-group">
-<div class=""> 
-<label class="radio-inline" for="radios-9">
-  <input type="radio" name="radios2" id="radios-9" value="1" checked="checked">顺子(1.2)</label> 
-<label class="radio-inline" for="radios-10">
-  <input type="radio" name="radios2" id="radios-10" value="2">豹子(1.2)</label> 
+<div class="">
+<% for i in 3..4 %>
+  <label class="radio-inline" for=<%= "radios_#{i+1}"%>>
+  <input type="radio" name="radios" id=<%= "radios_#{i+1}" %> value=<%= "#{i+1}" %>>
+
+  <%if @gridconfigs[i].gridtype == 1 %>豹子<% elsif @gridconfigs[i].gridtype == 2 %>顺子
+  <% elsif @gridconfigs[i].gridtype == 3 %>小牌
+  <% elsif @gridconfigs[i].gridtype == 4 %>大牌<% elsif @gridconfigs[i].gridtype == 5 %>同色
+  <% end %>
+  (<%= @gridconfigs[i].mulbability %>)
+
+<% end %>
 </div>
 </div>
 </div>
