@@ -4,6 +4,19 @@
 body {
   background: url(../img/page-background.png);
 }
+.left-button
+{
+  float:left;
+  position: fixed;
+  left: 68%;
+}
+
+.right-button
+{
+  float:right;
+  position: fixed;
+  left: 75%;
+}
 .last-img2
 {
     height:40px;
