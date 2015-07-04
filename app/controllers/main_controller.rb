@@ -24,18 +24,10 @@ class MainController < ApplicationController
 				end
 			end
 
-			@tracelogs = Tracelog.where("action != 1")
+			@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
 		end
 	end
 
 	def show
-	end
-
-	def time
-		curtime = Time.new
-		@time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-		respond_to do |format|
-            format.js {}
-        end
 	end
 end

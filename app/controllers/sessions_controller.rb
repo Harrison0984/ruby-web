@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
 		userpassword = params[:session][:password]
 		@user = User.find_by_account(useraccount)
 		if @user && @user.password == userpassword
+			session[:account] = useraccount
+
 			loginlog.username = useraccount
 			loginlog.action = 1
 			loginlog.save

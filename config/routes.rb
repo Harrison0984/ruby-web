@@ -10,13 +10,18 @@ Rails.application.routes.draw do
 
   resources :main, only: [:index]
 
-  match 'main/time', :to => 'main#time', 
-                       :via => :get, 
-                       :as => :time_main
+  match 'tracelogs/commitdata', :to => 'tracelogs#commitdata', 
+                       :via => :post, 
+                       :as => :commitdata_tracelogs
+
+  match 'tracelogs/canceldata', :to => 'tracelogs#canceldata', 
+                       :via => :post, 
+                       :as => :canceldata_tracelogs
+
   
   resources :manage, only: [:index, :show]
 
-  resources :tracelogs, only: [:index]
+  resources :tracelogs, only: [:index, :create]
 
   resources :operlogs, only: [:index]
 

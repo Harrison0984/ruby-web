@@ -234,6 +234,11 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
 
 			Tracelog.where("action != 1").each do |log|
+				user = User.find(log.userid)
+				if user != nil
+					newcoin = user.coin + log.coin
+					user.update(coin: newcoin)
+				end
 				log.destroy
 			end
 
