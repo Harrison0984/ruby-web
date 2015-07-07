@@ -1,7 +1,7 @@
 body, html {
     height: 100%;
     background-size:cover;
-    background-image: url('bk.jpg');
+    background-image: image-url('bk.jpg');
 }
 
 input[type="text"], 
