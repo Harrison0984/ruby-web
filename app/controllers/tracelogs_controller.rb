@@ -9,7 +9,7 @@ class TracelogsController < ApplicationController
 	def create
 
 		taskinfo = Tasklog.last
-		seconds = (taskinfo.nexttime - Time.new - 8*3600).to_i
+		seconds = (taskinfo.nexttime - Time.new).to_i
 		if seconds > 15
 
 			gridinfo = Grid.last

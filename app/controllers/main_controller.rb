@@ -16,7 +16,7 @@ class MainController < ApplicationController
 
 			tasklog = Tasklog.last
 			if tasklog != nil
-				@seconds = (tasklog.nexttime - Time.new - 8*3600).to_i
+				@seconds = (tasklog.nexttime - Time.new).to_i
 
 				#fix service is stoped,then nexttime < Time.new
 				if @seconds < 0
