@@ -151,6 +151,31 @@ def checkGrid (object)
 	return lssame,lsorder,lssmall,lsbig,lscolor
 end
 
+s.cron '00 02 * * *', :first_at => Time.now + 1 do
+
+	admin = User.find_by_level(1)
+	if admin == nil
+		user = User.new
+		user.account = "admin"
+		user.password = "123"
+		user.nickname = "管理员"
+		user.coin = 1000000
+		user.level = 1
+		user.save
+	end
+
+	for i in 1..5
+		gridconfig = Gridconfig.find_by_gridtype(i)
+		if gridconfig == nil
+			gridconfig = Gridconfig.new
+			gridconfig.gridtype = i
+			gridconfig.probability = 1.0
+			gridconfig.mulbability = 1.0
+			gridconfig.save
+		end
+	end
+end
+
 s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	#get game config information
