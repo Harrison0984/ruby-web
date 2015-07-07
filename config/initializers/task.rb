@@ -267,21 +267,6 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				log.destroy
 			end
 
-			for i in 0..9
-				tracelog = Tracelog.new
-				tracelog.gameid = grid.id
-				tracelog.gametype = rand(5)+1
-				tracelog.pos = rand(6)+1
-				tracelog.coin = rand(100)+1
-				tracelog.status = 0
-				tracelog.userid = 2
-				tracelog.useraccount = "test"
-				tracelog.mulbability = 1.0
-				tracelog.action = rand(2)
-				tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-				tracelog.save
-			end
-
 			totalcoin = 0
 			prizecoin = 0
 			Tracelog.where("gameid = ?", grid.id).each do |log|
