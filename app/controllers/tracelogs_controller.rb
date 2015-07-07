@@ -9,7 +9,7 @@ class TracelogsController < ApplicationController
 	def create
 
 		taskinfo = Tasklog.last
-		seconds = (taskinfo.nexttime - Time.new).to_i
+		seconds = (taskinfo.nexttime - Time.new - 8 * 3600).to_i
 		if seconds > 15
 
 			gridinfo = Grid.last
@@ -41,6 +41,8 @@ class TracelogsController < ApplicationController
 					@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
 				end
 			end
+		else
+			seconds = 300
 		end
 
 		respond_to do |format|
