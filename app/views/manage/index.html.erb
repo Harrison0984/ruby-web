@@ -17,7 +17,7 @@ $(function() {
       label: "总任务",
       <% curtime = Time.new %>
       <% tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d")) %>
-      <% if tasklog %>
+      <% if tasklog != nil %>
       data: <%= tasklog.totalbar %>
       <% end %>
   }, {

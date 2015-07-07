@@ -22,10 +22,14 @@ $(function() {
       <% end %>
   }, {
       label: "已完成",
+      <% if tasklog %>
       data: <%= tasklog.currentbar %>
+      <% end %>
   }, {
       label: "错误数",
+      <% if tasklog %>
       data: <%= tasklog.errorbar %>
+      <% end %>
   }];
 
   var plotObj = $.plot($("#flot-pie-chart"), data, {
