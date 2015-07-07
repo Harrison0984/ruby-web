@@ -236,8 +236,9 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	first_run = true
 
-	task = Rufus::Scheduler.new
-	task.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 + 5*60 do
+	s.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 + 5*60 do
+
+		Rails.logger.debug "per task"
 
 		if !first_run
 			grid = Grid.new
