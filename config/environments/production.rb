@@ -36,7 +36,6 @@ Rails.application.configure do
   config.assets.digest = true
 
   config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif]
-  config.serve_static_assets = false
   
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
