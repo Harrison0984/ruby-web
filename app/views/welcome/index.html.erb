@@ -1,3 +1,36 @@
+<%= content_for :script do %>
+jQuery(document).ready(function() {
+    
+    /*
+        Fullscreen background
+    */
+    $.backstretch("<%= asset_path 'bk.jpg' %>");
+    
+    /*
+        Form validation
+    */
+    $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function() {
+        $(this).removeClass('input-error');
+    });
+    
+    $('.login-form').on('submit', function(e) {
+        
+        $(this).find('input[type="text"], input[type="password"], textarea').each(function(){
+            if( $(this).val() == "" ) {
+                e.preventDefault();
+                $(this).addClass('input-error');
+            }
+            else {
+                $(this).removeClass('input-error');
+            }
+        });
+        
+    });
+    
+    
+});
+<% end %>
+
 <% if @error %>
 <div class="alert alert-success page-alert" id="alert-1">
     <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
