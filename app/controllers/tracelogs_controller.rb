@@ -18,28 +18,25 @@ class TracelogsController < ApplicationController
 
 			if config != nil and gridinfo != nil
 
-				if newcoin >= 0
+				@tracelog = Tracelog.new(params.require(:traceslogs).permit(:pos, :gametype, :coin))
+				@tracelog.userid = session[:userid]
 
-					@tracelog = Tracelog.new(params.require(:traceslogs).permit(:pos, :gametype, :coin))
-					@tracelog.userid = session[:userid]
+				@tracelog.mulbability = config.mulbability
+				@tracelog.gameid = nextid
+				@tracelog.status = 0
+				@tracelog.userid = 2
+				@tracelog.useraccount = session[:account]
+				@tracelog.action = 0
 
-					@tracelog.mulbability = config.mulbability
-					@tracelog.gameid = nextid
-					@tracelog.status = 0
-					@tracelog.userid = 2
-					@tracelog.useraccount = session[:account]
-					@tracelog.action = 0
-
-					curtime = Time.new
-					@tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-					@tracelog.save
-
-					@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
-				end
+				curtime = Time.new
+				@tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+				@tracelog.save
 			end
 		else
 			seconds = 300
 		end
+
+		@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
 
 		respond_to do |format|
             format.js {}
@@ -63,7 +60,7 @@ class TracelogsController < ApplicationController
 				@error = "金币不足"
 			else
 				user.update(coin: user.coin-totalCoin)
-				@traceslogs.each do |log|
+				@tracelogs.each do |log|
 					log.update(action: 1)
 				end
 			end
@@ -74,17 +71,9 @@ class TracelogsController < ApplicationController
 
 	def canceldata
 
-		refundcoin = 0
 		@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
 		@tracelogs.each do |log|
-			refundcoin += log.coin
 			log.destroy
-		end
-
-		user = User.find(session[:userid])
-		if user
-			newcoin = user.coin + refundcoin
-			user.update(coin: newcoin)
 		end
 
 		@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])

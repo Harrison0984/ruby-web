@@ -227,7 +227,8 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	s.cron '*/5 * * * *', :last_at => Time.parse("01:00", DateTime.now.tomorrow) do
 
-		if DateTime.now.hour > 1 and DateTime.new.hour < 6
+		if Time.new.hour > 1 and Time.new.hour < 6
+			Rails.logger.debug "invalid time"
 		else
 			grid = Grid.new
 			grid.x1 = objects[objindex][0]
