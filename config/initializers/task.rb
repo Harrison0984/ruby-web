@@ -10,9 +10,6 @@ objects = Array.new(228)
 #current task index
 objindex = 0 
 
-#do nothing
-first_run = false
-
 max_same = 0
 day_same = 0
 mul_same = 1.0
@@ -228,19 +225,10 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects[i] = tmp
 	end
 
-	Rails.logger.debug day_same
-	Rails.logger.debug day_order
-	Rails.logger.debug day_small
-	Rails.logger.debug day_big
-	Rails.logger.debug day_color
+	s.cron '*/5 * * * *', :last_at => Time.parse("01:00", DateTime.now.tomorrow) do
 
-	first_run = true
-
-	s.cron '*/5 * * * *', :first_at => Time.now + 1, :last_at => Time.now + 19 * 3600 + 5*60 do
-
-		Rails.logger.debug "per task"
-
-		if !first_run
+		if DateTime.now.hour > 1 and DateTime.new.hour < 6
+		else
 			grid = Grid.new
 			grid.x1 = objects[objindex][0]
 			grid.x2 = objects[objindex][1]
@@ -260,11 +248,6 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
 
 			Tracelog.where("action != 1").each do |log|
-				user = User.find(log.userid)
-				if user != nil
-					newcoin = user.coin + log.coin
-					user.update(coin: newcoin)
-				end
 				log.destroy
 			end
 
@@ -321,8 +304,6 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M:%S"),
 					nexttime: nexttime.strftime("%Y-%m-%d %H:%M:%S"))
 			end
-		else
-			first_run = false
 		end
 	end
 end

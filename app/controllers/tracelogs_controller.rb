@@ -14,12 +14,9 @@ class TracelogsController < ApplicationController
 
 			gridinfo = Grid.last
 			nextid = gridinfo.id+1
-
 			config = Gridconfig.find_by_gridtype(params[:traceslogs][:gametype])
-			user = User.find(session[:userid])
-			if config != nil and gridinfo != nil and user != nil
 
-				newcoin = user.coin - params[:traceslogs][:coin].to_i
+			if config != nil and gridinfo != nil
 
 				if newcoin >= 0
 
@@ -36,7 +33,6 @@ class TracelogsController < ApplicationController
 					curtime = Time.new
 					@tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 					@tracelog.save
-					user.update(coin: newcoin)
 
 					@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
 				end
@@ -53,8 +49,24 @@ class TracelogsController < ApplicationController
 	def commitdata
 
 		@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
+
+		totalCoin = 0
 		@tracelogs.each do |log|
-			log.update(action: 1)
+			totalCoin += log.coin
+		end
+
+		user = User.find(session[:userid])
+		if user == nil
+			@error = "非法用户"
+		else
+			if user.coin < totalCoin
+				@error = "金币不足"
+			else
+				user.update(coin: user.coin-totalCoin)
+				@traceslogs.each do |log|
+					log.update(action: 1)
+				end
+			end
 		end
 
 		@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
@@ -70,10 +82,11 @@ class TracelogsController < ApplicationController
 		end
 
 		user = User.find(session[:userid])
-		if user != nil
+		if user
 			newcoin = user.coin + refundcoin
 			user.update(coin: newcoin)
 		end
+
 		@tracelogs = Tracelog.where("action != 1 and userid = ?", session[:userid])
 	end
 end

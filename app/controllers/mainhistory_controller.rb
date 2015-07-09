@@ -11,6 +11,6 @@ class MainhistoryController < ApplicationController
 			redirect_to url_for(:controller => :welcome, :action => :index)
 		end
 
-		@tracelogs = Tracelog.where("userid = ?", @user.id)
+		@tracelogs = Tracelog.where("userid = ? and action == 1", @user.id)
 	end
 end

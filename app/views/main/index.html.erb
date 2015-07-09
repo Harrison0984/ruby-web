@@ -221,6 +221,12 @@ $('.input-primary').change(function() {
 </div>  
 <div class="form-group">
 <div class="">
+<% if @error %>
+<div class="alert alert-success page-alert" id="alert-1">
+    <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+    <%= @error %>
+</div>
+<% end %>
 <% for i in 3..4 %>
   <label class="radio-inline" for=<%= "radios_#{i+1}"%>>
   <%= f.radio_button :gametype, i+1 %>
@@ -241,7 +247,7 @@ $('.input-primary').change(function() {
   <div class="row">
     <div class="col-xs-4">
       <div class="input-group">
-       <%= f.text_field :coin, class:"form-control", value:"100", max:"1000" %>
+       <%= f.text_field :coin, class:"form-control", value:"100", max:@user.coin %>
        <span class="input-group-btn">
        <%= f.submit "添加", class: "btn btn-default" %>
       <% end %>
@@ -256,10 +262,9 @@ $('.input-primary').change(function() {
             <button type="button" class="btn btn-primary" value="2">2倍</button>
             <button type="button" class="btn btn-primary" value="5">5倍</button>
             <button type="button" class="btn btn-primary" value="10">10倍</button>
-        </div>
+        </div>  
     </div>
 </div>
-<p>&nbsp;</p>
 
 <div class="row">
   <div class="well" style="display:block;text-align:center" id = "time_div">
