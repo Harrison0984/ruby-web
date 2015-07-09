@@ -24,7 +24,6 @@ class TracelogsController < ApplicationController
 				@tracelog.mulbability = config.mulbability
 				@tracelog.gameid = nextid
 				@tracelog.status = 0
-				@tracelog.userid = 2
 				@tracelog.useraccount = session[:account]
 				@tracelog.action = 0
 

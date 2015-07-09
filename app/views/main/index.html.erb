@@ -7,7 +7,8 @@ $(document).ready(
   function countdown() {
     var label = document.getElementById("leftSconds");
     var newSeconds = parseInt(label.innerText) - 1;
-    if (newSeconds <= 0) {
+    if (newSeconds < 0) newSeconds = 0;
+    if (newSeconds == 0) {
       location.reload();
     }
     if (!isNaN(newSeconds)) {
