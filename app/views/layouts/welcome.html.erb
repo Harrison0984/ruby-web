@@ -1,23 +1,110 @@
-<!DOCTYPE html>
-<html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>游戏大厅</title>
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'sb-admin-2', 'data-turbolinks-eval' => true %>
-  <%= stylesheet_link_tag 'form-elements', 'data-turbolinks-eval' => true %>
-  <%= stylesheet_link_tag 'style', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'scripts', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'jquery.backstretch.min', 'data-turbolinks-eval' => true %>
-  <%= csrf_meta_tags %>
+    <title>會員登錄--皇家會員中心</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="时时彩，广东快乐十分，北京赛车PK10，pk10开奖，彩世界" />
+    <meta name="keywords" content="时时彩,广东快乐十分,北京赛车PK10,pk10开奖,彩世界" />
+    <!--web icon-->
+    <link rel="shortcut icon" href=<%= image_url("favicon.ico") %> type="image/x-icon" />
+    <link rel="apple-touch-icon" href=<%= image_url("favicon.png") %> />
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'style_v3', 'data-turbolinks-eval' => true %>
+    <%= javascript_include_tag 'js/ajaxform', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'js/jvalidate', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'js/md5', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'js/mailaddress', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'js/focusPicture', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'js/login_v3', 'data-turbolinks-track' => true %>
+
 </head>
-
 <body>
-<%= yield %>
+
+    <div class="vipC-container vipC-topBg" style="border-bottom: 1px solid #ddd">
+        <div class="vipC-top-row-2">
+            <div class="vipC-top-col-1"></div>
+            <div class="vipC-top-col-2">
+                <div class="vipC-topRLis-row-4">
+                    <div class="vipC-topRLis-col-1">十五年專業保證</div>
+                    <div class="vipC-topRLis-col-2">絕對精准數據獲取</div>
+                    <div class="vipC-topRLis-col-3">千余員工傾力奉獻</div>
+                    <div class="vipC-topRLis-col-4">尊貴品牌服務</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="vipC-container login_register">
+        <div class="vipC-login">
+            <div class="vipC-flash vipC_zindex1" id="box">
+                <ul id="focusBg">
+                        <li>
+                            <img src=<%= image_url("113421273.jpg") %> alt="" />
+                        </li>
+                </ul>
+            </div>
+            <%= yield %>
+        </div>
+    </div>
+    <form name="callbackForm" id="callbackForm" method="post" action="/sso/v3/callback.ashx">
+        <input type="hidden" name="platform" id="platform" value="1396me" />
+        <input type="hidden" name="platform_params" id="platform_params" value="D937021D420008EFB8046DC755683B95ECD93A9729F27D135C5A020952E86157F5F2CC65F6FB1B4BC5B1E61B97BB46BDA791C51902304E5E3D384B0AC14E8AA86B7B95F3A0ADC15C5874733B528C66C778BB441C9F4C9CF150E8AAC7E98A6018E8258265BA35761E723ADD63E3527249D4611DC46432E7359F2F65D70ED29F62C100EB1616BE7FFD09788AAE6ADA06FD240E2607CFB758A9" />
+        <input type="hidden" name="sign_code" id="sign_code" value="ba3f8e4a997d2941fdeb5008b2b6ea2f" />
+        <input type="hidden" name="action" id="cfaction" value="" />
+    </form>
+    <form name="resetpwdForm" id="resetpwdForm" method="post" action="/resetpwd/index" target="_blank">
+        <input type="hidden" name="platform" value="1396me" />
+        <input type="hidden" name="platform_params" value="D937021D420008EFB8046DC755683B95ECD93A9729F27D135C5A020952E86157F5F2CC65F6FB1B4BC5B1E61B97BB46BDA791C51902304E5E3D384B0AC14E8AA86B7B95F3A0ADC15C5874733B528C66C778BB441C9F4C9CF150E8AAC7E98A6018E8258265BA35761E723ADD63E3527249D4611DC46432E7359F2F65D70ED29F62C100EB1616BE7FFD09788AAE6ADA06FD240E2607CFB758A9" />
+        <input type="hidden" name="sign_code" value="ba3f8e4a997d2941fdeb5008b2b6ea2f" />
+    </form>
+
+    <div class="vipC-container" style="border-top: solid 1px #ddd">
+        <div class="vipC_appCenter">
+            <a href="http://soft.royaleu.com/app/" title="博应用" class="vipC_product2" target="_blank"></a>
+            <a href="http://soft.royaleu.com/6hbd/" title="六合宝典" class="vipC_product1" target="_blank"></a>
+            <a href="http://soft.royaleu.com/ssbd/" class="vipC_product3" title="时时彩宝典" target="_blank"></a>
+            <a href="http://soft.royaleu.com/ssbd/" class="vipC_product5" title="重庆时时彩" target="_blank"></a>
+            <a href="http://soft.royaleu.com/ssbd/" class="vipC_product6" title="北京赛车pk10" target="_blank"></a>
+            <a href="http://soft.royaleu.com/jsk3/" class="vipC_product12" title="江苏快3" target="_blank"></a>
+            <a href="http://soft.royaleu.com/xync/" class="vipC_product11" title="幸运农场" target="_blank"></a>
+            <a href="http://soft.royaleu.com/bjk8/" class="vipC_product8" title="北京快乐8" target="_blank"></a>
+            <a href="http://www.1396app.com/ios/app/4247/" class="vipC_product9" title="幸运飞艇" target="_blank"></a>
+            <a href="http://soft.royaleu.com/6hc-video/" class="vipC_product4" title="六合彩视频" target="_blank"></a>
+            <a href="http://soft.royaleu.com/ssbd/shishicai-video/" class="vipC_product10" title="重庆时时彩视频" target="_blank"></a>
+            <a href="http://www.1396app.com/ios/app/4250/" class="vipC_product7 last" title="上海时时乐" target="_blank"></a>
+        </div>
+    </div>
+    <div class="vipC-container vipC_huise">
+        <div class="vipC_LinkList">
+            <a href="http://www.1396mm.com/" title="博世界" class="vipC_logok1" target="_blank"></a>
+            <a href="http://www.1396b.com/" title="彩世界" class="vipC_logok2" target="_blank"></a>
+            <a href="http://www.6hck.com/" title="六合彩库" class="vipC_logok3" target="_blank"></a>
+            <a href="http://www.1396app.com/" title="博应用" class="vipC_logok4" target="_blank"></a>
+            <a href="http://www.1396dh.com/" title="爱博导航" class="vipC_logok5" target="_blank"></a>
+            <a href="http://www.1396sp.com/" title="视频联盟" class="vipC_logok6" target="_blank"></a>
+            <a href="http://www.1396b.com/software/" title="软件中心" class="vipC_logok7 last" target="_blank"></a>
+        </div>
+    </div>
+    <div class="vipC-container vipC_huise" style="height: 160px;">
+        <div class="vipC_footer">
+            <span class="vipC_absLink">
+                <a href="http://www.royaleu.com/about/index.html" rel="nofollow">關於皇家科技</a>
+                <span>|</span>
+                <a href="http://www.royaleu.com/business/" target="_blank" rel="nofollow">廣告服務</a>
+                <span>|</span>
+                <a href="http://www.royaleu.com/about/values.html" target="_blank" rel="nofollow">皇家價值觀</a>
+                <span>|</span>
+                <a href="http://www.royaleu.com/about/legalnotice.html" target="_blank" rel="nofollow">法律聲明</a>
+            </span>
+            <span class="vipC_bottomFont">香港皇家科技公司版權所有 @2008-2015</span>
+        </div>
+    </div>
+    <script type="text/javascript">
+    <%= yield :script %>
+    </script>>
 </body>
-
-<script type="text/javascript">
-	<%= yield :script %>
-</script>
-
 </html>

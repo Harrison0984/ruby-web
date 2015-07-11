@@ -10,7 +10,7 @@ class TracelogsController < ApplicationController
 
 		taskinfo = Tasklog.last
 		seconds = (taskinfo.nexttime - Time.new - 8 * 3600).to_i
-		if seconds > 15
+		if seconds > 60
 
 			gridinfo = Grid.last
 			nextid = gridinfo.id+1

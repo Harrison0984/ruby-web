@@ -29,10 +29,12 @@ $(document).ready(function () {
                         <thead>
                           <tr>
                             <th>期数</th>
-                            <th>模式</th>
                             <th>位置</th>
-                            <th>金币</th>
+                            <th>模式</th>
+                            <th>倍率</th>
+                            <th>投注金币</th>
                             <th>状态</th>
+                            <th>结果</th>
                             <th>时间</th>
                           </tr>
                         </thead>
@@ -74,6 +76,7 @@ $(document).ready(function () {
                         <% end %>
                         <td><%= log.coin %></td>
                         <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>恭喜中奖<% else %> 未中 <% end %></td>
+                        <td><% if log.status == 1 %>+100<% else %>-100<% end %></td>
                         <td><%= log.time %></td>
                         </tr>
                         <% end %>                        

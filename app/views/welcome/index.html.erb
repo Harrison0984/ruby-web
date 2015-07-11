@@ -1,69 +1,43 @@
-<%= content_for :script do %>
-jQuery(document).ready(function() {
-    
-    /*
-        Fullscreen background
-    */
-    $.backstretch("<%= asset_path 'bk.jpg' %>");
-    
-    /*
-        Form validation
-    */
-    $('.login-form input[type="text"], .login-form input[type="password"], .login-form textarea').on('focus', function() {
-        $(this).removeClass('input-error');
-    });
-    
-    $('.login-form').on('submit', function(e) {
-        
-        $(this).find('input[type="text"], input[type="password"], textarea').each(function(){
-            if( $(this).val() == "" ) {
-                e.preventDefault();
-                $(this).addClass('input-error');
-            }
-            else {
-                $(this).removeClass('input-error');
-            }
-        });
-        
-    });
-});
-<% end %>
-
-<div class="top-content">
-    <div class="inner-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 form-box">
-                    <% if @error %>
-                        <div class="alert alert-success page-alert" id="alert-1">
-                            <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
-                            <%= @error %>
-                        </div>
-                    <% end %>
-                    <div class="form-top">
-                        <div class="form-top-left">
-                            <h3>登录游戏</h3>
-                            <p>请输入游戏的账号密码</p>
-                        </div>
-                        <div class="form-top-right">
-                            <i class="fa fa-key"></i>
-                        </div>
-                    </div>
-                    <div class="form-bottom">
-                    <%= form_for :session, url: sessions_path do |f| %>
-
-                        <div class="form-group">
-                        <%= f.text_field :account, class: "form-control", placeholder: "Username...", required: true, autofocus: true, :value => @defaultname[:account] %>
-                        </div>
-
-                        <div class="form-group">
-                        <%= f.password_field :password, class: "form-control", placeholder: "Password...", required: true %>
-                        </div>
-                        <%= f.submit "登录", class: "btn btn-lg btn-primary btn-block btn-signin" %>
-                    <% end %>
-                    </div>
-                </div>
+<div class="vipC-cen vipC_zindex2">
+    <div class="vipC-rightLoginBlock">
+        <% if @error %>
+            <div class="alert alert-danger page-alert" id="alert-1">
+                <button type="button" class="close"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <%= @error %>
             </div>
+        <% end %>
+        <img class="loading_img" src=<%= image_url("loading_3.gif") %> width="160" alt="处理中..." />
+        <div class="loading_bg"></div>
+
+        <div class="vipC-tabs">
+            <a class="hover login1">登 錄</a>
+        </div>
+        <div class="vipC_tabsCon" id="tabsCon1">
+        <%= form_for :session, url: sessions_path do |f| %>
+            <div class="vipC_loginWrite" style="padding-top: 30px;">
+              <span class="vipC_inputText1 vipC_zindex2">
+                  <span class="tipsBlock"><i class="tipsBlockjt"></i><span class="tipsBlockCons"><i class="tips_icon"></i><b>請輸入用戶名/手機號</b></span></span>
+                  <%= f.text_field :account, class: "form-control", placeholder: "皇家用戶名/手機號", required: true, style: "margin:0 0 0 45px;" %>
+              </span>
+              <span class="vipC_inputText2 vipC_zindex1">
+                  <span class="tipsBlock"><i class="tipsBlockjt"></i><span class="tipsBlockCons"><i class="tips_icon"></i><b>請輸入密碼</b></span></span>
+                  <%= f.password_field :password, class: "form-control", placeholder: "請輸入密碼", required: true,
+                  style: "margin:0 0 0 45px;"%>
+              </span>
+
+                <div class="vipC_checkBox">
+                    <span class="leftCheckbox">
+                        <label>
+                            <input type="checkbox" class="checkbox" title="下次自动登錄" id="keepLogin" name="keepLogin" checked="checked" value="true" />
+                            <i>自動登錄</i>
+                        </label>
+                    </span>
+                    <span class="rightMissPassword"><a id="forget_password" target="_blank" href="#" onclick="javascript:return false;">忘記密碼</a></span>
+                </div>
+                <div class="vipC_loginBtn">
+                  <%= f.submit "登錄", class: "loginBtn" %>
+                </div>
+              <% end %>
         </div>
     </div>
 </div>

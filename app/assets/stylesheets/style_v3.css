@@ -1,0 +1,812 @@
+@charset "UTF-8";
+.vipC-container {
+  float: left;
+  clear: left; }
+
+body {
+  font-family: "SimSun"; }
+
+.vipC_lBlockLeft1 .vipC_loginTitle {
+  font-family: "Microsoft YaHei"; }
+
+/*****************************************************公共样式*********************************************************/
+body {
+  margin: 0;
+  font-size: 12px; }
+
+a {
+  color: #666;
+  text-decoration: none; }
+  a:hover {
+    color: #db0f0f;
+    text-decoration: none; }
+
+h1, h2, h3, h4, h5 {
+  font-size: 12px;
+  font-weight: normal; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block; }
+
+li {
+  display: block; }
+
+i {
+  font-style: normal; }
+
+p {
+  margin: 0;
+  padding: 0;
+  display: block; }
+
+img {
+  border: none;
+  display: block; }
+
+input {
+  outline: none;
+  border: none; }
+
+font {
+  font-size: 12px; }
+
+span {
+  display: inline-block; }
+
+b {
+  font-weight: normal; }
+
+/**************************图片(start)********************************/
+.vipC-top-col-1 {
+  background-image: url("vipC-logo.jpg");
+  background-position: 0 0;
+  background-repeat: no-repeat; }
+
+.vipC-topRLis-col-1 {
+  background-image: url("vipC-topIcon.gif");
+  background-position: 0 0;
+  background-repeat: no-repeat; }
+
+.vipC-topRLis-col-2 {
+  background-image: url("vipC-topIcon.gif");
+  background-position: 0 -28px;
+  background-repeat: no-repeat; }
+
+.vipC-topRLis-col-3 {
+  background-image: url("vipC-topIcon.gif");
+  background-position: 0 -56px;
+  background-repeat: no-repeat; }
+
+.vipC-topRLis-col-4 {
+  background-image: url("vipC-topIcon.gif");
+  background-position: 0 -84px;
+  background-repeat: no-repeat; }
+
+.vipC-topRLis-col-4 {
+  background-image: url("vipC-topIcon.gif");
+  background-position: 0 -84px;
+  background-repeat: no-repeat; }
+
+.vipC_inputText1, .vipC_loginWrite .vipC_inputText2, .vipC_loginWrite .vipC_inputText3, .vipC_loginWrite .vipC_inputText4 {
+  background-image: url("vipC_input.jpg");
+  background-position: 0 0;
+  background-repeat: no-repeat; }
+
+.returnBtn {
+  background-image: url("vipC_home.jpg");
+  background-position: 10px 10px;
+  background-repeat: no-repeat; }
+
+.tipsBlockjt {
+  background-image: url("vipC_jt.gif");
+  background-position: 0 0;
+  background-repeat: no-repeat; }
+
+.tips_icon {
+  background-image: url("vipC_jg.gif");
+  background-position: 0 0;
+  background-repeat: no-repeat; }
+
+.vipC_loginBlock_close {
+  background-image: url("vipC_close.png");
+  background-position: 0 0;
+  background-repeat: no-repeat; }
+
+.vipC_product1 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 0px;
+  background-repeat: no-repeat; }
+
+.vipC_product2 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -59px;
+  background-repeat: no-repeat; }
+
+.vipC_product3 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -118px;
+  background-repeat: no-repeat; }
+
+.vipC_product4 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -177px;
+  background-repeat: no-repeat; }
+
+.vipC_product5 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -236px;
+  background-repeat: no-repeat; }
+
+.vipC_product6 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -295px;
+  background-repeat: no-repeat; }
+
+.vipC_product7 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -354px;
+  background-repeat: no-repeat; }
+
+.vipC_product8 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -413px;
+  background-repeat: no-repeat; }
+
+.vipC_product9 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -472px;
+  background-repeat: no-repeat; }
+
+.vipC_product10 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -531px;
+  background-repeat: no-repeat; }
+
+.vipC_product11 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -590px;
+  background-repeat: no-repeat; }
+
+.vipC_product12 {
+  background-image: url("vipC_product.jpg");
+  background-position: 0 -649px;
+  background-repeat: no-repeat; }
+
+.vipC_logok1 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 0px;
+  background-repeat: no-repeat; }
+
+.vipC_logok2 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 -47px;
+  background-repeat: no-repeat; }
+
+.vipC_logok3 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 -94px;
+  background-repeat: no-repeat; }
+
+.vipC_logok4 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 -141px;
+  background-repeat: no-repeat; }
+
+.vipC_logok5 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 -188px;
+  background-repeat: no-repeat; }
+
+.vipC_logok6 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 -235px;
+  background-repeat: no-repeat; }
+
+.vipC_logok7 {
+  background-image: url("vipC_logok.jpg");
+  background-position: 0 -282px;
+  background-repeat: no-repeat; }
+
+  
+.vipC_titleIcon {
+  background-image: url("vipC_gougou.jpg");
+  background-position: center 0;
+  background-repeat: no-repeat; }
+
+.btnListleftBtn {
+  background-image: url("vipC_win.jpg");
+  background-position: center 0;
+  background-repeat: no-repeat; }
+
+.btnListrightBtn {
+  background-image: url("vipC_win.jpg");
+  background-position: center -44px;
+  background-repeat: no-repeat; }
+.btnListrightBtn2 {
+  background-image: url("vipC_win.jpg");
+  background-position: center -44px;
+  background-repeat: no-repeat; }
+
+/**************************图片(end)********************************/
+.vipC-top-row-2 {
+  width: 1000px;
+  height: 93px;
+  clear: both;
+  zoom: 1;
+  overflow: auto; }
+  .vipC-top-row-2 .vipC-top-col-1 {
+    width: 480px;
+    height: 93px;
+    float: left;
+    _dispaly: inline; }
+  .vipC-top-row-2 .vipC-top-col-2 {
+    width: 316px;
+    height: 93px;
+    float: left;
+    _dispaly: inline;
+    margin-left: 204px; }
+
+.vipC-topRLis-row-4 {
+  width: 316px;
+  height: 93px;
+  clear: both;
+  zoom: 1;
+  overflow: auto; }
+  .vipC-topRLis-row-4 .vipC-topRLis-col-1 {
+    width: 158px;
+    height: 28px;
+    float: left;
+    _dispaly: inline; }
+  .vipC-topRLis-row-4 .vipC-topRLis-col-2 {
+    width: 158px;
+    height: 28px;
+    float: left;
+    _dispaly: inline;
+    margin-left: 0px; }
+  .vipC-topRLis-row-4 .vipC-topRLis-col-3 {
+    width: 158px;
+    height: 28px;
+    float: left;
+    _dispaly: inline;
+    margin-left: 0px; }
+  .vipC-topRLis-row-4 .vipC-topRLis-col-4 {
+    width: 158px;
+    height: 28px;
+    float: left;
+    _dispaly: inline;
+    margin-left: 0px; }
+
+.vipC-container {
+  width: 100%; }
+
+.vipC-topBg {
+  background: #f4f5f9; }
+
+.vipC-top-row-2, .vipC-cen {
+  margin: 0 auto; }
+
+.vipC-topRLis-row-4 {
+  color: #999; }
+
+.vipC-topRLis-col-1, .vipC-topRLis-col-2, .vipC-topRLis-col-3, .vipC-topRLis-col-4 {
+  text-indent: 35px;
+  line-height: 28px;
+  margin-top: 12px;
+  color: #999;
+  text-decoration: none;
+  cursor: default; }
+
+.vipC-login {
+  width: 100%;
+  height: 477px;
+  background-color: #000; }
+
+.vipC-flash {
+  width: 100%;
+  height: 477px; }
+
+.vipC-cen {
+  width: 1000px;
+  position: relative; }
+
+.vipC-rightLoginBlock {
+  width: 324px;
+  height: 424px;
+  background: #fff;
+  position: absolute;
+  top: -450px;
+  right: 0px;
+  z-index: 9999; }
+  .vipC-tabs {
+    width: 100%;
+    font-size: 0px; }
+    .vipC-tabs a {
+      width: 50%;
+      height: 50px;
+      background: #dfdfdf;
+      color: #666666;
+      display: block;
+      font-size: 16px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      float: left; }
+      .vipC-tabs a.hover {
+        width: 50%;
+        height: 50px;
+        background: #fff;
+        color: #db0f0f; }
+
+ .vipC_loginWrite {
+    width: 272px;
+    padding: 0px 25px 0 25px;
+    float: left;
+    clear: left; }
+    .vipC_loginWrite .vipC_inputText1, .vipC_loginWrite .vipC_inputText2, .vipC_loginWrite .vipC_inputText3, .vipC_loginWrite .vipC_inputText4 {
+      width: 100%;
+      height: 39px;
+      display: block;
+      padding: 2px 0 0 0;
+      position: relative; }
+      .vipC_loginWrite .vipC_inputText1 .tipsBlock, .vipC_loginWrite .vipC_inputText2 .tipsBlock, .vipC_loginWrite .vipC_inputText3 .tipsBlock, .vipC_loginWrite .vipC_inputText4 .tipsBlock {
+        width: 272px;
+        display: block;
+        position: absolute;
+        top: 14px;
+        left: 0px;
+        padding: 6px 0 0 0;
+        z-index: 10;
+        display: none; }
+        .vipC_loginWrite .vipC_inputText1 .tipsBlock .tipsBlockjt, .vipC_loginWrite .vipC_inputText2 .tipsBlock .tipsBlockjt, .vipC_loginWrite .vipC_inputText3 .tipsBlock .tipsBlockjt, .vipC_loginWrite .vipC_inputText4 .tipsBlock .tipsBlockjt {
+          width: 9px;
+          height: 6px;
+          display: block;
+          position: absolute;
+          top: 1px;
+          left: 50%;
+          margin-left: -3px; }
+        .vipC_loginWrite .vipC_inputText1 .tipsBlock .tipsBlockCons, .vipC_loginWrite .vipC_inputText2 .tipsBlock .tipsBlockCons, .vipC_loginWrite .vipC_inputText3 .tipsBlock .tipsBlockCons, .vipC_loginWrite .vipC_inputText4 .tipsBlock .tipsBlockCons {
+          width: 231px;
+          display: block;
+          padding: 8px 5px 8px 5px;
+          border: 1px solid #ded996;
+          background-color: #fffde0;
+          color: #d8271c;
+          padding-left: 30px; }
+          .vipC_loginWrite .vipC_inputText1 .tipsBlock .tipsBlockCons .tips_icon, .vipC_loginWrite .vipC_inputText2 .tipsBlock .tipsBlockCons .tips_icon, .vipC_loginWrite .vipC_inputText3 .tipsBlock .tipsBlockCons .tips_icon, .vipC_loginWrite .vipC_inputText4 .tipsBlock .tipsBlockCons .tips_icon {
+            width: 16px;
+            height: 16px;
+            display: block;
+            position: absolute;
+            top: 14px;
+            left: 8px;
+            opacity: 0; }
+          .vipC_loginWrite .vipC_inputText1 .tipsBlock .tipsBlockCons b, .vipC_loginWrite .vipC_inputText2 .tipsBlock .tipsBlockCons b, .vipC_loginWrite .vipC_inputText3 .tipsBlock .tipsBlockCons b, .vipC_loginWrite .vipC_inputText4 .tipsBlock .tipsBlockCons b {
+            display: block;
+            margin-left: -20px;
+            opacity: 0; }
+      .vipC_loginWrite .vipC_inputText1 input, .vipC_loginWrite .vipC_inputText2 input, .vipC_loginWrite .vipC_inputText3 input, .vipC_loginWrite .vipC_inputText4 input {
+        width: 225px;
+        height: 29px;
+        line-height: 29px;
+        display: block;
+        border: none;
+        padding: 0px;
+        font-size: 12px;
+        color: #999;
+        padding: 3px 0 3px 0; }
+    .vipC_loginWrite .vipC_inputText2 {
+      background-position: 0 -82px;
+      margin-top: 15px; }
+    .vipC_loginWrite .vipC_tipText3 {
+      height: 30px;
+      line-height: 32px;
+      display: block;
+      white-space: nowrap;
+      color: #db0f0f; }
+    .vipC_loginWrite .vipC_inputText3, .vipC_loginWrite .vipC_inputText4 {
+      height: 33px;
+      background-position: 0 -164px;
+      margin-top: 5px; }
+      .vipC_loginWrite .vipC_inputText3 input, .vipC_loginWrite .vipC_inputText4 input {
+        width: 198px;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 0 3px 0;
+        float:left;
+      }
+      .vipC_loginWrite .vipC_inputText3 i, .vipC_loginWrite .vipC_inputText4 i {
+        width: 70px;
+        line-height: 33px;
+        display: block;
+        float: left;
+        text-align: right;
+        color: #666; }
+    .vipC_loginWrite .vipC_code {
+      width: 100%;
+      float: left;
+      clear: left; }
+      .vipC_loginWrite .vipC_code img {
+        width: 80px;
+        height: 28px;
+        display: block;
+        float: left;
+        margin-top: 9px;
+        cursor: pointer; }
+    .vipC_loginWrite .vipC_inputText4 {
+      width: 192px;
+      background-position: 0 -199px;
+      float: left; }
+      .vipC_loginWrite .vipC_inputText4 input {
+        width: 110px;
+        height: 24px;
+        line-height: 24px;
+        padding: 3px 0 3px 0; }
+
+  .vipC_checkBox {
+    width: 100%; }
+
+  .leftCheckbox {
+    display: block;
+    float: left;
+    padding: 10px 0 0 20px; }
+    .leftCheckbox .checkbox {
+      float: left;
+      display: block; }
+    .leftCheckbox i {
+      display: block;
+      float: left;
+      font-style: normal;
+      line-height: 19px;
+      margin-left: 5px;
+      color: #666; }
+      .leftCheckbox i a {
+        color: #db0f0f;
+        text-decoration: none; }
+        .leftCheckbox i a:hover {
+          color: #db0f0f;
+          text-decoration: underline; }
+
+  .rightMissPassword {
+    float: right;
+    padding: 10px 23px 0 0;
+    line-height: 19px; }
+    .rightMissPassword a {
+      color: #db0f0f;
+      text-decoration: none; }
+      .rightMissPassword a:hover {
+        color: #db0f0f;
+        text-decoration: underline; }
+
+  .rightMissPassword2 {
+    float: right;
+    padding: 10px 65px 0 0;
+    line-height: 19px; }
+    .rightMissPassword2 a {
+      color: #666;
+      text-decoration: none; }
+      .rightMissPassword2 a:hover {
+        color: #db0f0f;
+        text-decoration: underline; }
+    .rightMissPassword2 b {
+      color: #999;
+      font-weight: normal;
+      display: inline-block;
+      margin: 0 8px 0 8px; }
+
+ .vipC_loginBtn {
+    float: left;
+    font-size: 14px;
+    font-weight: bold; }
+    .vipC_loginBtn .loginBtn {
+      width: 164px;
+      height: 41px;
+      background: #db0f0f;
+      color: #fff;
+      text-align: center;
+      line-height: 41px;
+      display: block;
+      _display: inline;
+      cursor:pointer;
+      float: left;
+      font-size:14px;
+      font-weight:bold;
+      margin: 20px 0 0 125px; }
+    .vipC_loginBtn .returnBtn {
+      width: 98px;
+      height: 39px;
+      line-height: 39px;
+      background-color: #f4f5f9;
+      border: 1px solid #c3c3c4;
+      display: block;
+      _display: inline;
+      float: right;
+      text-align: center;
+      text-indent: 25px;
+      margin: 20px 0 0 10px;
+      color: #db0f0f;
+      text-decoration: none; }
+      .vipC_loginBtn .returnBtn:hover {
+        color: #db0f0f;
+        text-decoration: none; }
+
+.vipC_appCenter {
+  width: 1000px;
+  height: 103px;
+  margin: 0 auto; }
+  .vipC_appCenter img {
+    width: 59px;
+    height: 59px;
+    border: none; }
+  .vipC_appCenter a {
+    width: 59px;
+    height: 59px;
+    display: block;
+    _display: inline;
+    float: left;
+    margin-top: 25px;
+    margin-right: 26px;
+    overflow: hidden; }
+    .vipC_appCenter a.last {
+      margin-right: 0px; }
+
+.vipC_huise {
+  background: #f4f5f9;
+  height: 117px; }
+  .vipC_huise .vipC_LinkList {
+    width: 1000px;
+    margin: 0 auto;
+    height: 117px; }
+    .vipC_huise .vipC_LinkList a {
+      width: 135px;
+      height: 47px;
+      display: block;
+      _display: inline;
+      float: left;
+      margin: 35px 9px 0 0;
+      _margin: 35px 8px 0 0; }
+      .vipC_huise .vipC_LinkList a.last {
+        margin-right: 0px; }
+    .vipC_huise .vipC_LinkList img {
+      width: 135px;
+      height: 47px;
+      display: block;
+      border: none; }
+
+.vipC_footer {
+  border-top: 1px solid #ddd; }
+  .vipC_footer .vipC_absLink {
+    width: 1000px;
+    text-align: center;
+    display: block;
+    font-size: 0px;
+    margin: 25px auto;
+    margin-bottom: 10px; }
+    .vipC_footer .vipC_absLink a {
+      font-size: 13px;
+      display: inline-block; }
+    .vipC_footer .vipC_absLink span {
+      font-size: 12px;
+      display: inline-block;
+      margin: 0 3px 0 3px;
+      color: #999; }
+  .vipC_footer .vipC_bottomFont {
+    width: 1000px;
+    font-size: 12px;
+    display: block;
+    color: #666;
+    margin: 0 auto;
+    text-align: center; }
+
+.vipC_zindex1 {
+  z-index: 1; }
+
+.vipC_zindex2 {
+  z-index: 2; }
+
+.vipC_zindex3 {
+  z-index: 3; }
+
+.vipC_zindex4 {
+  z-index: 4; }
+
+.vipC_zindex5 {
+  z-index: 5; }
+
+.vipC_zindex6 {
+  z-index: 6; }
+
+.vipC_loginBlock {
+  width: 714px;
+  height: 290px;
+  background: #fff;
+  padding: 30px 0 30px 30px;
+  position: fixed;
+  _position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -145px 0 0 -357px;
+  border-radius: 4px;
+  z-index: 99999; }
+  .vipC_lBlockLeft1 {
+    width: 300px;
+    height: 290px;
+    float: left; }
+    .vipC_lBlockLeft1 .vipC_loginTitle {
+      width: 100%;
+      font-size: 28px; }
+
+  .vipC_rightBorder {
+    border-right: 1px solid #ddd; }
+
+  .vipC_lBlockLeft2 {
+    width: 410px;
+    height: 290px;
+    float: left;
+    text-align: center; }
+    .vipC_lBlockLeft2 img {
+      display: inline-block; }
+
+  .vipC_loginBlock_close {
+    width: 34px;
+    height: 34px;
+    position: absolute;
+    right: -17px;
+    top: -10px;
+    cursor: pointer; }
+
+.vipC_windowblack {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  filter: alpha(opacity=50);
+  -moz-opacity: 0.5;
+  opacity: 0.5;
+  position: fixed;
+  _position: absolute;
+  z-index: 99998; }
+
+  .vipC-success {
+  width: 450px;
+  height: 280px;
+  margin: 100px auto;
+  text-align: center;
+  color: #515151;
+  font-size: 14px;
+  line-height: 40px; 
+  }
+  .vipC-success .vipC_titleIcon {
+    width: 450px;
+    height: 93px; }
+  .vipC-success i {
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    color: #d50000; }
+  .vipC-success .vipC_btnList {
+      width:100%;
+    display: block; }
+    .vipC-success .vipC_btnList a {
+      float: left;
+      display: inline-block;
+      margin: 10px 10px 0 55px;
+      _display: inline; }
+      .vipC-success .vipC_btnList a.btnListleftBtn {
+        width: 137px;
+        height: 44px;
+        cursor: pointer;
+        border: 0px;
+        color: #fff;
+        font-weight: bold; }
+      .vipC-success .vipC_btnList a.btnListrightBtn {
+        width: 137px;
+        height: 44px;
+        cursor: pointer;
+        border: 0px;
+        color: #fff;
+        font-weight: bold; }
+       .vipC-success .vipC_btnList a.btnListrightBtn2 {
+        width: 137px;
+        height: 44px;
+        cursor: pointer;
+        border: 0px;
+        color: #fff;
+        font-weight: bold; 
+        margin:10px 0 0 0;
+        float:none;
+       }
+
+/*******************************************************************************************************************************************
+*
+*  焦点图样式
+*
+********************************************************************************************************************************************/
+#box {
+  position: relative;
+  width: 100%;
+  height: 477px;
+  overflow: hidden;
+  margin: 0 auto; }
+  #box ul {
+    width: 99999px;
+    margin: 0;
+    padding-left: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 477px;
+    z-index: 1; }
+    #box ul li {
+      width: 1920px;
+      height: 477px;
+      list-style: none;
+      float: left;
+      display: block; }
+  #box #focusBg {
+    position: absolute;
+    bottom: 7px;
+    left: 0px;
+    display: block;
+    z-index: 2;
+    width: 100%;
+    height: 53px; }
+    #box #focusBg p {
+      margin: 0px;
+      padding: 0px; }
+  #box div {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 27px;
+    z-index: 3;
+    margin: 0px;
+    text-align: center;
+    padding-top: 13px;
+    display: block;
+    _bottom: -5px;
+    margin-top: 200px; }
+    #box div a {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 10px 0 0;
+      font-size: 0px;
+      background: url("vipC_ball.png") no-repeat 0 -12px; }
+      #box div a.last {
+        margin: 0px; }
+    #box div .active {
+      width: 12px;
+      height: 12px;
+      background: url("vipC_ball.png") no-repeat 0 0; }
+.vipC-rightLoginBlock .loading_bg {
+    width:100%;
+    height:424px;
+    background:#000;
+    filter:alpha(opacity=50); 
+    -moz-opacity:0.5; 
+     opacity:0.5;
+     z-index:998;
+     position:absolute;
+     	display:none; 
+}
+.loading_img {
+     position:absolute;
+     margin:150px auto;
+     top:50px;
+     left:80px;
+      z-index:999;
+	_position:absolute;
+	display:none; 
+}
+
+.vipC_consKs p{
+    width:100%;
+    text-align:center;
+    font-size:13px;
+    line-height:26px;
+    margin:0 auto;
+}

@@ -1,0 +1,345 @@
+.lot-nums {
+    border: solid 1px #cccccc;
+    padding-top: 5px;
+    padding-left: 5px;
+    clear: both;
+    width: 338;
+    background-color: #fff;
+    height: 40px;
+}
+
+    .lot-nums span {
+        background: url(poker.png) no-repeat;
+        width: 32px;
+        height: 32px;
+        float: left;
+        padding-right: 5px;
+    }
+
+.nums {
+    width: 480px;
+}
+
+    .nums i {
+        background: url(poker.png) no-repeat;
+        width: 32px;
+        height: 32px;
+        float: left;
+        margin-left: 12px;
+    }
+
+ .shade i {
+    background: url(poker.png) no-repeat;
+}
+
+
+.noshade {
+    background: url(poker.png) no-repeat !important;
+}
+
+
+.lot-nums .no01,
+.lot-table .lot-no01 {
+    background-position: 0px 0px !important;
+}
+
+.lot-nums .no02,
+.lot-table .lot-no02 {
+    background-position: 0px -32px !important;
+}
+
+.lot-nums .no03,
+.lot-table .lot-no03 {
+    background-position: 0px -64px !important;
+}
+
+.lot-nums .no04,
+.lot-table .lot-no04 {
+    background-position: 0px -96px !important;
+}
+
+.lot-nums .no05,
+.lot-table .lot-no05 {
+    background-position: 0px -128px !important;
+}
+
+.lot-nums .no06,
+.lot-table .lot-no06 {
+    background-position: 0px -160px !important;
+}
+
+.lot-nums .no07,
+.lot-table .lot-no07 {
+    background-position: 0px -192px !important;
+}
+
+.lot-nums .no08,
+.lot-table .lot-no08 {
+    background-position: 0px -224px !important;
+}
+
+.lot-nums .no09,
+.lot-table .lot-no09 {
+    background-position: 0px -256px !important;
+}
+
+.lot-nums .no10,
+.lot-table .lot-no10 {
+    background-position: 0px -288px !important;
+}
+
+.lot-nums .no11,
+.lot-table .lot-no11 {
+    background-position: 0px -320px !important;
+}
+
+.lot-nums .no12,
+.lot-table .lot-no12 {
+    background-position: 0px -352px !important;
+}
+
+.lot-nums .no13,
+.lot-table .lot-no13 {
+    background-position: 0px -384px !important;
+}
+
+.lot-nums .no14,
+.lot-table .lot-no14 {
+    background-position: 0px -416px !important;
+}
+
+.lot-nums .no15,
+.lot-table .lot-no15 {
+    background-position: 0px -448px !important;
+}
+
+.lot-nums .no16,
+.lot-table .lot-no16 {
+    background-position: 0px -480px !important;
+}
+
+.lot-nums .no17,
+.lot-table .lot-no17 {
+    background-position: 0px -512px !important;
+}
+
+.lot-nums .no18,
+.lot-table .lot-no18 {
+    background-position: 0px -544px !important;
+}
+
+.lot-nums .no19,
+.lot-table .lot-no19 {
+    background-position: 0px -576px !important;
+}
+
+.lot-nums .no20,
+.lot-table .lot-no20 {
+    background-position: 0px -608px !important;
+}
+
+.lot-nums .no21,
+.lot-table .lot-no21 {
+    background-position: 0px -640px !important;
+}
+
+.lot-nums .no22,
+.lot-table .lot-no22 {
+    background-position: 0px -672px !important;
+}
+
+.lot-nums .no23,
+.lot-table .lot-no23 {
+    background-position: 0px -704px !important;
+}
+
+.lot-nums .no24,
+.lot-table .lot-no20 {
+    background-position: 0px -736px !important;
+}
+
+.lot-nums .no25,
+.lot-table .lot-no25 {
+    background-position: 0px -768px !important;
+}
+
+.lot-nums .no26,
+.lot-table .lot-no26 {
+    background-position: 0px -800px !important;
+}
+
+.lot-nums .no27,
+.lot-table .lot-no27 {
+    background-position: 0px -832px !important;
+}
+
+.lot-nums .no28,
+.lot-table .lot-no28 {
+    background-position: 0px -864px !important;
+}
+
+.lot-nums .no29,
+.lot-table .lot-no29 {
+    background-position: 0px -896px !important;
+}
+
+.lot-nums .no30,
+.lot-table .lot-no30 {
+    background-position: 0px -928px !important;
+}
+
+.lot-nums .no31,
+.lot-table .lot-no31 {
+    background-position: 0px -960px !important;
+}
+
+.lot-nums .no32,
+.lot-table .lot-no32 {
+    background-position: 0px -992px !important;
+}
+
+.lot-nums .no33,
+.lot-table .lot-no33 {
+    background-position: 0px -1024px !important;
+}
+
+.lot-nums .no34,
+.lot-table .lot-no34 {
+    background-position: 0px -1056px !important;
+}
+
+.lot-nums .no35,
+.lot-table .lot-no35 {
+    background-position: 0px -1088px !important;
+}
+
+.lot-nums .no36,
+.lot-table .lot-no36 {
+    background-position: 0px -1120px !important;
+}
+
+.lot-nums .no37,
+.lot-table .lot-no37 {
+    background-position: 0px -1152px !important;
+}
+
+.lot-nums .no38,
+.lot-table .lot-no38 {
+    background-position: 0px -1184px !important;
+}
+
+.lot-nums .no39,
+.lot-table .lot-no39 {
+    background-position: 0px -1216px !important;
+}
+
+.lot-nums .no40,
+.lot-table .lot-no40 {
+    background-position: 0px -1248px !important;
+}
+
+.lot-nums .no41,
+.lot-table .lot-no41 {
+    background-position: 0px -1280px !important;
+}
+
+.lot-nums .no42,
+.lot-table .lot-no42 {
+    background-position: 0px -1312px !important;
+}
+
+.lot-nums .no43,
+.lot-table .lot-no43 {
+    background-position: 0px -1344px !important;
+}
+
+.lot-nums .no44,
+.lot-table .lot-no44 {
+    background-position: 0px -1376px !important;
+}
+
+.lot-nums .no45,
+.lot-table .lot-no45 {
+    background-position: 0px -1408px !important;
+}
+
+.lot-nums .no46,
+.lot-table .lot-no46 {
+    background-position: 0px -1440px !important;
+}
+
+.lot-nums .no47,
+.lot-table .lot-no47 {
+    background-position: 0px -1472px !important;
+}
+
+.lot-nums .no48,
+.lot-table .lot-no48 {
+    background-position: 0px -1504px !important;
+}
+
+.lot-nums .no49,
+.lot-table .lot-no49 {
+    background-position: 0px -1536px !important;
+}
+
+.lot-nums .no50,
+.lot-table .lot-no50 {
+    background-position: 0px -1568px !important;
+}
+
+.lot-nums .no51,
+.lot-table .lot-no51 {
+    background-position: 0px -1600px !important;
+}
+
+.lot-nums .no52,
+.lot-table .lot-no52 {
+    background-position: 0px -1632px !important;
+}
+
+.lot-nums .no53,
+.lot-table .lot-no53 {
+    background-position: 0px -1664px !important;
+}
+
+.wd-65 {
+    width: 65px;
+}
+
+.lot-table .ptable {
+    width: 60%;
+    border: none;
+    margin: 0 auto;
+}
+
+    .lot-table .ptable .td1 {
+        border: none;
+        width: 40%;
+        text-align: center;
+    }
+
+    .lot-table .ptable .td2 {
+        border: none;
+        text-align: right;
+    }
+
+.lot-table .betgame-title {
+    text-align: left;
+    background-color: #F0F0F0;
+    padding-left: 13px;
+}
+
+.lot-table .betgame-td2 {
+    height: 21px;
+    background-color: #F0F0F0;
+    border-top: none;
+}
+
+.lot-table .betgame-td3 {
+    width: 174px;
+    height: 29px;
+    line-height: 24px;
+    padding-left: 10px;
+    text-align: left;
+}

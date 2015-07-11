@@ -5,50 +5,17 @@ $(document).ready(
   });
 
   function countdown() {
-    var label = document.getElementById("leftSconds");
-    var newSeconds = parseInt(label.innerText) - 1;
-    if (newSeconds < 0) newSeconds = 0;
+    var minute = document.getElementById("minute");
+    var second = document.getElementById("second");
+    var newSeconds = parseInt(second.innerText) - 1;
+    if (newSeconds <   0) newSeconds = 0;
     if (newSeconds == 0) {
       location.reload();
     }
     if (!isNaN(newSeconds)) {
-      label.innerHTML = newSeconds;
+      second.innerHTML = newSeconds;
     }
   }
-$('.btn-rate').click(function(e){
-    e.preventDefault();
-    
-    fieldValue = $(this).attr('value');
-    var input = $("input[name='traceslogs[coin]']");
-    var currentVal = parseFloat(input.val());
-    if (!isNaN(currentVal)) {
-
-        var newVal = currentVal * fieldValue;
-        if (newVal < 1.1) {
-          newVal = 1
-        }
-        if(newVal < input.attr('max')) {
-          input.val((newVal).toFixed(0)).change();
-        } else {
-          input.val(input.attr('max'))
-        }
-    } else {
-        input.val(0);
-    }
-});
-$('.input-primary').focusin(function(){
-   $(this).data('oldValue', $(this).val());
-});
-$('.input-primary').change(function() {
-    
-    maxValue = $(this).attr('max');
-    valueCurrent = $(this).val();
-    
-    name = $(this).attr('name');
-    if(valueCurrent <= maxValue) {
-        $(this).val($(this).data('oldValue'));
-    }
-});
 <% end %>
 
 <div class="section section-white">

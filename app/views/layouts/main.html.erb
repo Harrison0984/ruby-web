@@ -1,71 +1,998 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<!DOCTYPE HTML>
+<html xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>游戏大厅</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <title>快乐九宫格-皇家彩世界</title>
+    <meta name="keywords" content="皇家九宫格" />
+    <meta name="description" content="皇家九宫格。" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'mainstyle', 'data-turbolinks-track' => true %>
-    <%= stylesheet_link_tag 'leaflet', 'data-turbolinks-track' => true %>
-    <%= yield :head %>
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'mainstyle', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'draw5', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'kl9', 'data-turbolinks-track' => true %>
+
 </head>
-    <body>
-    <div class="mainmenu-wrapper">
-      <div class="container">
-        <div class="menuextras">
-          <div class="extras">
-            <ul>
-              <li><i class="glyphicon glyphicon-user icon-white"></i>
-              <%= link_to "#" do %>
-              <b><%= @user.nickname %></b>
-              <% end %>
-              <li><i class="glyphicon glyphicon-usd icon-white"></i>
-              <%= link_to "#" do %>
-              <b><%= @user.coin %></b>
-              <% end %>
-              <li><%= link_to session_path(id:0), method: "delete" do%>
-              <b>退出账号</b>
-              <% end %>
-              </li>
-            </ul>
-          </div>
+<body>
+<!--头部 start-->
+<div class="hj_public_topNav" style="z-index:100;">
+    <div class="hj_p_tn_content" style="z-index:10;">
+        <div class="topSmallNav">
+            <a href="http://www.1396mm.com/" target="_blank">博世界</a>
+            <a href="http://www.1396b.com/" class="hover" target="_blank">彩世界</a>
+            <a href="http://www.1396app.com/" target="_blank">博应用</a>
+            <a href="http://www.1396dh.com/" target="_blank">爱博导航</a>
         </div>
-        <nav id="mainmenu" class="mainmenu">
+        <div class="Announcement" >
+            <marquee id="marquee" scrollamount="2" direction="left">尊敬的用户！欢迎来到皇家彩世界。
+            </marquee>
+        </div>
+        <div class="rightLogin" id="unsignin">
+            <% if @user == nil %>
+            <span><%= link_to '登录', controller: 'welcome', action: 'index' %></span>
+            <% else %>
+            <span><%= link_to @user.account, {controller: 'welcome', action: 'index'}, style: 'color: red;width:auto;' %></span>
+            <span class="line">|</span>
+            <span><%= link_to "退出", session_path(@user.id), method: "delete" %></span>
+            <% end %>
+            <span class="line">|</span>
+            <span class="res"><a href="/home/feedback" target="_blank">用户反馈</a></span>
+            <span><a href="http://www.royaleu.com/product/index.html?pageId=8" class="bw_downloadBtn">应用下载</a></span>
+        </div>
+        <div class="hj_public_clearBoth"></div>
+        <div class="topSmallNav_more">
+            <table>
+                <tr>
+                    <th colspan="2">网页</th>
+                    <th colspan="3">手机</th>
+                </tr>
+                <tr>
+                    <td width="20%"><a href="http://www.1396mm.com/" target="_blank">博世界</a></td>
+                    <td width="20%"><a href="http://www.1396app.com/" target="_blank">博应用<span class="hj_public_hot"></span></a></td>
+                    <td width="20%"><a href="http://soft.royaleu.com/ssbd/" target="_blank">重庆时时彩</a></td>
+                    <td width="20%"><a href="http://soft.royaleu.com/ssbd/" target="_blank">时时彩宝典<span class="hj_public_new"></span></a></td>
+                    <td width="20%"><a href="http://soft.royaleu.com/app/" target="_blank">博应用</a></td>
+                </tr>
+                <tr>
+                    <td><a href="http://www.1396b.com/" target="_blank">彩世界</a></td>
+                    <td><a href="http://www.1396dh.com/" target="_blank">爱博导航</a></td>
+                    <td><a href="http://soft.royaleu.com/xync/" target="_blank">幸运农场</a></td>
+                    <td><a href="http://soft.royaleu.com/ssbd/" target="_blank">广东快乐十分</a></td>
+                    <td><a href="http://soft.royaleu.com/bsj/" target="_blank">博世界</a></td>
+                </tr>
+                <tr>
+                    <td><a href="http://www.1396b.com/software/" target="_blank">软件中心</a></td>
+                    <td><a href="http://www.1396sp.com/" target="_blank">视频联盟</a></td>
+                    <td><a href="http://soft.royaleu.com/abm/" target="_blank">自动下注软件</a></td>
+                    <td><a href="http://soft.royaleu.com/bjk8/" target="_blank">北京快乐九宫格</a></td>
+                    <td><a href="http://soft.royaleu.com/ssbd/" target="_blank">北京PK10</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".topSmallNav .last").mouseover(function () {
+            $(this).addClass("hover");
+            $(".topSmallNav_more").css("display", "block");
+        });
+        $(".topSmallNav_more").mouseleave(function () {
+            $(".topSmallNav .last").removeClass("hover");
+            $(this).css("display", "none");
+        })
+    })
+</script>
+<!--头部 end-->
+<div class="top_warn">
+        <div class="topContent">
+        </div>
+    </div>
+    <div class="header">
+    <div class="logo">
+        <a href="/">
+            <img src=<%= image_url("logo.png") %> alt="皇家彩世界"/></a>
+    </div>
+    <div class="rf">
+    </div>
+</div>
+
+    <div class="menu">
+    
+    <ul>
+         <li>
+            <a href="/" id="nav01" >首页</a>
+        </li>
+        <li>
+            <a href="/" class=cur>彩票大厅</a>
+        </li>
+        <li>
+            <a href="/"  target="_blank">走势图</a>
+        </li>
+        <li>
+            <a href="/" >开奖直播</a>
+        </li>
+
+        <li>
+            <a href="/" >软件中心</a>
+        </li>
+        <li>
+            <a href="/" >交流大厅</a>
+        </li>
+        <li>
+            <a href="/" target="_blank" rel="nofollow" class="soft rear">视频联盟</a>
+        </li>
+        
+        <li>
+            <a href="/" target="_blank"  class="soft rear">应用中心</a>
+        </li>
+        
+        <div class="tab_style"></div>
+    </ul>
+</div>
+
+    
+<input type="hidden" value="updateHistoryRecord" id="callFun" />
+<div class="body-content">
+    <div class="business">
+    </div>
+    <ul class="lot-menu">
+    <li>
+        <a href="/kl9/" class=cur>快乐九宫格</a>
+    </li>
+    <li>
+        <a href="/pk10/" >北京赛车pk10</a>
+    </li>
+    <li>
+        <a href="/shishicai/" >重庆时时彩</a>
+    </li>
+    <li>
+        <a href="/gdkl10/" >广东快乐十分</a>
+    </li>
+    <li>
+        <a href="/jxssc/" >江西时时彩</a>
+    </li>
+    <li>
+        <a href="/xync/" >幸运农场</a>
+    </li>
+    <li>
+        <a href="/jsk3/" >江苏骰宝(快3)</a>
+    </li>
+    <li>
+        <a href="/xyft/" >幸运飞艇</a>
+    </li>
+    <li>
+        <a href="/shssl/" >上海时时乐</a>
+    </li>
+       <li>
+        <a href="/sdc/" class="last">圣地彩</a>
+    </li>
+</ul>
+<ul class="lot-award">
+    <li class="logo">
+        <img src=<%= image_url("kl8-logo.png") %> alt="北京快乐九宫格"/>
+    </li>
+    <li class="currentAward">
+        <div class="title">
+            最新开奖：
+        </div>
+        <div class="period" style="color: green;">12期
+        </div>
+        <div class="period-info" >每日销售<span>179</span>期，今日剩余<span class="period-leave">--</span>期</div>
+        <div class="lot-nums">
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+            <span class="no05"></span>
+        </div>
+    </li>
+    <li class="warnTime">
+        <div class="title">
+            <div id="period">&nbsp;</div>
+            <div>距离下期开奖剩余</div>
+        </div>
+        <div class="minute">10</div>
+        <div class="t2">分</div>
+        <div class="second" id="second">1000000</div>
+        <div class="t2">秒</div>
+         <div class="sound" id="countdown_sound" title="点击关闭提醒声音"></div>
+        <audio src=<%= image_url("du.mp3") %> id="duSound" style="display:none;"></audio>
+    </li>
+    <li class="navi">
         <ul>
-        <li>
-          <%= link_to "游戏大厅", main_index_path %>
-        </li>
-        <li>
-          <%= link_to "投注记录", mainhistory_index_path %>
-        </li>
-        <li>
-          <%= link_to "开奖记录", maingridgame_index_path %>
-        </li>
-      </ul>
-    </nav>
-    </div>
-    </div>
+            <li>
+                <a href="/forum/1?tag=35&isexports=0" target="_blank">交流论坛</a>
+            </li>
+             <li>
+                <a href="/diaoyong/" target="_blank" style="color:Red">调用开奖结果</a>
+            </li>
+            <li>
+                <a href="/kl9/kaijiang" target="_blank">九宫格开奖号码</a>
+            </li>
+            <li>
+                <a href="/kl9/downloadhistory/" target="_blank" class="down">下载历史记录</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+    <div class="lot-wrap">
+        <div class="feedbackDiv">
+    <span class="fk_span"><a href="/home/feedback/" target="_blank" class="fk_spanLink">反馈意见</a></span>
+    <span class="fk_span px_span" id="menu_drag_span">
+        <a href="javascript:enableMenuDrag();"  class="fk_spanLink">自定义排序(会员功能)</a>
+    </span>
 
-    <%= yield %>
+    <span class="pd_span" style="display:none;" id="menu_drag_tip_span">
+        <span class="fk_span unlock_span fk_spanLink">已开启拖放排序功能</span>
+        <a href="javascript:disableMenuDrag(1);" class="leftBtn">确定</a>
+        <a href="javascript:disableMenuDrag(0);" class="rightBtn">取消</a>
+    </span>
 
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="footer-copyright">&copy; 2015 anyone. All rights reserved.</div>
-          </div>
+    <span class="pd_span"  style="display:none;"  id="menu_drag_unlogin_tip">
+        <span class="fk_span  noIcon">您需要登陆才可以使用该功能</span>
+        <a href="/sso/login/"  class="leftBtn" id="login_a_btn">登录</a>
+        <a href="/sso/register/"  class="leftBtn">注册</a>
+    </span>
+</div>
+
+<div class="web_listOP">
+   <ul id="menu_ul" style="position: relative;">
+        <li class=hover data-tag="idx">
+            <a href="/kl9/">快乐九宫格</a>
+        </li>
+        <li  data-tag="kj">
+            <a href="/kl9/kaijiang">历史开奖号码</a>
+        </li>
+        <li  data-tag="zhl">
+            <a href="/kl9/luzhutotal">单选盘</a>
+        </li>
+        <li  data-tag="dshl">
+            <a href="/kl9/luzhuoddoreven">组合盘</a>
+        </li>
+        <li   data-tag="sxpl">
+            <a href="/kl9/luzhuupordown">双面盘</a>
+        </li>
+        <li   data-tag="kjs">
+            <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
+        </li>
+        <li    data-tag="mfc">
+            <a href="#">免费参考</a>
+        </li>
+    </ul>
+</div>
+        <div class="index-head">
+            <a class="banner" href="/kl9/shipin/" title="北京快乐九宫格视频">
+                <img src=<%= image_url("kl8-index.png") %> alt="北京快乐九宫格视频">
+            </a>
+            <div class="trend">
+                <div class="l-title">
+                    <h2>
+                        北京快乐九宫格玩法技巧</h2>
+                             <div class="fontAd fontWidth01">
         </div>
-      </div>
+                  <a href="/jiqiao/kl9/">更多>></a>
+                </div>
+                    <div class="skill">
+                        <h1>
+                            <a href="/jiqiao/kl9/63537.html">九宫格赢钱心法大公开</a>
+                        </h1>
+                        <p>　　快乐九宫格快了就发，这个名字听起来真好，但是玩起来真的是这样吗?这个倒未必，能不…</p>
+                        <ul>
+                                <li><a href="/jiqiao/kl9/63525.html" target="_blank">·快乐九宫格技巧之上中下投注是如何赢钱的</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63348.html" target="_blank">·快乐九宫格技巧之精品投注分享案例</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63342.html" target="_blank">·北京快乐九宫格技巧之最划算的投注赚钱法</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63331.html" target="_blank">·北京快乐九宫格技巧之快速购奖两技巧</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63320.html" target="_blank">·北京快乐九宫格之常态组合给购彩的一些提示</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63312.html" target="_blank">·北京快乐九宫格技巧之含羞概率出现法</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63305.html" target="_blank">·北京快乐九宫格技巧之旋转矩形投注法</a>
+                                </li>
+                                <li><a href="/jiqiao/kl9/63296.html" target="_blank">·北京快乐九宫格技巧之浅谈飞盘玩法的巧妙</a>
+                                </li>
+                        </ul>
+                    </div>
+
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="w980">
+
+        </div>
+
+      
+        <div class="index-history">
+            <div class="title mt10">
+                <h2>
+                    北京快乐九宫格开奖记录</h2>
+                         <div class="fontAd fontWidth02">
+        </div>
+
+                 
+                <a href="/kl9/kaijiang/">查看全部>></a>
+            </div>
+            <table class="lot-table" id="history">
+                <tr class="head">
+                    <td width="180px">
+                        时间
+                    </td>
+                    <td>
+                        开奖号码
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        飞盘号
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        单/双
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        大/小
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        上/下
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        总和
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        五行
+                    </td>
+                </tr>
+
+                    <tr class='even'>
+                        <td>
+                            <p class="p">705327
+                            </p>
+                            <p class="t">07-11 21:00</p>
+                        </td>
+                        <td class="nums">
+                    <i class='lot-no01'></i>                
+                    <i class='lot-no02'></i>                
+                    <i class='lot-no03'></i>                
+                    <i class='lot-no04'></i>                
+                    <i class='lot-no05'></i>                
+                    <i class='lot-no06'></i>                
+                    <i class='lot-no07'></i>                
+                    <i class='lot-no08'></i>                 
+                    <i class='lot-no52'></i>                 
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p>双</p>
+                        </td>
+                        <td>
+                                <p>小</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    上</p>
+                        </td>
+                        <td>660
+                        </td>
+                        <td>金
+                        </td>
+                    </tr>
+                    <tr class='odd'>
+                        <td>
+                            <p class="p">705326
+                            </p>
+                            <p class="t">07-11 20:55</p>
+                        </td>
+                        <td class="nums">
+<span>04</span>                
+<span>06</span>                
+<span>08</span>                
+<span>09</span>                
+<span>12</span>                
+<span>17</span>                
+<span>19</span>                
+<span>21</span>                
+<span>22</span>                
+<span>24</span>                
+                                <div class="clear"></div>
+<span>31</span>                
+<span>34</span>                
+<span>46</span>                
+<span>49</span>                
+<span>58</span>                
+<span>59</span>                
+<span>61</span>                
+<span>62</span>                
+<span>69</span>                
+<span>79</span>                
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p>双</p>
+                        </td>
+                        <td>
+                                <p>小</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    上</p>
+                        </td>
+                        <td>690
+                        </td>
+                        <td>金
+                        </td>
+                    </tr>
+                    <tr class='even'>
+                        <td>
+                            <p class="p">705325
+                            </p>
+                            <p class="t">07-11 20:50</p>
+                        </td>
+                        <td class="nums">
+<span>08</span>                
+<span>11</span>                
+<span>12</span>                
+<span>19</span>                
+<span>21</span>                
+<span>23</span>                
+<span>24</span>                
+<span>31</span>                
+<span>37</span>                
+<span>45</span>                
+                                <div class="clear"></div>
+<span>46</span>                
+<span>54</span>                
+<span>56</span>                
+<span>60</span>                
+<span>63</span>                
+<span>66</span>                
+<span>70</span>                
+<span>71</span>                
+<span>74</span>                
+<span>75</span>                
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p>双</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    大</p>
+                        </td>
+                        <td>
+                                <p>下</p>
+                        </td>
+                        <td>866
+                        </td>
+                        <td>火
+                        </td>
+                    </tr>
+                    <tr class='odd'>
+                        <td>
+                            <p class="p">705324
+                            </p>
+                            <p class="t">07-11 20:45</p>
+                        </td>
+                        <td class="nums">
+<span>07</span>                
+<span>16</span>                
+<span>17</span>                
+<span>20</span>                
+<span>23</span>                
+<span>26</span>                
+<span>27</span>                
+<span>28</span>                
+<span>29</span>                
+<span>42</span>                
+                                <div class="clear"></div>
+<span>53</span>                
+<span>54</span>                
+<span>57</span>                
+<span>61</span>                
+<span>66</span>                
+<span>67</span>                
+<span>71</span>                
+<span>74</span>                
+<span>75</span>                
+<span>77</span>                
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p>双</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    大</p>
+                        </td>
+                        <td>
+                                <p>下</p>
+                        </td>
+                        <td>890
+                        </td>
+                        <td>火
+                        </td>
+                    </tr>
+                    <tr class='even'>
+                        <td>
+                            <p class="p">705323
+                            </p>
+                            <p class="t">07-11 20:40</p>
+                        </td>
+                        <td class="nums">
+<span>02</span>                
+<span>04</span>                
+<span>10</span>                
+<span>14</span>                
+<span>27</span>                
+<span>30</span>                
+<span>34</span>                
+<span>35</span>                
+<span>44</span>                
+<span>46</span>                
+                                <div class="clear"></div>
+<span>51</span>                
+<span>52</span>                
+<span>53</span>                
+<span>57</span>                
+<span>59</span>                
+<span>66</span>                
+<span>69</span>                
+<span>74</span>                
+<span>76</span>                
+<span>80</span>                
+                        </td>
+                        <td>2
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    单</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    大</p>
+                        </td>
+                        <td>
+                                <p>下</p>
+                        </td>
+                        <td>883
+                        </td>
+                        <td>火
+                        </td>
+                    </tr>
+                    <tr class='odd'>
+                        <td>
+                            <p class="p">705322
+                            </p>
+                            <p class="t">07-11 20:35</p>
+                        </td>
+                        <td class="nums">
+<span>03</span>                
+<span>06</span>                
+<span>11</span>                
+<span>13</span>                
+<span>19</span>                
+<span>31</span>                
+<span>35</span>                
+<span>36</span>                
+<span>42</span>                
+<span>44</span>                
+                                <div class="clear"></div>
+<span>47</span>                
+<span>52</span>                
+<span>55</span>                
+<span>56</span>                
+<span>58</span>                
+<span>61</span>                
+<span>62</span>                
+<span>63</span>                
+<span>68</span>                
+<span>80</span>                
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p>双</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    大</p>
+                        </td>
+                        <td>
+                                <p>下</p>
+                        </td>
+                        <td>842
+                        </td>
+                        <td>水
+                        </td>
+                    </tr>
+                    <tr class='even'>
+                        <td>
+                            <p class="p">705321
+                            </p>
+                            <p class="t">07-11 20:30</p>
+                        </td>
+                        <td class="nums">
+<span>05</span>                
+<span>09</span>                
+<span>10</span>                
+<span>16</span>                
+<span>17</span>                
+<span>19</span>                
+<span>24</span>                
+<span>31</span>                
+<span>40</span>                
+<span>44</span>                
+                                <div class="clear"></div>
+<span>46</span>                
+<span>47</span>                
+<span>48</span>                
+<span>51</span>                
+<span>52</span>                
+<span>53</span>                
+<span>69</span>                
+<span>75</span>                
+<span>78</span>                
+<span>79</span>                
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    单</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    大</p>
+                        </td>
+                        <td>
+                                <p>下</p>
+                        </td>
+                        <td>813
+                        </td>
+                        <td>水
+                        </td>
+                    </tr>
+                    <tr class='odd'>
+                        <td>
+                            <p class="p">705320
+                            </p>
+                            <p class="t">07-11 20:25</p>
+                        </td>
+                        <td class="nums">
+<span>01</span>                
+<span>16</span>                
+<span>23</span>                
+<span>25</span>                
+<span>28</span>                
+<span>32</span>                
+<span>37</span>                
+<span>39</span>                
+<span>40</span>                
+<span>41</span>                
+                                <div class="clear"></div>
+<span>42</span>                
+<span>43</span>                
+<span>46</span>                
+<span>53</span>                
+<span>54</span>                
+<span>58</span>                
+<span>64</span>                
+<span>73</span>                
+<span>77</span>                
+<span>80</span>                
+                        </td>
+                        <td>2
+                        </td>
+                        <td>
+                                <p>双</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    大</p>
+                        </td>
+                        <td>
+                                <p>下</p>
+                        </td>
+                        <td>872
+                        </td>
+                        <td>火
+                        </td>
+                    </tr>
+                    <tr class='even'>
+                        <td>
+                            <p class="p">705319
+                            </p>
+                            <p class="t">07-11 20:20</p>
+                        </td>
+                        <td class="nums">
+<span>06</span>                
+<span>07</span>                
+<span>10</span>                
+<span>16</span>                
+<span>19</span>                
+<span>20</span>                
+<span>24</span>                
+<span>28</span>                
+<span>30</span>                
+<span>33</span>                
+                                <div class="clear"></div>
+<span>34</span>                
+<span>35</span>                
+<span>41</span>                
+<span>44</span>                
+<span>45</span>                
+<span>49</span>                
+<span>58</span>                
+<span>72</span>                
+<span>73</span>                
+<span>77</span>                
+                        </td>
+                        <td>1
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    单</p>
+                        </td>
+                        <td>
+                                <p>小</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    上</p>
+                        </td>
+                        <td>721
+                        </td>
+                        <td>木
+                        </td>
+                    </tr>
+                    <tr class='odd'>
+                        <td>
+                            <p class="p">705318
+                            </p>
+                            <p class="t">07-11 20:15</p>
+                        </td>
+                        <td class="nums">
+<span>04</span>                
+<span>05</span>                
+<span>08</span>                
+<span>12</span>                
+<span>15</span>                
+<span>17</span>                
+<span>18</span>                
+<span>19</span>                
+<span>22</span>                
+<span>23</span>                
+                                <div class="clear"></div>
+<span>28</span>                
+<span>30</span>                
+<span>34</span>                
+<span>43</span>                
+<span>56</span>                
+<span>63</span>                
+<span>64</span>                
+<span>65</span>                
+<span>73</span>                
+<span>74</span>                
+                        </td>
+                        <td>2
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    单</p>
+                        </td>
+                        <td>
+                                <p>小</p>
+                        </td>
+                        <td>
+                                <p class='r'>
+                                    上</p>
+                        </td>
+                        <td>673
+                        </td>
+                        <td>金
+                        </td>
+                    </tr>
+            </table>
+            <div class="lot-about mt10" style="width: 980px;">
+                <div class="l-title">
+                    <h2>
+                        关于北京快乐九宫格</h2>
+                </div>
+                <p>
+                    北京快乐九宫格每日从早上9点至晚上12点，每五分钟开奖一次，每日开奖179期。游戏玩法：由1至80的号码中随机摇出20个数字作为开奖号码，依这20个号码变化成各式不同的玩法，
+                    在根据猜中的号码个数或玩法可以获得不同等级的奖金。
+                </p>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+       
     </div>
-    <script>
+</div>
+<div class="left-layer">
+</div>
+<div class="right-layer">
+</div>
+    <div class="clear"></div>
+     <div style="width:1000px; margin:0 auto;">
+     <div class="business">
+        </div>
+
+          
+<div class="friend_link">
+    <strong>友情连接：</strong>
+    <div>
+         <a href="http://www.1396me.com/zt/cpts/" target="_blank"><span id="_xhe_cursor"></span><span id="_xhe_cursor"></span>彩票停售原因</a>                <a href="http://www.1396mm.com/" target="_blank">博世界</a>                <a href="http://www.1396app.com/" target="_blank">博应用</a>                 <a href="http://www.pk10kj.com" target="_blank" rel="nofollow">全威pk10软件</a>                 <a href="http://www.1396mm.com/zt/2015g2e" target="_blank">g2e</a>                 <a href="http://www.caixun8.com/" target="_blank" rel="nofollow">财讯导航网</a>                 <a href="http://www.sp9988.com" target="_blank" rel="nofollow">金牌全讯网</a>                 <a href="http://www.365365bet.cc" target="_blank" rel="nofollow">365全讯网</a>
+    </div>
+    <span><a href="/official/227" target="_blank">更多>></a></span>
+</div>
+  <div style="width:100%; text-align:left; color:#666;padding:10px 0 10px 0;"><span style="color:#b60000;">敬告用户：</span>除皇家产品外，本站所刊登广告的网站和内容一概与本站无关，用户须自行判断广告网站的真实性，由此所产生的后果本公司概不负责！</div></div>
+<!--底部 start-->
+<div class="hj_public_foot">
+    <div class="hj_public_foot_d">
+        
+        <div class="hj_public_foot_d1">
+            <div class="leftContent">
+                <i>皇家彩世界</i>
+                <div class="leftContent_d">
+                    <div class="lc_d">
+                        <span class="lc_name">關于我們：</span>
+                        <div class="lc_info">
+                            <a href="/official/193"  rel="nofollow">免责声明</a>
+                            <a href="/official/194"  rel="nofollow">法律声明</a>
+                            <a href="/help/" target="_blank">帮助中心</a>
+                        </div>
+                        <div class="hj_public_clearBoth"></div>
+                    </div>
+                    <div class="lc_d">
+                        <span class="lc_name">相關産品：</span>
+                        <div class="lc_info">
+                            <a href="/zhibo/" target="_blank">開獎直播</a>
+                            <a href="/software/" target="_blank">軟件中心</a>
+                            <a href="/map.html" target="_blank">網站地圖</a>
+                        </div>
+                        <div class="hj_public_clearBoth"></div>
+                    </div>
+                    <div class="lc_d">
+                        <span class="lc_name">商務合作：</span>
+                        <div class="lc_info">
+                            <a href="http://www.royaleu.com/business/" target="_blank" rel="nofollow">廣告服務</a>
+                            <a href="http://www.royaleu.com/special/soft.html" target="_blank" rel="nofollow">軟件定制</a>
+                            <a href="/zhibo/" target="_blank">開獎直播</a>
+                        </div>
+                        <div class="hj_public_clearBoth"></div>
+                    </div>
+                    <div class="lc_d">
+                        <span class="lc_name">交&nbsp;流&nbsp;群：</span>
+                        <div class="lc_info">
+                            <span>329235586</span>
+                            <span>220634190</span>
+                            <span>235983757</span>
+                            <span>284202968</span>
+                            <span>98470270</span>
+                             <span>284202968<a  href="http://shang.qq.com/wpa/qunwpa?idkey=034a4167fd00b2f2cbedea89d0ac0e0297a0a25482df8d50b408425f4a54b3cd">加入</a></span>
+                        </div>
+                        <div class="hj_public_clearBoth"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightContent">
+                <i>皇家動態</i>
+                <div class="rightContent_d">
+<ul>
+                 
+                
+                    <li><a href="http://www.royaleu.com/news/detail.html?id=159" target="_blank">六合盒子1.0.0：首款六合彩桌面端軟件誕生</a></li>
+                
+                    <li><a href="http://www.royaleu.com/news/detail.html?id=158" target="_blank">皇家登錄中心極致體驗全新上線！</a></li>
+                
+                    <li><a href="http://www.royaleu.com/news/detail.html?id=156" target="_blank">皇家科技G2E Asia 2015展采訪圓滿結束</a></li>
+                
+                    <li><a href="http://www.royaleu.com/news/detail.html?id=155" target="_blank">皇家彩世界臨時通告！</a></li>
+                
+                    <li><a href="http://www.royaleu.com/news/detail.html?id=154" target="_blank">迎五一假期江西時時彩1.0.0首發歡樂上線</a></li>
+                
+</ul>
+                </div>
+            </div>
+            <div class="rightContent1">
+                <p class="rightContent1_title">皇家网址发布器</p>
+                <div class="rightContent1_info">第一时间获取皇家所有产品的最新网址</div>
+                <a class="rightContent1_btn" href="http://down.1396.me/%E9%A6%99%E6%B8%AF%E7%9A%87%E5%AE%B6%E7%BD%91%E5%9D%80%E5%8F%91%E5%B8%83%E5%B7%A5%E5%85%B7.zip" target="_blank"></a>
+            </div>
+
+        </div>
+        <div class="hj_public_foot_d2">
+            <div class="leftContent">
+                <ul>
+                    <li>
+                        <span></span>
+                        <p>十五年專業保證</p>
+                    </li>
+                    <li>
+                        <span class="lc_span2"></span>
+                        <p>千余員工傾力奉獻</p>
+                    </li>
+                    <li>
+                        <span class="lc_span3"></span>
+                        <p>絕對精准數據獲取</p>
+                    </li>
+                    <li>
+                        <span class="lc_span4"></span>
+                        <p>尊貴品牌服務</p>
+                    </li>
+                </ul>
+                <div class="hj_public_clearBoth"></div>
+            </div>
+            <div class="Contact">
+                <div class="PhoneNumber">
+                    <p>國內: <span>400-654-9200</span></p>
+                    <p>境外: <span>00852-62104572</span></p>
+                </div>
+                <div class="time">
+                    <p>12小時尊貴服務</p>
+                    <p class="t_text">周一至周日: 9:30-22:00</p>
+                </div>
+            </div>
+            <div class="rightContent">
+                <a onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&sid=800047987&o=http://www.1396b.com/&q=7', '_blank', 'height=502, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');" href="javascript:void(0);"><img src="http://rescsj.56hx.com/themes/images/headfoot/hj_public_qq.jpg " alt=""/></a>
+            </div>
+            <div class="hj_public_clearBoth"></div>
+        </div>
+    </div>
+</div>
+<div class="hj_public_foot2">
+    <div class="hj_public_foot2_d">
+        <div class="leftContent">© 2000-2015 香港皇家科技 版權所有</div>
+        <div class="rightContent"><a href="http://www.royaleu.com/about/index.html" target="_blank"  rel="nofollow">公司簡介</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.royaleu.com/about/contact.html" target="_blank"  rel="nofollow">聯系我們</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.royaleu.com/about/business.html" target="_blank"  rel="nofollow">商務合作</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.royaleu.com/about/legalnotice.html" target="_blank"  rel="nofollow">法律聲明</a></div>
+        <div class="hj_public_clearBoth"></div>
+    </div>
+</div>
+<!--底部 end-->
+<div id="online_qq_layer">
+    <div id="online_qq_tab">
+        <div class="online_icon">
+            <a title="" id="floatShow" style="display: none" href="javascript:void(0);">&nbsp;</a>
+            <a title="" id="floatHide" style="display: block" href="javascript:void(0);">&nbsp;</a>
+        </div>
+    </div>
+    <div id="onlineService" style="display: none;">
+        <div class="online_windows overz">
+            <div class="online_w_top">
+            </div>
+            <div class="online_w_c overz">
+                <div class="online_bar collapse" id="onlineSort1">
+                    <h2>
+                        <a>在线客服</a></h2>
+                    <div class="online_content overz" id="onlineType1">
+                        <ul class="overz" style="height: 70px;">
+                            <li style="margin-top: 10px;">
+                                <script charset="utf-8" type="text/javascript" src="#"></script>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="online_w_bottom">
+            </div>
+        </div>
+    </div>
+</div>
+<script charset="utf-8" type="text/javascript" src="#"></script>
+<script type="text/javascript">
     <%= yield :script %>
-    </script>
-  </body>
+</script>>
+</body>
 </html>

@@ -1,6 +1,7 @@
 class WelcomeController < ApplicationController
   def index
   	@defaultname = {:account => ""}
+    session[:userid] = 0
   	if session[:userid] != nil and session[:userid] > 0
   		user = User.find(session[:userid])
       if user

@@ -1,0 +1,4 @@
+var mails = { "@163.com": "http://email.163.com/", "@126.com": "http://email.163.com/", "@yeah.net": "http://email.163.com/", "@qq.com": "http://mail.qq.com/", "@gmail.com": "http://gmail.google.com/", "@yahoo.com": "http://mail.yahoo.com/", "@sina.com": "https://mail.sina.com.cn/", "@sohu.com": "http://mail.sohu.com/", "@outlook.com": "http://www.outlook.com/", "@hotmail.com": "http://www.outlook.com/", "@tom.com": "http://mail.tom.com/", "@21cn.com": "http://mail.21cn.com/", "@139.com": "http://mail.10086.cn/", "@189.cn": "http://webmail16.189.cn/webmail/", "@aliyun.com": "http://mail.aliyun.com/alimail/" }; function getMailAddr(mail) {
+    if (mail && mail.indexOf("@") > 0) { var suffix = mail.substr(mail.indexOf("@")); if (mails[suffix]) { return mails[suffix]; } }
+    return "javascript:return false;";
+}
