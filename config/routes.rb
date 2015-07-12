@@ -35,7 +35,13 @@ Rails.application.routes.draw do
 
   resources :mainhistory, only: [:index]
 
-  resources :maingridgame, onley: [:index]
+  resources :maingridgame, only: [:index]
+
+  resources :singlegame, only: [:index]
+
+  resources :combinationgame, only: [:index]
+
+  resources :doublegame, only: [:index]
   
   # You can have the root of your site routed with "root"
   root 'welcome#index'
