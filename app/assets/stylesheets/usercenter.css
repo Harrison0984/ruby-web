@@ -60,7 +60,7 @@ body {
 
     #member-info .update-info .info,
     #member-info .update-info .password {
-        background: url(../images/home-button.png) no-repeat;
+        background: url(home-button.png) no-repeat;
         float:left;
         clear:left;
     }
@@ -115,23 +115,23 @@ body {
                 }
 
             #member-info ul li .my-csj {
-                background: url(../images/home-home.png) 7px 11px no-repeat;
+                background: url(home-home.png) 7px 11px no-repeat;
             }
 
             #member-info ul li .my-info {
-                background: url(../images/home-info.png) 7px 11px no-repeat;
+                background: url(home-info.png) 7px 11px no-repeat;
             }
 
             #member-info ul li .my-extend {
-                background: url(../images/home-my.png) 7px 11px no-repeat;
+                background: url(home-my.png) 7px 11px no-repeat;
             }
 
             #member-info ul li .task {
-                background: url(../images/home-task.png) 7px 11px no-repeat;
+                background: url(home-task.png) 7px 11px no-repeat;
             }
 
             #member-info ul li .system-message {
-                background: url(../images/home-message2.png) 7px 13px no-repeat;
+                background: url(home-message2.png) 7px 13px no-repeat;
             }
 
             #member-info ul li ul {
@@ -186,25 +186,25 @@ body {
 
         .use-operate .info .dl1 {
             margin-left: 60px;
-            background: url(../images/home-update-info.png) no-repeat;
+            background: url(home-update-info.png) no-repeat;
         }
 
         .use-operate .info .dl1-cur {
-            background: url(../images/home-update-info-cur.png) no-repeat;
+            background: url(home-update-info-cur.png) no-repeat;
         }
 
         .use-operate .info .dl2 {
             margin-left: 60px;
-            background: url(../images/home-update-password.png) no-repeat;
+            background: url(home-update-password.png) no-repeat;
         }
 
         .use-operate .info .dl2-cur {
-            background: url(../images/home-update-password-cur.png) no-repeat;
+            background: url(home-update-password-cur.png) no-repeat;
         }
 
         .use-operate .info .dl3 {
             margin-left: 60px;
-            background: url(../images/home-update-mail.png) no-repeat;
+            background: url(home-update-mail.png) no-repeat;
         }
 
         .use-operate .info .dl3-cur {
@@ -213,11 +213,11 @@ body {
 
         .use-operate .info .dl4 {
             margin-left: 60px;
-            background: url(../images/home-update-phone.png) no-repeat;
+            background: url(home-update-phone.png) no-repeat;
         }
 
         .use-operate .info .dl4-cur {
-            background: url(../images/home-update-phone-cur.png) no-repeat;
+            background: url(home-update-phone-cur.png) no-repeat;
         }
 
         .use-operate .info dt a {
@@ -284,7 +284,7 @@ body {
 .add-category {
     display: block;
     margin-bottom: 20px;
-    background: url(../images/bookmark-addsite.png) #F3F3F3 15px 10px no-repeat;
+    background: url(bookmark-addsite.png) #F3F3F3 15px 10px no-repeat;
     padding-left: 30px;
     line-height: 32px;
     width: 70px;
@@ -323,7 +323,7 @@ body {
             }
 
         .bookmark-content li .name {
-            background: url(../images/bookmark-title.png) 8px 7px no-repeat;
+            background: url(bookmark-title.png) 8px 7px no-repeat;
             height: 32px;
             line-height: 32px;
             width: 100px;
@@ -335,7 +335,7 @@ body {
         }
 
         .bookmark-content li .add {
-            background: url(../images/bookmark-addsite.png) 10px 10px no-repeat;
+            background: url(bookmark-addsite.png) 10px 10px no-repeat;
             height: 32px;
             margin-left: 512px;
             _margin-left: 500px;
@@ -350,7 +350,7 @@ body {
         }
 
         .bookmark-content li .modify {
-            background: url(../images/bookmark-edit.png) 10px 9px no-repeat;
+            background: url(bookmark-edit.png) 10px 9px no-repeat;
             height: 32px;
             margin-left: 5px;
             padding-left: 27px;
@@ -359,7 +359,7 @@ body {
         }
 
         .bookmark-content li .delete {
-            background: url(../images/bookmark-delete.png) 10px 8px no-repeat;
+            background: url(bookmark-delete.png) 10px 8px no-repeat;
             height: 32px;
             margin-left: 5px;
             padding-left: 30px;
@@ -369,7 +369,7 @@ body {
 
         .bookmark-content li .cont a {
             padding: 5px;
-            background: url(../images/ie-logo.png) 7px no-repeat;
+            background: url(ie-logo.png) 7px no-repeat;
             float: left;
             width: 197px;
             height: 35px;
@@ -383,11 +383,11 @@ body {
             .bookmark-content li .cont a:hover {
                 border: solid 1px #cccccc;
                 color: #2aa224;
-                background: url(../images/ie-logo-cur.png) #F3F3F3 7px no-repeat;
+                background: url(ie-logo-cur.png) #F3F3F3 7px no-repeat;
             }
 
         .bookmark-content li .modify_url {
-            background: url(../images/bookmark-edit-site.png) no-repeat;
+            background: url(bookmark-edit-site.png) no-repeat;
             height: 10px;
             width: 10px;
             float: right;
@@ -397,7 +397,7 @@ body {
         .bookmark-content li .delete_url {
             margin-left: 10px;
             margin-top: 2px;
-            background: url(../images/bookmark-delete-site.png) no-repeat;
+            background: url(bookmark-delete-site.png) no-repeat;
             height: 9px;
             width: 10px;
             float: right;
@@ -413,7 +413,7 @@ body {
 }
 
     .page-position .infomation {
-        background: url(../images/home-infomation.png) no-repeat;
+        background: url(home-infomation.png) no-repeat;
         width: 80px;
         height: 102px;
         float: left;
@@ -421,7 +421,7 @@ body {
     }
 
     .page-position .infomation-cur {
-        background: url(../images/home-infomation-cur.png) no-repeat;
+        background: url(home-infomation-cur.png) no-repeat;
         width: 80px;
         height: 102px;
         float: left;
@@ -430,7 +430,7 @@ body {
 
     .page-position .safetycenter {
         margin-left: 30px;
-        background: url(../images/home-safetycenter.png) no-repeat;
+        background: url(home-safetycenter.png) no-repeat;
         width: 79px;
         height: 104px;
         float: left;
@@ -439,7 +439,7 @@ body {
 
     .page-position .safetycenter-cur {
         margin-left: 30px;
-        background: url(../images/home-safetycenter-cur.png) no-repeat;
+        background: url(home-safetycenter-cur.png) no-repeat;
         width: 79px;
         height: 104px;
         float: left;
@@ -511,7 +511,7 @@ body {
     }
 
 .mysite_content .modify_url {
-    background: url(../images/bookmark-edit-site.png) no-repeat;
+    background: url(bookmark-edit-site.png) no-repeat;
     height: 10px;
     width: 10px;
     float: right;
@@ -562,12 +562,12 @@ body {
             display: block;
             width: 8px;
             height: 8px;
-            background: url(../images/close.png) no-repeat;
+            background: url(close.png) no-repeat;
         }
 
             .post_site .head .close:hover,
             .inform_site .head .close:hover {
-                background: url(../images/close_cur.png) no-repeat;
+                background: url(close_cur.png) no-repeat;
             }
 
     .post_site .content,
@@ -759,7 +759,7 @@ body {
 }
 
     #mypost .table .w_t a {
-        background: url(../images/discuss_folder.png) no-repeat;
+        background: url(discuss_folder.png) no-repeat;
         padding-left: 28px;
         display: block;
         height: 20px;
@@ -1185,7 +1185,7 @@ p.update-info {
     width: 15px;
     height: 15px;
     position: absolute;
-    background: url(../images/feedback/chat01.png) no-repeat;
+    background: url(chat01.png) no-repeat;
     top: 4px;
     right: 85px;
     text-align: center;
@@ -1225,14 +1225,14 @@ p.update-info {
 .userCenter_table td i.jt01 {
     width: 17px;
     height: 16px;
-    background: url(../images/feedback/userCenterJt.gif) no-repeat;
+    background: url(feedback/userCenterJt.gif) no-repeat;
     display: block;
     float: left;
 }
 
 .userCenter_table td i.returnTips {
     padding: 0 15px 0 3px;
-    background: url(../images/feedback/userCenterJt1.gif) no-repeat 42px center #ffcb66;
+    background: url(feedback/userCenterJt1.gif) no-repeat 42px center #ffcb66;
     display: block;
     float: left;
     color: #fff;
@@ -1245,7 +1245,7 @@ p.update-info {
 }
 .userCenter_table td i.returnTips2 {
     padding: 0 15px 0 3px;
-    background: url(../images/feedback/userCenterJt1.gif) no-repeat 42px center #ffcb66;
+    background: url(feedback/userCenterJt1.gif) no-repeat 42px center #ffcb66;
     display: block;
     float: left;
     color: #fff;
@@ -1256,7 +1256,7 @@ p.update-info {
     left: 10px;
 }
 .userCenter_table td i.hover {
-    background: url(../images/feedback/userCenterJt2.gif) no-repeat 42px center #ffcb66;
+    background: url(feedback/userCenterJt2.gif) no-repeat 42px center #ffcb66;
 }
 
 .userCenter_table .li_contents {
