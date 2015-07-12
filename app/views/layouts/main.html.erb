@@ -32,7 +32,7 @@
             <% if @user == nil %>
             <span><%= link_to '登录', controller: 'welcome', action: 'index' %></span>
             <% else %>
-            <span><%= link_to @user.account, {controller: 'welcome', action: 'index'}, style: 'color: red;width:auto;' %></span>
+            <span><%= link_to @user.account, {controller: 'mainuser', action: 'index'}, style: 'color: red;width:auto;' %></span>
             <span class="line">|</span>
             <span><%= link_to "退出", session_path(@user.id), method: "delete" %></span>
             <% end %>

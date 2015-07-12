@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'main/index'
+  get 'welcome/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -10,14 +10,17 @@ Rails.application.routes.draw do
 
   resources :main, only: [:index]
 
-  match 'tracelogs/commitdata', :to => 'tracelogs#commitdata', 
-                       :via => :post, 
-                       :as => :commitdata_tracelogs
+  match 'mainuser/changedetail', :to => 'mainuser#changedetail', 
+                       :via => :get
 
-  match 'tracelogs/canceldata', :to => 'tracelogs#canceldata', 
-                       :via => :post, 
-                       :as => :canceldata_tracelogs
+  match 'mainuser/changepassword', :to => 'mainuser#changepassword', 
+                       :via => :get
 
+  match 'mainuser/updatedetail', :to => 'mainuser#updatedetail', 
+                       :via => :post
+
+  match 'mainuser/updatepassword', :to => 'mainuser#updatepassword', 
+                       :via => :post
   
   resources :manage, only: [:index, :show]
 
@@ -42,9 +45,11 @@ Rails.application.routes.draw do
   resources :combinationgame, only: [:index]
 
   resources :doublegame, only: [:index]
+
+  resources :mainuser, only: [:index]
   
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'main#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

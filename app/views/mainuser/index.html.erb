@@ -1,204 +1,40 @@
-
-
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>我的彩世界</title>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= csrf_meta_tags %>
-
-    <link href="http://rescsj.56hx.com/themes/css/usercenter.css" rel="stylesheet" />
-    <link href="http://rescsj.56hx.com/dialog/skins/blue.css" rel="stylesheet" />
-    <script type="text/javascript" src="http://rescsj.56hx.com/js/jquery.min.js"></script>
-    <script type="text/javascript" src="http://rescsj.56hx.com/dialog/jquery.artDialog.min.js"></script>
-    <script type="text/javascript" src="http://rescsj.56hx.com/js/common.js"></script>
-</head>
-<body>
-    <div class="top">
-    <div class="fast-nav">
-        <ul>
-            <li>
-                <a href="/" title="皇家彩世界">首页</a>
-                <b class="vertical-line"></b>
-            </li>
-            <li>
-                <a href="/zhibo">开奖直播</a>
-                <b class="vertical-line"></b>
-            </li>
-            <li>
-                <a href="/software/">软件中心</a>
-                <b class="vertical-line"></b>
-            </li>
-            <li>
-                <a href="/help/">帮助</a>
-                <b class="vertical-line"></b>
-            </li>
-            <li>
-                <a href="http://www.royaleu.com/business/" target="_blank" rel="nofollow" style="color: #b30000;">广告服务</a>
-                <b class="vertical-line"></b>
-            </li>
-            <li>
-                <a href="http://www.royaleu.com/product/index.html?pageId=8" rel="nofollow" class="phone" target="_blank">
-                    <span class="icon-phone"></span>
-                    手机版
-                </a>
-            </li>
-            <li class="notice">
-                <marquee id="marquee" scrollamount="2" direction="left">
-尊敬的用户！欢迎您来到皇家彩世界。
-                </marquee>
-            </li>
-        </ul>
-        <div class="signin-cont">
-        <div class="rightLogin" id="unsignin">
-            <% if @user == nil %>
-            <span><%= link_to '登录', controller: 'welcome', action: 'index' %></span>
-            <% else %>
-            <span><%= link_to @user.account, {controller: 'welcome', action: 'index'}, style: 'color: red;width:auto;' %></span>
-            <span class="line">|</span>
-            <span><%= link_to "退出", session_path(@user.id), method: "delete" %></span>
-            <% end %>
-            <span class="line">|</span>
-            <span class="res"><a href="/home/feedback" target="_blank">用户反馈</a></span>
-            <span><a href="http://www.royaleu.com/product/index.html?pageId=8" class="bw_downloadBtn">应用下载</a></span>
-        </div>
-        </div>
-    </div>
-</div>  
-
-   <div class="clear"></div>
-   <div class="body-content"> 
-       <div id="member-info">
-        <div class="base-info">
-            <a href="" class="member-head">
-                <img src="http://rescsj.56hx.com/themes/images/head.jpg" alt="">
-                <b></b>
-            </a>
-        </div>
-         <p class="update-info">
-              <a href="javascript:UpdateInfo('info');">更改资料</a><i>|</i>
-             <a href="javascript:UpdateInfo('password');">修改密码 </a>
-             <a href="#">绑定邮箱 </a><i>|</i>
-             <a href="#">激活手机</a>
-        </p>
-        <ul>
-            <li>
-                <a href="javascript:void(0);" class="my-extend">我的</a>
-                <ul>
-                    <li>
-                        <a href="/uc/mymode" class="my-mode ">我的模式</a>
-                    </li>
-                    <li>
-                        <a href="/uc/bookmark" class="my-bookmark " >我的网址</a>
-                    </li>
-                     <li style="position:relative;">
-                            <span class="feedback" id="myfeedback" style="color:#fff;display:none"></span>
-                        <a href="/uc/myfeedback" class="my-bookmark ">我的反馈</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div id="member-active">
-    <div class="use-operate">
-        <h4>常用操作</h4>
-        <div class="info" style="height:100px;">
-            <dl class="dl1" data="dl1">
-                <dt>
-                    <a href="javascript:UpdateInfo('info');">修改个人资料</a>
-                </dt>
-                <dd>
-                    资料越详细越能丰富我们的数据库，让我们更了解您的需求。
-                </dd>
-            </dl>
-            <dl class="dl2" data="dl2">
-                <dt>
-                    <a href="javascript:UpdateInfo('password');">修改密码</a>
-                </dt>
-                <dd>
-                    密码是您在本站操作的唯一凭证。<br>
-                    <a href="javascript:UpdateInfo('password');">修改登录密码</a>
-                </dd>
-            </dl>
-             <dl class="dl3" data="dl3">
-                <dt>
-                    <a href="#">邮箱绑定</a>
-                </dt>
-                <dd>
-                    绑定邮箱，可以获得更多服务哦！当您忘记密码，也可通过绑定的邮箱找回。
-                </dd>
-            </dl>
-                <dl class="dl4" data="dl4">
-                <dt>
-                    <a href="#">手机激活</a>
-                </dt>
-                <dd>
-                   激活您的手机，您将可以在交流大厅和志同道合的朋友畅所欲言。
-                </dd>
-            </dl>
-        </div>
-    </div>
-    <div class="clear"></div>
-    </div>
-    </div>
-    <script type="text/javascript" src="http://rescsj.56hx.com/js/service.js"></script>
-
-<div id="online_qq_layer">
-    <div id="online_qq_tab">
-        <div class="online_icon">
-            <a title="" id="floatShow" style="display: none" href="javascript:void(0);">&nbsp;</a>
-            <a title="" id="floatHide" style="display: block" href="javascript:void(0);">&nbsp;</a>
-        </div>
-    </div>
-    <div id="onlineService" style="display: none;">
-        <div class="online_windows overz">
-            <div class="online_w_top">
-            </div>
-            <div class="online_w_c overz">
-                <div class="online_bar collapse" id="onlineSort1">
-                    <h2>
-                        <a>在线客服</a></h2>
-                    <div class="online_content overz" id="onlineType1">
-                        <ul class="overz" style="height: 70px;">
-                            <li style="margin-top: 10px;">
-                                <script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDA0Nzk4N182MzQ1Nl84MDAwNDc5ODdf"></script>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="online_w_bottom">
-            </div>
-        </div>
+<div id="member-active">
+<div class="use-operate">
+    <h4>常用操作</h4>
+    <div class="info" style="height:100px;">
+        <dl class="dl1" data="dl1">
+            <dt>
+                <%= link_to '修改个人资料', controller: 'mainuser', action: 'changedetail' %>
+            </dt>
+            <dd>
+                资料越详细越能丰富我们的数据库，让我们更了解您的需求。
+            </dd>
+        </dl>
+        <dl class="dl2" data="dl2">
+            <dt>
+                <%= link_to '修改密码', controller: 'mainuser', action: 'changepassword' %>
+            </dt>
+            <dd>
+                密码是您在本站操作的唯一凭证。<br>
+                <%= link_to '修改登录密码', controller: 'mainuser', action: 'changepassword' %>
+            </dd>
+        </dl>
+         <dl class="dl3" data="dl3">
+            <dt>
+                <a href="#">邮箱绑定</a>
+            </dt>
+            <dd>
+                绑定邮箱，可以获得更多服务哦！当您忘记密码，也可通过绑定的邮箱找回。
+            </dd>
+        </dl>
+            <dl class="dl4" data="dl4">
+            <dt>
+                <a href="#">手机激活</a>
+            </dt>
+            <dd>
+               激活您的手机，您将可以在交流大厅和志同道合的朋友畅所欲言。
+            </dd>
+        </dl>
     </div>
 </div>
-<script charset="utf-8" type="text/javascript" src="http://wpa.b.qq.com/cgi/wpa.php?key=XzgwMDA0Nzk4N182MzQzNl84MDAwNDc5ODdf"></script>
-<div style="display: none;">
-    <script src="http://s9.cnzz.com/stat.php?id=5418000&web_id=5418000&show=pic1" language="JavaScript"></script>
-    
-    <script type="text/javascript">
-        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fdad24abebba647625189f407f7103e48' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-        $(function () {
-            if (top != self) {
-                $(".history_gg").show();
-            }
-        });
-      
-
-        $(".top_warn .closeBtns").click(function () {
-            $(".top_warn").fadeOut(100);
-            $(".ydImg").css({ "top": "0px" });
-        })
-
-        
-
-    </script>
 </div>
-</body>
-</html>
