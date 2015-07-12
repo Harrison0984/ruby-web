@@ -1,0 +1,2 @@
+module SinglegameHelper
+end

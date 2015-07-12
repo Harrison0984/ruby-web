@@ -139,7 +139,7 @@
     </div>
     <ul class="lot-menu">
     <li>
-        <a href="/kl9/" class=cur>快乐九宫格</a>
+        <%= link_to '快乐九宫格', controller: 'main', action: 'index' %>
     </li>
     <li>
         <a href="/pk10/" >北京赛车pk10</a>
@@ -197,9 +197,9 @@
             <div id="period">&nbsp;</div>
             <div>距离下期开奖剩余</div>
         </div>
-        <div class="minute">10</div>
+        <div class="minute" id="minute">10</div>
         <div class="t2">分</div>
-        <div class="second" id="second">1000000</div>
+        <div class="second" id="second">59</div>
         <div class="t2">秒</div>
          <div class="sound" id="countdown_sound" title="点击关闭提醒声音"></div>
         <audio src=<%= image_url("du.mp3") %> id="duSound" style="display:none;"></audio>
@@ -244,19 +244,19 @@
 <div class="web_listOP">
    <ul id="menu_ul" style="position: relative;">
         <li class=hover data-tag="idx">
-            <a href="/kl9/">快乐九宫格</a>
+            <%= link_to '快乐九宫格', controller: 'main', action: 'index' %>
         </li>
         <li  data-tag="kj">
-            <a href="/kl9/kaijiang">历史开奖号码</a>
+            <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
         </li>
         <li  data-tag="zhl">
-            <a href="/kl9/luzhutotal">单选盘</a>
+            <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
         </li>
         <li  data-tag="dshl">
-            <a href="/kl9/luzhuoddoreven">组合盘</a>
+            <%= link_to '单选盘', controller: 'combinationgame', action: 'index' %>
         </li>
         <li   data-tag="sxpl">
-            <a href="/kl9/luzhuupordown">双面盘</a>
+            <%= link_to '单选盘', controller: 'doublegame', action: 'index' %>
         </li>
         <li   data-tag="kjs">
             <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
@@ -266,571 +266,13 @@
         </li>
     </ul>
 </div>
-        <div class="index-head">
-            <a class="banner" href="/kl9/shipin/" title="北京快乐九宫格视频">
-                <img src=<%= image_url("kl8-index.png") %> alt="北京快乐九宫格视频">
-            </a>
-            <div class="trend">
-                <div class="l-title">
-                    <h2>
-                        北京快乐九宫格玩法技巧</h2>
-                             <div class="fontAd fontWidth01">
-        </div>
-                  <a href="/jiqiao/kl9/">更多>></a>
-                </div>
-                    <div class="skill">
-                        <h1>
-                            <a href="/jiqiao/kl9/63537.html">九宫格赢钱心法大公开</a>
-                        </h1>
-                        <p>　　快乐九宫格快了就发，这个名字听起来真好，但是玩起来真的是这样吗?这个倒未必，能不…</p>
-                        <ul>
-                                <li><a href="/jiqiao/kl9/63525.html" target="_blank">·快乐九宫格技巧之上中下投注是如何赢钱的</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63348.html" target="_blank">·快乐九宫格技巧之精品投注分享案例</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63342.html" target="_blank">·北京快乐九宫格技巧之最划算的投注赚钱法</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63331.html" target="_blank">·北京快乐九宫格技巧之快速购奖两技巧</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63320.html" target="_blank">·北京快乐九宫格之常态组合给购彩的一些提示</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63312.html" target="_blank">·北京快乐九宫格技巧之含羞概率出现法</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63305.html" target="_blank">·北京快乐九宫格技巧之旋转矩形投注法</a>
-                                </li>
-                                <li><a href="/jiqiao/kl9/63296.html" target="_blank">·北京快乐九宫格技巧之浅谈飞盘玩法的巧妙</a>
-                                </li>
-                        </ul>
-                    </div>
-
-            </div>
-            <div class="clear">
-            </div>
-        </div>
-        <div class="w980">
-
-        </div>
-
-      
-        <div class="index-history">
-            <div class="title mt10">
-                <h2>
-                    北京快乐九宫格开奖记录</h2>
-                         <div class="fontAd fontWidth02">
-        </div>
-
-                 
-                <a href="/kl9/kaijiang/">查看全部>></a>
-            </div>
-            <table class="lot-table" id="history">
-                <tr class="head">
-                    <td width="180px">
-                        时间
-                    </td>
-                    <td>
-                        开奖号码
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        飞盘号
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        单/双
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        大/小
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        上/下
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        总和
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        五行
-                    </td>
-                </tr>
-
-                    <tr class='even'>
-                        <td>
-                            <p class="p">705327
-                            </p>
-                            <p class="t">07-11 21:00</p>
-                        </td>
-                        <td class="nums">
-                    <i class='lot-no01'></i>                
-                    <i class='lot-no02'></i>                
-                    <i class='lot-no03'></i>                
-                    <i class='lot-no04'></i>                
-                    <i class='lot-no05'></i>                
-                    <i class='lot-no06'></i>                
-                    <i class='lot-no07'></i>                
-                    <i class='lot-no08'></i>                 
-                    <i class='lot-no52'></i>                 
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p>双</p>
-                        </td>
-                        <td>
-                                <p>小</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    上</p>
-                        </td>
-                        <td>660
-                        </td>
-                        <td>金
-                        </td>
-                    </tr>
-                    <tr class='odd'>
-                        <td>
-                            <p class="p">705326
-                            </p>
-                            <p class="t">07-11 20:55</p>
-                        </td>
-                        <td class="nums">
-<span>04</span>                
-<span>06</span>                
-<span>08</span>                
-<span>09</span>                
-<span>12</span>                
-<span>17</span>                
-<span>19</span>                
-<span>21</span>                
-<span>22</span>                
-<span>24</span>                
-                                <div class="clear"></div>
-<span>31</span>                
-<span>34</span>                
-<span>46</span>                
-<span>49</span>                
-<span>58</span>                
-<span>59</span>                
-<span>61</span>                
-<span>62</span>                
-<span>69</span>                
-<span>79</span>                
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p>双</p>
-                        </td>
-                        <td>
-                                <p>小</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    上</p>
-                        </td>
-                        <td>690
-                        </td>
-                        <td>金
-                        </td>
-                    </tr>
-                    <tr class='even'>
-                        <td>
-                            <p class="p">705325
-                            </p>
-                            <p class="t">07-11 20:50</p>
-                        </td>
-                        <td class="nums">
-<span>08</span>                
-<span>11</span>                
-<span>12</span>                
-<span>19</span>                
-<span>21</span>                
-<span>23</span>                
-<span>24</span>                
-<span>31</span>                
-<span>37</span>                
-<span>45</span>                
-                                <div class="clear"></div>
-<span>46</span>                
-<span>54</span>                
-<span>56</span>                
-<span>60</span>                
-<span>63</span>                
-<span>66</span>                
-<span>70</span>                
-<span>71</span>                
-<span>74</span>                
-<span>75</span>                
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p>双</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    大</p>
-                        </td>
-                        <td>
-                                <p>下</p>
-                        </td>
-                        <td>866
-                        </td>
-                        <td>火
-                        </td>
-                    </tr>
-                    <tr class='odd'>
-                        <td>
-                            <p class="p">705324
-                            </p>
-                            <p class="t">07-11 20:45</p>
-                        </td>
-                        <td class="nums">
-<span>07</span>                
-<span>16</span>                
-<span>17</span>                
-<span>20</span>                
-<span>23</span>                
-<span>26</span>                
-<span>27</span>                
-<span>28</span>                
-<span>29</span>                
-<span>42</span>                
-                                <div class="clear"></div>
-<span>53</span>                
-<span>54</span>                
-<span>57</span>                
-<span>61</span>                
-<span>66</span>                
-<span>67</span>                
-<span>71</span>                
-<span>74</span>                
-<span>75</span>                
-<span>77</span>                
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p>双</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    大</p>
-                        </td>
-                        <td>
-                                <p>下</p>
-                        </td>
-                        <td>890
-                        </td>
-                        <td>火
-                        </td>
-                    </tr>
-                    <tr class='even'>
-                        <td>
-                            <p class="p">705323
-                            </p>
-                            <p class="t">07-11 20:40</p>
-                        </td>
-                        <td class="nums">
-<span>02</span>                
-<span>04</span>                
-<span>10</span>                
-<span>14</span>                
-<span>27</span>                
-<span>30</span>                
-<span>34</span>                
-<span>35</span>                
-<span>44</span>                
-<span>46</span>                
-                                <div class="clear"></div>
-<span>51</span>                
-<span>52</span>                
-<span>53</span>                
-<span>57</span>                
-<span>59</span>                
-<span>66</span>                
-<span>69</span>                
-<span>74</span>                
-<span>76</span>                
-<span>80</span>                
-                        </td>
-                        <td>2
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    单</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    大</p>
-                        </td>
-                        <td>
-                                <p>下</p>
-                        </td>
-                        <td>883
-                        </td>
-                        <td>火
-                        </td>
-                    </tr>
-                    <tr class='odd'>
-                        <td>
-                            <p class="p">705322
-                            </p>
-                            <p class="t">07-11 20:35</p>
-                        </td>
-                        <td class="nums">
-<span>03</span>                
-<span>06</span>                
-<span>11</span>                
-<span>13</span>                
-<span>19</span>                
-<span>31</span>                
-<span>35</span>                
-<span>36</span>                
-<span>42</span>                
-<span>44</span>                
-                                <div class="clear"></div>
-<span>47</span>                
-<span>52</span>                
-<span>55</span>                
-<span>56</span>                
-<span>58</span>                
-<span>61</span>                
-<span>62</span>                
-<span>63</span>                
-<span>68</span>                
-<span>80</span>                
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p>双</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    大</p>
-                        </td>
-                        <td>
-                                <p>下</p>
-                        </td>
-                        <td>842
-                        </td>
-                        <td>水
-                        </td>
-                    </tr>
-                    <tr class='even'>
-                        <td>
-                            <p class="p">705321
-                            </p>
-                            <p class="t">07-11 20:30</p>
-                        </td>
-                        <td class="nums">
-<span>05</span>                
-<span>09</span>                
-<span>10</span>                
-<span>16</span>                
-<span>17</span>                
-<span>19</span>                
-<span>24</span>                
-<span>31</span>                
-<span>40</span>                
-<span>44</span>                
-                                <div class="clear"></div>
-<span>46</span>                
-<span>47</span>                
-<span>48</span>                
-<span>51</span>                
-<span>52</span>                
-<span>53</span>                
-<span>69</span>                
-<span>75</span>                
-<span>78</span>                
-<span>79</span>                
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    单</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    大</p>
-                        </td>
-                        <td>
-                                <p>下</p>
-                        </td>
-                        <td>813
-                        </td>
-                        <td>水
-                        </td>
-                    </tr>
-                    <tr class='odd'>
-                        <td>
-                            <p class="p">705320
-                            </p>
-                            <p class="t">07-11 20:25</p>
-                        </td>
-                        <td class="nums">
-<span>01</span>                
-<span>16</span>                
-<span>23</span>                
-<span>25</span>                
-<span>28</span>                
-<span>32</span>                
-<span>37</span>                
-<span>39</span>                
-<span>40</span>                
-<span>41</span>                
-                                <div class="clear"></div>
-<span>42</span>                
-<span>43</span>                
-<span>46</span>                
-<span>53</span>                
-<span>54</span>                
-<span>58</span>                
-<span>64</span>                
-<span>73</span>                
-<span>77</span>                
-<span>80</span>                
-                        </td>
-                        <td>2
-                        </td>
-                        <td>
-                                <p>双</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    大</p>
-                        </td>
-                        <td>
-                                <p>下</p>
-                        </td>
-                        <td>872
-                        </td>
-                        <td>火
-                        </td>
-                    </tr>
-                    <tr class='even'>
-                        <td>
-                            <p class="p">705319
-                            </p>
-                            <p class="t">07-11 20:20</p>
-                        </td>
-                        <td class="nums">
-<span>06</span>                
-<span>07</span>                
-<span>10</span>                
-<span>16</span>                
-<span>19</span>                
-<span>20</span>                
-<span>24</span>                
-<span>28</span>                
-<span>30</span>                
-<span>33</span>                
-                                <div class="clear"></div>
-<span>34</span>                
-<span>35</span>                
-<span>41</span>                
-<span>44</span>                
-<span>45</span>                
-<span>49</span>                
-<span>58</span>                
-<span>72</span>                
-<span>73</span>                
-<span>77</span>                
-                        </td>
-                        <td>1
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    单</p>
-                        </td>
-                        <td>
-                                <p>小</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    上</p>
-                        </td>
-                        <td>721
-                        </td>
-                        <td>木
-                        </td>
-                    </tr>
-                    <tr class='odd'>
-                        <td>
-                            <p class="p">705318
-                            </p>
-                            <p class="t">07-11 20:15</p>
-                        </td>
-                        <td class="nums">
-<span>04</span>                
-<span>05</span>                
-<span>08</span>                
-<span>12</span>                
-<span>15</span>                
-<span>17</span>                
-<span>18</span>                
-<span>19</span>                
-<span>22</span>                
-<span>23</span>                
-                                <div class="clear"></div>
-<span>28</span>                
-<span>30</span>                
-<span>34</span>                
-<span>43</span>                
-<span>56</span>                
-<span>63</span>                
-<span>64</span>                
-<span>65</span>                
-<span>73</span>                
-<span>74</span>                
-                        </td>
-                        <td>2
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    单</p>
-                        </td>
-                        <td>
-                                <p>小</p>
-                        </td>
-                        <td>
-                                <p class='r'>
-                                    上</p>
-                        </td>
-                        <td>673
-                        </td>
-                        <td>金
-                        </td>
-                    </tr>
-            </table>
-            <div class="lot-about mt10" style="width: 980px;">
-                <div class="l-title">
-                    <h2>
-                        关于北京快乐九宫格</h2>
-                </div>
-                <p>
-                    北京快乐九宫格每日从早上9点至晚上12点，每五分钟开奖一次，每日开奖179期。游戏玩法：由1至80的号码中随机摇出20个数字作为开奖号码，依这20个号码变化成各式不同的玩法，
-                    在根据猜中的号码个数或玩法可以获得不同等级的奖金。
-                </p>
-            </div>
-            <div class="clear">
-            </div>
-        </div>
-        <div class="clear">
-        </div>
-       
-    </div>
-</div>
+    <%= yield %>
 <div class="left-layer">
 </div>
 <div class="right-layer">
 </div>
-    <div class="clear"></div>
-     <div style="width:1000px; margin:0 auto;">
-     <div class="business">
-        </div>
-
-          
+<div class="clear"></div>
+ <div style="width:1000px; margin:0 auto;">
 <div class="friend_link">
     <strong>友情连接：</strong>
     <div>
@@ -992,7 +434,30 @@
 </div>
 <script charset="utf-8" type="text/javascript" src="#"></script>
 <script type="text/javascript">
-    <%= yield :script %>
+$(document).ready(
+  function(){
+    setInterval(countdown, 1000)
+  });
+
+  function countdown() {
+    var minute = document.getElementById("minute");
+    var second = document.getElementById("second");
+    var newSeconds = parseInt(second.innerText) - 1;
+    var newMinute = parseInt(minute.innerText);
+    if (newSeconds == 0 && newMinute > 0) {
+      newMinute -= 1;
+      newSeconds = 60;
+    }
+    if (newSeconds == 0 && newMinute == 0) {
+      location.reload();
+    }
+    if (!isNaN(newMinute)) {
+      minute.innerHTML = newMinute;
+    }
+    if (!isNaN(newSeconds)) {
+      second.innerHTML = newSeconds;
+    }
+  }
 </script>>
 </body>
 </html>

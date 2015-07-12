@@ -1,0 +1,2 @@
+module DoublegameHelper
+end

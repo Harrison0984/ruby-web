@@ -1,91 +1,4464 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag 'sb-admin-2', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'metisMenu.min', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'sb-admin-2', 'data-turbolinks-eval' => true %>
-  <%= stylesheet_link_tag 'dataTables.responsive', 'data-turbolinks-eval' => false %>
-  <%= stylesheet_link_tag 'dataTables.bootstrap', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'jquery.dataTables.min', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'dataTables.bootstrap.min', 'data-turbolinks-eval' => true %>
-<% end %>
+<div id="lot-wrap">
+<table class="lot-table" id="history">
+      <tr class="head">
+                    <td width="160px">
+                        时间
+                    </td>
+                    <td >
+                        开奖号码
+                    </td>
+                    <td style="width:60px; text-align:center;">
+                       飞盘号
+                    </td>
+                     <td style="width:60px; text-align:center;">单/双</td>
+        <td style="width:60px; text-align:center;">大/小</td>
+        <td style="width:60px; text-align:center;">上/下</td>
+        <td style="width:60px; text-align:center;">总和</td>
+        <td style="width:60px; text-align:center;">五行</td>
+                </tr>
 
-<% content_for :script do %>
-$(document).ready(function () {
-    $('#dataTables-example').DataTable({
-                  responsive: true
-          });
-});
-<% end %>
-
-<section id="intro" class="intro">
-<div class="middlePage">
-   <div class="panel panel-info">
-      <div class="panel-body">
-      <div class="container">
-        <div class="row">
-            <div class="col-md-11">
-                <div class="panel-body">
-                </div>
-                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
-                          <tr>
-                            <th>期数</th>
-                            <th>位置</th>
-                            <th>模式</th>
-                            <th>倍率</th>
-                            <th>投注金币</th>
-                            <th>状态</th>
-                            <th>结果</th>
-                            <th>时间</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                        <% @tracelogs.each do |log| %>
-                        <% if log.status == 1 %>
-                          <tr class="success">
-                        <% else %>
-                          <tr>
-                        <% end %>
-                        <td><%= log.gameid %></td>
-                        <% if log.gametype == 1 %>
-                          <td>豹子</td>
-                        <% elsif log.gametype == 2 %>
-                          <td>顺子</td>
-                        <% elsif log.gametype == 3 %>
-                          <td>小牌</td>
-                        <% elsif log.gametype == 4 %>
-                          <td>大牌</td>
-                        <% elsif log.gametype == 5 %>
-                          <td>清色</td>
-                        <% else %>
-                          <td>error</td>
-                        <% end %>
-                        <% if log.pos == 1 %>
-                          <td>横一</td>
-                        <% elsif log.pos == 2 %>
-                          <td>横二</td>
-                        <% elsif log.pos == 3 %>
-                          <td>横三</td>
-                        <% elsif log.pos == 4 %>
-                          <td>纵一</td>
-                        <% elsif log.pos == 5 %>
-                          <td>纵二</td>
-                        <% elsif log.pos == 6 %>
-                          <td>纵三</td>
-                        <% else %>
-                          <td>error</td>
-                        <% end %>
-                        <td><%= log.coin %></td>
-                        <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>恭喜中奖<% else %> 未中 <% end %></td>
-                        <td><% if log.status == 1 %>+100<% else %>-100<% end %></td>
-                        <td><%= log.time %></td>
-                        </tr>
-                        <% end %>                        
-                        </tbody>
-                    </table>
-                  </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-   </div>
-</section>
+        <tr class='even'>
+            <td>
+                <p class="p">705378
+                </p>
+                <p class="t">07-12 10:20</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>06</span>                
+                    <span>09</span>                
+                    <span>13</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>25</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                        <div class="clear"></div>
+                    <span>32</span>                
+                    <span>36</span>                
+                    <span>38</span>                
+                    <span>39</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>52</span>                
+                    <span>56</span>                
+                    <span>67</span>                
+                    <span>68</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>654</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705377
+                </p>
+                <p class="t">07-12 10:15</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>10</span>                
+                    <span>15</span>                
+                    <span>20</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                        <div class="clear"></div>
+                    <span>37</span>                
+                    <span>41</span>                
+                    <span>44</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>59</span>                
+                    <span>64</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>76</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>777</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705376
+                </p>
+                <p class="t">07-12 10:10</p>
+            </td>
+            <td class="nums">
+                    <span>06</span>                
+                    <span>08</span>                
+                    <span>11</span>                
+                    <span>25</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>32</span>                
+                    <span>34</span>                
+                    <span>39</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>44</span>                
+                    <span>50</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>56</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>67</span>                
+                    <span>69</span>                
+                    <span>75</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>843</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705375
+                </p>
+                <p class="t">07-12 10:05</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>04</span>                
+                    <span>11</span>                
+                    <span>18</span>                
+                    <span>22</span>                
+                    <span>27</span>                
+                    <span>28</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>33</span>                
+                        <div class="clear"></div>
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>40</span>                
+                    <span>44</span>                
+                    <span>53</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>60</span>                
+                    <span>66</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>693</td>
+            <td>金</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705374
+                </p>
+                <p class="t">07-12 10:00</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>18</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>27</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                        <div class="clear"></div>
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>38</span>                
+                    <span>39</span>                
+                    <span>54</span>                
+                    <span>55</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>67</span>                
+                    <span>72</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>697</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705373
+                </p>
+                <p class="t">07-12 09:55</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>06</span>                
+                    <span>13</span>                
+                    <span>17</span>                
+                    <span>23</span>                
+                    <span>24</span>                
+                    <span>26</span>                
+                    <span>33</span>                
+                    <span>35</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>47</span>                
+                    <span>50</span>                
+                    <span>52</span>                
+                    <span>65</span>                
+                    <span>68</span>                
+                    <span>69</span>                
+                    <span>70</span>                
+                    <span>75</span>                
+                    <span>76</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>874</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705372
+                </p>
+                <p class="t">07-12 09:50</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>08</span>                
+                    <span>15</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>26</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>34</span>                
+                        <div class="clear"></div>
+                    <span>37</span>                
+                    <span>50</span>                
+                    <span>55</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>63</span>                
+                    <span>66</span>                
+                    <span>68</span>                
+                    <span>71</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>799</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705371
+                </p>
+                <p class="t">07-12 09:45</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>07</span>                
+                    <span>13</span>                
+                    <span>16</span>                
+                    <span>18</span>                
+                    <span>21</span>                
+                    <span>22</span>                
+                    <span>26</span>                
+                    <span>28</span>                
+                    <span>30</span>                
+                        <div class="clear"></div>
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>45</span>                
+                    <span>49</span>                
+                    <span>51</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>74</span>                
+                    <span>78</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>745</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705370
+                </p>
+                <p class="t">07-12 09:40</p>
+            </td>
+            <td class="nums">
+                    <span>07</span>                
+                    <span>10</span>                
+                    <span>15</span>                
+                    <span>17</span>                
+                    <span>19</span>                
+                    <span>20</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>25</span>                
+                    <span>26</span>                
+                        <div class="clear"></div>
+                    <span>29</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>43</span>                
+                    <span>44</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>54</span>                
+                    <span>62</span>                
+                    <span>68</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>647</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705369
+                </p>
+                <p class="t">07-12 09:35</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>02</span>                
+                    <span>03</span>                
+                    <span>07</span>                
+                    <span>13</span>                
+                    <span>15</span>                
+                    <span>16</span>                
+                    <span>19</span>                
+                    <span>32</span>                
+                    <span>34</span>                
+                        <div class="clear"></div>
+                    <span>38</span>                
+                    <span>39</span>                
+                    <span>41</span>                
+                    <span>47</span>                
+                    <span>50</span>                
+                    <span>58</span>                
+                    <span>63</span>                
+                    <span>67</span>                
+                    <span>69</span>                
+                    <span>71</span>                
+            </td>
+            <td>3
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>685</td>
+            <td>金</td>
+        </tr>
+                            <tr class="history_gg" style="display:none;"><td colspan="8"><script type="text/javascript" src="http://a.roycdn.com/service/adjs?codes=caishijie_lot_history_interval&jsoncallback=" charset="utf-8"></script></td></tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705368
+                </p>
+                <p class="t">07-12 09:30</p>
+            </td>
+            <td class="nums">
+                    <span>12</span>                
+                    <span>21</span>                
+                    <span>22</span>                
+                    <span>25</span>                
+                    <span>27</span>                
+                    <span>31</span>                
+                    <span>32</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>55</span>                
+                    <span>60</span>                
+                    <span>62</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+                    <span>79</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>935</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705367
+                </p>
+                <p class="t">07-12 09:25</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>07</span>                
+                    <span>11</span>                
+                    <span>17</span>                
+                    <span>25</span>                
+                    <span>26</span>                
+                    <span>29</span>                
+                    <span>32</span>                
+                    <span>33</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>44</span>                
+                    <span>53</span>                
+                    <span>55</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>68</span>                
+                    <span>69</span>                
+                    <span>72</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>816</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705366
+                </p>
+                <p class="t">07-12 09:20</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>15</span>                
+                    <span>18</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>23</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>31</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>51</span>                
+                    <span>56</span>                
+                    <span>61</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>72</span>                
+                    <span>75</span>                
+                    <span>79</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>842</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705365
+                </p>
+                <p class="t">07-12 09:15</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>18</span>                
+                    <span>20</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>38</span>                
+                    <span>40</span>                
+                    <span>41</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>44</span>                
+                    <span>45</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>59</span>                
+                    <span>62</span>                
+                    <span>66</span>                
+                    <span>68</span>                
+                    <span>74</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>892</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705364
+                </p>
+                <p class="t">07-12 09:10</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>05</span>                
+                    <span>09</span>                
+                    <span>14</span>                
+                    <span>17</span>                
+                    <span>18</span>                
+                    <span>28</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>40</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>55</span>                
+                    <span>60</span>                
+                    <span>66</span>                
+                    <span>70</span>                
+                    <span>73</span>                
+                    <span>77</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>824</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705363
+                </p>
+                <p class="t">07-12 09:05</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>07</span>                
+                    <span>13</span>                
+                    <span>15</span>                
+                    <span>16</span>                
+                    <span>21</span>                
+                    <span>24</span>                
+                    <span>38</span>                
+                    <span>39</span>                
+                    <span>45</span>                
+                        <div class="clear"></div>
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>57</span>                
+                    <span>59</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>68</span>                
+                    <span>75</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>857</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705362
+                </p>
+                <p class="t">07-11 23:55</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>08</span>                
+                    <span>11</span>                
+                    <span>13</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>22</span>                
+                    <span>25</span>                
+                    <span>34</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>60</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>73</span>                
+                    <span>76</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>867</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705361
+                </p>
+                <p class="t">07-11 23:50</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>05</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>18</span>                
+                    <span>23</span>                
+                    <span>30</span>                
+                    <span>33</span>                
+                        <div class="clear"></div>
+                    <span>39</span>                
+                    <span>46</span>                
+                    <span>52</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>66</span>                
+                    <span>75</span>                
+                    <span>77</span>                
+            </td>
+            <td>5
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>764</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705360
+                </p>
+                <p class="t">07-11 23:45</p>
+            </td>
+            <td class="nums">
+                    <span>11</span>                
+                    <span>15</span>                
+                    <span>21</span>                
+                    <span>26</span>                
+                    <span>31</span>                
+                    <span>34</span>                
+                    <span>40</span>                
+                    <span>41</span>                
+                    <span>46</span>                
+                    <span>50</span>                
+                        <div class="clear"></div>
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>61</span>                
+                    <span>63</span>                
+                    <span>67</span>                
+                    <span>72</span>                
+                    <span>76</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>932</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705359
+                </p>
+                <p class="t">07-11 23:40</p>
+            </td>
+            <td class="nums">
+                    <span>07</span>                
+                    <span>09</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>27</span>                
+                    <span>28</span>                
+                        <div class="clear"></div>
+                    <span>34</span>                
+                    <span>41</span>                
+                    <span>45</span>                
+                    <span>48</span>                
+                    <span>54</span>                
+                    <span>59</span>                
+                    <span>63</span>                
+                    <span>66</span>                
+                    <span>76</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>736</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705358
+                </p>
+                <p class="t">07-11 23:35</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>12</span>                
+                    <span>20</span>                
+                    <span>28</span>                
+                    <span>32</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>37</span>                
+                    <span>40</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>44</span>                
+                    <span>46</span>                
+                    <span>50</span>                
+                    <span>52</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>61</span>                
+                    <span>67</span>                
+                    <span>68</span>                
+                    <span>75</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>864</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705357
+                </p>
+                <p class="t">07-11 23:30</p>
+            </td>
+            <td class="nums">
+                    <span>11</span>                
+                    <span>14</span>                
+                    <span>21</span>                
+                    <span>26</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>37</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>52</span>                
+                    <span>57</span>                
+                    <span>59</span>                
+                    <span>60</span>                
+                    <span>61</span>                
+                    <span>63</span>                
+                    <span>69</span>                
+                    <span>72</span>                
+                    <span>76</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>892</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705356
+                </p>
+                <p class="t">07-11 23:25</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>04</span>                
+                    <span>07</span>                
+                    <span>09</span>                
+                    <span>11</span>                
+                    <span>22</span>                
+                    <span>26</span>                
+                    <span>30</span>                
+                    <span>41</span>                
+                    <span>45</span>                
+                        <div class="clear"></div>
+                    <span>46</span>                
+                    <span>50</span>                
+                    <span>56</span>                
+                    <span>60</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>70</span>                
+                    <span>71</span>                
+                    <span>76</span>                
+            </td>
+            <td>3
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>815</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705355
+                </p>
+                <p class="t">07-11 23:20</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>08</span>                
+                    <span>09</span>                
+                    <span>14</span>                
+                    <span>19</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>25</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                        <div class="clear"></div>
+                    <span>31</span>                
+                    <span>35</span>                
+                    <span>38</span>                
+                    <span>39</span>                
+                    <span>49</span>                
+                    <span>54</span>                
+                    <span>65</span>                
+                    <span>67</span>                
+                    <span>68</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>708</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705354
+                </p>
+                <p class="t">07-11 23:15</p>
+            </td>
+            <td class="nums">
+                    <span>12</span>                
+                    <span>18</span>                
+                    <span>23</span>                
+                    <span>26</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>33</span>                
+                    <span>37</span>                
+                    <span>39</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>48</span>                
+                    <span>50</span>                
+                    <span>54</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>71</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>853</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705353
+                </p>
+                <p class="t">07-11 23:10</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>02</span>                
+                    <span>03</span>                
+                    <span>04</span>                
+                    <span>08</span>                
+                    <span>09</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>23</span>                
+                    <span>26</span>                
+                        <div class="clear"></div>
+                    <span>33</span>                
+                    <span>36</span>                
+                    <span>42</span>                
+                    <span>44</span>                
+                    <span>50</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>56</span>                
+                    <span>66</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>592</td>
+            <td>金</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705352
+                </p>
+                <p class="t">07-11 23:05</p>
+            </td>
+            <td class="nums">
+                    <span>07</span>                
+                    <span>09</span>                
+                    <span>13</span>                
+                    <span>14</span>                
+                    <span>16</span>                
+                    <span>18</span>                
+                    <span>21</span>                
+                    <span>29</span>                
+                    <span>32</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>40</span>                
+                    <span>42</span>                
+                    <span>46</span>                
+                    <span>54</span>                
+                    <span>57</span>                
+                    <span>68</span>                
+                    <span>72</span>                
+                    <span>75</span>                
+                    <span>78</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>809</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705351
+                </p>
+                <p class="t">07-11 23:00</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>02</span>                
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>09</span>                
+                    <span>18</span>                
+                    <span>19</span>                
+                    <span>21</span>                
+                    <span>28</span>                
+                        <div class="clear"></div>
+                    <span>32</span>                
+                    <span>37</span>                
+                    <span>39</span>                
+                    <span>46</span>                
+                    <span>49</span>                
+                    <span>55</span>                
+                    <span>57</span>                
+                    <span>72</span>                
+                    <span>75</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>654</td>
+            <td>金</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705350
+                </p>
+                <p class="t">07-11 22:55</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>20</span>                
+                    <span>22</span>                
+                    <span>28</span>                
+                    <span>31</span>                
+                    <span>32</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                        <div class="clear"></div>
+                    <span>39</span>                
+                    <span>50</span>                
+                    <span>59</span>                
+                    <span>64</span>                
+                    <span>67</span>                
+                    <span>68</span>                
+                    <span>72</span>                
+                    <span>75</span>                
+                    <span>77</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>875</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705349
+                </p>
+                <p class="t">07-11 22:50</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>05</span>                
+                    <span>11</span>                
+                    <span>17</span>                
+                    <span>26</span>                
+                    <span>29</span>                
+                    <span>31</span>                
+                    <span>34</span>                
+                    <span>43</span>                
+                    <span>44</span>                
+                        <div class="clear"></div>
+                    <span>45</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>62</span>                
+                    <span>64</span>                
+                    <span>72</span>                
+                    <span>73</span>                
+                    <span>78</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>905</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705348
+                </p>
+                <p class="t">07-11 22:45</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>05</span>                
+                    <span>11</span>                
+                    <span>19</span>                
+                    <span>23</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>31</span>                
+                    <span>36</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>39</span>                
+                    <span>40</span>                
+                    <span>43</span>                
+                    <span>50</span>                
+                    <span>53</span>                
+                    <span>64</span>                
+                    <span>70</span>                
+                    <span>75</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>811</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705347
+                </p>
+                <p class="t">07-11 22:40</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>44</span>                
+                    <span>46</span>                
+                    <span>49</span>                
+                    <span>50</span>                
+                        <div class="clear"></div>
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>71</span>                
+                    <span>72</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>982</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705346
+                </p>
+                <p class="t">07-11 22:35</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>03</span>                
+                    <span>06</span>                
+                    <span>11</span>                
+                    <span>15</span>                
+                    <span>24</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                        <div class="clear"></div>
+                    <span>37</span>                
+                    <span>47</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>55</span>                
+                    <span>57</span>                
+                    <span>61</span>                
+                    <span>70</span>                
+                    <span>76</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>762</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705345
+                </p>
+                <p class="t">07-11 22:30</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>08</span>                
+                    <span>16</span>                
+                    <span>23</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>37</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>47</span>                
+                    <span>50</span>                
+                    <span>52</span>                
+                    <span>57</span>                
+                    <span>65</span>                
+                    <span>72</span>                
+                    <span>74</span>                
+                    <span>75</span>                
+                    <span>78</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>853</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705344
+                </p>
+                <p class="t">07-11 22:25</p>
+            </td>
+            <td class="nums">
+                    <span>10</span>                
+                    <span>17</span>                
+                    <span>18</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>25</span>                
+                    <span>27</span>                
+                    <span>30</span>                
+                    <span>33</span>                
+                    <span>45</span>                
+                        <div class="clear"></div>
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>55</span>                
+                    <span>58</span>                
+                    <span>62</span>                
+                    <span>64</span>                
+                    <span>67</span>                
+                    <span>68</span>                
+                    <span>72</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>871</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705343
+                </p>
+                <p class="t">07-11 22:20</p>
+            </td>
+            <td class="nums">
+                    <span>06</span>                
+                    <span>07</span>                
+                    <span>08</span>                
+                    <span>13</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>25</span>                
+                    <span>27</span>                
+                    <span>33</span>                
+                        <div class="clear"></div>
+                    <span>34</span>                
+                    <span>37</span>                
+                    <span>45</span>                
+                    <span>47</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>60</span>                
+                    <span>65</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+            </td>
+            <td>4
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>732</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705342
+                </p>
+                <p class="t">07-11 22:15</p>
+            </td>
+            <td class="nums">
+                    <span>07</span>                
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>17</span>                
+                    <span>18</span>                
+                    <span>20</span>                
+                    <span>22</span>                
+                    <span>25</span>                
+                    <span>27</span>                
+                        <div class="clear"></div>
+                    <span>35</span>                
+                    <span>40</span>                
+                    <span>41</span>                
+                    <span>44</span>                
+                    <span>46</span>                
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>59</span>                
+                    <span>62</span>                
+                    <span>67</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>666</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705341
+                </p>
+                <p class="t">07-11 22:10</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>09</span>                
+                    <span>15</span>                
+                    <span>22</span>                
+                    <span>26</span>                
+                    <span>32</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>39</span>                
+                    <span>42</span>                
+                    <span>43</span>                
+                    <span>50</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>63</span>                
+                    <span>67</span>                
+                    <span>69</span>                
+                    <span>71</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>811</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705340
+                </p>
+                <p class="t">07-11 22:05</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>17</span>                
+                    <span>24</span>                
+                    <span>28</span>                
+                    <span>36</span>                
+                    <span>41</span>                
+                    <span>45</span>                
+                    <span>46</span>                
+                    <span>50</span>                
+                    <span>52</span>                
+                        <div class="clear"></div>
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>62</span>                
+                    <span>64</span>                
+                    <span>65</span>                
+                    <span>74</span>                
+                    <span>77</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>986</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705339
+                </p>
+                <p class="t">07-11 22:00</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>11</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>21</span>                
+                    <span>30</span>                
+                    <span>36</span>                
+                    <span>39</span>                
+                    <span>52</span>                
+                    <span>54</span>                
+                        <div class="clear"></div>
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>70</span>                
+                    <span>72</span>                
+                    <span>73</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>970</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705338
+                </p>
+                <p class="t">07-11 21:55</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>03</span>                
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>07</span>                
+                    <span>16</span>                
+                    <span>20</span>                
+                    <span>24</span>                
+                    <span>25</span>                
+                    <span>35</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>44</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>54</span>                
+                    <span>55</span>                
+                    <span>59</span>                
+                    <span>62</span>                
+                    <span>76</span>                
+                    <span>77</span>                
+            </td>
+            <td>3
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>706</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705337
+                </p>
+                <p class="t">07-11 21:50</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>04</span>                
+                    <span>06</span>                
+                    <span>12</span>                
+                    <span>23</span>                
+                    <span>24</span>                
+                    <span>33</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>50</span>                
+                    <span>55</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>60</span>                
+                    <span>68</span>                
+                    <span>73</span>                
+                    <span>74</span>                
+                    <span>78</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>827</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705336
+                </p>
+                <p class="t">07-11 21:45</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>05</span>                
+                    <span>08</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>23</span>                
+                    <span>26</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>31</span>                
+                        <div class="clear"></div>
+                    <span>32</span>                
+                    <span>37</span>                
+                    <span>38</span>                
+                    <span>41</span>                
+                    <span>49</span>                
+                    <span>53</span>                
+                    <span>61</span>                
+                    <span>68</span>                
+                    <span>70</span>                
+                    <span>71</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>713</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705335
+                </p>
+                <p class="t">07-11 21:40</p>
+            </td>
+            <td class="nums">
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>18</span>                
+                    <span>23</span>                
+                    <span>25</span>                
+                    <span>26</span>                
+                    <span>34</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>48</span>                
+                    <span>49</span>                
+                    <span>53</span>                
+                    <span>55</span>                
+                    <span>59</span>                
+                    <span>61</span>                
+                    <span>67</span>                
+                    <span>73</span>                
+                    <span>74</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>855</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705334
+                </p>
+                <p class="t">07-11 21:35</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>07</span>                
+                    <span>13</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>22</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                    <span>39</span>                
+                        <div class="clear"></div>
+                    <span>40</span>                
+                    <span>41</span>                
+                    <span>47</span>                
+                    <span>55</span>                
+                    <span>62</span>                
+                    <span>64</span>                
+                    <span>66</span>                
+                    <span>68</span>                
+                    <span>75</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>804</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705333
+                </p>
+                <p class="t">07-11 21:30</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>15</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>39</span>                
+                    <span>40</span>                
+                    <span>41</span>                
+                    <span>48</span>                
+                        <div class="clear"></div>
+                    <span>54</span>                
+                    <span>55</span>                
+                    <span>60</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>71</span>                
+                    <span>75</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>957</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705332
+                </p>
+                <p class="t">07-11 21:25</p>
+            </td>
+            <td class="nums">
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>13</span>                
+                    <span>15</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>28</span>                
+                    <span>32</span>                
+                    <span>38</span>                
+                    <span>44</span>                
+                        <div class="clear"></div>
+                    <span>64</span>                
+                    <span>68</span>                
+                    <span>69</span>                
+                    <span>70</span>                
+                    <span>75</span>                
+                    <span>76</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>973</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705331
+                </p>
+                <p class="t">07-11 21:20</p>
+            </td>
+            <td class="nums">
+                    <span>15</span>                
+                    <span>23</span>                
+                    <span>31</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>37</span>                
+                    <span>44</span>                
+                    <span>49</span>                
+                    <span>50</span>                
+                    <span>53</span>                
+                        <div class="clear"></div>
+                    <span>55</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>60</span>                
+                    <span>61</span>                
+                    <span>64</span>                
+                    <span>74</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+                    <span>80</span>                
+            </td>
+            <td>10
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>1033</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705330
+                </p>
+                <p class="t">07-11 21:15</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>13</span>                
+                    <span>22</span>                
+                    <span>27</span>                
+                    <span>31</span>                
+                    <span>32</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>36</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>46</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>49</span>                
+                    <span>52</span>                
+                    <span>57</span>                
+                    <span>62</span>                
+                    <span>76</span>                
+                    <span>77</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>795</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705329
+                </p>
+                <p class="t">07-11 21:10</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>09</span>                
+                    <span>17</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                    <span>32</span>                
+                    <span>39</span>                
+                    <span>42</span>                
+                    <span>44</span>                
+                    <span>45</span>                
+                        <div class="clear"></div>
+                    <span>49</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>71</span>                
+                    <span>74</span>                
+                    <span>76</span>                
+                    <span>77</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>953</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705328
+                </p>
+                <p class="t">07-11 21:05</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>04</span>                
+                    <span>06</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>15</span>                
+                    <span>19</span>                
+                    <span>20</span>                
+                    <span>27</span>                
+                        <div class="clear"></div>
+                    <span>31</span>                
+                    <span>39</span>                
+                    <span>44</span>                
+                    <span>51</span>                
+                    <span>59</span>                
+                    <span>60</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>73</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>694</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705327
+                </p>
+                <p class="t">07-11 21:00</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>03</span>                
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>13</span>                
+                    <span>28</span>                
+                    <span>32</span>                
+                        <div class="clear"></div>
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>37</span>                
+                    <span>45</span>                
+                    <span>50</span>                
+                    <span>60</span>                
+                    <span>68</span>                
+                    <span>69</span>                
+                    <span>72</span>                
+                    <span>77</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>660</td>
+            <td>金</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705326
+                </p>
+                <p class="t">07-11 20:55</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>06</span>                
+                    <span>08</span>                
+                    <span>09</span>                
+                    <span>12</span>                
+                    <span>17</span>                
+                    <span>19</span>                
+                    <span>21</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                        <div class="clear"></div>
+                    <span>31</span>                
+                    <span>34</span>                
+                    <span>46</span>                
+                    <span>49</span>                
+                    <span>58</span>                
+                    <span>59</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>69</span>                
+                    <span>79</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>690</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705325
+                </p>
+                <p class="t">07-11 20:50</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>19</span>                
+                    <span>21</span>                
+                    <span>23</span>                
+                    <span>24</span>                
+                    <span>31</span>                
+                    <span>37</span>                
+                    <span>45</span>                
+                        <div class="clear"></div>
+                    <span>46</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>66</span>                
+                    <span>70</span>                
+                    <span>71</span>                
+                    <span>74</span>                
+                    <span>75</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>866</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705324
+                </p>
+                <p class="t">07-11 20:45</p>
+            </td>
+            <td class="nums">
+                    <span>07</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>26</span>                
+                    <span>27</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>42</span>                
+                        <div class="clear"></div>
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>57</span>                
+                    <span>61</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>71</span>                
+                    <span>74</span>                
+                    <span>75</span>                
+                    <span>77</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>890</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705323
+                </p>
+                <p class="t">07-11 20:40</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>04</span>                
+                    <span>10</span>                
+                    <span>14</span>                
+                    <span>27</span>                
+                    <span>30</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>44</span>                
+                    <span>46</span>                
+                        <div class="clear"></div>
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>57</span>                
+                    <span>59</span>                
+                    <span>66</span>                
+                    <span>69</span>                
+                    <span>74</span>                
+                    <span>76</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>883</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705322
+                </p>
+                <p class="t">07-11 20:35</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>06</span>                
+                    <span>11</span>                
+                    <span>13</span>                
+                    <span>19</span>                
+                    <span>31</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>42</span>                
+                    <span>44</span>                
+                        <div class="clear"></div>
+                    <span>47</span>                
+                    <span>52</span>                
+                    <span>55</span>                
+                    <span>56</span>                
+                    <span>58</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>68</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>842</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705321
+                </p>
+                <p class="t">07-11 20:30</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>09</span>                
+                    <span>10</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>19</span>                
+                    <span>24</span>                
+                    <span>31</span>                
+                    <span>40</span>                
+                    <span>44</span>                
+                        <div class="clear"></div>
+                    <span>46</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>69</span>                
+                    <span>75</span>                
+                    <span>78</span>                
+                    <span>79</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>813</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705320
+                </p>
+                <p class="t">07-11 20:25</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>16</span>                
+                    <span>23</span>                
+                    <span>25</span>                
+                    <span>28</span>                
+                    <span>32</span>                
+                    <span>37</span>                
+                    <span>39</span>                
+                    <span>40</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>43</span>                
+                    <span>46</span>                
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>58</span>                
+                    <span>64</span>                
+                    <span>73</span>                
+                    <span>77</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>872</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705319
+                </p>
+                <p class="t">07-11 20:20</p>
+            </td>
+            <td class="nums">
+                    <span>06</span>                
+                    <span>07</span>                
+                    <span>10</span>                
+                    <span>16</span>                
+                    <span>19</span>                
+                    <span>20</span>                
+                    <span>24</span>                
+                    <span>28</span>                
+                    <span>30</span>                
+                    <span>33</span>                
+                        <div class="clear"></div>
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>41</span>                
+                    <span>44</span>                
+                    <span>45</span>                
+                    <span>49</span>                
+                    <span>58</span>                
+                    <span>72</span>                
+                    <span>73</span>                
+                    <span>77</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>721</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705318
+                </p>
+                <p class="t">07-11 20:15</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>08</span>                
+                    <span>12</span>                
+                    <span>15</span>                
+                    <span>17</span>                
+                    <span>18</span>                
+                    <span>19</span>                
+                    <span>22</span>                
+                    <span>23</span>                
+                        <div class="clear"></div>
+                    <span>28</span>                
+                    <span>30</span>                
+                    <span>34</span>                
+                    <span>43</span>                
+                    <span>56</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>65</span>                
+                    <span>73</span>                
+                    <span>74</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>673</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705317
+                </p>
+                <p class="t">07-11 20:10</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>07</span>                
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>15</span>                
+                    <span>26</span>                
+                    <span>28</span>                
+                    <span>33</span>                
+                        <div class="clear"></div>
+                    <span>48</span>                
+                    <span>50</span>                
+                    <span>53</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>65</span>                
+                    <span>68</span>                
+                    <span>71</span>                
+                    <span>76</span>                
+                    <span>78</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>774</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705316
+                </p>
+                <p class="t">07-11 20:05</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>04</span>                
+                    <span>12</span>                
+                    <span>13</span>                
+                    <span>16</span>                
+                    <span>19</span>                
+                    <span>27</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                        <div class="clear"></div>
+                    <span>41</span>                
+                    <span>49</span>                
+                    <span>51</span>                
+                    <span>54</span>                
+                    <span>61</span>                
+                    <span>64</span>                
+                    <span>66</span>                
+                    <span>68</span>                
+                    <span>73</span>                
+                    <span>76</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>784</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705315
+                </p>
+                <p class="t">07-11 20:00</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>06</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>27</span>                
+                    <span>32</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>46</span>                
+                    <span>50</span>                
+                    <span>54</span>                
+                    <span>55</span>                
+                    <span>56</span>                
+                    <span>65</span>                
+                    <span>73</span>                
+                    <span>77</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>832</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705314
+                </p>
+                <p class="t">07-11 19:55</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>15</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>23</span>                
+                    <span>26</span>                
+                    <span>30</span>                
+                    <span>46</span>                
+                    <span>50</span>                
+                    <span>51</span>                
+                        <div class="clear"></div>
+                    <span>52</span>                
+                    <span>55</span>                
+                    <span>60</span>                
+                    <span>61</span>                
+                    <span>63</span>                
+                    <span>67</span>                
+                    <span>68</span>                
+                    <span>72</span>                
+                    <span>74</span>                
+                    <span>76</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>930</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705313
+                </p>
+                <p class="t">07-11 19:50</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>06</span>                
+                    <span>15</span>                
+                    <span>18</span>                
+                    <span>22</span>                
+                    <span>23</span>                
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                        <div class="clear"></div>
+                    <span>38</span>                
+                    <span>41</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>50</span>                
+                    <span>52</span>                
+                    <span>64</span>                
+                    <span>69</span>                
+                    <span>74</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>783</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705312
+                </p>
+                <p class="t">07-11 19:45</p>
+            </td>
+            <td class="nums">
+                    <span>14</span>                
+                    <span>16</span>                
+                    <span>24</span>                
+                    <span>33</span>                
+                    <span>38</span>                
+                    <span>39</span>                
+                    <span>43</span>                
+                    <span>44</span>                
+                    <span>45</span>                
+                    <span>49</span>                
+                        <div class="clear"></div>
+                    <span>51</span>                
+                    <span>55</span>                
+                    <span>57</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>66</span>                
+                    <span>69</span>                
+                    <span>73</span>                
+                    <span>75</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>979</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705311
+                </p>
+                <p class="t">07-11 19:40</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>07</span>                
+                    <span>09</span>                
+                    <span>10</span>                
+                    <span>12</span>                
+                    <span>13</span>                
+                    <span>24</span>                
+                    <span>26</span>                
+                        <div class="clear"></div>
+                    <span>39</span>                
+                    <span>41</span>                
+                    <span>43</span>                
+                    <span>46</span>                
+                    <span>51</span>                
+                    <span>59</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>71</span>                
+            </td>
+            <td>3
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>648</td>
+            <td>金</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705310
+                </p>
+                <p class="t">07-11 19:35</p>
+            </td>
+            <td class="nums">
+                    <span>06</span>                
+                    <span>07</span>                
+                    <span>09</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>18</span>                
+                    <span>25</span>                
+                    <span>31</span>                
+                    <span>32</span>                
+                        <div class="clear"></div>
+                    <span>33</span>                
+                    <span>40</span>                
+                    <span>49</span>                
+                    <span>54</span>                
+                    <span>55</span>                
+                    <span>58</span>                
+                    <span>69</span>                
+                    <span>72</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>750</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705309
+                </p>
+                <p class="t">07-11 19:30</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>12</span>                
+                    <span>16</span>                
+                    <span>22</span>                
+                    <span>32</span>                
+                    <span>39</span>                
+                    <span>40</span>                
+                    <span>41</span>                
+                    <span>44</span>                
+                    <span>53</span>                
+                        <div class="clear"></div>
+                    <span>58</span>                
+                    <span>59</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>66</span>                
+                    <span>72</span>                
+                    <span>74</span>                
+                    <span>78</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>984</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705308
+                </p>
+                <p class="t">07-11 19:25</p>
+            </td>
+            <td class="nums">
+                    <span>07</span>                
+                    <span>16</span>                
+                    <span>19</span>                
+                    <span>21</span>                
+                    <span>25</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                    <span>42</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>44</span>                
+                    <span>49</span>                
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>73</span>                
+                    <span>77</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>903</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705307
+                </p>
+                <p class="t">07-11 19:20</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>06</span>                
+                    <span>12</span>                
+                    <span>15</span>                
+                    <span>19</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>22</span>                
+                    <span>26</span>                
+                    <span>31</span>                
+                        <div class="clear"></div>
+                    <span>39</span>                
+                    <span>40</span>                
+                    <span>45</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>62</span>                
+                    <span>69</span>                
+                    <span>75</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>739</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705306
+                </p>
+                <p class="t">07-11 19:15</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>02</span>                
+                    <span>03</span>                
+                    <span>15</span>                
+                    <span>23</span>                
+                    <span>27</span>                
+                    <span>35</span>                
+                    <span>41</span>                
+                    <span>49</span>                
+                    <span>50</span>                
+                        <div class="clear"></div>
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>64</span>                
+                    <span>68</span>                
+                    <span>71</span>                
+                    <span>74</span>                
+                    <span>79</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>878</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705305
+                </p>
+                <p class="t">07-11 19:10</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>02</span>                
+                    <span>08</span>                
+                    <span>11</span>                
+                    <span>13</span>                
+                    <span>15</span>                
+                    <span>18</span>                
+                    <span>23</span>                
+                    <span>32</span>                
+                    <span>42</span>                
+                        <div class="clear"></div>
+                    <span>45</span>                
+                    <span>46</span>                
+                    <span>48</span>                
+                    <span>49</span>                
+                    <span>52</span>                
+                    <span>55</span>                
+                    <span>58</span>                
+                    <span>60</span>                
+                    <span>72</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>728</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705304
+                </p>
+                <p class="t">07-11 19:05</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>10</span>                
+                    <span>15</span>                
+                    <span>19</span>                
+                    <span>24</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>31</span>                
+                    <span>34</span>                
+                    <span>39</span>                
+                        <div class="clear"></div>
+                    <span>41</span>                
+                    <span>42</span>                
+                    <span>44</span>                
+                    <span>49</span>                
+                    <span>51</span>                
+                    <span>53</span>                
+                    <span>57</span>                
+                    <span>61</span>                
+                    <span>69</span>                
+                    <span>72</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>771</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705303
+                </p>
+                <p class="t">07-11 19:00</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>07</span>                
+                    <span>08</span>                
+                    <span>15</span>                
+                    <span>17</span>                
+                    <span>24</span>                
+                    <span>26</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                        <div class="clear"></div>
+                    <span>45</span>                
+                    <span>55</span>                
+                    <span>56</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>71</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>832</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705302
+                </p>
+                <p class="t">07-11 18:55</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>10</span>                
+                    <span>12</span>                
+                    <span>14</span>                
+                    <span>15</span>                
+                    <span>20</span>                
+                    <span>24</span>                
+                    <span>33</span>                
+                    <span>37</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>44</span>                
+                    <span>51</span>                
+                    <span>63</span>                
+                    <span>66</span>                
+                    <span>68</span>                
+                    <span>70</span>                
+                    <span>73</span>                
+                    <span>76</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>841</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705301
+                </p>
+                <p class="t">07-11 18:50</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>09</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>16</span>                
+                    <span>22</span>                
+                    <span>25</span>                
+                    <span>26</span>                
+                    <span>32</span>                
+                    <span>42</span>                
+                        <div class="clear"></div>
+                    <span>50</span>                
+                    <span>52</span>                
+                    <span>61</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>68</span>                
+                    <span>69</span>                
+                    <span>73</span>                
+                    <span>74</span>                
+                    <span>76</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>850</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705300
+                </p>
+                <p class="t">07-11 18:45</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>14</span>                
+                    <span>18</span>                
+                    <span>20</span>                
+                    <span>26</span>                
+                    <span>27</span>                
+                    <span>28</span>                
+                        <div class="clear"></div>
+                    <span>30</span>                
+                    <span>31</span>                
+                    <span>46</span>                
+                    <span>48</span>                
+                    <span>61</span>                
+                    <span>65</span>                
+                    <span>67</span>                
+                    <span>69</span>                
+                    <span>70</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>741</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705299
+                </p>
+                <p class="t">07-11 18:40</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>02</span>                
+                    <span>23</span>                
+                    <span>24</span>                
+                    <span>26</span>                
+                    <span>32</span>                
+                    <span>36</span>                
+                    <span>39</span>                
+                    <span>49</span>                
+                    <span>56</span>                
+                        <div class="clear"></div>
+                    <span>57</span>                
+                    <span>59</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>71</span>                
+                    <span>72</span>                
+                    <span>74</span>                
+                    <span>75</span>                
+                    <span>76</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>958</td>
+            <td>土</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705298
+                </p>
+                <p class="t">07-11 18:35</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>04</span>                
+                    <span>09</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>12</span>                
+                    <span>14</span>                
+                    <span>15</span>                
+                    <span>23</span>                
+                    <span>30</span>                
+                        <div class="clear"></div>
+                    <span>31</span>                
+                    <span>33</span>                
+                    <span>36</span>                
+                    <span>39</span>                
+                    <span>55</span>                
+                    <span>60</span>                
+                    <span>65</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>75</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>658</td>
+            <td>金</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705297
+                </p>
+                <p class="t">07-11 18:30</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>12</span>                
+                    <span>13</span>                
+                    <span>18</span>                
+                    <span>22</span>                
+                    <span>30</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>37</span>                
+                    <span>39</span>                
+                        <div class="clear"></div>
+                    <span>41</span>                
+                    <span>44</span>                
+                    <span>46</span>                
+                    <span>48</span>                
+                    <span>50</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>56</span>                
+                    <span>59</span>                
+                    <span>64</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>753</td>
+            <td>木</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705296
+                </p>
+                <p class="t">07-11 18:25</p>
+            </td>
+            <td class="nums">
+                    <span>09</span>                
+                    <span>12</span>                
+                    <span>14</span>                
+                    <span>15</span>                
+                    <span>20</span>                
+                    <span>26</span>                
+                    <span>28</span>                
+                    <span>39</span>                
+                    <span>42</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>45</span>                
+                    <span>46</span>                
+                    <span>48</span>                
+                    <span>53</span>                
+                    <span>55</span>                
+                    <span>65</span>                
+                    <span>68</span>                
+                    <span>72</span>                
+                    <span>74</span>                
+                    <span>77</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>851</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705295
+                </p>
+                <p class="t">07-11 18:20</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>04</span>                
+                    <span>06</span>                
+                    <span>08</span>                
+                    <span>10</span>                
+                    <span>11</span>                
+                    <span>14</span>                
+                    <span>23</span>                
+                    <span>30</span>                
+                    <span>33</span>                
+                        <div class="clear"></div>
+                    <span>38</span>                
+                    <span>43</span>                
+                    <span>45</span>                
+                    <span>49</span>                
+                    <span>51</span>                
+                    <span>53</span>                
+                    <span>61</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>77</span>                
+            </td>
+            <td>4
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>685</td>
+            <td>金</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705294
+                </p>
+                <p class="t">07-11 18:15</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>10</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>20</span>                
+                    <span>24</span>                
+                    <span>31</span>                
+                    <span>35</span>                
+                    <span>46</span>                
+                    <span>48</span>                
+                        <div class="clear"></div>
+                    <span>49</span>                
+                    <span>51</span>                
+                    <span>57</span>                
+                    <span>60</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>64</span>                
+                    <span>71</span>                
+                    <span>73</span>                
+                    <span>74</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>871</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705293
+                </p>
+                <p class="t">07-11 18:10</p>
+            </td>
+            <td class="nums">
+                    <span>06</span>                
+                    <span>16</span>                
+                    <span>22</span>                
+                    <span>24</span>                
+                    <span>27</span>                
+                    <span>28</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>40</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>44</span>                
+                    <span>45</span>                
+                    <span>46</span>                
+                    <span>48</span>                
+                    <span>51</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>61</span>                
+                    <span>65</span>                
+                    <span>77</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>820</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705292
+                </p>
+                <p class="t">07-11 18:05</p>
+            </td>
+            <td class="nums">
+                    <span>04</span>                
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>09</span>                
+                    <span>15</span>                
+                    <span>18</span>                
+                    <span>24</span>                
+                    <span>32</span>                
+                    <span>38</span>                
+                    <span>41</span>                
+                        <div class="clear"></div>
+                    <span>43</span>                
+                    <span>47</span>                
+                    <span>48</span>                
+                    <span>49</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>55</span>                
+                    <span>62</span>                
+                    <span>68</span>                
+                    <span>79</span>                
+            </td>
+            <td>3
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>748</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705291
+                </p>
+                <p class="t">07-11 18:00</p>
+            </td>
+            <td class="nums">
+                    <span>11</span>                
+                    <span>14</span>                
+                    <span>18</span>                
+                    <span>19</span>                
+                    <span>26</span>                
+                    <span>28</span>                
+                    <span>33</span>                
+                    <span>34</span>                
+                    <span>37</span>                
+                    <span>46</span>                
+                        <div class="clear"></div>
+                    <span>47</span>                
+                    <span>53</span>                
+                    <span>58</span>                
+                    <span>60</span>                
+                    <span>62</span>                
+                    <span>67</span>                
+                    <span>73</span>                
+                    <span>75</span>                
+                    <span>78</span>                
+                    <span>79</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>918</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705290
+                </p>
+                <p class="t">07-11 17:55</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>08</span>                
+                    <span>12</span>                
+                    <span>14</span>                
+                    <span>22</span>                
+                    <span>29</span>                
+                    <span>36</span>                
+                    <span>39</span>                
+                    <span>46</span>                
+                    <span>47</span>                
+                        <div class="clear"></div>
+                    <span>50</span>                
+                    <span>56</span>                
+                    <span>62</span>                
+                    <span>63</span>                
+                    <span>64</span>                
+                    <span>70</span>                
+                    <span>73</span>                
+                    <span>76</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>927</td>
+            <td>土</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705289
+                </p>
+                <p class="t">07-11 17:50</p>
+            </td>
+            <td class="nums">
+                    <span>05</span>                
+                    <span>06</span>                
+                    <span>08</span>                
+                    <span>09</span>                
+                    <span>14</span>                
+                    <span>20</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>31</span>                
+                    <span>36</span>                
+                        <div class="clear"></div>
+                    <span>44</span>                
+                    <span>45</span>                
+                    <span>47</span>                
+                    <span>54</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>70</span>                
+                    <span>76</span>                
+                    <span>79</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>804</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705288
+                </p>
+                <p class="t">07-11 17:45</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>05</span>                
+                    <span>07</span>                
+                    <span>20</span>                
+                    <span>24</span>                
+                    <span>25</span>                
+                    <span>35</span>                
+                    <span>37</span>                
+                    <span>38</span>                
+                    <span>48</span>                
+                        <div class="clear"></div>
+                    <span>51</span>                
+                    <span>54</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>60</span>                
+                    <span>62</span>                
+                    <span>66</span>                
+                    <span>72</span>                
+                    <span>79</span>                
+            </td>
+            <td>1
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>855</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705287
+                </p>
+                <p class="t">07-11 17:40</p>
+            </td>
+            <td class="nums">
+                    <span>01</span>                
+                    <span>04</span>                
+                    <span>20</span>                
+                    <span>21</span>                
+                    <span>24</span>                
+                    <span>28</span>                
+                    <span>31</span>                
+                    <span>35</span>                
+                    <span>37</span>                
+                    <span>39</span>                
+                        <div class="clear"></div>
+                    <span>49</span>                
+                    <span>51</span>                
+                    <span>53</span>                
+                    <span>60</span>                
+                    <span>63</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>72</span>                
+                    <span>77</span>                
+                    <span>78</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>876</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705286
+                </p>
+                <p class="t">07-11 17:35</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>06</span>                
+                    <span>10</span>                
+                    <span>16</span>                
+                    <span>23</span>                
+                    <span>27</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>38</span>                
+                    <span>42</span>                
+                        <div class="clear"></div>
+                    <span>58</span>                
+                    <span>60</span>                
+                    <span>61</span>                
+                    <span>63</span>                
+                    <span>66</span>                
+                    <span>68</span>                
+                    <span>70</span>                
+                    <span>71</span>                
+                    <span>72</span>                
+                    <span>75</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>900</td>
+            <td>火</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705285
+                </p>
+                <p class="t">07-11 17:30</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>09</span>                
+                    <span>10</span>                
+                    <span>12</span>                
+                    <span>17</span>                
+                    <span>27</span>                
+                    <span>31</span>                
+                    <span>32</span>                
+                    <span>36</span>                
+                    <span>37</span>                
+                        <div class="clear"></div>
+                    <span>41</span>                
+                    <span>46</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>55</span>                
+                    <span>58</span>                
+                    <span>59</span>                
+                    <span>70</span>                
+                    <span>72</span>                
+                    <span>75</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>800</td>
+            <td>水</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705284
+                </p>
+                <p class="t">07-11 17:25</p>
+            </td>
+            <td class="nums">
+                    <span>06</span>                
+                    <span>14</span>                
+                    <span>16</span>                
+                    <span>17</span>                
+                    <span>21</span>                
+                    <span>26</span>                
+                    <span>32</span>                
+                    <span>33</span>                
+                    <span>38</span>                
+                    <span>39</span>                
+                        <div class="clear"></div>
+                    <span>42</span>                
+                    <span>43</span>                
+                    <span>51</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>54</span>                
+                    <span>57</span>                
+                    <span>65</span>                
+                    <span>71</span>                
+                    <span>77</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>807</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705283
+                </p>
+                <p class="t">07-11 17:20</p>
+            </td>
+            <td class="nums">
+                    <span>08</span>                
+                    <span>19</span>                
+                    <span>22</span>                
+                    <span>23</span>                
+                    <span>24</span>                
+                    <span>28</span>                
+                    <span>29</span>                
+                    <span>33</span>                
+                    <span>42</span>                
+                    <span>43</span>                
+                        <div class="clear"></div>
+                    <span>48</span>                
+                    <span>52</span>                
+                    <span>53</span>                
+                    <span>56</span>                
+                    <span>57</span>                
+                    <span>65</span>                
+                    <span>66</span>                
+                    <span>71</span>                
+                    <span>72</span>                
+                    <span>76</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>887</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705282
+                </p>
+                <p class="t">07-11 17:15</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>04</span>                
+                    <span>08</span>                
+                    <span>15</span>                
+                    <span>18</span>                
+                    <span>26</span>                
+                    <span>27</span>                
+                    <span>34</span>                
+                    <span>35</span>                
+                    <span>38</span>                
+                        <div class="clear"></div>
+                    <span>41</span>                
+                    <span>44</span>                
+                    <span>45</span>                
+                    <span>48</span>                
+                    <span>54</span>                
+                    <span>57</span>                
+                    <span>61</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>72</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                      <p>中</p>
+            </td>
+            <td>766</td>
+            <td>水</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705281
+                </p>
+                <p class="t">07-11 17:10</p>
+            </td>
+            <td class="nums">
+                    <span>03</span>                
+                    <span>09</span>                
+                    <span>12</span>                
+                    <span>15</span>                
+                    <span>22</span>                
+                    <span>26</span>                
+                    <span>30</span>                
+                    <span>36</span>                
+                    <span>39</span>                
+                    <span>51</span>                
+                        <div class="clear"></div>
+                    <span>55</span>                
+                    <span>60</span>                
+                    <span>61</span>                
+                    <span>62</span>                
+                    <span>66</span>                
+                    <span>69</span>                
+                    <span>70</span>                
+                    <span>76</span>                
+                    <span>78</span>                
+                    <span>80</span>                
+            </td>
+            <td>2
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>920</td>
+            <td>火</td>
+        </tr>
+        <tr class='even'>
+            <td>
+                <p class="p">705280
+                </p>
+                <p class="t">07-11 17:05</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>05</span>                
+                    <span>09</span>                
+                    <span>16</span>                
+                    <span>18</span>                
+                    <span>20</span>                
+                    <span>26</span>                
+                    <span>27</span>                
+                    <span>29</span>                
+                    <span>30</span>                
+                        <div class="clear"></div>
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>38</span>                
+                    <span>43</span>                
+                    <span>45</span>                
+                    <span>52</span>                
+                    <span>57</span>                
+                    <span>72</span>                
+                    <span>76</span>                
+                    <span>78</span>                
+            </td>
+            <td>4
+            </td>
+            <td>
+                      <p>双</p>
+            </td>
+           <td>
+                      <p>小</p>
+            </td>
+            <td>
+                    <p class='r'>
+                        上</p>
+            </td>
+            <td>714</td>
+            <td>木</td>
+        </tr>
+        <tr class='odd'>
+            <td>
+                <p class="p">705279
+                </p>
+                <p class="t">07-11 17:00</p>
+            </td>
+            <td class="nums">
+                    <span>02</span>                
+                    <span>04</span>                
+                    <span>06</span>                
+                    <span>07</span>                
+                    <span>28</span>                
+                    <span>31</span>                
+                    <span>35</span>                
+                    <span>36</span>                
+                    <span>40</span>                
+                    <span>45</span>                
+                        <div class="clear"></div>
+                    <span>46</span>                
+                    <span>57</span>                
+                    <span>58</span>                
+                    <span>63</span>                
+                    <span>65</span>                
+                    <span>66</span>                
+                    <span>67</span>                
+                    <span>70</span>                
+                    <span>73</span>                
+                    <span>76</span>                
+            </td>
+            <td>5
+            </td>
+            <td>
+                    <p class='r'>
+                        单</p>
+            </td>
+           <td>
+                    <p class='r'>
+                        大</p>
+            </td>
+            <td>
+                      <p>下</p>
+            </td>
+            <td>875</td>
+            <td>火</td>
+        </tr>
+</table>
+        </div>
+        
+    </div>
+</div>
