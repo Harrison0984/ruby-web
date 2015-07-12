@@ -33,6 +33,7 @@ Rails.application.config.assets.precompile += %w( program-bar.js )
 Rails.application.config.assets.precompile += %w( mainstyle.css )
 Rails.application.config.assets.precompile += %w( draw5.css )
 Rails.application.config.assets.precompile += %w( kl9.css )
+Rails.application.config.assets.precompile += %w( base.css )
 
 Rails.application.config.assets.precompile += %w( js/jvalidate.js )
 Rails.application.config.assets.precompile += %w( js/ajaxform.js )
