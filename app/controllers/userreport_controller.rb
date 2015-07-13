@@ -1,8 +1,7 @@
-class GridgameController < ApplicationController
+class UserreportController < ApplicationController
 	layout "manage"
-	
+
 	def index
 		@admin = User.find(session[:userid])
-		@grids = Grid.all
 	end
 end

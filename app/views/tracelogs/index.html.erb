@@ -30,20 +30,17 @@
                                 <th>位置</th>
                                 <th>金币</th>
                                 <th>状态</th>
+                                <th>结果</th>
                                 <th>时间</th>
                             </tr>
                         </thead>
                         <tbody>
                         <% @tracelogs.each do |log| %>
-                        <% if log.status == 1 %>
-                          <tr class="warning">
-                        <% else %>
-                          <tr class="info">
-                        <% end %>
+                          <tr>
                               <td><%= log.useraccount %></td>
                               <td><%= log.gameid %></td>
                               <% if log.gametype == 1 %>
-                                <td>豹子</td>
+                                <td>四筒</td>
                               <% elsif log.gametype == 2 %>
                                 <td>顺子</td>
                               <% elsif log.gametype == 3 %>
@@ -51,7 +48,7 @@
                               <% elsif log.gametype == 4 %>
                                 <td>大</td>
                               <% elsif log.gametype == 5 %>
-                                <td>清色</td>
+                                <td>同色</td>
                               <% else %>
                                 <td>error</td>
                               <% end %>
@@ -71,7 +68,12 @@
                                 <td>error</td>
                               <% end %>
                               <td><%= log.coin %></td>
-                              <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>猜中<% else %> 未中 <% end %></td>
+                              <% if log.status == 1 %>
+                              <td><font color="red">+<%= log.coin * log.mulbability %></font></td>
+                              <% else %>
+                              <td><%= -log.coin %></td>
+                              <% end %>
+                              <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>恭喜中奖<% else %> 未中奖 <% end %></td>
                               <td><%= log.time %></td>
                           </tr>
                         <% end %>

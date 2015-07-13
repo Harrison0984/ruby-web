@@ -44,15 +44,12 @@
 			    <%= f.text_field :coin, class:"form-control", placeholder:"金币" %>
 			  </p>
 			  <p>
-		  	  <label>
-		  	  	<% if (@user.level != 1) %>
-		  	  	  <%= f.radio_button :level, "0", checked:"checked" %>普通用户
-			  	  <%= f.radio_button :level, "1" %>管理员
-			  	<% else %>
-			  	  <%= f.radio_button :level, "0" %>普通用户
-			  	  <%= f.radio_button :level, "1", checked:"checked" %>管理员
-			  	<% end %>
-              </label>
+			    <%= f.label :lowerlimit, '上限:' %>
+			    <%= f.text_field :lowerlimit, class:"form-control", placeholder:"下限" %>
+			  </p>
+			  <p>
+			    <%= f.label :upperlimit, '下限:' %>
+			    <%= f.text_field :upperlimit, class:"form-control", placeholder:"下限" %>
 			  </p>
 			  <p>
 			    <%= f.submit '保存', data: {confirm: '确认修改数据?'} %>

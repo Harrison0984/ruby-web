@@ -2,7 +2,7 @@ class TracelogsController < ApplicationController
 	layout "manage"
 
 	def index
-
+		@admin = User.find(session[:userid])
 		@tracelogs = Tracelog.all
 	end
 

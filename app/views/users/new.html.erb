@@ -9,9 +9,7 @@
 <div class="col-lg-12">
     <h1 class="page-header">用户管理</h1>
 </div>
-    <!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
@@ -46,15 +44,23 @@
 			    <%= f.text_field :coin, class:"form-control", placeholder:"金币", value:"5000"%>
 			  </p>
 			  <p>
-			  	<%= f.radio_button :level, "0", checked:"checked" %>普通用户
-			  	<%= f.radio_button :level, "1" %>管理员
+			    <%= f.label :lowerlimit, '上限:' %>
+			    <%= f.text_field :lowerlimit, class:"form-control", placeholder:"下限", value:"1" %>
+			  </p>
+			  <p>
+			    <%= f.label :upperlimit, '下限:' %>
+			    <%= f.text_field :upperlimit, class:"form-control", placeholder:"下限", value:"10000" %>
+			  </p>
+			  <p>
+			  	<%= f.radio_button :level, "0", checked:"checked" %>会员
+			  	<% if @admin.level == 1 %>
+			  	<%= f.radio_button :level, "2" %>代理
+			  	<% end %>
 			  </p>
 			  <p>
 			    <%= f.submit "保存" %>
 			  </p>
 			<% end %>
         </div>
-        <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
 </div>

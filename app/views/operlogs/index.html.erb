@@ -33,16 +33,11 @@
                         </thead>
                         <tbody>
                         <% @operlogs.each do |operlog| %>
-                          <% if (operlog.coin > 0) %>
-                          <tr class="success">
-                          <% elsif (operlog.coin) == 0 %>
-                          <tr class="danger" >
-                          <% else %>
-                          <tr class="info">
-                          <% end %>
+                          <tr>
                               <td><%= operlog.maname %></td>
                               <td><%= operlog.username %></td>
-                              <td><%= operlog.coin %></td>
+                              <td><% if operlog.coin < 0 %><font color="red">
+                              <% end %><%= operlog.coin %></td>
                               <td><%= operlog.action %></td>
                               <td><%= operlog.time %>
                           </tr>

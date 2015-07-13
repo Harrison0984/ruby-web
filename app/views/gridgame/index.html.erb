@@ -41,7 +41,7 @@
                               <% if log.x3 <= 13 %><font color="#5B00AE"><% elsif log.x3 > 13 and log.x3 <= 26 %>
                               <font color="#00A600"><% elsif log.x3 > 26 and log.x3 <= 39 %>
                               <font color="#BB3D00"><% else %><font color="#9F4D95"><% end %>
-                              <%= (log.x3%13+1).to_s.rjust(2, '0') %></font><br>
+                              <%= (log.x3%13+1).to_s.rjust(2, '0') %></font>
                               <% if log.y1 <= 13 %><font color="#5B00AE"><% elsif log.y1 > 13 and log.y1 <= 26 %>
                               <font color="#00A600"><% elsif log.y1 > 26 and log.y1 <= 39 %>
                               <font color="#BB3D00"><% else %><font color="#9F4D95"><% end %>
@@ -53,7 +53,7 @@
                               <% if log.y3 <= 13 %><font color="#5B00AE"><% elsif log.y3 > 13 and log.y3 <= 26 %>
                               <font color="#00A600"><% elsif log.y3 > 26 and log.y3 <= 39 %>
                               <font color="#BB3D00"><% else %><font color="#9F4D95"><% end %>
-                              <%= (log.y3%13+1).to_s.rjust(2, '0') %></font><br>
+                              <%= (log.y3%13+1).to_s.rjust(2, '0') %></font>
                               <% if log.z1 <= 13 %><font color="#5B00AE"><% elsif log.z1 > 13 and log.z1 <= 26 %>
                               <font color="#00A600"><% elsif log.z1 > 26 and log.z1 <= 39 %>
                               <font color="#BB3D00"><% else %><font color="#9F4D95"><% end %>

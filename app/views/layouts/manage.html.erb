@@ -4,7 +4,7 @@
   <title>后台管理</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag 'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'appbootstrap', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'sb-admin-2', 'data-turbolinks-eval' => true %>
   <%= javascript_include_tag 'metisMenu.min', 'data-turbolinks-eval' => true %>
@@ -30,9 +30,14 @@
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
+		            <li class="dropdown">
+			        <a class="dropdown-toggle" href="#">
+			            <i class="fa glyphicon-bitcoin fa-fw"></i>$<%=@admin.coin%><i class="fa"></i>
+			        </a>
+				    </li>
 	                <li class="dropdown">
 	                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+	                        <i class="fa fa-user fa-fw"></i> <%=@admin.account%> <i class="fa fa-caret-down"></i>
 	                    </a>
 	                    <ul class="dropdown-menu dropdown-user">
 	                        <li><%= link_to "管理主页", controller: 'task', action: 'index' %></li>
@@ -76,12 +81,15 @@
 	                            </ul>
 	                        </li>
 	                        <li>
-	                        <a href="#"><i class="fa fa-wrench fa-fw"></i>报表查询<span class="fa arrow"></span></a>
+	                        	<%= link_to '报表查询', controller: 'userreport', action: 'index' %>
+	                        </li>
  	                        <li>
 	                            <a href="#"><i class="fa fa-wrench fa-fw"></i>游戏配置<span class="fa arrow"></span></a>
 	                            <ul class="nav nav-second-level">
 	                                <li>
+	                                	<% if @admin.level == 1 %>
 	                                	<%= link_to '九宫格', controller: 'gridconfig', action: 'index' %>
+	                                	<% end %>
 	                                </li>
 	                            </ul>
 	                            <!-- /.nav-second-level -->
