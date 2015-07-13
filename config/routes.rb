@@ -21,6 +21,15 @@ Rails.application.routes.draw do
 
   match 'mainuser/updatepassword', :to => 'mainuser#updatepassword', 
                        :via => :post
+
+  match 'users/freeze/id', :to => 'users#freeze', 
+                       :via => :patch
+
+  match 'users/unfreeze/id', :to => 'users#unfreeze', 
+                       :via => :patch
+
+  match 'users/child/id', :to => 'users#child', 
+                       :via => :get
   
   resources :manage, only: [:index, :show]
 
@@ -47,6 +56,8 @@ Rails.application.routes.draw do
   resources :doublegame, only: [:index]
 
   resources :mainuser, only: [:index]
+
+  resources :userreport, only: [:index]
   
   # You can have the root of your site routed with "root"
   root 'main#index'

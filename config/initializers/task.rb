@@ -156,6 +156,10 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 		user.account = "admin"
 		user.password = "123"
 		user.nickname = "管理员"
+		user.action = 1
+		user.regionid = 1
+		user.lowerlimit = 1
+		user.upperlimit = 10000
 		user.coin = 1000000
 		user.level = 1
 		user.save
