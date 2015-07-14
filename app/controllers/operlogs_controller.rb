@@ -3,6 +3,11 @@ class OperlogsController < ApplicationController
 	
 	def index
 		@admin = User.find(session[:userid])
-		@operlogs = Operlog.all
+		if @admin.level == 1
+			@operlogs = Operlog.all
+		else
+			users = User.where("regionid = ?", @admin.id)
+			@operlogs = Operlog.where(maname: users)
+		end
 	end
 end

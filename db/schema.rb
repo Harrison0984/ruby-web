@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.string   "useraccount"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "action"
+    t.integer  "maintype"
   end
 
   create_table "users", force: :cascade do |t|
