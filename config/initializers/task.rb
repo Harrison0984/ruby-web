@@ -224,7 +224,10 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		if Time.new.hour > 1 and Time.new.hour < 10
 			Rails.logger.debug "invalid time"
 		else
+			curtime = Time.new
+
 			grid = Grid.new
+			grid.gameid = curtime.strftime("%Y%m%d%H%M")+(objindex+1).to_s
 			grid.x1 = objects[objindex][0]
 			grid.x2 = objects[objindex][1]
 			grid.x3 = objects[objindex][2]
@@ -235,17 +238,15 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			grid.z2 = objects[objindex][7]
 			grid.z3 = objects[objindex][8]
 
-			curtime = Time.new
-			grid.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-			grid.save	
+			grid.time = curtime.strftime("%Y-%m-%d %H:%M")
+			grid.save
 
-			objindex += 1
 			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
 
 			totalcoin = 0
 			prizecoin = 0
 			
-			Tracelog.where("gameid = ? and maintype = 1", grid.id).each do |log|
+			Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
 				totalcoin += log.coin
 	  			if log.gametype = 1 and lssame.include?(log.pos)
 	  				prizecoin = log.coin * log.mulbability
@@ -272,7 +273,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	  			end
 			end
 
-			Tracelog.where("gameid = ? and maintype = 2", grid.id).each do |log|
+			Tracelog.where("gameid = ? and maintype = 2", grid.gameid).each do |log|
 				totalcoin += log.coin
 				if object[objindex][log.pos-1] % 14 == log.gametype
 					prizecoin = log.coin * log.mulbability
@@ -283,7 +284,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				end
 			end
 
-			Tracelog.where("gameid = ? and maintype = 3", grid.id).each do |log|
+			Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
 				totalcoin += log.coin
 				if log.gametype == 1 and object[objindex][log.pos-1] % 14 < 7
 					prizecoin = log.coin * log.mulbability
@@ -304,9 +305,9 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 			#if the end time of day
 			if curtime.hour == 1
-				nexttime = curtime + 5*60*60
+				nexttime = curtime + 9*60*60
 			else
-				nexttime = curtime + 5*60
+				nexttime = curtime + 10*60
 			end
 
 			tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d"))
@@ -318,14 +319,16 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.totalcoin = totalcoin
 				tasklog.prizecoin = prizecoin
 				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
-				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M:%S")
-				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M:%S")
+				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M")
+				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
 				tasklog.save
 			else
 				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, 
-					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M:%S"),
-					nexttime: nexttime.strftime("%Y-%m-%d %H:%M:%S"))
+					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M"),
+					nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
 			end
+
+			objindex += 1
 		end
 	end
 end

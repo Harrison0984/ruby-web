@@ -1,6 +1,7 @@
 class CreateGrids < ActiveRecord::Migration
   def change
     create_table :grids do |t|
+      t.string :gameid
       t.integer :x1
       t.integer :x2
       t.integer :x3

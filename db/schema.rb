@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.datetime "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "gameid"
   end
 
   create_table "loginlogs", force: :cascade do |t|
@@ -68,7 +69,6 @@ ActiveRecord::Schema.define(version: 20150630015537) do
   end
 
   create_table "tracelogs", force: :cascade do |t|
-    t.integer  "gameid"
     t.integer  "gametype"
     t.integer  "pos"
     t.integer  "coin"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "maintype"
+    t.string   "gameid"
   end
 
   create_table "users", force: :cascade do |t|

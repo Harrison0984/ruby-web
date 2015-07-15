@@ -1,7 +1,7 @@
 class CreateTracelogs < ActiveRecord::Migration
   def change
     create_table :tracelogs do |t|
-      t.integer :gameid
+      t.string :gameid
       t.integer :maintype
       t.integer :gametype
       t.integer :pos

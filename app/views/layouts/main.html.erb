@@ -177,19 +177,19 @@
         <div class="title">
             最新开奖：
         </div>
-        <div class="period" style="color: green;">12期
+        <div class="period" style="color: green;"><%= @issue %>期
         </div>
-        <div class="period-info" >每日销售<span>179</span>期，今日剩余<span class="period-leave">--</span>期</div>
+        <div class="period-info" >每日销售<span>90</span>期，今日剩余<span class="period-leave"><%= 90-@currentbar %></span>期</div>
         <div class="lot-nums">
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
-            <span class="no05"></span>
+            <span class=<%= "no#{@grid.x1.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.x2.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.x3.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.y1.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.y2.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.y3.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.z1.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.z2.to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{@grid.z3.to_s.ljust(2, '0')}" %>></span>
         </div>
     </li>
     <li class="warnTime">
@@ -197,9 +197,9 @@
             <div id="period">&nbsp;</div>
             <div>距离下期开奖剩余</div>
         </div>
-        <div class="minute" id="minute">10</div>
+        <div class="minute" id="minute"><%= @minutes %></div>
         <div class="t2">分</div>
-        <div class="second" id="second">59</div>
+        <div class="second" id="second"><%= @seconds %></div>
         <div class="t2">秒</div>
          <div class="sound" id="countdown_sound" title="点击关闭提醒声音"></div>
         <audio src=<%= image_url("du.mp3") %> id="duSound" style="display:none;"></audio>
@@ -446,7 +446,7 @@ $(document).ready(
     var newMinute = parseInt(minute.innerText);
     if (newSeconds == 0 && newMinute > 0) {
       newMinute -= 1;
-      newSeconds = 60;
+      newSeconds = 59;
     }
     if (newSeconds == 0 && newMinute == 0) {
       location.reload();
