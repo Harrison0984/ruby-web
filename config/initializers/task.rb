@@ -227,7 +227,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			curtime = Time.new
 
 			grid = Grid.new
-			grid.gameid = curtime.strftime("%Y%m%d%H%M")+(objindex+1).to_s
+			grid.gameid = curtime.strftime("%Y%m%d")+(objindex+1).to_s
 			grid.x1 = objects[objindex][0]
 			grid.x2 = objects[objindex][1]
 			grid.x3 = objects[objindex][2]

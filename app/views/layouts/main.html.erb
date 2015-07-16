@@ -179,17 +179,19 @@
         </div>
         <div class="period" style="color: green;"><%= @issue %>期
         </div>
-        <div class="period-info" >每日销售<span>90</span>期，今日剩余<span class="period-leave"><%= 90-@currentbar %></span>期</div>
+        <div class="period-info" >每日销售<span>90</span>期，今日剩余<span class="period-leave"><%= 90-@currentbar.to_i %></span>期</div>
         <div class="lot-nums">
-            <span class=<%= "no#{@grid.x1.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.x2.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.x3.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.y1.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.y2.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.y3.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.z1.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.z2.to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{@grid.z3.to_s.ljust(2, '0')}" %>></span>
+            <% if @grid %>
+            <span class=<%= "no#{(@grid.x1+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.x2+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.x3+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.y1+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.y2+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.y3+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.z1+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.z2+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.z3+1).to_s.ljust(2, '0')}" %>></span>
+            <% end %>
         </div>
     </li>
     <li class="warnTime">
@@ -243,28 +245,8 @@
 
 <div class="web_listOP">
    <ul id="menu_ul" style="position: relative;">
-        <li class=hover data-tag="idx">
-            <%= link_to '快乐九宫格', controller: 'main', action: 'index' %>
-        </li>
-        <li  data-tag="kj">
-            <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
-        </li>
-        <li  data-tag="zhl">
-            <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
-        </li>
-        <li  data-tag="dshl">
-            <%= link_to '组合盘', controller: 'combinationgame', action: 'index' %>
-        </li>
-        <li   data-tag="sxpl">
-            <%= link_to '双面盘', controller: 'doublegame', action: 'index' %>
-        </li>
-        <li   data-tag="kjs">
-            <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
-        </li>
-        <li    data-tag="mfc">
-            <a href="#">免费参考</a>
-        </li>
-    </ul>
+   <%= yield :menus %>
+   </ul>
 </div>
     <%= yield %>
 <div class="left-layer">

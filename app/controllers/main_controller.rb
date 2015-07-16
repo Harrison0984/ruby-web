@@ -13,13 +13,12 @@ class MainController < ApplicationController
 
 				@currentbar = tasklog.currentbar
 				tsktime = Time.parse(tasklog.runtime.to_s)
-				@issue = tsktime.strftime("%Y%m%d%H%M")+(tasklog.currentbar).to_s
-
-				Rails.logger.debug @issue
+				@issue = tsktime.strftime("%Y%m%d")+(tasklog.currentbar).to_s
 
 				@grid = Grid.find_by_gameid(@issue)
 			end
 
+			@gridlogs = Grid.last(10)
 			@user = User.find(session[:userid])
 		end
 	end
