@@ -1,4 +1,4 @@
-class MainhistoryController < ApplicationController
+class FlashviewController < ApplicationController
 	layout "main"
 
 	def index
@@ -15,8 +15,6 @@ class MainhistoryController < ApplicationController
 
 			@grid = Grid.find_by_gameid(@issue)
 		end
-
-		@gridlogs = Grid.where("time > ?", Time.now.beginning_of_day)
 
 		if session.has_key?(:userid) and session[:userid] != 0
 			@user = User.find(session[:userid])

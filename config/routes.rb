@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :traceresult, only: [:index]
 
+  resources :jsondata, only: [:index]
+
   match 'mainuser/changedetail', :to => 'mainuser#changedetail', 
                        :via => :get
 
@@ -41,6 +43,8 @@ Rails.application.routes.draw do
 
   match 'tracelogs/combination', :to => 'tracelogs#combination', 
                        :via => :post
+
+  resources :flashview, only: [:index]
 
   resources :tracelogs, only: [:index]
   
