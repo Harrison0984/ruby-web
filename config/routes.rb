@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :main, only: [:index]
 
+  resources :traceresult, only: [:index]
+
   match 'mainuser/changedetail', :to => 'mainuser#changedetail', 
                        :via => :get
 

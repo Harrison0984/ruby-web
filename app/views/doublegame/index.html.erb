@@ -18,7 +18,7 @@
         <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
     </li>
     <li    data-tag="mfc">
-        <a href="#">免费参考</a>
+        <%= link_to '游戏记录', controller: 'traceresult', action: 'index' %>
     </li>
 <% end %>
 <div class="lot-table" id="history">
@@ -37,7 +37,7 @@
             小
         </td>
         <td style="width: 60px; text-align: center;">
-            投注额
+            金币额
         </td>
     </tr>
         <%= form_for :tracelogs, url: tracelogs_single_path do |f| %>
@@ -214,8 +214,8 @@
         </tr>
     </tbody>
     <tfoot>
-        <tr><td colspan=7 align="center"><div>总投注额:<span style="color:red">1000</span>
-        <%= f.submit "确认投注"%>
+        <tr><td colspan=7 align="center"><div>总金币额:<span style="color:red">1000</span>
+        <%= f.submit "确认"%>
         </div></td>  </tr>
     </tfoot>
     <%end%>

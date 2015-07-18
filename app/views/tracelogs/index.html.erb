@@ -39,19 +39,37 @@
                           <tr>
                               <td><%= log.useraccount %></td>
                               <td><%= log.gameid %></td>
+                              <% if log.maintype == 1 %>
                               <% if log.gametype == 1 %>
                                 <td>四筒</td>
                               <% elsif log.gametype == 2 %>
                                 <td>顺子</td>
                               <% elsif log.gametype == 3 %>
-                                <td>小</td>
-                              <% elsif log.gametype == 4 %>
-                                <td>大</td>
-                              <% elsif log.gametype == 5 %>
                                 <td>同色</td>
-                              <% else %>
-                                <td>error</td>
                               <% end %>
+                              <% elsif log.maintype == 2 %>
+                              <% if log.gametype == 1 %>
+                                <td>大</td>
+                              <% elsif log.gametype == 2 %>
+                                <td>合</td>
+                              <% elsif log.gametype == 3 %>
+                                <td>小</td>
+                              <% end %>
+                              <% else %>
+                                <% if log.gametype == 1 %>
+                                <td>A</td>
+                                <% elsif log.gametype < 10 %>
+                                <td>log.gametype</td>
+                                <% elsif log.gametype == 11 %>
+                                <td>J</td>
+                                <% elsif log.gametype == 12 %>
+                                <td>Q</td>
+                                <% elsif log.gametype == 13 %>
+                                <td>K</td>
+                                <% end %>
+                                <td><%= log.gametype %></td>
+                              <% end %>
+                              <% if log.maintype == 1 %>
                               <% if log.pos == 1 %>
                                 <td>横一</td>
                               <% elsif log.pos == 2 %>
@@ -64,8 +82,9 @@
                                 <td>纵二</td>
                               <% elsif log.pos == 6 %>
                                 <td>纵三</td>
+                              <% end %>
                               <% else %>
-                                <td>error</td>
+                              <td>log.pos</td>
                               <% end %>
                               <td><%= log.coin %></td>
                               <% if log.status == 1 %>

@@ -1,0 +1,116 @@
+<% content_for :menus do %>
+    <li data-tag="idx">
+        <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
+    </li>
+    <li class=hover data-tag="kj">
+        <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
+    </li>
+    <li  data-tag="zhl">
+        <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
+    </li>
+    <li  data-tag="dshl">
+        <%= link_to '组合盘', controller: 'combinationgame', action: 'index' %>
+    </li>
+    <li   data-tag="sxpl">
+        <%= link_to '双面盘', controller: 'doublegame', action: 'index' %>
+    </li>
+    <li   data-tag="kjs">
+        <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
+    </li>
+    <li    data-tag="mfc">
+        <%= link_to '游戏记录', controller: 'traceresult', action: 'index' %>
+    </li>
+<% end %>
+
+<table class="lot-table" id="history">
+    <tr class="head">
+        <td style="width: 60px; text-align: center;">
+            期数
+        </td>
+        <td style="width: 60px; text-align: center;">
+            类型
+        </td>
+        <td style="width: 60px; text-align: center;">
+            位置
+        </td>
+        <td style="width: 60px; text-align: center;">
+            金币
+        </td>
+        <td style="width: 60px; text-align: center;">
+            状态
+        </td>
+    </tr>
+    <% if @gridlogs %>
+    <% @gridlogs.each do |log| %>
+    <tr class='even'>
+        <td>
+            <p class="p"><%=log.gameid%></p>
+        </td>
+        <% if log.maintype == 1 %>
+        <% if log.gametype == 1 %>
+        <td>四筒</td>
+        <% elsif log.gametype == 2 %>
+        <td>顺子</td>
+        <% elsif log.gametype == 3 %>
+        <td>同色</td>
+        <% end %>
+        <% elsif log.maintype == 2 %>
+        <% if log.gametype == 1 %>
+        <td>大</td>
+        <% elsif log.gametype == 2 %>
+        <td>合</td>
+        <% elsif log.gametype == 3 %>
+        <td>小</td>
+        <% end %>
+        <% else %>
+        <% if log.gametype == 1 %>
+        <td>A</td>
+        <% elsif log.gametype < 10 %>
+        <td>log.gametype</td>
+        <% elsif log.gametype == 11 %>
+        <td>J</td>
+        <% elsif log.gametype == 12 %>
+        <td>Q</td>
+        <% elsif log.gametype == 13 %>
+        <td>K</td>
+        <% end %>
+        <td><%= log.gametype %></td>
+        <% end %>
+        <% if log.maintype == 1 %>
+        <% if log.pos == 1 %>
+        <td>横一</td>
+        <% elsif log.pos == 2 %>
+        <td>横二</td>
+        <% elsif log.pos == 3 %>
+        <td>横三</td>
+        <% elsif log.pos == 4 %>
+        <td>纵一</td>
+        <% elsif log.pos == 5 %>
+        <td>纵二</td>
+        <% elsif log.pos == 6 %>
+        <td>纵三</td>
+        <% end %>
+        <% else %>
+        <td>log.pos</td>
+        <% end %>
+        <td><%= log.coin %></td>
+        <% if log.status == 1 %>
+        <td><font color="red">+<%= log.coin * log.mulbability %></font></td>
+        <% else %>
+        <td><%= -log.coin %></td>
+        <% end %>
+        <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>恭喜中奖<% else %> 未中奖 <% end %></td>
+    </tr>
+    <% end %>
+    <% end %>
+</table>
+<div class="lot-about mt10" style="width: 980px;">
+    <div class="l-title">
+        <h2>
+            关于北京幸运九宫格</h2>
+    </div>
+    <p>
+        北京幸运九宫格每日从早上10点至凌晨1点，每十分钟开奖一次，每日开奖90期。游戏玩法：由54张牌中随机摇出9个数字作为开奖号码，依这9个号码变化成各式不同的玩法，
+        在根据猜中的号码个数或玩法可以获得不同等级的奖金。
+    </p>
+</div>
