@@ -1,0 +1,165 @@
+<% content_for :menus do %>
+    <li data-tag="idx">
+        <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
+    </li>
+    <li data-tag="kj">
+        <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
+    </li>
+    <li data-tag="zhl">
+        <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
+    </li>
+    <li class=hover data-tag="dshl">
+        <%= link_to '组合盘', controller: 'combinationgame', action: 'index' %>
+    </li>
+    <li data-tag="sxpl">
+        <%= link_to '双面盘', controller: 'doublegame', action: 'index' %>
+    </li>
+    <li   data-tag="kjs">
+        <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
+    </li>
+    <li    data-tag="mfc">
+        <a href="#">免费参考</a>
+    </li>
+<% end %>
+<div class="lot-table" id="history">
+<table class="lot-table" id="history">
+    <tbody><tr class="head">
+        <td width="180px">
+            项目
+        </td>
+        <td>
+            同色
+        </td>
+        <td style="width: 60px; text-align: center;">
+            四筒
+        </td>
+        <td style="width: 60px; text-align: center;">
+            顺子
+        </td>
+        <td style="width: 60px; text-align: center;">
+            投注额
+        </td>
+    </tr>
+        <%= form_for :tracelogs, url: tracelogs_single_path do |f| %>
+        <tr class="even">
+            <td>
+                <p>横一</p>
+            </td>
+            <% @gridconfigs.each do |config| %>
+            <td class="nums">
+                <% if config.gridtype == 1 %>
+                <%= f.check_box :flag1_1 %>同色 赔率:<%= config.mulbability %>
+                <% elsif config.gridtype ==2 %>
+                <%= f.check_box :flag1_2 %>四筒 赔率:<%= config.mulbability %>
+                <% else %>
+                <%= f.check_box :flag1_3 %>顺子 赔率:<%= config.mulbability %>
+                <% end %>
+            </td>
+            <% end %>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin1, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>横二</p>
+            </td>
+            <% @gridconfigs.each do |config| %>
+            <td class="nums">
+                <% if config.gridtype == 1 %>
+                <%= f.check_box :flag2_1 %>同色 赔率:<%= config.mulbability %>
+                <% elsif config.gridtype ==2 %>
+                <%= f.check_box :flag2_2 %>四筒 赔率:<%= config.mulbability %>
+                <% else %>
+                <%= f.check_box :flag2_3 %>顺子 赔率:<%= config.mulbability %>
+                <% end %>
+            </td>
+            <% end %>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin2, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>横三</p>
+            </td>
+            <% @gridconfigs.each do |config| %>
+            <td class="nums">
+                <% if config.gridtype == 1 %>
+                <%= f.check_box :flag3_1 %>同色 赔率:<%= config.mulbability %>
+                <% elsif config.gridtype ==2 %>
+                <%= f.check_box :flag3_2 %>四筒 赔率:<%= config.mulbability %>
+                <% else %>
+                <%= f.check_box :flag3_3 %>顺子 赔率:<%= config.mulbability %>
+                <% end %>
+            </td>
+            <% end %>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin3, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>竖一</p>
+            </td>
+            <% @gridconfigs.each do |config| %>
+            <td class="nums">
+                <% if config.gridtype == 1 %>
+                <%= f.check_box :flag4_1 %>同色 赔率:<%= config.mulbability %>
+                <% elsif config.gridtype ==2 %>
+                <%= f.check_box :flag4_2 %>四筒 赔率:<%= config.mulbability %>
+                <% else %>
+                <%= f.check_box :flag4_3 %>顺子 赔率:<%= config.mulbability %>
+                <% end %>
+            </td>
+            <% end %>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin4, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>竖二</p>
+            </td>
+            <% @gridconfigs.each do |config| %>
+            <td class="nums">
+                <% if config.gridtype == 1 %>
+                <%= f.check_box :flag5_1 %>同色 赔率:<%= config.mulbability %>
+                <% elsif config.gridtype ==2 %>
+                <%= f.check_box :flag5_2 %>四筒 赔率:<%= config.mulbability %>
+                <% else %>
+                <%= f.check_box :flag5_3 %>顺子 赔率:<%= config.mulbability %>
+                <% end %>
+            </td>
+            <% end %>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin5, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>竖三</p>
+            </td>
+            <% @gridconfigs.each do |config| %>
+            <td class="nums">
+                <% if config.gridtype == 1 %>
+                <%= f.check_box :flag6_1 %>同色 赔率:<%= config.mulbability %>
+                <% elsif config.gridtype ==2 %>
+                <%= f.check_box :flag6_2 %>四筒 赔率:<%= config.mulbability %>
+                <% else %>
+                <%= f.check_box :flag6_3 %>顺子 赔率:<%= config.mulbability %>
+                <% end %>
+            </td>
+            <% end %>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin6, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr><td colspan=7 align="center"><div>总投注额:<span style="color:red">1000</span>
+        <%= f.submit "确认投注"%>
+        </div></td>  </tr>
+    </tfoot>
+    <%end%>
+</table>

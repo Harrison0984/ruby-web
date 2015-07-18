@@ -1,0 +1,2 @@
+class JsondataController < ApplicationController
+end

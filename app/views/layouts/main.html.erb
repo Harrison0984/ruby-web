@@ -2,7 +2,7 @@
 <!DOCTYPE HTML>
 <html xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
-    <title>快乐九宫格-皇家彩世界</title>
+    <title>幸运九宫格-皇家彩世界</title>
     <meta name="keywords" content="皇家九宫格" />
     <meta name="description" content="皇家九宫格。" />
     <meta http-equiv="X-UA-Compatible" content="IE=7">
@@ -58,14 +58,14 @@
                     <td><a href="http://www.1396b.com/" target="_blank">彩世界</a></td>
                     <td><a href="http://www.1396dh.com/" target="_blank">爱博导航</a></td>
                     <td><a href="http://soft.royaleu.com/xync/" target="_blank">幸运农场</a></td>
-                    <td><a href="http://soft.royaleu.com/ssbd/" target="_blank">广东快乐十分</a></td>
+                    <td><a href="http://soft.royaleu.com/ssbd/" target="_blank">广东幸运十分</a></td>
                     <td><a href="http://soft.royaleu.com/bsj/" target="_blank">博世界</a></td>
                 </tr>
                 <tr>
                     <td><a href="http://www.1396b.com/software/" target="_blank">软件中心</a></td>
                     <td><a href="http://www.1396sp.com/" target="_blank">视频联盟</a></td>
                     <td><a href="http://soft.royaleu.com/abm/" target="_blank">自动下注软件</a></td>
-                    <td><a href="http://soft.royaleu.com/bjk8/" target="_blank">北京快乐九宫格</a></td>
+                    <td><a href="http://soft.royaleu.com/bjk8/" target="_blank">北京幸运九宫格</a></td>
                     <td><a href="http://soft.royaleu.com/ssbd/" target="_blank">北京PK10</a></td>
                 </tr>
             </table>
@@ -139,7 +139,7 @@
     </div>
     <ul class="lot-menu">
     <li>
-        <%= link_to '快乐九宫格', controller: 'main', action: 'index' %>
+        <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
     </li>
     <li>
         <a href="/pk10/" >北京赛车pk10</a>
@@ -148,7 +148,7 @@
         <a href="/shishicai/" >重庆时时彩</a>
     </li>
     <li>
-        <a href="/gdkl10/" >广东快乐十分</a>
+        <a href="/gdkl10/" >广东幸运十分</a>
     </li>
     <li>
         <a href="/jxssc/" >江西时时彩</a>
@@ -171,7 +171,7 @@
 </ul>
 <ul class="lot-award">
     <li class="logo">
-        <img src=<%= image_url("kl8-logo.png") %> alt="北京快乐九宫格"/>
+        <img src=<%= image_url("kl8-logo.png") %> alt="北京幸运九宫格"/>
     </li>
     <li class="currentAward">
         <div class="title">
@@ -182,15 +182,15 @@
         <div class="period-info" >每日销售<span>90</span>期，今日剩余<span class="period-leave"><%= 90-@currentbar.to_i %></span>期</div>
         <div class="lot-nums">
             <% if @grid %>
-            <span class=<%= "no#{(@grid.x1+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.x2+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.x3+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.y1+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.y2+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.y3+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.z1+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.z2+1).to_s.ljust(2, '0')}" %>></span>
-            <span class=<%= "no#{(@grid.z3+1).to_s.ljust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.x1+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.x2+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.x3+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.y1+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.y2+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.y3+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.z1+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.z2+1).to_s.rjust(2, '0')}" %>></span>
+            <span class=<%= "no#{(@grid.z3+1).to_s.rjust(2, '0')}" %>></span>
             <% end %>
         </div>
     </li>

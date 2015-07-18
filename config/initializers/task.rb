@@ -5,7 +5,7 @@ require 'rufus-scheduler'
 s = Rufus::Scheduler.new
 
 #task list
-objects = Array.new(228)
+objects = Array.new(90)
 
 #current task index
 objindex = 0 
@@ -30,6 +30,7 @@ def randomGrid
 	object = []
 	for i in 0..8 do
 		begin
+			srand()
 			idx = rand(53)
 		end while object.include?(idx)
 
@@ -160,7 +161,7 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 		user.save
 	end
 
-	for i in 1..5
+	for i in 1..7
 		gridconfig = Gridconfig.find_by_gridtype(i)
 		if gridconfig == nil
 			gridconfig = Gridconfig.new
@@ -178,21 +179,21 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	gridconfigs = Gridconfig.all
 	gridconfigs.each do |config|
 		if config.gridtype == 1
-			max_same = config.probability*228
+			max_same = config.probability*90
 		elsif config.gridtype == 2
-			max_order = config.probability*228
+			max_order = config.probability*90
 		elsif config.gridtype == 3
-			max_small = config.probability*228
+			max_small = config.probability*90
 		elsif config.gridtype == 4
-			max_big = config.probability*228
+			max_big = config.probability*90
 		elsif config.gridtype == 5
-			max_color = config.probability*228
+			max_color = config.probability*90
 		end
 	end
 
 	objects = []
 	objindex = 0
-	for i in 0..227
+	for i in 0..89
 		begin
 			object, samenum, ordernum, smallnum, bignum, colornum = randomGrid
 			if day_same + samenum <= max_same and day_order + ordernum <= max_order and
@@ -212,8 +213,9 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects[i] = object
 	end
 
-	for i in 0..227
-		index = rand(228)
+	for i in 0..89
+		srand()
+		index = rand(90)
 		tmp = objects[index]
 		objects[index] = objects[i]
 		objects[i] = tmp
@@ -321,10 +323,12 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
 				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M")
 				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
+				tasklog.nextgameid = curtime.strftime("%Y%m%d")+(objindex+2).to_s
 				tasklog.save
 			else
 				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, 
 					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M"),
+					nextgameid: curtime.strftime("%Y%m%d")+(objindex+2).to_s,
 					nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
 			end
 

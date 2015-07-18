@@ -30,10 +30,19 @@ Rails.application.routes.draw do
 
   match 'users/child/id', :to => 'users#child', 
                        :via => :get
+
+  match 'tracelogs/single', :to => 'tracelogs#single', 
+                       :via => :post
+
+  match 'tracelogs/double', :to => 'tracelogs#double', 
+                       :via => :post
+
+  match 'tracelogs/combination', :to => 'tracelogs#combination', 
+                       :via => :post
+
+  resources :tracelogs, only: [:index]
   
   resources :manage, only: [:index, :show]
-
-  resources :tracelogs, only: [:index, :create]
 
   resources :operlogs, only: [:index]
 

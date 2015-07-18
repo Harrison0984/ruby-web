@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.datetime "updated_at", null: false
     t.date     "taskdate"
     t.datetime "nexttime"
+    t.string   "nextgameid"
   end
 
   create_table "tracelogs", force: :cascade do |t|
@@ -81,6 +82,8 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.datetime "updated_at",  null: false
     t.integer  "maintype"
     t.string   "gameid"
+    t.string   "nextgameid"
+    t.string   "flag"
   end
 
   create_table "users", force: :cascade do |t|

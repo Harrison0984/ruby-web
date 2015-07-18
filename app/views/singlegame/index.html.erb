@@ -1,27 +1,253 @@
-{
-	"servertime":"2015-12-11 10:10:11",	//服务器当前时间
-	"nextno":123,						//下期期号
-	"nexttime":"2015-12-11 10:10:15",	//下期时间
-	"history":[							//历史记录
-		{
-			"no":122,							//期号
-			"num":"1,13,44,36,23,7,50,45,35",	//结果
-			"time":"2015-12-11 10:10:10"		//开奖时间
-		},
-		{
-			"no":121,
-			"num":"1,13,44,36,23,7,50,45,35",
-			"time":"2015-12-11 10:10:10"
-		},
-		{
-			"no":120,
-			"num":"1,13,44,36,23,7,50,45,35",
-			"time":"2015-12-11 10:10:10"
-		},
-		{
-			"no":119,
-			"num":"1,13,44,36,23,7,50,45,35",
-			"time":"2015-12-11 10:10:10"
-		},
-	]
-}
+<% content_for :menus do %>
+    <li data-tag="idx">
+        <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
+    </li>
+    <li data-tag="kj">
+        <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
+    </li>
+    <li class=hover data-tag="zhl">
+        <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
+    </li>
+    <li data-tag="dshl">
+        <%= link_to '组合盘', controller: 'combinationgame', action: 'index' %>
+    </li>
+    <li   data-tag="sxpl">
+        <%= link_to '双面盘', controller: 'doublegame', action: 'index' %>
+    </li>
+    <li   data-tag="kjs">
+        <a href="/kl9/shipin" class="redColor">九宫格开奖直播</a>
+    </li>
+    <li    data-tag="mfc">
+        <a href="#">免费参考</a>
+    </li>
+<% end %>
+<div class="lot-table" id="history">
+<table class="lot-table" id="history">
+    <tbody><tr class="head">
+        <td width="180px">
+            项目
+        </td>
+        <td>
+            牌面
+        </td>
+        <td style="width: 60px; text-align: center;">
+            投注额
+        </td>
+    </tr>
+        <%= form_for :tracelogs, url: tracelogs_single_path do |f| %>
+        <tr class="even">
+            <td>
+                <p>1</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag1_1 %>A
+                <%= f.check_box :flag1_2 %>2
+                <%= f.check_box :flag1_3 %>3
+                <%= f.check_box :flag1_4 %>4
+                <%= f.check_box :flag1_5 %>5
+                <%= f.check_box :flag1_6 %>6
+                <%= f.check_box :flag1_7 %>7
+                <%= f.check_box :flag1_8 %>8
+                <%= f.check_box :flag1_9 %>9
+                <%= f.check_box :flag1_10 %>10
+                <%= f.check_box :flag1_11 %>J
+                <%= f.check_box :flag1_12 %>Q
+                <%= f.check_box :flag1_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin1, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>2</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag2_1 %>A
+                <%= f.check_box :flag2_2 %>2
+                <%= f.check_box :flag2_3 %>3
+                <%= f.check_box :flag2_4 %>4
+                <%= f.check_box :flag2_5 %>5
+                <%= f.check_box :flag2_6 %>6
+                <%= f.check_box :flag2_7 %>7
+                <%= f.check_box :flag2_8 %>8
+                <%= f.check_box :flag2_9 %>9
+                <%= f.check_box :flag2_10 %>10
+                <%= f.check_box :flag2_11 %>J
+                <%= f.check_box :flag2_12 %>Q
+                <%= f.check_box :flag2_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin2, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>3</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag3_1 %>A
+                <%= f.check_box :flag3_2 %>2
+                <%= f.check_box :flag3_3 %>3
+                <%= f.check_box :flag3_4 %>4
+                <%= f.check_box :flag3_5 %>5
+                <%= f.check_box :flag3_6 %>6
+                <%= f.check_box :flag3_7 %>7
+                <%= f.check_box :flag3_8 %>8
+                <%= f.check_box :flag3_9 %>9
+                <%= f.check_box :flag3_10 %>10
+                <%= f.check_box :flag3_11 %>J
+                <%= f.check_box :flag3_12 %>Q
+                <%= f.check_box :flag3_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin3, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>4</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag4_1 %>A
+                <%= f.check_box :flag4_2 %>2
+                <%= f.check_box :flag4_3 %>3
+                <%= f.check_box :flag4_4 %>4
+                <%= f.check_box :flag4_5 %>5
+                <%= f.check_box :flag4_6 %>6
+                <%= f.check_box :flag4_7 %>7
+                <%= f.check_box :flag4_8 %>8
+                <%= f.check_box :flag4_9 %>9
+                <%= f.check_box :flag4_10 %>10
+                <%= f.check_box :flag4_11 %>J
+                <%= f.check_box :flag4_12 %>Q
+                <%= f.check_box :flag4_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin4, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>5</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag5_1 %>A
+                <%= f.check_box :flag5_2 %>2
+                <%= f.check_box :flag5_3 %>3
+                <%= f.check_box :flag5_4 %>4
+                <%= f.check_box :flag5_5 %>5
+                <%= f.check_box :flag5_6 %>6
+                <%= f.check_box :flag5_7 %>7
+                <%= f.check_box :flag5_8 %>8
+                <%= f.check_box :flag5_9 %>9
+                <%= f.check_box :flag5_10 %>10
+                <%= f.check_box :flag5_11 %>J
+                <%= f.check_box :flag5_12 %>Q
+                <%= f.check_box :flag5_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin5, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>6</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag6_1 %>A
+                <%= f.check_box :flag6_2 %>2
+                <%= f.check_box :flag6_3 %>3
+                <%= f.check_box :flag6_4 %>4
+                <%= f.check_box :flag6_5 %>5
+                <%= f.check_box :flag6_6 %>6
+                <%= f.check_box :flag6_7 %>7
+                <%= f.check_box :flag6_8 %>8
+                <%= f.check_box :flag6_9 %>9
+                <%= f.check_box :flag6_10 %>10
+                <%= f.check_box :flag6_11 %>J
+                <%= f.check_box :flag6_12 %>Q
+                <%= f.check_box :flag6_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin6, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>7</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag7_1 %>A
+                <%= f.check_box :flag7_2 %>2
+                <%= f.check_box :flag7_3 %>3
+                <%= f.check_box :flag7_4 %>4
+                <%= f.check_box :flag7_5 %>5
+                <%= f.check_box :flag7_6 %>6
+                <%= f.check_box :flag7_7 %>7
+                <%= f.check_box :flag7_8 %>8
+                <%= f.check_box :flag7_9 %>9
+                <%= f.check_box :flag7_10 %>10
+                <%= f.check_box :flag7_11 %>J
+                <%= f.check_box :flag7_12 %>Q
+                <%= f.check_box :flag7_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin7, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>8</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag8_1 %>A
+                <%= f.check_box :flag8_2 %>2
+                <%= f.check_box :flag8_3 %>3
+                <%= f.check_box :flag8_4 %>4
+                <%= f.check_box :flag8_5 %>5
+                <%= f.check_box :flag8_6 %>6
+                <%= f.check_box :flag8_7 %>7
+                <%= f.check_box :flag8_8 %>8
+                <%= f.check_box :flag8_9 %>9
+                <%= f.check_box :flag8_10 %>10
+                <%= f.check_box :flag8_11 %>J
+                <%= f.check_box :flag8_12 %>Q
+                <%= f.check_box :flag8_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin8, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+        <tr class="even">
+            <td>
+                <p>9</p>
+            </td>
+            <td class="nums">
+                <%= f.check_box :flag9_1 %>A
+                <%= f.check_box :flag9_2 %>2
+                <%= f.check_box :flag9_3 %>3
+                <%= f.check_box :flag9_4 %>4
+                <%= f.check_box :flag9_5 %>5
+                <%= f.check_box :flag9_6 %>6
+                <%= f.check_box :flag9_7 %>7
+                <%= f.check_box :flag9_8 %>8
+                <%= f.check_box :flag9_9 %>9
+                <%= f.check_box :flag9_10 %>10
+                <%= f.check_box :flag9_11 %>J
+                <%= f.check_box :flag9_12 %>Q
+                <%= f.check_box :flag9_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+            </td>
+            <td style="padding-left:10px; padding-right:10px;">
+                <%= f.text_field :coin9, class: "form-control", placeholder: "金币"%>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr><td colspan=7 align="center"><div>总投注额:<span style="color:red">1000</span>
+        <%= f.submit "确认投注"%>
+        </div></td>
+        </tr>
+    </tfoot>
+    <%end%>
+</table>
