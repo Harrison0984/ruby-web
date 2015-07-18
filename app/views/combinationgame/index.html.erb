@@ -28,10 +28,10 @@
             项目
         </td>
         <td>
-            同色
+            四筒
         </td>
         <td style="width: 60px; text-align: center;">
-            四筒
+            同色
         </td>
         <td style="width: 60px; text-align: center;">
             顺子
@@ -40,7 +40,7 @@
             金币额
         </td>
     </tr>
-        <%= form_for :tracelogs, url: tracelogs_single_path do |f| %>
+        <%= form_for :tracelogs, url: tracelogs_combination_path do |f| %>
         <tr class="even">
             <td>
                 <p>横一</p>
@@ -48,9 +48,9 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 1 %>
-                <%= f.check_box :flag1_1 %>同色 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag1_1 %>四筒 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype ==2 %>
-                <%= f.check_box :flag1_2 %>四筒 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag1_2 %>同色 赔率:<%= config.mulbability %>
                 <% else %>
                 <%= f.check_box :flag1_3 %>顺子 赔率:<%= config.mulbability %>
                 <% end %>
@@ -67,9 +67,9 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 1 %>
-                <%= f.check_box :flag2_1 %>同色 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag2_1 %>四筒 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype ==2 %>
-                <%= f.check_box :flag2_2 %>四筒 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag2_2 %>同色 赔率:<%= config.mulbability %>
                 <% else %>
                 <%= f.check_box :flag2_3 %>顺子 赔率:<%= config.mulbability %>
                 <% end %>
@@ -86,9 +86,9 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 1 %>
-                <%= f.check_box :flag3_1 %>同色 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag3_1 %>四筒 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype ==2 %>
-                <%= f.check_box :flag3_2 %>四筒 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag3_2 %>同色 赔率:<%= config.mulbability %>
                 <% else %>
                 <%= f.check_box :flag3_3 %>顺子 赔率:<%= config.mulbability %>
                 <% end %>
@@ -105,9 +105,9 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 1 %>
-                <%= f.check_box :flag4_1 %>同色 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag4_1 %>四筒 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype ==2 %>
-                <%= f.check_box :flag4_2 %>四筒 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag4_2 %>同色 赔率:<%= config.mulbability %>
                 <% else %>
                 <%= f.check_box :flag4_3 %>顺子 赔率:<%= config.mulbability %>
                 <% end %>
@@ -124,9 +124,9 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 1 %>
-                <%= f.check_box :flag5_1 %>同色 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag5_1 %>四筒 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype ==2 %>
-                <%= f.check_box :flag5_2 %>四筒 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag5_2 %>同色 赔率:<%= config.mulbability %>
                 <% else %>
                 <%= f.check_box :flag5_3 %>顺子 赔率:<%= config.mulbability %>
                 <% end %>
@@ -143,9 +143,9 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 1 %>
-                <%= f.check_box :flag6_1 %>同色 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag6_1 %>四筒 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype ==2 %>
-                <%= f.check_box :flag6_2 %>四筒 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag6_2 %>同色 赔率:<%= config.mulbability %>
                 <% else %>
                 <%= f.check_box :flag6_3 %>顺子 赔率:<%= config.mulbability %>
                 <% end %>

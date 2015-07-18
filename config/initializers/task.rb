@@ -13,6 +13,9 @@ objindex = 0
 max_same = 0
 day_same = 0
 
+max_color = 0
+day_color = 0
+
 max_order = 0
 day_order = 0
 
@@ -21,9 +24,6 @@ day_small = 0
 
 max_big = 0
 day_big = 0
-
-max_color = 0
-day_color = 0
 
 def randomGrid
 
@@ -259,14 +259,6 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
 	  			elsif log.gametype = 3 and lssmall.include?(log.pos)
-	  				prizecoin = log.coin * log.mulbability
-	  				processprize(log.userid, prizecoin)
-	  				log.update(status: 1)
-	  			elsif log.gametype = 4 and lsbig.include?(log.pos)
-	  				prizecoin = log.coin * log.mulbability
-	  				processprize(log.userid, prizecoin)
-	  				log.update(status: 1)
-	  			elsif log.gametype = 5 and lscolor.include?(log.pos)
 	  				prizecoin = log.coin * log.mulbability
 	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)

@@ -2,7 +2,7 @@
     <li data-tag="idx">
         <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
     </li>
-    <li class=hover data-tag="kj">
+    <li data-tag="kj">
         <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
     </li>
     <li  data-tag="zhl">
@@ -17,7 +17,7 @@
     <li   data-tag="kjs">
         <%= link_to '九宫格开奖直播', controller: 'flashview', action: 'index' %>
     </li>
-    <li    data-tag="mfc">
+    <li class=hover data-tag="mfc">
         <%= link_to '游戏记录', controller: 'traceresult', action: 'index' %>
     </li>
 <% end %>
@@ -41,7 +41,7 @@
         </td>
     </tr>
     <% if @gridlogs %>
-    <% @gridlogs.each do |log| %>
+    <% @gridlogs.reverse_each do |log| %>
     <tr class='even'>
         <td>
             <p class="p"><%=log.gameid%></p>
@@ -50,11 +50,11 @@
         <% if log.gametype == 1 %>
         <td>四筒</td>
         <% elsif log.gametype == 2 %>
-        <td>顺子</td>
-        <% elsif log.gametype == 3 %>
         <td>同色</td>
+        <% elsif log.gametype == 3 %>
+        <td>顺子</td>
         <% end %>
-        <% elsif log.maintype == 2 %>
+        <% elsif log.maintype == 3 %>
         <% if log.gametype == 1 %>
         <td>大</td>
         <% elsif log.gametype == 2 %>
@@ -65,8 +65,8 @@
         <% else %>
         <% if log.gametype == 1 %>
         <td>A</td>
-        <% elsif log.gametype < 10 %>
-        <td>log.gametype</td>
+        <% elsif log.gametype <= 10 %>
+        <td><%= log.gametype %></td>
         <% elsif log.gametype == 11 %>
         <td>J</td>
         <% elsif log.gametype == 12 %>
@@ -74,7 +74,6 @@
         <% elsif log.gametype == 13 %>
         <td>K</td>
         <% end %>
-        <td><%= log.gametype %></td>
         <% end %>
         <% if log.maintype == 1 %>
         <% if log.pos == 1 %>
@@ -91,13 +90,14 @@
         <td>纵三</td>
         <% end %>
         <% else %>
-        <td>log.pos</td>
+        <td><%= log.pos %></td>
         <% end %>
-        <td><%= log.coin %></td>
         <% if log.status == 1 %>
         <td><font color="red">+<%= log.coin * log.mulbability %></font></td>
-        <% else %>
+        <% elsif log.status == -1 %>
         <td><%= -log.coin %></td>
+        <% else %>
+        <td><%= log.coin %>
         <% end %>
         <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>恭喜中奖<% else %> 未中奖 <% end %></td>
     </tr>

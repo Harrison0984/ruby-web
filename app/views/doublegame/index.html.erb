@@ -40,7 +40,7 @@
             金币额
         </td>
     </tr>
-        <%= form_for :tracelogs, url: tracelogs_single_path do |f| %>
+        <%= form_for :tracelogs, url: tracelogs_double_path do |f| %>
         <tr class="even">
             <td>
                 <p>1</p>
@@ -67,11 +67,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag2_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag2_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag2_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -86,11 +86,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag3_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag3_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag3_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -105,11 +105,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag4_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag4_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag4_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -124,11 +124,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag5_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag5_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag5_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -143,11 +143,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag6_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag6_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag6_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -162,11 +162,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag7_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag7_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag7_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -181,11 +181,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag8_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag8_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag8_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>
@@ -200,11 +200,11 @@
             <% @gridconfigs.each do |config| %>
             <td class="nums">
                 <% if config.gridtype == 4 %>
-                <%= f.check_box :flag1_1 %>大 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag9_1 %>大 赔率:<%= config.mulbability %>
                 <% elsif config.gridtype == 5 %>
-                <%= f.check_box :flag1_2 %>合 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag9_2 %>合 赔率:<%= config.mulbability %>
                 <% else %>
-                <%= f.check_box :flag1_3 %>小 赔率:<%= config.mulbability %>
+                <%= f.check_box :flag9_3 %>小 赔率:<%= config.mulbability %>
                 <% end %>
             </td>
             <% end %>

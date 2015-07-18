@@ -14,6 +14,7 @@ class TraceresultController < ApplicationController
 			@issue = tsktime.strftime("%Y%m%d")+(tasklog.currentbar).to_s
 
 			@grid = Grid.find_by_gameid(@issue)
+			@gridlogs = Tracelog.where("time > ?", (curtime - 60*60).strftime("%Y-%m-%d %H:%M"))
 		end
 
 		if session.has_key?(:userid) and session[:userid] != 0
