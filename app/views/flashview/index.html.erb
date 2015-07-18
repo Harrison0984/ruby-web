@@ -22,9 +22,7 @@
     </li>
 <% end %>
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.js"></script>
-<script  language="javascript" type="text/javascript" src="/timer.jquery.js"> </script> 
+<% content_for :script do %>
 <script type="text/javascript">
 function thisMovie(movieName) {
     if (window.document[movieName]) {
@@ -52,11 +50,6 @@ function thisMovie(movieName) {
         thisMovie('luck').hisNum(2015071602,"2,2,2,4,5,6,7,8,8",1);
         thisMovie('luck').hisNum(2015071601,"1,1,1,4,5,6,7,8,8",2);
     }
-</script>
-
-
-<script type="text/javascript">
-
 
 $(document).ready(function(){
   $("#refresh").click(function(){
@@ -99,9 +92,6 @@ function onGotJson(data, status)
       //alert(obj.servertime);
 }
 
-
-
-
   $('#refresh').timer({
   seconds: 3,
   duration: '3s',
@@ -110,13 +100,10 @@ function onGotJson(data, status)
   },
   repeat:true
 });
-
-
 </script>
+<% end %>
 
-</head>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <body>
 <div id="div-id"></div>
