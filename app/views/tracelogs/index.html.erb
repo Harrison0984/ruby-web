@@ -29,7 +29,6 @@
                                 <th>类型</th>
                                 <th>位置</th>
                                 <th>金币</th>
-                                <th>状态</th>
                                 <th>结果</th>
                                 <th>时间</th>
                             </tr>
@@ -59,7 +58,7 @@
                                 <% if log.gametype == 1 %>
                                 <td>A</td>
                                 <% elsif log.gametype < 10 %>
-                                <td>log.gametype</td>
+                                <td><%=log.gametype%></td>
                                 <% elsif log.gametype == 11 %>
                                 <td>J</td>
                                 <% elsif log.gametype == 12 %>
@@ -67,7 +66,6 @@
                                 <% elsif log.gametype == 13 %>
                                 <td>K</td>
                                 <% end %>
-                                <td><%= log.gametype %></td>
                               <% end %>
                               <% if log.maintype == 1 %>
                               <% if log.pos == 1 %>
@@ -84,9 +82,8 @@
                                 <td>纵三</td>
                               <% end %>
                               <% else %>
-                              <td>log.pos</td>
+                              <td><%=log.pos%></td>
                               <% end %>
-                              <td><%= log.coin %></td>
                               <% if log.status == 1 %>
                               <td><font color="red">+<%= log.coin * log.mulbability %></font></td>
                               <% else %>
