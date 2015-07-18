@@ -51,15 +51,15 @@
             <p class="t"><%=Time.parse(log.time.to_s).strftime("%m-%d %H:%M")%></p>
         </td>
         <td class="nums">
-        <i class=<%= "lot-no#{(log.x1+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.x2+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.x3+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.y1+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.y2+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.y3+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.z1+1).to_s.ljust(2, '0')}" %>></i>                
-        <i class=<%= "lot-no#{(log.z2+1).to_s.ljust(2, '0')}" %>></i>                 
-        <i class=<%= "lot-no#{(log.z3+1).to_s.ljust(2, '0')}" %>></i>                 
+        <i class=<%= "lot-no#{(log.x1+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.x2+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.x3+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.y1+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.y2+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.y3+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.z1+1).to_s.rjust(2, '0')}" %>></i>                
+        <i class=<%= "lot-no#{(log.z2+1).to_s.rjust(2, '0')}" %>></i>                 
+        <i class=<%= "lot-no#{(log.z3+1).to_s.rjust(2, '0')}" %>></i>                 
         </td>
         <td>
         <p><%if (log.x1+log.x2+log.x3+log.y1+log.y2+log.y3+log.z1+log.z2+log.z3)%2 == 0%>
