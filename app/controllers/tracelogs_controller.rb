@@ -17,7 +17,7 @@ class TracelogsController < ApplicationController
 		if session[:userid] != 0
 			taskinfo = Tasklog.last
 			seconds = (taskinfo.nexttime - Time.new).to_i
-			totalcoin = 100
+			totalcoin = params[:tracelogs][:cointotal].to_i
 			user = User.find(session[:userid])
 			if seconds > 60 and user and user.coin > totalcoin
 				curtime = Time.new
@@ -92,7 +92,7 @@ class TracelogsController < ApplicationController
 		if session[:userid] != 0
 			taskinfo = Tasklog.last
 			seconds = (taskinfo.nexttime - Time.new).to_i
-			totalcoin = 100
+			totalcoin = params[:tracelogs][:cointotal].to_i
 			user = User.find(session[:userid])
 			if seconds > 60 and user and user.coin > totalcoin
 
@@ -343,18 +343,7 @@ class TracelogsController < ApplicationController
 	def combination
 		taskinfo = Tasklog.last
 		seconds = (taskinfo.nexttime - Time.new).to_i
-		totalcoin = (params[:tracelogs][:coin1].to_i + params[:tracelogs][:coin2].to_i +
-					 params[:tracelogs][:coin3].to_i + params[:tracelogs][:coin4].to_i + 
-					 params[:tracelogs][:coin5].to_i + params[:tracelogs][:coin6].to_i) *
-					(params[:tracelogs][:flag1_1].to_i + params[:tracelogs][:flag1_2].to_i +
-					params[:tracelogs][:flag1_3].to_i + params[:tracelogs][:flag2_1].to_i +
-					params[:tracelogs][:flag2_2].to_i + params[:tracelogs][:flag2_3].to_i +
-					params[:tracelogs][:flag3_1].to_i + params[:tracelogs][:flag3_2].to_i +
-					params[:tracelogs][:flag3_3].to_i + params[:tracelogs][:flag4_1].to_i +
-					params[:tracelogs][:flag4_2].to_i + params[:tracelogs][:flag4_3].to_i +
-					params[:tracelogs][:flag5_1].to_i + params[:tracelogs][:flag5_2].to_i +
-					params[:tracelogs][:flag5_3].to_i + params[:tracelogs][:flag6_1].to_i +
-					params[:tracelogs][:flag6_2].to_i + params[:tracelogs][:flag6_3].to_i)
+		totalcoin = params[:tracelogs][:cointotal].to_i
 		user = User.find(session[:userid])
 		if seconds > 60 and user and user.coin > totalcoin
 

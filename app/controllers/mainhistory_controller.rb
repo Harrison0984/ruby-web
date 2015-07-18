@@ -16,6 +16,10 @@ class MainhistoryController < ApplicationController
 			@grid = Grid.find_by_gameid(@issue)
 		end
 
+		if @minutes < 0
+			@minutes = 9
+		end
+
 		@gridlogs = Grid.where("time > ?", Time.now.beginning_of_day)
 
 		if session.has_key?(:userid) and session[:userid] != 0

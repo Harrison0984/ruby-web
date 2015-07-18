@@ -21,6 +21,60 @@
         <%= link_to '游戏记录', controller: 'traceresult', action: 'index' %>
     </li>
 <% end %>
+
+<% content_for :script do %>
+$(document).ready(
+    function(){
+    setInterval(countdown, 1000);
+  })
+    function countdown() {
+        var minute = document.getElementById("minute");
+        var second = document.getElementById("second");
+        var newSeconds = parseInt(second.innerText) - 1;
+        var newMinute = parseInt(minute.innerText);
+        if (newSeconds == 0 && newMinute > 0) {
+          newMinute -= 1;
+          newSeconds = 59;
+        }
+        if (newSeconds == 0 && newMinute == 0) {
+          location.reload();
+        }
+        if (!isNaN(newMinute)) {
+          minute.innerHTML = newMinute;
+        }
+        if (!isNaN(newSeconds)) {
+          second.innerHTML = newSeconds;
+        }
+    }
+$(".coin").blur(function(){
+        var total = 0;
+        var price = parseInt($(this).val());
+        if (isNaN(price))
+            return;
+        var par = $(this).parent().parent();
+        par.find('.reccheck').each(function(index, element){
+            if($(this).prop("checked"))
+                total += price;
+        })
+        par.find('.coincount').val(total);
+        updateTotal();
+    }
+  );
+
+$(".reccheck").change(function(){
+        $('.coin').blur();
+    }
+  );
+    function updateTotal(){
+            var total = 0;
+            $('body').find('.coincount').each(function(index, element){
+                total += parseInt($(this).val());
+            });
+            $("#coinTotal").text(total.toString());
+            document.getElementById("cointotal").value = total;
+    }
+<% end %>
+
 <div class="lot-table" id="history">
 <table class="lot-table" id="history">
     <tbody><tr class="head">
@@ -29,6 +83,9 @@
         </td>
         <td>
             牌面
+        </td>
+        <td style="width: 60px; text-align: center;">
+            每项金币
         </td>
         <td style="width: 60px; text-align: center;">
             金币额
@@ -40,22 +97,25 @@
                 <p>1</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag1_1 %>A
-                <%= f.check_box :flag1_2 %>2
-                <%= f.check_box :flag1_3 %>3
-                <%= f.check_box :flag1_4 %>4
-                <%= f.check_box :flag1_5 %>5
-                <%= f.check_box :flag1_6 %>6
-                <%= f.check_box :flag1_7 %>7
-                <%= f.check_box :flag1_8 %>8
-                <%= f.check_box :flag1_9 %>9
-                <%= f.check_box :flag1_10 %>10
-                <%= f.check_box :flag1_11 %>J
-                <%= f.check_box :flag1_12 %>Q
-                <%= f.check_box :flag1_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag1_1, class:"reccheck" %>A
+                <%= f.check_box :flag1_2, class:"reccheck" %>2
+                <%= f.check_box :flag1_3, class:"reccheck" %>3
+                <%= f.check_box :flag1_4, class:"reccheck" %>4
+                <%= f.check_box :flag1_5, class:"reccheck" %>5
+                <%= f.check_box :flag1_6, class:"reccheck" %>6
+                <%= f.check_box :flag1_7, class:"reccheck" %>7
+                <%= f.check_box :flag1_8, class:"reccheck" %>8
+                <%= f.check_box :flag1_9, class:"reccheck" %>9
+                <%= f.check_box :flag1_10, class:"reccheck" %>10
+                <%= f.check_box :flag1_11, class:"reccheck" %>J
+                <%= f.check_box :flag1_12, class:"reccheck" %>Q
+                <%= f.check_box :flag1_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin1, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin1, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount1" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -63,22 +123,25 @@
                 <p>2</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag2_1 %>A
-                <%= f.check_box :flag2_2 %>2
-                <%= f.check_box :flag2_3 %>3
-                <%= f.check_box :flag2_4 %>4
-                <%= f.check_box :flag2_5 %>5
-                <%= f.check_box :flag2_6 %>6
-                <%= f.check_box :flag2_7 %>7
-                <%= f.check_box :flag2_8 %>8
-                <%= f.check_box :flag2_9 %>9
-                <%= f.check_box :flag2_10 %>10
-                <%= f.check_box :flag2_11 %>J
-                <%= f.check_box :flag2_12 %>Q
-                <%= f.check_box :flag2_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag2_1, class:"reccheck" %>A
+                <%= f.check_box :flag2_2, class:"reccheck" %>2
+                <%= f.check_box :flag2_3, class:"reccheck" %>3
+                <%= f.check_box :flag2_4, class:"reccheck" %>4
+                <%= f.check_box :flag2_5, class:"reccheck" %>5
+                <%= f.check_box :flag2_6, class:"reccheck" %>6
+                <%= f.check_box :flag2_7, class:"reccheck" %>7
+                <%= f.check_box :flag2_8, class:"reccheck" %>8
+                <%= f.check_box :flag2_9, class:"reccheck" %>9
+                <%= f.check_box :flag2_10, class:"reccheck" %>10
+                <%= f.check_box :flag2_11, class:"reccheck" %>J
+                <%= f.check_box :flag2_12, class:"reccheck" %>Q
+                <%= f.check_box :flag2_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin2, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin2, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount2" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -86,22 +149,25 @@
                 <p>3</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag3_1 %>A
-                <%= f.check_box :flag3_2 %>2
-                <%= f.check_box :flag3_3 %>3
-                <%= f.check_box :flag3_4 %>4
-                <%= f.check_box :flag3_5 %>5
-                <%= f.check_box :flag3_6 %>6
-                <%= f.check_box :flag3_7 %>7
-                <%= f.check_box :flag3_8 %>8
-                <%= f.check_box :flag3_9 %>9
-                <%= f.check_box :flag3_10 %>10
-                <%= f.check_box :flag3_11 %>J
-                <%= f.check_box :flag3_12 %>Q
-                <%= f.check_box :flag3_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag3_1, class:"reccheck" %>A
+                <%= f.check_box :flag3_2, class:"reccheck" %>2
+                <%= f.check_box :flag3_3, class:"reccheck" %>3
+                <%= f.check_box :flag3_4, class:"reccheck" %>4
+                <%= f.check_box :flag3_5, class:"reccheck" %>5
+                <%= f.check_box :flag3_6, class:"reccheck" %>6
+                <%= f.check_box :flag3_7, class:"reccheck" %>7
+                <%= f.check_box :flag3_8, class:"reccheck" %>8
+                <%= f.check_box :flag3_9, class:"reccheck" %>9
+                <%= f.check_box :flag3_10, class:"reccheck" %>10
+                <%= f.check_box :flag3_11, class:"reccheck" %>J
+                <%= f.check_box :flag3_12, class:"reccheck" %>Q
+                <%= f.check_box :flag3_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin3, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin3, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount3" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -109,22 +175,25 @@
                 <p>4</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag4_1 %>A
-                <%= f.check_box :flag4_2 %>2
-                <%= f.check_box :flag4_3 %>3
-                <%= f.check_box :flag4_4 %>4
-                <%= f.check_box :flag4_5 %>5
-                <%= f.check_box :flag4_6 %>6
-                <%= f.check_box :flag4_7 %>7
-                <%= f.check_box :flag4_8 %>8
-                <%= f.check_box :flag4_9 %>9
-                <%= f.check_box :flag4_10 %>10
-                <%= f.check_box :flag4_11 %>J
-                <%= f.check_box :flag4_12 %>Q
-                <%= f.check_box :flag4_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag4_1, class:"reccheck" %>A
+                <%= f.check_box :flag4_2, class:"reccheck" %>2
+                <%= f.check_box :flag4_3, class:"reccheck" %>3
+                <%= f.check_box :flag4_4, class:"reccheck" %>4
+                <%= f.check_box :flag4_5, class:"reccheck" %>5
+                <%= f.check_box :flag4_6, class:"reccheck" %>6
+                <%= f.check_box :flag4_7, class:"reccheck" %>7
+                <%= f.check_box :flag4_8, class:"reccheck" %>8
+                <%= f.check_box :flag4_9, class:"reccheck" %>9
+                <%= f.check_box :flag4_10, class:"reccheck" %>10
+                <%= f.check_box :flag4_11, class:"reccheck" %>J
+                <%= f.check_box :flag4_12, class:"reccheck" %>Q
+                <%= f.check_box :flag4_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin4, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin4, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount4" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -132,22 +201,25 @@
                 <p>5</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag5_1 %>A
-                <%= f.check_box :flag5_2 %>2
-                <%= f.check_box :flag5_3 %>3
-                <%= f.check_box :flag5_4 %>4
-                <%= f.check_box :flag5_5 %>5
-                <%= f.check_box :flag5_6 %>6
-                <%= f.check_box :flag5_7 %>7
-                <%= f.check_box :flag5_8 %>8
-                <%= f.check_box :flag5_9 %>9
-                <%= f.check_box :flag5_10 %>10
-                <%= f.check_box :flag5_11 %>J
-                <%= f.check_box :flag5_12 %>Q
-                <%= f.check_box :flag5_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag5_1, class:"reccheck" %>A
+                <%= f.check_box :flag5_2, class:"reccheck" %>2
+                <%= f.check_box :flag5_3, class:"reccheck" %>3
+                <%= f.check_box :flag5_4, class:"reccheck" %>4
+                <%= f.check_box :flag5_5, class:"reccheck" %>5
+                <%= f.check_box :flag5_6, class:"reccheck" %>6
+                <%= f.check_box :flag5_7, class:"reccheck" %>7
+                <%= f.check_box :flag5_8, class:"reccheck" %>8
+                <%= f.check_box :flag5_9, class:"reccheck" %>9
+                <%= f.check_box :flag5_10, class:"reccheck" %>10
+                <%= f.check_box :flag5_11, class:"reccheck" %>J
+                <%= f.check_box :flag5_12, class:"reccheck" %>Q
+                <%= f.check_box :flag5_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin5, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin5, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount5" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -155,22 +227,25 @@
                 <p>6</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag6_1 %>A
-                <%= f.check_box :flag6_2 %>2
-                <%= f.check_box :flag6_3 %>3
-                <%= f.check_box :flag6_4 %>4
-                <%= f.check_box :flag6_5 %>5
-                <%= f.check_box :flag6_6 %>6
-                <%= f.check_box :flag6_7 %>7
-                <%= f.check_box :flag6_8 %>8
-                <%= f.check_box :flag6_9 %>9
-                <%= f.check_box :flag6_10 %>10
-                <%= f.check_box :flag6_11 %>J
-                <%= f.check_box :flag6_12 %>Q
-                <%= f.check_box :flag6_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag6_1, class:"reccheck" %>A
+                <%= f.check_box :flag6_2, class:"reccheck" %>2
+                <%= f.check_box :flag6_3, class:"reccheck" %>3
+                <%= f.check_box :flag6_4, class:"reccheck" %>4
+                <%= f.check_box :flag6_5, class:"reccheck" %>5
+                <%= f.check_box :flag6_6, class:"reccheck" %>6
+                <%= f.check_box :flag6_7, class:"reccheck" %>7
+                <%= f.check_box :flag6_8, class:"reccheck" %>8
+                <%= f.check_box :flag6_9, class:"reccheck" %>9
+                <%= f.check_box :flag6_10, class:"reccheck" %>10
+                <%= f.check_box :flag6_11, class:"reccheck" %>J
+                <%= f.check_box :flag6_12, class:"reccheck" %>Q
+                <%= f.check_box :flag6_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin6, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin6, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount6" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -178,22 +253,25 @@
                 <p>7</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag7_1 %>A
-                <%= f.check_box :flag7_2 %>2
-                <%= f.check_box :flag7_3 %>3
-                <%= f.check_box :flag7_4 %>4
-                <%= f.check_box :flag7_5 %>5
-                <%= f.check_box :flag7_6 %>6
-                <%= f.check_box :flag7_7 %>7
-                <%= f.check_box :flag7_8 %>8
-                <%= f.check_box :flag7_9 %>9
-                <%= f.check_box :flag7_10 %>10
-                <%= f.check_box :flag7_11 %>J
-                <%= f.check_box :flag7_12 %>Q
-                <%= f.check_box :flag7_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag7_1, class:"reccheck" %>A
+                <%= f.check_box :flag7_2, class:"reccheck" %>2
+                <%= f.check_box :flag7_3, class:"reccheck" %>3
+                <%= f.check_box :flag7_4, class:"reccheck" %>4
+                <%= f.check_box :flag7_5, class:"reccheck" %>5
+                <%= f.check_box :flag7_6, class:"reccheck" %>6
+                <%= f.check_box :flag7_7, class:"reccheck" %>7
+                <%= f.check_box :flag7_8, class:"reccheck" %>8
+                <%= f.check_box :flag7_9, class:"reccheck" %>9
+                <%= f.check_box :flag7_10, class:"reccheck" %>10
+                <%= f.check_box :flag7_11, class:"reccheck" %>J
+                <%= f.check_box :flag7_12, class:"reccheck" %>Q
+                <%= f.check_box :flag7_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin7, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin7, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount7" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -201,22 +279,25 @@
                 <p>8</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag8_1 %>A
-                <%= f.check_box :flag8_2 %>2
-                <%= f.check_box :flag8_3 %>3
-                <%= f.check_box :flag8_4 %>4
-                <%= f.check_box :flag8_5 %>5
-                <%= f.check_box :flag8_6 %>6
-                <%= f.check_box :flag8_7 %>7
-                <%= f.check_box :flag8_8 %>8
-                <%= f.check_box :flag8_9 %>9
-                <%= f.check_box :flag8_10 %>10
-                <%= f.check_box :flag8_11 %>J
-                <%= f.check_box :flag8_12 %>Q
-                <%= f.check_box :flag8_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag8_1, class:"reccheck" %>A
+                <%= f.check_box :flag8_2, class:"reccheck" %>2
+                <%= f.check_box :flag8_3, class:"reccheck" %>3
+                <%= f.check_box :flag8_4, class:"reccheck" %>4
+                <%= f.check_box :flag8_5, class:"reccheck" %>5
+                <%= f.check_box :flag8_6, class:"reccheck" %>6
+                <%= f.check_box :flag8_7, class:"reccheck" %>7
+                <%= f.check_box :flag8_8, class:"reccheck" %>8
+                <%= f.check_box :flag8_9, class:"reccheck" %>9
+                <%= f.check_box :flag8_10, class:"reccheck" %>10
+                <%= f.check_box :flag8_11, class:"reccheck" %>J
+                <%= f.check_box :flag8_12, class:"reccheck" %>Q
+                <%= f.check_box :flag8_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin8, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin8, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount8" disabled="true">
             </td>
         </tr>
         <tr class="even">
@@ -224,27 +305,31 @@
                 <p>9</p>
             </td>
             <td class="nums">
-                <%= f.check_box :flag9_1 %>A
-                <%= f.check_box :flag9_2 %>2
-                <%= f.check_box :flag9_3 %>3
-                <%= f.check_box :flag9_4 %>4
-                <%= f.check_box :flag9_5 %>5
-                <%= f.check_box :flag9_6 %>6
-                <%= f.check_box :flag9_7 %>7
-                <%= f.check_box :flag9_8 %>8
-                <%= f.check_box :flag9_9 %>9
-                <%= f.check_box :flag9_10 %>10
-                <%= f.check_box :flag9_11 %>J
-                <%= f.check_box :flag9_12 %>Q
-                <%= f.check_box :flag9_13 %>K 赔率:<%= @gridconfigs.mulbability %>
+                <%= f.check_box :flag9_1, class:"reccheck" %>A
+                <%= f.check_box :flag9_2, class:"reccheck" %>2
+                <%= f.check_box :flag9_3, class:"reccheck" %>3
+                <%= f.check_box :flag9_4, class:"reccheck" %>4
+                <%= f.check_box :flag9_5, class:"reccheck" %>5
+                <%= f.check_box :flag9_6, class:"reccheck" %>6
+                <%= f.check_box :flag9_7, class:"reccheck" %>7
+                <%= f.check_box :flag9_8, class:"reccheck" %>8
+                <%= f.check_box :flag9_9, class:"reccheck" %>9
+                <%= f.check_box :flag9_10, class:"reccheck" %>10
+                <%= f.check_box :flag9_11, class:"reccheck" %>J
+                <%= f.check_box :flag9_12, class:"reccheck" %>Q
+                <%= f.check_box :flag9_13, class:"reccheck" %>K 赔率:<%= @gridconfigs.mulbability %>
             </td>
             <td style="padding-left:10px; padding-right:10px;">
-                <%= f.text_field :coin9, class: "form-control", placeholder: "金币"%>
+                <%= f.text_field :coin9, class: "form-control coin", placeholder: "金币"%>
+            </td>
+            <td style="padding-left:2px; padding-right:2px;">
+                <input type="text" class="form-control coincount" value="0" id="coinCount9" disabled="true">
             </td>
         </tr>
     </tbody>
     <tfoot>
-        <tr><td colspan=7 align="center"><div>总金币额:<span style="color:red">1000</span>
+        <tr><td colspan="7" align="center"><div>总投注额:<span style="color:red" id="coinTotal">0</span>
+        <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
         <%= f.submit "确认"%>
         </div></td>
         </tr>

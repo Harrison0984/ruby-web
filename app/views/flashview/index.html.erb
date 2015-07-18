@@ -23,7 +23,30 @@
 <% end %>
 
 <% content_for :script do %>
-<script type="text/javascript">
+$(document).ready(
+    function(){
+    setInterval(countdown, 1000);
+  })
+    function countdown() {
+        var minute = document.getElementById("minute");
+        var second = document.getElementById("second");
+        var newSeconds = parseInt(second.innerText) - 1;
+        var newMinute = parseInt(minute.innerText);
+        if (newSeconds == 0 && newMinute > 0) {
+          newMinute -= 1;
+          newSeconds = 59;
+        }
+        if (newSeconds == 0 && newMinute == 0) {
+          newSeconds = 59;
+          newMinute = 9;
+        }
+        if (!isNaN(newMinute)) {
+          minute.innerHTML = newMinute;
+        }
+        if (!isNaN(newSeconds)) {
+          second.innerHTML = newSeconds;
+        }
+    }
 function thisMovie(movieName) {
     if (window.document[movieName]) {
         return window.document[movieName];
@@ -51,56 +74,31 @@ function thisMovie(movieName) {
         thisMovie('luck').hisNum(2015071601,"1,1,1,4,5,6,7,8,8",2);
     }
 
-$(document).ready(function(){
-  $("#refresh").click(function(){
-    $.get("/jsondata", onGotJson);
+$(document).ready(
+  function(){
+    setInterval(a, 3000);
   });
-});
-
-(function() {
-$('#div-id').timer({
-    duration: '3s',
-    callback: function() {
-        alert('Why, Hello there');  //you could have a ajax call here instead
-    },
-    repeat: true //repeatedly calls the callback you specify
-});
-}());
-
-function onGotJson(data, status)
-{
-      //alert("数据：" + data + "\n状态：" + status);
-      var obj = jQuery.parseJSON(data);  
-      var a = Date.parse(obj.nexttime) - Date.parse(obj.servertime);
-      thisMovie('luck').countTime(a/1000);
-      var nextDate = new Date(obj.nexttime);
-      thisMovie('luck').nextTime(obj.nexttime.substr(obj.nexttime.indexOf(" ")));
-      thisMovie('luck').nextNum(obj.nextno);
-      //alert(obj.history.length);
-      for(var i=0; i < 3; i++)
-      {
-          if (i==0) 
-          {
-            thisMovie('luck') .nowNum(obj.history[i].no, obj.history[i].num);
+  function a(){
+    $.ajax({
+          url: 'jsondata',
+          type: 'GET',
+          dataType: 'json',
+          complete: function(json) {
+          },
+          success: function(json) {
+            thisMovie('luck').nextTime(json.nexttime);
+            if (json.seconds < 580)
+            {
+              thisMovie('luck').countTime(json.seconds);
+              thisMovie('luck').nextNum(json.nextNum);
+              thisMovie('luck').nowNum(json.nownum,json.nowlog);
+            }
+            thisMovie('luck').hisNum(json.hisnum1,json.hislog1,1);
+            thisMovie('luck').hisNum(json.hisnum2,json.hislog2,2);
           }
-          else
-          {
-            thisMovie('luck').hisNum(obj.history[i].no, obj.history[i].num, 3 - i);
-          }
-      }
-      
-      //alert(obj.servertime);
-}
-
-  $('#refresh').timer({
-  seconds: 3,
-  duration: '3s',
-  callback: function() {
-    alert('Time up!');
-  },
-  repeat:true
-});
-</script>
+        }
+      )
+  };
 <% end %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -120,11 +118,7 @@ function onGotJson(data, status)
 <embed width="980" height="630" align="middle"  pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" name="luck" bgcolor="#ffffff" quality="best" menu="false" loop="false" src=<%= image_url("index.swf") %> id="luck" allownetworking="all">
   </object>      
 </p>
-
 <br>
-  <input type="button" value="刷新" id="refresh" />
 </p>
-
-
 <p id="resultp"></p>
 </div>

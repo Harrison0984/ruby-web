@@ -1,3 +1,29 @@
+<%= content_for :script do %>
+$(document).ready(
+    function(){
+    setInterval(countdown, 1000);
+  })
+    function countdown() {
+        var minute = document.getElementById("minute");
+        var second = document.getElementById("second");
+        var newSeconds = parseInt(second.innerText) - 1;
+        var newMinute = parseInt(minute.innerText);
+        if (newSeconds == 0 && newMinute > 0) {
+          newMinute -= 1;
+          newSeconds = 59;
+        }
+        if (newSeconds == 0 && newMinute == 0) {
+          location.reload();
+        }
+        if (!isNaN(newMinute)) {
+          minute.innerHTML = newMinute;
+        }
+        if (!isNaN(newSeconds)) {
+          second.innerHTML = newSeconds;
+        }
+    }
+<%end%>
+
 <% content_for :menus do %>
     <li class=hover data-tag="idx">
         <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>

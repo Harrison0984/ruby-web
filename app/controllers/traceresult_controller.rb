@@ -17,6 +17,10 @@ class TraceresultController < ApplicationController
 			@gridlogs = Tracelog.where("time > ? and userid = ?", (curtime - 60*60).strftime("%Y-%m-%d %H:%M"), session[:userid])
 		end
 
+		if @minutes < 0
+			@minutes = 9
+		end
+
 		if session.has_key?(:userid) and session[:userid] != 0
 			@user = User.find(session[:userid])
 		end

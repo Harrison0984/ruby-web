@@ -228,7 +228,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	s.cron '*/10 * * * *' do
 
-		if Time.new.hour > 1 and Time.new.hour < 10
+		if Time.new.hour >= 1 and Time.new.hour < 10
 			Rails.logger.debug "invalid time"
 		else
 			curtime = Time.new
@@ -303,8 +303,8 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			end
 
 			#if the end time of day
-			if curtime.hour == 1
-				nexttime = curtime + 9*60*60
+			if curtime.hour == 0 and curtime.min == 50
+				nexttime = curtime.beginning_of_day + 10*60*60+10*60
 			else
 				nexttime = curtime + 10*60
 			end

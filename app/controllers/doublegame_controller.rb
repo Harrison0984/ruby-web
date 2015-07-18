@@ -16,6 +16,10 @@ class DoublegameController < ApplicationController
 			@grid = Grid.find_by_gameid(@issue)
 		end
 
+		if @minutes < 0
+			@minutes = 9
+		end
+
 		if session.has_key?(:userid) and session[:userid] != 0
 			@user = User.find(session[:userid])
 		end
