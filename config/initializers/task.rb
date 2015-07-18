@@ -22,6 +22,9 @@ day_order = 0
 max_small = 0
 day_small = 0
 
+max_normal = 0
+day_normal = 0
+
 max_big = 0
 day_big = 0
 
@@ -181,13 +184,15 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		if config.gridtype == 1
 			max_same = config.probability*90
 		elsif config.gridtype == 2
-			max_order = config.probability*90
+			max_color = config.probability*90
 		elsif config.gridtype == 3
-			max_small = config.probability*90
+			max_order = config.probability*90
 		elsif config.gridtype == 4
 			max_big = config.probability*90
 		elsif config.gridtype == 5
-			max_color = config.probability*90
+			max_normal = config.probability*90
+		elsif config.gridtype == 6
+			max_small = config.probability*90
 		end
 	end
 

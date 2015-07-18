@@ -29,13 +29,17 @@
                               <% if config.gridtype == 1 %>
                                 <td>三筒</td>
                               <% elsif config.gridtype == 2 %>
-                                <td>顺子</td>
+                                <td>同色</td>
                               <% elsif config.gridtype == 3 %>
-                                <td>小</td>
+                                <td>顺子</td>
                               <% elsif config.gridtype == 4 %>
                                 <td>大</td>
                               <% elsif config.gridtype == 5 %>
-                                <td>同花</td>
+                                <td>合</td>
+                              <% elsif config.gridtype == 6 %>
+                                <td>小</td>
+                              <% elsif config.gridtype == 7 %>
+                                <td>单</td>
                               <% else %>
                                 <td>error</td>
                               <% end %>

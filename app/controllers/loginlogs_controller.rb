@@ -4,7 +4,7 @@ class LoginlogsController < ApplicationController
 		@admin = User.find(session[:userid])
 		if @admin.level == 1
 			@loginlogs = Loginlog.all
-		else
+		elsif @admin.level == 2
 			users = User.where("regionid = ?", @admin.id)
 			@loginlogs = Loginlog.where(username: users)
 		end

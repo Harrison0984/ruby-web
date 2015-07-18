@@ -6,7 +6,7 @@ class TracelogsController < ApplicationController
 			@admin = User.find(session[:userid])
 			if @admin.level == 1
 				@tracelogs = Tracelog.all
-			else
+			elsif @admin.level == 2
 				users = User.where("regionid = ?", @admin.id)
 				@tracelogs = Tracelog.where(userid: users)
 			end
@@ -81,8 +81,10 @@ class TracelogsController < ApplicationController
 				end
 				user.update(coin: user.coin-totalcoin)
 			end
+			redirect_to url_for(:controller => :traceresult, :action => :index)
+		else
+			redirect_to url_for(:controller => :welcome, :action => :index)
 		end
-		redirect_to url_for(:controller => :traceresult, :action => :index)
 	end
 
 	def single
@@ -332,9 +334,10 @@ class TracelogsController < ApplicationController
 
 				user.update(coin: user.coin-totalcoin)
 			end
+			redirect_to url_for(:controller => :traceresult, :action => :index)
+		else
+			redirect_to url_for(:controller => :welcome, :action => :index)
 		end
-
-		redirect_to url_for(:controller => :traceresult, :action => :index)
 	end
 
 	def combination
@@ -414,10 +417,10 @@ class TracelogsController < ApplicationController
 					end
 				end
 			end
-
 			user.update(coin: user.coin-totalcoin)
 		end
-
 		redirect_to url_for(:controller => :traceresult, :action => :index)
+	else
+		redirect_to url_for(:controller => :welcome, :action => :index)
 	end
 end

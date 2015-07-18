@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
 	layout "manage"
+	
 	def new
 		if isadmin(session[:userid]) > 0
 			@admin = User.find(session[:userid])
 			@user = User.new
 		end
+		@admin = User.find(session[:userid])
 	end
 	
 	def create
