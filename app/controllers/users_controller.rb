@@ -76,6 +76,7 @@ class UsersController < ApplicationController
 	end
 
 	def edit
+		@admin = User.find(session[:userid])
 		@user = User.find(params[:id])
 	end
 
@@ -97,7 +98,7 @@ class UsersController < ApplicationController
 			end
 
 			if @user.update(params.require(:user).permit(:password, 
-				:nickname, :coin, :upperlimit, :lowerlimit, :action))
+				:nickname, :coin, :upperlimit, :lowerlimit, :everylimit, :action))
 
 				curtime = Time.new
 				@operlog = Operlog.new()

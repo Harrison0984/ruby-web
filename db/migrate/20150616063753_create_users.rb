@@ -10,6 +10,8 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :regionid
       t.integer :lowerlimit
       t.integer :upperlimit
+      t.integer :everylimit
+      t.integer :todaycoin
 
       t.timestamps null: false
     end

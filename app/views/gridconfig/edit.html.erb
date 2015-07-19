@@ -76,7 +76,7 @@ $('.input-number').change(function() {
               <div class="input-group">
                 <span class="input-group-btn">
                     <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>相同<% elsif @gridconfig.gridtype == 2 %>顺子<% elsif @gridconfig.gridtype == 3 %>小
-                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同色<% end %>概率</button>
+                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同花<% end %>概率</button>
                     <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="probability">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
@@ -94,7 +94,7 @@ $('.input-number').change(function() {
               <div class="input-group">
                 <span class="input-group-btn">
                     <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>相同<% elsif @gridconfig.gridtype == 2 %>顺子<% elsif @gridconfig.gridtype == 3 %>小
-                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同色<% end %>倍率</button>
+                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同花<% end %>倍率</button>
                     <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="mulbability">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>

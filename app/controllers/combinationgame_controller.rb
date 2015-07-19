@@ -24,6 +24,6 @@ class CombinationgameController < ApplicationController
 			@user = User.find(session[:userid])
 		end
 
-		@gridconfigs = Gridconfig.where("gridtype <= 3")
+		@gridconfigs = Gridconfig.where("gridtype <= 4")
 	end
 end

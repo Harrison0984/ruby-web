@@ -159,6 +159,8 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 		user.regionid = 1
 		user.lowerlimit = 1
 		user.upperlimit = 10000
+		user.everylimit = 10000
+		user.todaycoin = 0
 		user.coin = 1000000
 		user.level = 1
 		user.save
@@ -194,6 +196,11 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		elsif config.gridtype == 6
 			max_small = config.probability*90
 		end
+	end
+
+	users = User.all
+	users.each do |user|
+		user.update(todaycoin: 0)
 	end
 
 	objects = []

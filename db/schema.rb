@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.integer  "regionid"
     t.integer  "lowerlimit"
     t.integer  "upperlimit"
+    t.integer  "todaycoin"
+    t.integer  "everylimit"
   end
 
 end
