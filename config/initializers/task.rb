@@ -9,24 +9,16 @@ objects = Array.new(90)
 
 #current task index
 objindex = 0 
-
-max_same = 0
 day_same = 0
-
-max_color = 0
 day_color = 0
-
-max_order = 0
 day_order = 0
-
-max_small = 0
 day_small = 0
-
-max_normal = 0
 day_normal = 0
-
-max_big = 0
 day_big = 0
+
+#
+left_count = 0
+begin_count = 0
 
 def randomGrid
 
@@ -180,41 +172,29 @@ end
 
 s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
-	#get game config information
-	gridconfigs = Gridconfig.all
-	gridconfigs.each do |config|
-		if config.gridtype == 1
-			max_same = config.probability*90
-		elsif config.gridtype == 2
-			max_color = config.probability*90
-		elsif config.gridtype == 3
-			max_order = config.probability*90
-		elsif config.gridtype == 4
-			max_big = config.probability*90
-		elsif config.gridtype == 5
-			max_normal = config.probability*90
-		elsif config.gridtype == 6
-			max_small = config.probability*90
-		end
+	#left count of day
+	if Time.now.hour < 10
+		left_count = ((Time.now.beginning_of_day+60*60 - Time.now) / 600).to_i
+	else
+		left_count = ((Time.now.tomorrow.beginning_of_day+60*60 - Time.now) / 600).to_i
 	end
 
-	users = User.all
-	users.each do |user|
-		user.update(todaycoin: 0)
+	begin_count = 90 - left_count
+
+	Rails.logger.debug "left count is #{left_count}"
+
+	#reset user daycoin every day at 5am
+	if Time.now.hour == 5
+		users = User.all
+		users.each do |user|
+			user.update(todaycoin: 0)
+		end
 	end
 
 	objects = []
 	objindex = 0
-	for i in 0..89
-		begin
-			object, samenum, ordernum, smallnum, bignum, colornum = randomGrid
-			if day_same + samenum <= max_same and day_order + ordernum <= max_order and
-				day_small + smallnum <= max_small and day_big + bignum <= max_big and
-				day_color + colornum <= max_color
-				break
-			end
-			
-		end while true
+	for i in 0..left_count-1
+		object, samenum, ordernum, smallnum, bignum, colornum = randomGrid
 
 		day_same += samenum
 		day_order += ordernum
@@ -225,9 +205,9 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects[i] = object
 	end
 
-	for i in 0..89
+	for i in 0..left_count-1
 		srand()
-		index = rand(90)
+		index = rand(left_count)
 		tmp = objects[index]
 		objects[index] = objects[i]
 		objects[i] = tmp
@@ -241,7 +221,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			curtime = Time.new
 
 			grid = Grid.new
-			grid.gameid = curtime.strftime("%Y%m%d")+(objindex+1).to_s
+			grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s
 			grid.x1 = objects[objindex][0]
 			grid.x2 = objects[objindex][1]
 			grid.x3 = objects[objindex][2]
@@ -327,12 +307,12 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
 				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M")
 				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
-				tasklog.nextgameid = curtime.strftime("%Y%m%d")+(objindex+2).to_s
+				tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s
 				tasklog.save
 			else
 				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, 
 					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M"),
-					nextgameid: curtime.strftime("%Y%m%d")+(objindex+2).to_s,
+					nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s,
 					nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
 			end
 
