@@ -179,7 +179,7 @@
         </div>
         <div class="period" style="color: green;"><%= @issue %>期
         </div>
-        <div class="period-info" >每日销售<span>90</span>期，今日剩余<span class="period-leave"><%= 90-@currentbar.to_i %></span>期</div>
+        <div class="period-info" >每日销售<span><%= @totalbar %></span>期，今日剩余<span class="period-leave"><%= 90-@currentbar.to_i %></span>期</div>
         <div class="lot-nums">
             <% if @grid %>
             <span class=<%= "no#{(@grid.x1+1).to_s.rjust(2, '0')}" %>></span>

@@ -299,7 +299,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d"))
 			if tasklog == nil
 				tasklog = Tasklog.new
-				tasklog.totalbar = 228
+				tasklog.totalbar = left_count
 				tasklog.currentbar = objindex+1
 				tasklog.errorbar = 0
 				tasklog.totalcoin = totalcoin
@@ -310,7 +310,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s
 				tasklog.save
 			else
-				tasklog.update(currentbar: objindex+1, totalcoin: totalcoin, 
+				tasklog.update(totalbar: left_count, currentbar: objindex+1, totalcoin: totalcoin, 
 					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M"),
 					nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s,
 					nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
