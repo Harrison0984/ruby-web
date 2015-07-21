@@ -178,11 +178,12 @@ function updateTotal(totalcoin){
     </tbody>
     <tfoot>
         <tr><td colspan="7" align="center">
-        <div>快捷投注:<input size="6" type="text" id="defaultcoin" />总投注额:
-        <span style="color:red" id="coinTotal">0</span>
+        <div><font color="green">快捷下注 金额:<input size="6" type="text" id="defaultcoin" style="margin-right:10px"/></font>
+        总投注额:<span style="color:red;margin-right:10px" id="coinTotal">0</span>
         <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
-        <%= f.submit "确认"%>
-        </div></td>  </tr>
+        <button type="button", style="height:20px;width:60px;margin-right:10px", onclick="reset()">重填</button>
+        <%= f.submit "下注", style:"height:20px;width:60px"%>
+        </div></td>
     </tfoot>
     <%end%>
 </table>

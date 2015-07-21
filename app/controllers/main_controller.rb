@@ -17,7 +17,7 @@ class MainController < ApplicationController
 			@grid = Grid.find_by_gameid(@issue)
 		end
 		
-		if @minutes < 0
+		if @minutes and @minutes < 0
 			@minutes = 9
 		end
 

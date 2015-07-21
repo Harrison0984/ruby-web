@@ -1,4 +1,5 @@
 class WelcomeController < ApplicationController
+
   def index
   	@defaultname = {:account => ""}
     session[:userid] = 0

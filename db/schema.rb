@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150630015537) do
+ActiveRecord::Schema.define(version: 20150721152640) do
 
   create_table "gridconfigs", force: :cascade do |t|
     t.integer  "gridtype"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 20150630015537) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "simple_captcha_data", force: :cascade do |t|
+    t.string   "key",        limit: 40
+    t.string   "value",      limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], name: "idx_key"
 
   create_table "tasklogs", force: :cascade do |t|
     t.integer  "totalbar"
