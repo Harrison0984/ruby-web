@@ -44,3 +44,6 @@ Rails.application.config.assets.precompile += %w( js/md5.js )
 Rails.application.config.assets.precompile += %w( js/mailaddress.js )
 Rails.application.config.assets.precompile += %w( js/focusPicture.js )
 Rails.application.config.assets.precompile += %w( js/login_v3.js )
+Rails.application.config.assets.precompile += %w( jquery-1.4.4.min.js )
+Rails.application.config.assets.precompile += %w( jquery.jqprint-0.3.js )
+

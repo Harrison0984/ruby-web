@@ -1,3 +1,8 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'jquery-1.4.4.min', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'jquery.jqprint-0.3', 'data-turbolinks-track' => true %>
+<% end %>
+
 <% content_for :menus do %>
     <li data-tag="idx">
         <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
@@ -41,149 +46,269 @@ $(".reccheck").focus(function(){
         this.value = coin
     }
 );
+function resetcoin(){
+    document.getElementById("coinnums").innerHTML = '0';
+    var coinitems = document.getElementsByClassName("reccheck");
+    var total = 0;
+    for (i = 0; i < coinitems.length; i++)
+    {
+        coinitems[i].value = '';
+    }
+}
 function updateTotal(totalcoin){
-        $("#coinTotal").text(totalcoin.toString());
+        $("#coinnums").text(totalcoin.toString());
         document.getElementById("cointotal").value = totalcoin;
 }
+function xprint() {
+    $("#tblprint").jqprint();
+}
+
 <% end %>
 
 <div class="lot-table" id="history">
-<table class="lot-table" id="history">
-    <tbody><tr class="head">
-        <td width="180px">
-            项目
-        </td>
-        <td>
-            三筒
-        </td>
-        <td style="width: 60px; text-align: center;">
-            同花
-        </td>
-        <td style="width: 60px; text-align: center;">
-            顺子
-        </td>
-        <td style="width: 60px; text-align: center;">
-            对子
-        </td>
-    </tr>
-        <%= form_for :tracelogs, url: tracelogs_combination_path do |f| %>
-        <tr class="even">
-            <td>
-                <p>横一</p>
+    <div>
+        <div style="width:100%" id="myPrintArea"> 
+        <table> 
+        <tbody>
+            <tr> 
+            <td style="vertical-align:top;width:180px;border:0px;padding-right:5px;"> 
+            <table class="lot-table" id="divprint">
+                <tbody>
+                    <tr class="head">
+                        <td colspan="2">
+                            下注结果反馈
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            会员账户
+                        </td>
+                        <td>
+                            <%if @user%><%=@user.account%><%end%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            可用金额
+                        </td>
+                        <td>
+                            <%if @user%><%=@user.coin%><%end%>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>
+                                <button type="button" style="height:20px;width:60px;margin-right:10px"
+                                onclick="xprint()">
+                                    打印
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div>
+                                <table class="lot-table" style="width:100%" id="tblprint">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                20150719058期
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="2">
+                                                注单号
+                                            </td>
+                                            <td>
+                                                117356125#
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                和@ 9.1
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                下注额:
+                                            </td>
+                                            <td>
+                                                9
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                可赢额:
+                                            </td>
+                                            <td>
+                                                72.9
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                下注笔数
+                                            </td>
+                                            <td>
+                                                1笔
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                总计注额
+                                            </td>
+                                            <td>
+                                                9
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             </td>
-            <% @gridconfigs.each do |config| %>
-            <td class="nums">
-                <% if config.gridtype == 1 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_1, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 2 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_2, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 3 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
-                <% else %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
-                <% end %>
-            </td>
-            <% end %>
-        </tr>
-        <tr class="even">
-            <td>
-                <p>横二</p>
-            </td>
-            <% @gridconfigs.each do |config| %>
-            <td class="nums">
-                <% if config.gridtype == 1 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_1, class:"reccheck", size:6 %>
-                <% elsif config.gridtype ==2 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_2, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 3 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
-                <% else %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
-                <% end %>
-            </td>
-            <% end %>
-        </tr>
-        <tr class="even">
-            <td>
-                <p>横三</p>
-            </td>
-            <% @gridconfigs.each do |config| %>
-            <td class="nums">
-                <% if config.gridtype == 1 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_1, class:"reccheck", size:6 %>
-                <% elsif config.gridtype ==2 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_2, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 3 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
-                <% else %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
-                <% end %>
-            </td>
-            <% end %>
-        </tr>
-        <tr class="even">
-            <td>
-                <p>竖一</p>
-            </td>
-            <% @gridconfigs.each do |config| %>
-            <td class="nums">
-                <% if config.gridtype == 1 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_1, class:"reccheck", size:6 %>
-                <% elsif config.gridtype ==2 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_2, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 3 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
-                <% else %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
-                <% end %>
-            </td>
-            <% end %>
-        </tr>
-        <tr class="even">
-            <td>
-                <p>竖二</p>
-            </td>
-            <% @gridconfigs.each do |config| %>
-            <td class="nums">
-                <% if config.gridtype == 1 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_1, class:"reccheck", size:6 %>
-                <% elsif config.gridtype ==2 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_2, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 3 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
-                <% else %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
-                <% end %>
-            </td>
-            <% end %>
-        </tr>
-        <tr class="even">
-            <td>
-                <p>竖三</p>
-            </td>
-            <% @gridconfigs.each do |config| %>
-            <td class="nums">
-                <% if config.gridtype == 1 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_1, class:"reccheck", size:6 %>
-                <% elsif config.gridtype ==2 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_2, class:"reccheck", size:6 %>
-                <% elsif config.gridtype == 3 %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
-                <% else %>
-                赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
-                <% end %>
-            </td>
-            <% end %>
-        </tr>
-    </tbody>
-    <tfoot>
-        <tr><td colspan="7" align="center">
-        <div><font color="green">快捷下注 金额:<input size="6" type="text" id="defaultcoin" style="margin-right:10px"/></font>
-        总投注额:<span style="color:red;margin-right:10px" id="coinTotal">0</span>
-        <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
-        <button type="button", style="height:20px;width:60px;margin-right:10px", onclick="reset()">重填</button>
-        <%= f.submit "下注", style:"height:20px;width:60px"%>
-        </div></td>
-    </tfoot>
-    <%end%>
-</table>
+            <%= form_for :tracelogs, url: tracelogs_combination_path do |f| %>
+            <td style="border:0px; vertical-align:top;"> 
+            <table class="lot-table" id="history">
+                <tbody><tr class="head">
+                    <td width="180px">
+                        项目
+                    </td>
+                    <td>
+                        三筒
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        同花
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        顺子
+                    </td>
+                    <td style="width: 60px; text-align: center;">
+                        对子
+                    </td>
+                </tr>
+                    <tr class="even">
+                        <td>
+                            <p>横一</p>
+                        </td>
+                        <% @gridconfigs.each do |config| %>
+                        <td class="nums">
+                            <% if config.gridtype == 1 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_1, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 2 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_2, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 3 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            <% else %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            <% end %>
+                        </td>
+                        <% end %>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <p>横二</p>
+                        </td>
+                        <% @gridconfigs.each do |config| %>
+                        <td class="nums">
+                            <% if config.gridtype == 1 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_1, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype ==2 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_2, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 3 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            <% else %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            <% end %>
+                        </td>
+                        <% end %>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <p>横三</p>
+                        </td>
+                        <% @gridconfigs.each do |config| %>
+                        <td class="nums">
+                            <% if config.gridtype == 1 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_1, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype ==2 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_2, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 3 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            <% else %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            <% end %>
+                        </td>
+                        <% end %>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <p>竖一</p>
+                        </td>
+                        <% @gridconfigs.each do |config| %>
+                        <td class="nums">
+                            <% if config.gridtype == 1 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_1, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype ==2 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_2, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 3 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            <% else %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            <% end %>
+                        </td>
+                        <% end %>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <p>竖二</p>
+                        </td>
+                        <% @gridconfigs.each do |config| %>
+                        <td class="nums">
+                            <% if config.gridtype == 1 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_1, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype ==2 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_2, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 3 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            <% else %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            <% end %>
+                        </td>
+                        <% end %>
+                    </tr>
+                    <tr class="even">
+                        <td>
+                            <p>竖三</p>
+                        </td>
+                        <% @gridconfigs.each do |config| %>
+                        <td class="nums">
+                            <% if config.gridtype == 1 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_1, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype ==2 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_2, class:"reccheck", size:6 %>
+                            <% elsif config.gridtype == 3 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            <% else %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            <% end %>
+                        </td>
+                        <% end %>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr><td colspan="7" align="center">
+                    <div><font color="green">快捷下注 金额:<input size="6" type="text" id="defaultcoin" style="margin-right:10px"/></font>
+                    总投注额:<span style="color:red;margin-right:10px" id="coinnums">0</span>
+                    <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
+                    <button type="button", style="height:20px;width:60px;margin-right:10px", onclick="resetcoin()">重填</button>
+                    <%= f.submit "下注", style:"height:20px;width:60px"%>
+                    </div></td>
+                </tfoot>
+                <%end%>
+            </table>
+        </tbody>
+        </table> 
+    </div>
+</div>
