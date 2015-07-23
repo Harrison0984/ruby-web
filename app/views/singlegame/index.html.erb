@@ -130,68 +130,14 @@ function xprint() {
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <div>
-                                <table class="lot-table" style="width:100%" id="tblprint">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                                20150719058期
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">
-                                                注单号
-                                            </td>
-                                            <td>
-                                                117356125#
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                和@ 9.1
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                下注额:
-                                            </td>
-                                            <td>
-                                                9
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                可赢额:
-                                            </td>
-                                            <td>
-                                                72.9
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                下注笔数
-                                            </td>
-                                            <td>
-                                                1笔
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                总计注额
-                                            </td>
-                                            <td>
-                                                9
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div id = "singleresult" >
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
             </td>
-            <%= form_for :tracelogs, url: tracelogs_single_path do |f| %>
+            <%= form_for :tracelogs, url: tracelogs_single_path, remote: true do |f| %>
             <td style="border:0px; vertical-align:top;"> 
             <table class="lot-table" id="history">
             <tbody>

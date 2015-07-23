@@ -334,9 +334,18 @@ class TracelogsController < ApplicationController
 
 				user.update(coin: user.coin-totalcoin)
 			end
-			redirect_to url_for(:controller => :traceresult, :action => :index)
+			@test = 1
+			respond_to do |format|
+				format.html {}
+				format.js {}
+				format.json {}
+			end
 		else
-			redirect_to url_for(:controller => :welcome, :action => :index)
+			respond_to do |format|
+				format.html {}
+				format.js {}
+				format.json {}
+			end
 		end
 	end
 

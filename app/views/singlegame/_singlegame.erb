@@ -1,0 +1,28 @@
+<table class="lot-table" style="width:100%" id="tblprint">
+    <tbody>
+        <tr>
+            <td colspan="2">20150719058期</td>
+        </tr>
+        <% for i in 0..3 %>
+        <tr>
+            <td rowspan="2">注单号</td>
+            <td>项目:1</td>
+        </tr>
+        <tr>
+            <td>牌面:A</td>
+        </tr>
+        <tr>
+            <td>下注额:</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>可赢额:</td>
+            <td>72.9</td>
+        </tr>
+        <% end %>
+        <tr>
+            <td>总计注额</td>
+            <td><%if @test %><%=@test%><% end %></td>
+        </tr>
+    </tbody>
+</table>
