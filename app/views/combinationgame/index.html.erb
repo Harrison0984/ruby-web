@@ -107,68 +107,14 @@ function xprint() {
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <div>
-                                <table class="lot-table" style="width:100%" id="tblprint">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                                20150719058期
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td rowspan="2">
-                                                注单号
-                                            </td>
-                                            <td>
-                                                117356125#
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                和@ 9.1
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                下注额:
-                                            </td>
-                                            <td>
-                                                9
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                可赢额:
-                                            </td>
-                                            <td>
-                                                72.9
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                下注笔数
-                                            </td>
-                                            <td>
-                                                1笔
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                总计注额
-                                            </td>
-                                            <td>
-                                                9
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div id = "combinationresult" >
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
             </td>
-            <%= form_for :tracelogs, url: tracelogs_combination_path do |f| %>
+            <%= form_for :tracelogs, url: tracelogs_combination_path,remote: true do |f| %>
             <td style="border:0px; vertical-align:top;"> 
             <table class="lot-table" id="history">
                 <tbody><tr class="head">
@@ -217,9 +163,9 @@ function xprint() {
                             <% elsif config.gridtype ==2 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_2, class:"reccheck", size:6 %>
                             <% elsif config.gridtype == 3 %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_3, class:"reccheck", size:6 %>
                             <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_4, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -235,9 +181,9 @@ function xprint() {
                             <% elsif config.gridtype ==2 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_2, class:"reccheck", size:6 %>
                             <% elsif config.gridtype == 3 %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_3, class:"reccheck", size:6 %>
                             <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_4, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -253,9 +199,9 @@ function xprint() {
                             <% elsif config.gridtype ==2 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_2, class:"reccheck", size:6 %>
                             <% elsif config.gridtype == 3 %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_3, class:"reccheck", size:6 %>
                             <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_4, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -271,9 +217,9 @@ function xprint() {
                             <% elsif config.gridtype ==2 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_2, class:"reccheck", size:6 %>
                             <% elsif config.gridtype == 3 %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_3, class:"reccheck", size:6 %>
                             <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_4, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -289,9 +235,9 @@ function xprint() {
                             <% elsif config.gridtype ==2 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_2, class:"reccheck", size:6 %>
                             <% elsif config.gridtype == 3 %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_3, class:"reccheck", size:6 %>
                             <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_4, class:"reccheck", size:6 %>
+                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_4, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>

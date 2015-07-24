@@ -1,28 +1,28 @@
 <table class="lot-table" style="width:100%" id="tblprint">
     <tbody>
         <tr>
-            <td colspan="2">20150719058期</td>
+            <td colspan="2"><%=@gameid%>期</td>
         </tr>
-        <% for i in 0..3 %>
+        <% for info in @result %>
         <tr>
             <td rowspan="2">注单号</td>
-            <td>项目:1</td>
+            <td>项目:<%=info["pos"]%></td>
         </tr>
         <tr>
-            <td>牌面:A</td>
+            <td>牌面:<%if info["gametype"]==1%>大<%elsif info["gametype"]==2%>和<%elsif info["gametype"]==3%>小<%end%></td>
         </tr>
         <tr>
             <td>下注额:</td>
-            <td>9</td>
+            <td><%=info["coin"]%></td>
         </tr>
         <tr>
             <td>可赢额:</td>
-            <td>72.9</td>
+            <td><%=info["award"]%></td>
         </tr>
         <% end %>
         <tr>
             <td>总计注额</td>
-            <td><%if @test %><%=@test%><% end %></td>
+            <td><%if @totalcoin %><%=@totalcoin%><% end %></td>
         </tr>
     </tbody>
 </table>

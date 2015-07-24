@@ -76,9 +76,9 @@ function thisMovie(movieName) {
 
 $(document).ready(
   function(){
-    setInterval(a, 3000);
+    setInterval(flash, 1000);
   });
-  function a(){
+  function flash(){
     $.ajax({
           url: 'jsondata',
           type: 'GET',
@@ -86,15 +86,19 @@ $(document).ready(
           complete: function(json) {
           },
           success: function(json) {
-            thisMovie('luck').nextTime(json.nexttime);
-            if (json.seconds < 580)
+            thisMovie('luck').countTime(json.seconds);
+            thisMovie('luck').nowNum(json.nownum);
+            if (json.seconds == 0)
             {
-              thisMovie('luck').countTime(json.seconds);
-              thisMovie('luck').nextNum(json.nextNum);
-              thisMovie('luck').nowNum(json.nownum,json.nowlog);
+              thisMovie('luck').nowLuck(json.nowlog);
             }
-            thisMovie('luck').hisNum(json.hisnum1,json.hislog1,1);
-            thisMovie('luck').hisNum(json.hisnum2,json.hislog2,2);
+            else if (json.seconds == 300)
+            {
+              thisMovie('luck').reset();
+            }
+
+
+            thisMovie('luck').hisNum(json.hisnum,json.hislog);
           }
         }
       )

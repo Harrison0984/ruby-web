@@ -1,0 +1,30 @@
+<table class="lot-table" style="width:100%" id="tblprint">
+    <tbody>
+        <tr>
+            <td colspan="2"><%=@gameid%>期</td>
+        </tr>
+        <% for info in @result %>
+        <tr>
+            <td rowspan="2">注单号</td>
+            <td>项目:<%if info["pos"]==1%>横一<%elsif info["pos"]==2%>横二<%elsif info["pos"]==3%>横三
+            <%elsif info["pos"]==4%>竖一<%elsif info["pos"]==5%>竖二<%elsif info["pos"]==6%>竖三<%end%></td>
+        </tr>
+        <tr>
+            <td>牌面:<%if info["gametype"]==1%>三筒<%elsif info["gametype"]==2%>同花
+            <%elsif info["gametype"]==3%>J顺子<%else%>对子<%end%></td>
+        </tr>
+        <tr>
+            <td>下注额:</td>
+            <td><%=info["coin"]%></td>
+        </tr>
+        <tr>
+            <td>可赢额:</td>
+            <td><%=info["award"]%></td>
+        </tr>
+        <% end %>
+        <tr>
+            <td>总计注额</td>
+            <td><%if @totalcoin %><%=@totalcoin%><% end %></td>
+        </tr>
+    </tbody>
+</table>
