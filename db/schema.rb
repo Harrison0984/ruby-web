@@ -104,11 +104,11 @@ ActiveRecord::Schema.define(version: 20150721152640) do
     t.datetime "updated_at", null: false
     t.integer  "level"
     t.integer  "action"
-    t.integer  "regionid"
     t.integer  "lowerlimit"
     t.integer  "upperlimit"
     t.integer  "todaycoin"
     t.integer  "everylimit"
+    t.string   "regionname"
   end
 
 end
