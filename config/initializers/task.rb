@@ -13,6 +13,7 @@ day_same = 0
 day_color = 0
 day_order = 0
 day_small = 0
+day_double = 0
 day_normal = 0
 day_big = 0
 
@@ -32,8 +33,8 @@ def randomGrid
 		object[i] = idx
 	end
 
-	lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(object)
-	return object,lssame.length,lsorder.length,lssmall.length,lsbig.length,lscolor.length
+	lssame, lsorder, lssmall, lsbig, lsdouble, lscolor = checkGrid(object)
+	return object,lssame.length,lsorder.length,lssmall.length,lsbig.length,lsdouble.length,lscolor.length
 end
 
 def isequal (o1, o2)
@@ -68,6 +69,7 @@ def checkGrid (object)
 	lsorder = []
 	lssmall = []
 	lsbig = []
+	lsdouble = []
 	lscolor = []
 
 	#all same
@@ -110,6 +112,16 @@ def checkGrid (object)
 		end
 	end
 
+	#all double
+	for i in 0..2
+		if ismequal object[i*3]%13, object[i*3+1]%13 or ismequal object[i*3+1]%13,object[i*3+2]%13
+			lsdouble[lsdouble.length] = i+1
+		end
+		if ismequal object[i]%13, object[i+3]%13 or ismequal object[i+3]%13, object[i+6]%13
+			lsdouble[lsdouble.length] = i+4
+		end
+	end
+
 	#same color
 	for i in 0..2
 		if object[i*3] <= 13 and object[i*3+1] <= 13 and object[i*3+2] <= 13
@@ -136,7 +148,7 @@ def checkGrid (object)
 		end
 	end
 
-	return lssame,lsorder,lssmall,lsbig,lscolor
+	return lssame,lsorder,lssmall,lsbig,lsdouble,lscolor
 end
 
 s.cron '00 02 * * *', :first_at => Time.now + 1 do
@@ -194,12 +206,13 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	objects = []
 	objindex = 0
 	for i in 0..left_count-1
-		object, samenum, ordernum, smallnum, bignum, colornum = randomGrid
+		object, samenum, ordernum, smallnum, bignum, doublenum, colornum = randomGrid
 
 		day_same += samenum
 		day_order += ordernum
 		day_small += smallnum
 		day_big += bignum
+		day_double += doublenum
 		day_color += colornum
 
 		objects[i] = object
@@ -242,15 +255,19 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 			
 			Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
 				totalcoin += log.coin
-	  			if log.gametype = 1 and lssame.include?(log.pos)
+	  			if log.gametype == 1 and lssame.include?(log.pos)
 	  				prizecoin = log.coin * log.mulbability
 	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
-	  			elsif log.gametype = 2 and lsorder.include?(log.pos)
+	  			elsif log.gametype == 2 and lsorder.include?(log.pos)
 	  				prizecoin = log.coin * log.mulbability
 	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
-	  			elsif log.gametype = 3 and lssmall.include?(log.pos)
+	  			elsif log.gametype == 3 and lssmall.include?(log.pos)
+	  				prizecoin = log.coin * log.mulbability
+	  				processprize(log.userid, prizecoin)
+	  				log.update(status: 1)
+	  			elsif log.gametype == 4 and lsdouble.include?(log.pos)
 	  				prizecoin = log.coin * log.mulbability
 	  				processprize(log.userid, prizecoin)
 	  				log.update(status: 1)
@@ -305,13 +322,13 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 				tasklog.totalcoin = totalcoin
 				tasklog.prizecoin = prizecoin
 				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
-				tasklog.runtime = curtime.strftime("%Y-%m-%d %H:%M")
+				tasklog.runtime = curtime.strftime("%H:%M")
 				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
 				tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s
 				tasklog.save
 			else
 				tasklog.update(totalbar: left_count, currentbar: objindex+1, totalcoin: totalcoin, 
-					prizecoin: prizecoin, runtime: curtime.strftime("%Y-%m-%d %H:%M"),
+					prizecoin: prizecoin, runtime: curtime.strftime("%H:%M"),
 					nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s,
 					nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
 			end

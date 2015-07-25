@@ -14,4 +14,17 @@ class OperlogsController < ApplicationController
 			end
 		end
 	end
+
+	def isadmin (userid)
+		if session.has_key?(:userid) == false || session[:userid] == 0
+			return 0
+		else
+			@user = User.find(session[:userid])
+			if @user == nil
+				return 0
+			else
+				return @user.level
+			end
+		end
+	end
 end

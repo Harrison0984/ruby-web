@@ -7,14 +7,14 @@
 
 <div class="row">
 <div class="col-lg-12">
-    <h1 class="page-header">用户管理</h1>
+    <h1 class="page-header"></h1>
 </div>
 </div>
 <div class="row">
     <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-heading">
-                添加用户
+                用户资料
             </div>
             <%= form_for @user, url: {action: "create"}, method: :post do |f| %>
 			  <% if @user.errors.any? %>
@@ -28,27 +28,30 @@
 			  </div>
 			  <% end %>
 			  <p>
-			    <%= f.label :account, '账号:' %>
-			    <%= f.text_field :account, class:"form-control", placeholder:"账号" %>
+			    <label>上级代理:</label> <%=@admin.account%> <font color="blue">上级余额: <%=@admin.coin%></font>
 			  </p>
 			  <p>
-			    <%= f.label :password, '用户密码:' %>
-			    <%= f.text_field :password, class:"form-control", placeholder:"密码" %>
+			    <%= f.label :account, '会员账号:' %>
+			    <%= f.text_field :account, class:"form-control", placeholder:"会员账号" %>
 			  </p>
 			  <p>
-			    <%= f.label :nickname, '用户昵称:' %>
-			    <%= f.text_field :nickname, class:"form-control", placeholder:"昵称" %>
+			    <%= f.label :password, '登录密码:' %>
+			    <%= f.text_field :password, class:"form-control", placeholder:"登录密码" %>
 			  </p>
 			  <p>
-			    <%= f.label :coin, '金币数量:' %>
-			    <%= f.text_field :coin, class:"form-control", placeholder:"金币", value:"5000"%>
+			    <%= f.label :nickname, '会员名称:' %>
+			    <%= f.text_field :nickname, class:"form-control", placeholder:"会员名称" %>
 			  </p>
 			  <p>
-			    <%= f.label :lowerlimit, '上限:' %>
+			    <%= f.label :coin, '信用额度:' %>
+			    <%= f.text_field :coin, class:"form-control", placeholder:"信用额度", value:"5000"%>
+			  </p>
+			  <p>
+			    <%= f.label :lowerlimit, '每日上限:' %>
 			    <%= f.text_field :lowerlimit, class:"form-control", placeholder:"下限", value:"1" %>
 			  </p>
 			  <p>
-			    <%= f.label :upperlimit, '下限:' %>
+			    <%= f.label :upperlimit, '每注下限:' %>
 			    <%= f.text_field :upperlimit, class:"form-control", placeholder:"下限", value:"10000" %>
 			  </p>
 			  <p>
@@ -58,7 +61,7 @@
 			  	<% end %>
 			  </p>
 			  <p>
-			    <%= f.submit "保存" %>
+			    <%= f.submit "确定" %>
 			  </p>
 			<% end %>
         </div>

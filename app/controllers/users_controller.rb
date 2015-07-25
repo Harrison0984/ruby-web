@@ -144,7 +144,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:format])
 		if user
 			@admin = User.find(session[:userid])
-			@child = User.where("regionid = ?", user.id)
+			@child = User.where("regionname = ?", user.account)
 		end
 	end
 

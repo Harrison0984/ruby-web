@@ -23,6 +23,7 @@
 <% end %>
 
 <% content_for :script do %>
+var nextgameid = "";
 $(document).ready(
     function(){
     setInterval(countdown, 1000);
@@ -86,19 +87,27 @@ $(document).ready(
           complete: function(json) {
           },
           success: function(json) {
+
             thisMovie('luck').countTime(json.seconds);
-            thisMovie('luck').nowNum(json.nownum);
-            if (json.seconds == 0)
+
+            if (nextgameid == "")
             {
-              thisMovie('luck').nowLuck(json.nowlog);
+              nextgameid = json.nextnum;
+              thisMovie('luck').hisNum(json.curnum,json.curlog);
+              thisMovie('luck').nowNum(json.nextnum);
             }
-            else if (json.seconds == 300)
+            else if (nextgameid == json.curnum)
+            {
+              thisMovie('luck').nowLuck(json.curlog);
+              nextgameid = json.nextnum;
+            }
+
+            if (json.seconds == 420)
             {
               thisMovie('luck').reset();
+              thisMovie('luck').nowNum(json.nextnum);
             }
 
-
-            thisMovie('luck').hisNum(json.hisnum,json.hislog);
           }
         }
       )

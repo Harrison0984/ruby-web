@@ -1,20 +1,19 @@
 <% content_for :head do %>
   <%= stylesheet_link_tag 'dataTables.responsive', 'data-turbolinks-eval' => false %>
   <%= stylesheet_link_tag 'dataTables.bootstrap', 'data-turbolinks-eval' => true %>
-  <%= javascript_include_tag 'jquery.dataTables.min', 'data-turbolinks-eval' => true %>
   <%= javascript_include_tag 'dataTables.bootstrap.min', 'data-turbolinks-eval' => true %>
 <% end %>
 
 <div class="row">
 <div class="col-lg-12">
-    <h1 class="page-header">日志管理</h1>
+    <h1 class="page-header"></h1>
 </div>
 </div>
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                九宫格日志
+                幸运九宫格历史开奖
             </div>
             <div class="panel-body">
                 <div class="dataTable_wrapper">
@@ -23,7 +22,7 @@
                             <tr>
                                 <th>期数</th>
                                 <th>数据</th>
-                                <th>时间</th>
+                                <th>开奖时间</th>
                             </tr>
                         </thead>
                         <tbody>
