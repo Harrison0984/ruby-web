@@ -146,7 +146,7 @@ function xprint() {
                 <td colspan="14">牌面</td>
             </tr>
             <tr class="even">
-                <td rowspan="2" style="width:30px;"><p>1</p></td>
+                <td rowspan="2" style="width:30px;"><p>壹</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag1_1, class:"reccheck", size:6 %></td>
                     <td class="nums">2<%= f.text_field :flag1_2, class:"reccheck", size:6 %></td>
                     <td class="nums">3<%= f.text_field :flag1_3, class:"reccheck", size:6 %></td>
@@ -166,7 +166,7 @@ function xprint() {
                     <td></td>
                 </tr>
                 <tr class="odd">
-                <td rowspan="2" style="width:30px;"><p>2</p></td>
+                <td rowspan="2" style="width:30px;"><p>贰</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag2_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag2_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag2_3, class:"reccheck", size:6 %>
@@ -187,7 +187,7 @@ function xprint() {
                 </td>
            </tr>
             <tr class="even">
-                <td rowspan="2" style="width:30px;"><p>3</p></td>
+                <td rowspan="2" style="width:30px;"><p>叁</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag3_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag3_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag3_3, class:"reccheck", size:6 %>
@@ -208,7 +208,7 @@ function xprint() {
                 </td>
             </tr>
             <tr class="odd">
-                <td rowspan="2" style="width:30px;"><p>4</p></td>
+                <td rowspan="2" style="width:30px;"><p>肆</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag4_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag4_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag4_3, class:"reccheck", size:6 %>
@@ -229,7 +229,7 @@ function xprint() {
                 </td>
             </tr>
             <tr class="even">
-                <td rowspan="2" style="width:30px;"><p>5</p></td>
+                <td rowspan="2" style="width:30px;"><p>伍</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag5_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag5_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag5_3, class:"reccheck", size:6 %>
@@ -250,7 +250,7 @@ function xprint() {
                 </td>
             </tr>
             <tr class="odd">
-                <td rowspan="2" style="width:30px;"><p>6</p></td>
+                <td rowspan="2" style="width:30px;"><p>陆</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag6_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag6_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag6_3, class:"reccheck", size:6 %>
@@ -271,7 +271,7 @@ function xprint() {
                 </td>
             </tr>
             <tr class="even">
-                <td rowspan="2" style="width:30px;"><p>7</p></td>
+                <td rowspan="2" style="width:30px;"><p>柒</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag7_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag7_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag7_3, class:"reccheck", size:6 %>
@@ -292,7 +292,7 @@ function xprint() {
                 </td>
             </tr>
             <tr class="odd">
-                <td rowspan="2" style="width:30px;"><p>8</p></td>
+                <td rowspan="2" style="width:30px;"><p>捌</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag8_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag8_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag8_3, class:"reccheck", size:6 %>
@@ -313,7 +313,7 @@ function xprint() {
                 </td>
             </tr>
             <tr class="even">
-                <td rowspan="2" style="width:30px;"><p>9</p></td>
+                <td rowspan="2" style="width:30px;"><p>镹</p></td>
                     <font color="blue"><td class="nums">A<%= f.text_field :flag9_1, class:"reccheck", size:6 %>
                     <td class="nums">2<%= f.text_field :flag9_2, class:"reccheck", size:6 %>
                     <td class="nums">3<%= f.text_field :flag9_3, class:"reccheck", size:6 %>
@@ -339,7 +339,7 @@ function xprint() {
                 总投注额:<span style="color:red;margin-right:10px" id="coinnums">0</span>
                 <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
                 <button type="button", style="height:20px;width:60px;margin-right:10px", onclick="resetcoin()">重填</button>
-                <%= f.submit "下注", style:"height:20px;width:60px"%>
+                <%= f.submit "下注", style:"height:20px;width:60px", :onclick=>'return confirm("确认下注");'%>
                 </div></td>
                 </tr>
             </tfoot>

@@ -156,7 +156,7 @@ function xprint() {
                 </tr>
                     <tr class="even">
                         <td>
-                            <p>1</p>
+                            <p>壹</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -172,7 +172,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>2</p>
+                            <p>贰</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -188,7 +188,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>3</p>
+                            <p>叁</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -204,7 +204,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>4</p>
+                            <p>肆</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -220,7 +220,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>5</p>
+                            <p>伍</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -236,7 +236,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>6</p>
+                            <p>陆</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -252,7 +252,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>7</p>
+                            <p>柒</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -268,7 +268,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>8</p>
+                            <p>捌</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -284,7 +284,7 @@ function xprint() {
                     </tr>
                     <tr class="even">
                         <td>
-                            <p>9</p>
+                            <p>镹</p>
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
@@ -305,7 +305,7 @@ function xprint() {
                     总投注额:<span style="color:red;margin-right:10px" id="coinnums">0</span>
                     <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
                     <button type="button", style="height:20px;width:60px;margin-right:10px", onclick="resetcoin()">重填</button>
-                    <%= f.submit "下注", style:"height:20px;width:60px"%>
+                    <%= f.submit "下注", style:"height:20px;width:60px", :onclick=>'return confirm("确认下注");'%>
                     </div></td>
                 </tfoot>
                 <%end%>

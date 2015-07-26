@@ -185,6 +185,8 @@ end
 							tracelog.gametype = 3
 							tracelog.coin = params[:tracelogs]["flag#{i}_3"]
 							tracelog.save
+							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
+								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
 						end
 						if params[:tracelogs]["flag#{i}_4"].to_i > 0
 							tracelog = Tracelog.new

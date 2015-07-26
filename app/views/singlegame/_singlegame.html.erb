@@ -6,7 +6,9 @@
         <% for info in @result %>
         <tr>
             <td rowspan="2">注单号</td>
-            <td>项目:<%=info["pos"]%></td>
+            <td>项目:<%if info["pos"]==1%>壹<%elsif info["pos"]==2%>贰<%elsif info["pos"]==3%>叁<%elsif info["pos"]%>肆
+            <%elsif info["pos"]==4%>肆<%elsif info["pos"]==5%>伍<%elsif info["pos"]==6%>陆<%elsif info["pos"]==7%>柒
+            <%elsif info["pos"]==8%>捌<%else%>镹<%end%></td>
         </tr>
         <tr>
             <td>牌面:<%if info["gametype"]==1%>A<%elsif info["gametype"] < 10%><%=info["gametype"]%>
