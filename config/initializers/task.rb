@@ -27,30 +27,14 @@ def randomGrid
 	for i in 0..8 do
 		begin
 			srand()
-			idx = rand(53)
-		end while object.include?(idx)
+			idx = rand(52)+1
+		end while idx%13 >= 2 and idx%13 < 9
 
 		object[i] = idx
 	end
 
 	lssame, lsorder, lssmall, lsbig, lsdouble, lscolor = checkGrid(object)
 	return object,lssame.length,lsorder.length,lssmall.length,lsbig.length,lsdouble.length,lscolor.length
-end
-
-def isequal (o1, o2)
-	if o1 == 0 || o2 == 0 || o1 == o2
-		return true
-	else
-		return false
-	end
-end
-
-def ismequal (o1, o2)
-	if o1 == 0 || o1 >= o2
-		return true
-	else
-		return false
-	end
 end
 
 def processprize (userid, coin)
@@ -74,21 +58,26 @@ def checkGrid (object)
 
 	#all same
 	for i in 0..2
-		if isequal object[i*3], object[i*3+1] and isequal object[i*3+1], object[i*3+2]
+		if object[i*3]%13 == object[i*3+1]%13 and object[i*3+1]%13 == object[i*3+2]%13
 			lssame[lssame.length] = i+1
 		end
-		if isequal object[i], object[i+3] and isequal object[i+3], object[i+6]
+		if object[i]%13 == object[i+3]%13 and object[i+3]%13 == object[i+6]%13
 			lssame[lssame.length] = i+4
 		end
 	end
 
 	#all order
 	for i in 0..2
-		if object[i*3]%13 <= 11 and isequal object[i*3]+1, object[i*3+1] and isequal object[i*3+1]+1, object[i*3+2]
+		small = [object[i*3], object[i*3+1], object[i*3+2]].min
+		big = [object[i*3], object[i*3+1], object[i*3+2]].max
+		if big-small == 2 and object[i*3] == big-1 or object[i*3+1] == big-1 or object[i*3+2] == big-1
 			lsorder[lsorder.length] = i+1
 		end
-		if object[i]%13 <= 11 and isequal object[i]+1, object[i+3] and isequal object[i+3]+1, object[i+6]
-			lsorder[lsorder.length] = i+4
+
+		small = [object[i], object[i+3], object[i+6]].min
+		big = [object[i], object[i+3], object[i+6]].max
+		if big-small == 2 and object[i] == big-1 or object[i+3] == big-1 or object[i+6] == big-1
+			lsorder[lsorder.length] = i+1
 		end
 	end
 
@@ -104,21 +93,21 @@ def checkGrid (object)
 
 	#all big
 	for i in 0..2
-		if ismequal object[i*3]%13, 6 and ismequal object[i*3+1]%13,6 and ismequal object[i*3+2]%13, 6
+		if object[i*3]%13 >= 6 and object[i*3+1]%13 >= 6 and object[i*3+2]%13 >= 6
 			lsbig[lsbig.length] = i+1
 		end
-		if ismequal object[i]%13, 6 and ismequal object[i+3]%13, 6 and ismequal object[i+6]%13, 6
+		if object[i]%13 >= 6 and object[i+3]%13 >= 6 and object[i+6]%13 >= 6
 			lsbig[lsbig.length] = i+4
 		end
 	end
 
 	#all double
 	for i in 0..2
-		if ismequal object[i*3]%13, object[i*3+1]%13 or ismequal object[i*3+1]%13,object[i*3+2]%13
-			lsdouble[lsdouble.length] = i+1
+		if object[i*3]%13 == object[i*3+1]%13 or object[i*3+1]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13
+			lsdouble[lsdouble.length] = i+1 or object[i*3]%13 == object[i*3+2]%13
 		end
-		if ismequal object[i]%13, object[i+3]%13 or ismequal object[i+3]%13, object[i+6]%13
-			lsdouble[lsdouble.length] = i+4
+		if object[i]%13 == object[i+3]%13 or object[i+3]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13
+			lsdouble[lsdouble.length] = i+4 or object[i]%13 == object[i+6]%13
 		end
 	end
 
@@ -131,19 +120,19 @@ def checkGrid (object)
 			lscolor[lscolor.length] = i+4
 		end
 
-		if ismequal object[i*3], 14 and object[i*3] <= 26 and ismequal object[i*3+1], 14 and object[i*3+1] <= 26 and
-		 ismequal object[i*3+2], 14 and object[i*3+2] <= 26
+		if object[i*3] >= 14 and object[i*3] <= 26 and object[i*3+1] <= 14 and object[i*3+1] <= 26 and
+		 object[i*3+2] >= 14 and object[i*3+2] <= 26
 			lscolor[lscolor.length] = i+1
 		end
-		if ismequal object[i], 14 and object[i] <= 26 and ismequal object[i+3], 14 and object[i+3] <= 26 and
-		 ismequal object[i+6], 14 and object[i+6] <= 26
+		if object[i] >= 14 and object[i] <= 26 and object[i+3] <= 14 and object[i+3] <= 26 and
+		 object[i+6] >= 14 and object[i+6] <= 26
 			lscolor[lscolor.length] = i+4
 		end
 		
-		if ismequal object[i*3], 27 and ismequal object[i*3+1], 27 and ismequal object[i*3+2], 27
+		if object[i*3] >= 27 and object[i*3+1] >= 27 and object[i*3+2] >= 27
 			lscolor[lscolor.length] = i+1
 		end
-		if ismequal object[i], 27 and ismequal object[i+3], 27 and ismequal object[i+6], 27
+		if object[i] >= 27 and object[i+3] >= 27 and object[i+6] >= 27
 			lscolor[lscolor.length] = i+4
 		end
 	end
@@ -159,6 +148,7 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 		user.account = "admin"
 		user.password = "123"
 		user.nickname = "管理员"
+		user.regionname = "admin"
 		user.action = 1
 		user.regionid = 1
 		user.lowerlimit = 1
@@ -192,8 +182,6 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	end
 
 	begin_count = 90 - left_count
-
-	Rails.logger.debug "left count is #{left_count}"
 
 	#reset user daycoin every day at 5am
 	if Time.now.hour == 5
