@@ -47,6 +47,16 @@ def processprize (userid, coin)
 	end
 end
 
+def cardnum(num)
+	if num%13 == 1
+		return 14
+	elsif num%13 == 0
+		return 13
+	else
+		return num%13
+	end
+end
+
 def checkGrid (object)
 
 	lssame = []
@@ -68,15 +78,19 @@ def checkGrid (object)
 
 	#all order
 	for i in 0..2
-		small = [object[i*3], object[i*3+1], object[i*3+2]].min
-		big = [object[i*3], object[i*3+1], object[i*3+2]].max
-		if big-small == 2 and object[i*3] == big-1 or object[i*3+1] == big-1 or object[i*3+2] == big-1
+
+		cards = [cardnum(object[i*3]), cardnum(object[i*3+1]), cardnum(object[i*3+2])]
+
+		small = cards.min
+		big = cards.max
+		if big-small == 2 and cards[0] != cards[1] and cards[1] != cards[2] and cards[0] != cards[2]
 			lsorder[lsorder.length] = i+1
 		end
 
-		small = [object[i], object[i+3], object[i+6]].min
-		big = [object[i], object[i+3], object[i+6]].max
-		if big-small == 2 and object[i] == big-1 or object[i+3] == big-1 or object[i+6] == big-1
+		cards = [cardnum(object[i]), cardnum(object[i+3]), cardnum(object[i+6])]
+		small = cards.min
+		big = cards.max
+		if big-small == 2 and cards[0] != cards[1] and cards[1] != cards[2] and cards[0] != cards[2]
 			lsorder[lsorder.length] = i+1
 		end
 	end
