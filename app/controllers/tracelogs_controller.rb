@@ -2,7 +2,7 @@ class TracelogsController < ApplicationController
 	layout "manage"
 
 	def index
-		if session[:userid] != 0
+		if session[:userid] != nil and session[:userid] != 0
 			@admin = User.find(session[:userid])
 			if @admin.level == 1
 				@tracelogs = Tracelog.all
@@ -14,7 +14,7 @@ class TracelogsController < ApplicationController
 	end
 
 	def double
-		if session[:userid] != 0
+		if session[:userid] != nil and session[:userid] != 0
 			taskinfo = Tasklog.last
 			seconds = (taskinfo.nexttime - Time.new).to_i
 			totalcoin = params[:tracelogs][:totalcoin].to_i
@@ -47,7 +47,7 @@ class TracelogsController < ApplicationController
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_2"].to_i > 0
 							tracelog = Tracelog.new
@@ -67,27 +67,7 @@ class TracelogsController < ApplicationController
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
-						end
-						if params[:tracelogs]["flag#{i}_3"].to_i > 0
-							tracelog = Tracelog.new
-							tracelog.pos = i
-							tracelog.maintype = 3
-							tracelog.userid = session[:userid]
-
-							tracelog.mulbability = Gridconfig.find_by_gridtype(6).mulbability
-							tracelog.gameid = taskinfo.nextgameid
-							tracelog.status = 0
-							tracelog.useraccount = session[:account]
-
-							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-							
-							tracelog.gametype = 3
-							tracelog.coin = params[:tracelogs]["flag#{i}_3"]
-							tracelog.save
-
-							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 					end
 				end
@@ -109,7 +89,7 @@ end
 
 	def single
 
-		if session[:userid] != 0
+		if session[:userid] != nil and session[:userid] != 0
 			taskinfo = Tasklog.last
 			seconds = (taskinfo.nexttime - Time.new).to_i
 			totalcoin = params[:tracelogs][:totalcoin].to_i
@@ -148,7 +128,7 @@ end
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_2"].to_i > 0
 							tracelog = Tracelog.new
@@ -167,7 +147,7 @@ end
 							tracelog.coin = params[:tracelogs]["flag#{i}_2"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_3"].to_i > 0
 							tracelog = Tracelog.new
@@ -186,7 +166,7 @@ end
 							tracelog.coin = params[:tracelogs]["flag#{i}_3"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_4"].to_i > 0
 							tracelog = Tracelog.new
@@ -205,7 +185,7 @@ end
 							tracelog.coin = params[:tracelogs]["flag#{i}_4"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_5"].to_i > 0
 							tracelog = Tracelog.new
@@ -224,7 +204,7 @@ end
 							tracelog.coin = params[:tracelogs]["flag#{i}_5"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_6"].to_i > 0
 							tracelog = Tracelog.new
@@ -243,31 +223,12 @@ end
 							tracelog.coin = params[:tracelogs]["flag#{i}_6"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
-						end
-						if params[:tracelogs]["flag#{i}_7"].to_i > 0
-							tracelog = Tracelog.new
-							tracelog.pos = i
-							tracelog.maintype = 2
-							tracelog.userid = session[:userid]
-
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
-							tracelog.gameid = taskinfo.nextgameid
-							tracelog.status = 0
-							tracelog.useraccount = session[:account]
-
-							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-							
-							tracelog.gametype = 7
-							tracelog.coin = params[:tracelogs]["flag#{i}_7"]
-							tracelog.save
-							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_8"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
-							tracelog.maintype = 2
+							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
 							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
@@ -277,16 +238,16 @@ end
 
 							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 							
-							tracelog.gametype = 8
+							tracelog.gametype = 1
 							tracelog.coin = params[:tracelogs]["flag#{i}_8"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_9"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
-							tracelog.maintype = 2
+							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
 							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
@@ -296,16 +257,16 @@ end
 
 							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 							
-							tracelog.gametype = 9
+							tracelog.gametype = 2
 							tracelog.coin = params[:tracelogs]["flag#{i}_9"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_10"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
-							tracelog.maintype = 2
+							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
 							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
@@ -315,16 +276,16 @@ end
 
 							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 							
-							tracelog.gametype = 10
+							tracelog.gametype = 3
 							tracelog.coin = params[:tracelogs]["flag#{i}_10"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 						if params[:tracelogs]["flag#{i}_11"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
-							tracelog.maintype = 2
+							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
 							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
@@ -334,49 +295,11 @@ end
 
 							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 							
-							tracelog.gametype = 11
+							tracelog.gametype = 4
 							tracelog.coin = params[:tracelogs]["flag#{i}_11"]
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
-						end
-						if params[:tracelogs]["flag#{i}_12"].to_i > 0
-							tracelog = Tracelog.new
-							tracelog.pos = i
-							tracelog.maintype = 2
-							tracelog.userid = session[:userid]
-
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
-							tracelog.gameid = taskinfo.nextgameid
-							tracelog.status = 0
-							tracelog.useraccount = session[:account]
-
-							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-							
-							tracelog.gametype = 12
-							tracelog.coin = params[:tracelogs]["flag#{i}_12"]
-							tracelog.save
-							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
-						end
-						if params[:tracelogs]["flag#{i}_13"].to_i > 0
-							tracelog = Tracelog.new
-							tracelog.pos = i
-							tracelog.maintype = 2
-							tracelog.userid = session[:userid]
-
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
-							tracelog.gameid = taskinfo.nextgameid
-							tracelog.status = 0
-							tracelog.useraccount = session[:account]
-
-							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-							
-							tracelog.gametype = 13
-							tracelog.coin = params[:tracelogs]["flag#{i}_13"]
-							tracelog.save
-							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 					end
 				end
@@ -431,7 +354,7 @@ end
 						tracelog.save
 
 						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 					end
 					if params[:tracelogs]["flag#{i}_2"].to_i > 0
 						tracelog = Tracelog.new
@@ -451,7 +374,7 @@ end
 						tracelog.save
 
 						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 					end
 					if params[:tracelogs]["flag#{i}_3"].to_i > 0
 						tracelog = Tracelog.new
@@ -471,7 +394,7 @@ end
 						tracelog.save
 
 						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 					end
 					if params[:tracelogs]["flag#{i}_4"].to_i > 0
 						tracelog = Tracelog.new
@@ -491,7 +414,7 @@ end
 						tracelog.save
 
 						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"coin"=>tracelog.coin,"award"=>(tracelog.coin.to_i*tracelog.mulbability)}
+								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 					end
 				end
 			end

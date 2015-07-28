@@ -24,6 +24,7 @@ class SinglegameController < ApplicationController
 			@user = User.find(session[:userid])
 		end
 
-		@gridconfigs = Gridconfig.find_by_gridtype(7)
+		@singleconfigs = Gridconfig.find_by_gridtype(7)
+		@colorconfigs = Gridconfig.find_by_gridtype(8)
 	end
 end

@@ -11,15 +11,11 @@
             <%elsif info["pos"]==8%>捌<%else%>镹<%end%></td>
         </tr>
         <tr>
-            <td>牌面:<%if info["gametype"]==1%>大<%elsif info["gametype"]==2%>和<%elsif info["gametype"]==3%>小<%end%></td>
+            <td>牌面:<%if info["gametype"]==1%>大<%elsif info["gametype"]==2%>小<%end%></td>
         </tr>
         <tr>
             <td>下注额:</td>
             <td><%=info["coin"]%></td>
-        </tr>
-        <tr>
-            <td>可赢额:</td>
-            <td><%=info["award"]%></td>
         </tr>
         <% end %>
         <tr>

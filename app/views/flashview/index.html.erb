@@ -96,18 +96,21 @@ $(document).ready(
               thisMovie('luck').hisNum(json.curnum,json.curlog);
               thisMovie('luck').nowNum(json.nextnum);
             }
-            else if (nextgameid == json.curnum)
-            {
-              thisMovie('luck').nowLuck(json.curlog);
-              nextgameid = json.nextnum;
-            }
 
             if (json.seconds == 420)
             {
               thisMovie('luck').reset();
               thisMovie('luck').nowNum(json.nextnum);
             }
-
+            else if (json.seconds == 0)
+            {
+              thisMovie('luck').startLuck();
+            }
+            else if (json.seconds == 580 && nextgameid == json.curnum)
+            {
+              thisMovie('luck').nowLuck(json.curlog);
+              nextgameid = json.nextnum;
+            }
           }
         }
       )

@@ -24,6 +24,6 @@ class DoublegameController < ApplicationController
 			@user = User.find(session[:userid])
 		end
 
-		@gridconfigs = Gridconfig.where("gridtype in (4,5,6)")
+		@gridconfigs = Gridconfig.where("gridtype in (5,6)")
 	end
 end

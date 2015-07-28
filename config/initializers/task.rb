@@ -174,7 +174,7 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 		user.save
 	end
 
-	for i in 1..7
+	for i in 1..8
 		gridconfig = Gridconfig.find_by_gridtype(i)
 		if gridconfig == nil
 			gridconfig = Gridconfig.new

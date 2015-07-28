@@ -88,7 +88,7 @@ function xprint() {
 
 <% end %>
 
-<div class="lot-table" id="history">
+<div class="lot-table" id="history", style="width:955px">
     <div>
         <div style="width:100%" id="myPrintArea"> 
         <table> 
@@ -146,10 +146,6 @@ function xprint() {
                     </td>
                     <td>
                         大
-                    </td>
-                    <td style="width: 60px; text-align: center;">
-                        和
-                    </td>
                     <td style="width: 60px; text-align: center;">
                         小
                     </td>
@@ -160,12 +156,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag1_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -176,12 +170,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag2_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -192,12 +184,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag3_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -208,12 +198,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag4_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -224,12 +212,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag5_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -240,12 +226,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag6_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -256,12 +240,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag7_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag7_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag7_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -272,12 +254,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag8_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag8_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag8_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
@@ -288,12 +268,10 @@ function xprint() {
                         </td>
                         <% @gridconfigs.each do |config| %>
                         <td class="nums">
-                            <% if config.gridtype == 4 %>
+                            <% if config.gridtype == 5 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag9_1, class:"reccheck", size:6 %>
-                            <% elsif config.gridtype == 5 %>
+                            <% elsif config.gridtype == 6 %>
                             赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag9_2, class:"reccheck", size:6 %>
-                            <% else %>
-                            赔率:<font color="red"><%= config.mulbability %><%= f.text_field :flag9_3, class:"reccheck", size:6 %>
                             <% end %>
                         </td>
                         <% end %>
