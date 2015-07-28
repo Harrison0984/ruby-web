@@ -14,7 +14,6 @@ day_color = 0
 day_order = 0
 day_small = 0
 day_double = 0
-day_normal = 0
 day_big = 0
 
 #
@@ -95,33 +94,27 @@ def checkGrid (object)
 		end
 	end
 
-	#all small
+	#all big && small
 	for i in 0..2
-		if object[i*3]%13 < 7 and object[i*3+1]%13 < 7 and object[i*3+2]%13 < 7
+		if object[i*3]%13 >= 9 and object[i*3+1]%13 >= 9 and object[i*3+2]%13 >= 9
+			lsbig[lsbig.length] = i+1
+		else
 			lssmall[lssmall.length] = i+1
 		end
-		if object[i]%13 < 7 and object[i+3]%13 < 7 and object[i+6]%13 < 7
-			lssmall[lssmall.length] = i+4
-		end
-	end
-
-	#all big
-	for i in 0..2
-		if object[i*3]%13 >= 6 and object[i*3+1]%13 >= 6 and object[i*3+2]%13 >= 6
-			lsbig[lsbig.length] = i+1
-		end
-		if object[i]%13 >= 6 and object[i+3]%13 >= 6 and object[i+6]%13 >= 6
+		if object[i]%13 >= 9 and object[i+3]%13 >= 9 and object[i+6]%13 >= 9
 			lsbig[lsbig.length] = i+4
+		else
+			lssmall[lssmall.length] = i+4
 		end
 	end
 
 	#all double
 	for i in 0..2
-		if object[i*3]%13 == object[i*3+1]%13 or object[i*3+1]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13
-			lsdouble[lsdouble.length] = i+1 or object[i*3]%13 == object[i*3+2]%13
+		if object[i*3]%13 == object[i*3+1]%13 or object[i*3+1]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13
+			lsdouble[lsdouble.length] = i+1
 		end
-		if object[i]%13 == object[i+3]%13 or object[i+3]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13
-			lsdouble[lsdouble.length] = i+4 or object[i]%13 == object[i+6]%13
+		if object[i]%13 == object[i+3]%13 or object[i+3]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13
+			lsdouble[lsdouble.length] = i+4
 		end
 	end
 
@@ -304,6 +297,29 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 					processprize(log.userid, prizecoin)
 					log.update(status: 1)
 				else					
+					log.update(status: -1)
+				end
+			end
+
+			Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
+				totalcoin += log.coin
+				if log.gametype == 1 and object[objindex][log.pos-1] <= 13
+					prizecoin = log.coin * log.mulbability
+					processprize(log.userid, prizecoin)
+					log.update(status: 1)
+				elsif log.gametype == 2 and object[objindex][log.pos-1] > 13 and object[objindex][log.pos-1] <= 26
+					prizecoin = log.coin * log.mulbability
+					processprize(log.userid, prizecoin)
+					log.update(status: 1)
+				elsif log.gametype == 3 and object[objindex][log.pos-1] > 26 and object[objindex][log.pos-1] <= 39
+					prizecoin = log.coin * log.mulbability
+					processprize(log.userid, prizecoin)
+					log.update(status: 1)
+				elsif log.gametype == 4 and object[objindex][log.pos-1] > 39
+					prizecoin = log.coin * log.mulbability
+					processprize(log.userid, prizecoin)
+					log.update(status: 1)
+				else
 					log.update(status: -1)
 				end
 			end

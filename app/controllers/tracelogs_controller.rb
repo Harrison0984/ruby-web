@@ -35,7 +35,7 @@ class TracelogsController < ApplicationController
 							tracelog.maintype = 3
 							tracelog.userid = session[:userid]
 
-							tracelog.mulbability = Gridconfig.find_by_gridtype(4).mulbability
+							tracelog.mulbability = Gridconfig.find_by_gridtype(5).mulbability
 							tracelog.gameid = taskinfo.nextgameid
 							tracelog.status = 0
 							tracelog.useraccount = session[:account]
@@ -55,7 +55,7 @@ class TracelogsController < ApplicationController
 							tracelog.maintype = 3
 							tracelog.userid = session[:userid]
 
-							tracelog.mulbability = Gridconfig.find_by_gridtype(5).mulbability
+							tracelog.mulbability = Gridconfig.find_by_gridtype(6).mulbability
 							tracelog.gameid = taskinfo.nextgameid
 							tracelog.status = 0
 							tracelog.useraccount = session[:account]
@@ -231,7 +231,7 @@ end
 							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
+							tracelog.mulbability = Gridconfig.find_by_gridtype(8).mulbability
 							tracelog.gameid = taskinfo.nextgameid
 							tracelog.status = 0
 							tracelog.useraccount = session[:account]
@@ -250,7 +250,7 @@ end
 							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
+							tracelog.mulbability = Gridconfig.find_by_gridtype(8).mulbability
 							tracelog.gameid = taskinfo.nextgameid
 							tracelog.status = 0
 							tracelog.useraccount = session[:account]
@@ -269,7 +269,7 @@ end
 							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
+							tracelog.mulbability = Gridconfig.find_by_gridtype(8).mulbability
 							tracelog.gameid = taskinfo.nextgameid
 							tracelog.status = 0
 							tracelog.useraccount = session[:account]
@@ -288,7 +288,7 @@ end
 							tracelog.maintype = 4
 							tracelog.userid = session[:userid]
 
-							tracelog.mulbability = Gridconfig.find_by_gridtype(7).mulbability
+							tracelog.mulbability = Gridconfig.find_by_gridtype(8).mulbability
 							tracelog.gameid = taskinfo.nextgameid
 							tracelog.status = 0
 							tracelog.useraccount = session[:account]
@@ -408,7 +408,7 @@ end
 
 						tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 
-						tracelog.mulbability = Gridconfig.find_by_gridtype(3).mulbability
+						tracelog.mulbability = Gridconfig.find_by_gridtype(4).mulbability
 						tracelog.gametype = 4
 						tracelog.coin = params[:tracelogs]["flag#{i}_4"]
 						tracelog.save

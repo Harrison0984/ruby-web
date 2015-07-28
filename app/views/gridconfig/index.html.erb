@@ -17,10 +17,8 @@
                         <thead>
                             <tr>
                                 <th>类型</th>
-                                <th>概率</th>
                                 <th>倍率</th>
-                                <th></th>
-                                <th></th>
+                                <th>功能</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,17 +31,18 @@
                               <% elsif config.gridtype == 3 %>
                                 <td>顺子</td>
                               <% elsif config.gridtype == 4 %>
-                                <td>大</td>
+                                <td>对子</td>
                               <% elsif config.gridtype == 5 %>
-                                <td>合</td>
+                                <td>大</td>
                               <% elsif config.gridtype == 6 %>
                                 <td>小</td>
                               <% elsif config.gridtype == 7 %>
-                                <td>单</td>
+                                <td>单牌</td>
+                              <% elsif config.gridtype == 8 %>
+                                <td>单色</td>
                               <% else %>
                                 <td>error</td>
                               <% end %>
-                              <td><%= config.probability %></td>
                               <td><%= config.mulbability %></td>
                               <td><%= link_to '编辑', edit_gridconfig_path(config) %></td>
                           </tr>

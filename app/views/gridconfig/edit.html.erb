@@ -62,39 +62,14 @@ $('.input-number').change(function() {
                 九宫格
             </div>
             <%= form_for @gridconfig, url:{action: "update"}, mothod: :post do |f| %>
-            <% if @gridconfig.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@gridconfig.errors.count, "error") %>:</h2>
-                <ul>
-                <% @gridconfig.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-                <% end %>
-                </ul>
-              </div>
-              <% end %>
             <div class="gird-config">
               <div class="input-group">
                 <span class="input-group-btn">
-                    <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>相同<% elsif @gridconfig.gridtype == 2 %>顺子<% elsif @gridconfig.gridtype == 3 %>小
-                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同花<% end %>概率</button>
-                    <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="probability">
-                        <span class="glyphicon glyphicon-minus"></span>
-                    </button>
-                </span>
-                <%= f.text_field :probability, class: "form-control input-number", name: "probability", value: @gridconfig.probability, min: "0.01", max: "1.0"%>
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="probability">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </span>
-              </div>
-            </div>
-
-            <div class="gird-config">
-              <div class="input-group">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>相同<% elsif @gridconfig.gridtype == 2 %>顺子<% elsif @gridconfig.gridtype == 3 %>小
-                    <% elsif @gridconfig.gridtype == 4 %>大<% elsif @gridconfig.gridtype == 5 %>同花<% end %>倍率</button>
+                    <button class="btn btn-primary"><%if @gridconfig.gridtype == 1 %>三筒
+                    <% elsif @gridconfig.gridtype == 2 %>同花<% elsif @gridconfig.gridtype == 3 %>顺子
+                    <% elsif @gridconfig.gridtype == 4 %>对子<% elsif @gridconfig.gridtype == 5 %>大
+                    <% elsif @gridconfig.gridtype == 6 %>小<% elsif @gridconfig.gridtype == 7 %>单牌
+                    <% elsif @gridconfig.gridtype == 8 %>单色<% end %>倍率</button>
                     <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="mulbability">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
