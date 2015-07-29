@@ -96,15 +96,19 @@ def checkGrid (object)
 
 	#all big && small
 	for i in 0..2
-		if object[i*3]%13 >= 9 and object[i*3+1]%13 >= 9 and object[i*3+2]%13 >= 9
+		#if (object[i*3]%13 >= 12 or object[i*3]%13 == 1) and (object[i*3+1]%13 >= 12 or object[i*3+1] == 1) and (object[i*3+2]%13 >= 12 or object[i*3+2]%13 == 1)
+		if object[i*3]%13 + object[i*3+1]%13 + object[i*3+2]%13 > 34
 			lsbig[lsbig.length] = i+1
-		else
+		#elsif object[i*3]%13 != 1 and object[i*3+1] != 1 and object[i*3+2] != 1 and object[i*3]%13 < 12 and object[i*3+1] < 12 and object[i+3+2] < 12
+		elsif object[i*3]%13 + object[i*3+1]%13 +object[i*3+2]%13 < 34
 			lssmall[lssmall.length] = i+1
 		end
-		if object[i]%13 >= 9 and object[i+3]%13 >= 9 and object[i+6]%13 >= 9
+		#if (object[i]%13 >= 12 or object[i]%13 == 1) and (object[i+3]%13 >= 12 or object[i+3]%13 == 1) and (object[i+6]%13 >= 12 or object[i+6] == 1)
+		if object[i]%13 + object[i+3]%13 + object[i+6]%13 > 34
 			lsbig[lsbig.length] = i+4
-		else
-			lssmall[lssmall.length] = i+4
+		#elsif object[i]%13 != 1 and object[i+3]%13 != 1 and object[i+6]%13 != 1 and object[i]%13 < 12 and object[i+3] < 12 and object[i+6] < 13
+		elsif object[i]%13 + object[i+3]%13 + object[i+6]%13 < 34
+ 			lssmall[lssmall.length] = i+4
 		end
 	end
 
@@ -212,6 +216,13 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 		objects[i] = object
 	end
+
+	Rails.logger.debug day_same
+	Rails.logger.debug day_order
+	Rails.logger.debug day_small
+	Rails.logger.debug day_big
+	Rails.logger.debug day_double
+	Rails.logger.debug day_color
 
 	for i in 0..left_count-1
 		srand()
