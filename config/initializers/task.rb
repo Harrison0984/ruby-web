@@ -161,7 +161,6 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 		user.nickname = "管理员"
 		user.regionname = "admin"
 		user.action = 1
-		user.regionid = 1
 		user.lowerlimit = 1
 		user.upperlimit = 10000
 		user.everylimit = 10000
