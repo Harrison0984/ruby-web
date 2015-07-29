@@ -97,17 +97,17 @@ def checkGrid (object)
 	#all big && small
 	for i in 0..2
 		#if (object[i*3]%13 >= 12 or object[i*3]%13 == 1) and (object[i*3+1]%13 >= 12 or object[i*3+1] == 1) and (object[i*3+2]%13 >= 12 or object[i*3+2]%13 == 1)
-		if object[i*3]%13 + object[i*3+1]%13 + object[i*3+2]%13 > 34
+		if object[i*3]%14 + object[i*3+1]%14 + object[i*3+2]%14 > 34
 			lsbig[lsbig.length] = i+1
 		#elsif object[i*3]%13 != 1 and object[i*3+1] != 1 and object[i*3+2] != 1 and object[i*3]%13 < 12 and object[i*3+1] < 12 and object[i+3+2] < 12
-		elsif object[i*3]%13 + object[i*3+1]%13 +object[i*3+2]%13 < 34
+		elsif object[i*3]%14 + object[i*3+1]%14 +object[i*3+2]%14 < 34
 			lssmall[lssmall.length] = i+1
 		end
 		#if (object[i]%13 >= 12 or object[i]%13 == 1) and (object[i+3]%13 >= 12 or object[i+3]%13 == 1) and (object[i+6]%13 >= 12 or object[i+6] == 1)
-		if object[i]%13 + object[i+3]%13 + object[i+6]%13 > 34
+		if object[i]%14 + object[i+3]%14 + object[i+6]%14 > 34
 			lsbig[lsbig.length] = i+4
 		#elsif object[i]%13 != 1 and object[i+3]%13 != 1 and object[i+6]%13 != 1 and object[i]%13 < 12 and object[i+3] < 12 and object[i+6] < 13
-		elsif object[i]%13 + object[i+3]%13 + object[i+6]%13 < 34
+		elsif object[i]%14 + object[i+3]%14 + object[i+6]%14 < 34
  			lssmall[lssmall.length] = i+4
 		end
 	end
