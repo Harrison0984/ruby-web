@@ -216,6 +216,7 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects[i] = object
 	end
 
+	Rails.logger.debug left_count
 	Rails.logger.debug day_same
 	Rails.logger.debug day_order
 	Rails.logger.debug day_small
@@ -230,138 +231,141 @@ s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects[index] = objects[i]
 		objects[i] = tmp
 	end
+end
 
-	s.cron '*/10 * * * *' do
+s.cron '*/10 * * * *' do
 
-		if Time.new.hour >= 1 and Time.new.hour < 10
-			Rails.logger.debug "invalid time"
-		else
-			curtime = Time.new
+	if Time.new.hour >= 1 and Time.new.hour < 10
+		Rails.logger.debug "invalid time"
+	else
+		Rails.logger.debug "start task"
+		curtime = Time.new
 
-			grid = Grid.new
-			grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s
-			grid.x1 = objects[objindex][0]
-			grid.x2 = objects[objindex][1]
-			grid.x3 = objects[objindex][2]
-			grid.y1 = objects[objindex][3]
-			grid.y2 = objects[objindex][4]
-			grid.y3 = objects[objindex][5]
-			grid.z1 = objects[objindex][6]
-			grid.z2 = objects[objindex][7]
-			grid.z3 = objects[objindex][8]
+		grid = Grid.new
+		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s
+		grid.x1 = objects[objindex][0]
+		grid.x2 = objects[objindex][1]
+		grid.x3 = objects[objindex][2]
+		grid.y1 = objects[objindex][3]
+		grid.y2 = objects[objindex][4]
+		grid.y3 = objects[objindex][5]
+		grid.z1 = objects[objindex][6]
+		grid.z2 = objects[objindex][7]
+		grid.z3 = objects[objindex][8]
 
-			grid.time = curtime.strftime("%Y-%m-%d %H:%M")
-			grid.save
+		grid.time = curtime.strftime("%Y-%m-%d %H:%M")
 
-			lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
+		Rails.logger.debug grid
+		grid.save
 
-			totalcoin = 0
-			prizecoin = 0
-			
-			Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
-				totalcoin += log.coin
-	  			if log.gametype == 1 and lssame.include?(log.pos)
-	  				prizecoin = log.coin * log.mulbability
-	  				processprize(log.userid, prizecoin)
-	  				log.update(status: 1)
-	  			elsif log.gametype == 2 and lsorder.include?(log.pos)
-	  				prizecoin = log.coin * log.mulbability
-	  				processprize(log.userid, prizecoin)
-	  				log.update(status: 1)
-	  			elsif log.gametype == 3 and lssmall.include?(log.pos)
-	  				prizecoin = log.coin * log.mulbability
-	  				processprize(log.userid, prizecoin)
-	  				log.update(status: 1)
-	  			elsif log.gametype == 4 and lsdouble.include?(log.pos)
-	  				prizecoin = log.coin * log.mulbability
-	  				processprize(log.userid, prizecoin)
-	  				log.update(status: 1)
-	  			else
-	  				log.update(status: -1)
-	  			end
-			end
+		lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
 
-			Tracelog.where("gameid = ? and maintype = 2", grid.gameid).each do |log|
-				totalcoin += log.coin
-				if object[objindex][log.pos-1] % 14 == log.gametype
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				else
-					log.update(status: -1)
-				end
-			end
-
-			Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
-				totalcoin += log.coin
-				if log.gametype == 1 and object[objindex][log.pos-1] % 14 < 7
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				elsif log.gametype == 2 and objindex[objindex][log.pos-1] % 14 == 7
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				elsif log.gametype == 3 and objindex[objindex][log.pos-1] % 14 > 7
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				else					
-					log.update(status: -1)
-				end
-			end
-
-			Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
-				totalcoin += log.coin
-				if log.gametype == 1 and object[objindex][log.pos-1] <= 13
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				elsif log.gametype == 2 and object[objindex][log.pos-1] > 13 and object[objindex][log.pos-1] <= 26
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				elsif log.gametype == 3 and object[objindex][log.pos-1] > 26 and object[objindex][log.pos-1] <= 39
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				elsif log.gametype == 4 and object[objindex][log.pos-1] > 39
-					prizecoin = log.coin * log.mulbability
-					processprize(log.userid, prizecoin)
-					log.update(status: 1)
-				else
-					log.update(status: -1)
-				end
-			end
-
-			#if the end time of day
-			if curtime.hour == 0 and curtime.min == 50
-				nexttime = curtime.beginning_of_day + 10*60*60+10*60
-			else
-				nexttime = curtime + 10*60
-			end
-
-			tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d"))
-			if tasklog == nil
-				tasklog = Tasklog.new
-				tasklog.totalbar = left_count
-				tasklog.currentbar = objindex+1
-				tasklog.errorbar = 0
-				tasklog.totalcoin = totalcoin
-				tasklog.prizecoin = prizecoin
-				tasklog.taskdate = curtime.strftime("%Y-%m-%d")
-				tasklog.runtime = curtime.strftime("%H:%M")
-				tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
-				tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s
-				tasklog.save
-			else
-				tasklog.update(totalbar: left_count, currentbar: objindex+1, totalcoin: totalcoin, 
-					prizecoin: prizecoin, runtime: curtime.strftime("%H:%M"),
-					nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s,
-					nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
-			end
-
-			objindex += 1
+		totalcoin = 0
+		prizecoin = 0
+		
+		Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
+			totalcoin += log.coin
+  			if log.gametype == 1 and lssame.include?(log.pos)
+  				prizecoin = log.coin * log.mulbability
+  				processprize(log.userid, prizecoin)
+  				log.update(status: 1)
+  			elsif log.gametype == 2 and lsorder.include?(log.pos)
+  				prizecoin = log.coin * log.mulbability
+  				processprize(log.userid, prizecoin)
+  				log.update(status: 1)
+  			elsif log.gametype == 3 and lssmall.include?(log.pos)
+  				prizecoin = log.coin * log.mulbability
+  				processprize(log.userid, prizecoin)
+  				log.update(status: 1)
+  			elsif log.gametype == 4 and lsdouble.include?(log.pos)
+  				prizecoin = log.coin * log.mulbability
+  				processprize(log.userid, prizecoin)
+  				log.update(status: 1)
+  			else
+  				log.update(status: -1)
+  			end
 		end
+
+		Tracelog.where("gameid = ? and maintype = 2", grid.gameid).each do |log|
+			totalcoin += log.coin
+			if object[objindex][log.pos-1] % 14 == log.gametype
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			else
+				log.update(status: -1)
+			end
+		end
+
+		Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
+			totalcoin += log.coin
+			if log.gametype == 1 and object[objindex][log.pos-1] % 14 < 7
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 2 and objindex[objindex][log.pos-1] % 14 == 7
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 3 and objindex[objindex][log.pos-1] % 14 > 7
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			else					
+				log.update(status: -1)
+			end
+		end
+
+		Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
+			totalcoin += log.coin
+			if log.gametype == 1 and object[objindex][log.pos-1] <= 13
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 2 and object[objindex][log.pos-1] > 13 and object[objindex][log.pos-1] <= 26
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 3 and object[objindex][log.pos-1] > 26 and object[objindex][log.pos-1] <= 39
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 4 and object[objindex][log.pos-1] > 39
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			else
+				log.update(status: -1)
+			end
+		end
+
+		#if the end time of day
+		if curtime.hour == 0 and curtime.min == 50
+			nexttime = curtime.beginning_of_day + 10*60*60+10*60
+		else
+			nexttime = curtime + 10*60
+		end
+
+		tasklog = Tasklog.find_by_taskdate(curtime.strftime("%Y-%m-%d"))
+		Rails.logger.debug tasklog
+		if tasklog == nil
+			tasklog = Tasklog.new
+			tasklog.totalbar = left_count
+			tasklog.currentbar = objindex+1
+			tasklog.totalcoin = totalcoin
+			tasklog.prizecoin = prizecoin
+			tasklog.taskdate = curtime.strftime("%Y-%m-%d")
+			tasklog.runtime = curtime.strftime("%H:%M")
+			tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
+			tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s
+			tasklog.save
+		else
+			tasklog.update(totalbar: left_count, currentbar: objindex+1, totalcoin: totalcoin, 
+				prizecoin: prizecoin, runtime: curtime.strftime("%H:%M"),
+				nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s,
+				nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
+		end
+
+		objindex += 1
 	end
 end
