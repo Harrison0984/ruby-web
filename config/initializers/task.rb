@@ -182,54 +182,56 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 	end
 end
 
-s.cron '56 05 * * *', :first_at => Time.now + 1, :timeout => '30m' do
+s.cron '56 09 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	#left count of day
-	if Time.now.hour < 10
+	if Time.now.hour < 9
 		left_count = ((Time.now.beginning_of_day+60*60 - Time.now) / 600).to_i
 	else
 		left_count = ((Time.now.tomorrow.beginning_of_day+60*60 - Time.now) / 600).to_i
 	end
 
-	begin_count = 90 - left_count
+	if left_count > 0
+		begin_count = 90 - left_count
 
-	#reset user daycoin every day at 5am
-	if Time.now.hour == 5
-		users = User.all
-		users.each do |user|
-			user.update(todaycoin: 0)
+		#reset user daycoin every day at 5am
+		if Time.now.hour == 5
+			users = User.all
+			users.each do |user|
+				user.update(todaycoin: 0)
+			end
 		end
-	end
 
-	objects = []
-	objindex = 0
-	for i in 0..left_count-1
-		object, samenum, ordernum, smallnum, bignum, doublenum, colornum = randomGrid
+		objects = []
+		objindex = 0
+		for i in 0..left_count-1
+			object, samenum, ordernum, smallnum, bignum, doublenum, colornum = randomGrid
 
-		day_same += samenum
-		day_order += ordernum
-		day_small += smallnum
-		day_big += bignum
-		day_double += doublenum
-		day_color += colornum
+			day_same += samenum
+			day_order += ordernum
+			day_small += smallnum
+			day_big += bignum
+			day_double += doublenum
+			day_color += colornum
 
-		objects[i] = object
-	end
+			objects[i] = object
+		end
 
-	Rails.logger.debug left_count
-	Rails.logger.debug day_same
-	Rails.logger.debug day_order
-	Rails.logger.debug day_small
-	Rails.logger.debug day_big
-	Rails.logger.debug day_double
-	Rails.logger.debug day_color
+		Rails.logger.debug left_count
+		Rails.logger.debug day_same
+		Rails.logger.debug day_order
+		Rails.logger.debug day_small
+		Rails.logger.debug day_big
+		Rails.logger.debug day_double
+		Rails.logger.debug day_color
 
-	for i in 0..left_count-1
-		srand()
-		index = rand(left_count)
-		tmp = objects[index]
-		objects[index] = objects[i]
-		objects[i] = tmp
+		for i in 0..left_count-1
+			srand()
+			index = rand(left_count)
+			tmp = objects[index]
+			objects[index] = objects[i]
+			objects[i] = tmp
+		end
 	end
 end
 
