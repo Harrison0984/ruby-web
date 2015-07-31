@@ -49,10 +49,8 @@ end
 def cardnum(num)
 	if num%13 == 1
 		return 14
-	elsif num%13 == 0
-		return 13
 	else
-		return num%13
+		return num%14
 	end
 end
 
@@ -90,34 +88,34 @@ def checkGrid (object)
 		small = cards.min
 		big = cards.max
 		if big-small == 2 and cards[0] != cards[1] and cards[1] != cards[2] and cards[0] != cards[2]
-			lsorder[lsorder.length] = i+1
+			lsorder[lsorder.length] = i+4
 		end
 	end
 
 	#all big && small
 	for i in 0..2
-		#if (object[i*3]%13 >= 12 or object[i*3]%13 == 1) and (object[i*3+1]%13 >= 12 or object[i*3+1] == 1) and (object[i*3+2]%13 >= 12 or object[i*3+2]%13 == 1)
-		if object[i*3]%14 + object[i*3+1]%14 + object[i*3+2]%14 > 34
+		cards = [cardnum(object[i*3]), cardnum(object[i*3+1]), cardnum(object[i*3+2])]
+
+		if cards[0] + cards[1] + cards[2] > 31
 			lsbig[lsbig.length] = i+1
-		#elsif object[i*3]%13 != 1 and object[i*3+1] != 1 and object[i*3+2] != 1 and object[i*3]%13 < 12 and object[i*3+1] < 12 and object[i+3+2] < 12
-		elsif object[i*3]%14 + object[i*3+1]%14 +object[i*3+2]%14 < 34
+		elsif cards[0] + cards[1] +cards[2] < 31
 			lssmall[lssmall.length] = i+1
 		end
-		#if (object[i]%13 >= 12 or object[i]%13 == 1) and (object[i+3]%13 >= 12 or object[i+3]%13 == 1) and (object[i+6]%13 >= 12 or object[i+6] == 1)
-		if object[i]%14 + object[i+3]%14 + object[i+6]%14 > 34
+
+		cards = [cardnum(object[i]), cardnum(object[i+3]), cardnum(object[i+6])]		
+		if cards[0] + cards[1] + cards[2] > 31
 			lsbig[lsbig.length] = i+4
-		#elsif object[i]%13 != 1 and object[i+3]%13 != 1 and object[i+6]%13 != 1 and object[i]%13 < 12 and object[i+3] < 12 and object[i+6] < 13
-		elsif object[i]%14 + object[i+3]%14 + object[i+6]%14 < 34
+		elsif cards[0] + cards[1] + cards[2] < 31
  			lssmall[lssmall.length] = i+4
 		end
 	end
 
 	#all double
 	for i in 0..2
-		if object[i*3]%13 == object[i*3+1]%13 or object[i*3+1]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13
+		if object[i*3]%13 == object[i*3+1]%13 or object[i*3+1]%13 == object[i*3+2]%13 or object[i*3]%13 == object[i*3+2]%13
 			lsdouble[lsdouble.length] = i+1
 		end
-		if object[i]%13 == object[i+3]%13 or object[i+3]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13
+		if object[i]%13 == object[i+3]%13 or object[i+3]%13 == object[i+6]%13 or object[i]%13 == object[i+6]%13
 			lsdouble[lsdouble.length] = i+4
 		end
 	end
@@ -131,12 +129,10 @@ def checkGrid (object)
 			lscolor[lscolor.length] = i+4
 		end
 
-		if object[i*3] >= 14 and object[i*3] <= 26 and object[i*3+1] <= 14 and object[i*3+1] <= 26 and
-		 object[i*3+2] >= 14 and object[i*3+2] <= 26
+		if object[i*3] >= 14 and object[i*3] <= 26 and object[i*3+1] <= 14 and object[i*3+1] <= 26 and object[i*3+2] >= 14 and object[i*3+2] <= 26
 			lscolor[lscolor.length] = i+1
 		end
-		if object[i] >= 14 and object[i] <= 26 and object[i+3] <= 14 and object[i+3] <= 26 and
-		 object[i+6] >= 14 and object[i+6] <= 26
+		if object[i] >= 14 and object[i] <= 26 and object[i+3] <= 14 and object[i+3] <= 26 and object[i+6] >= 14 and object[i+6] <= 26
 			lscolor[lscolor.length] = i+4
 		end
 		

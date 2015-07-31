@@ -24,6 +24,7 @@
 
 <% content_for :script do %>
 var nextgameid = "";
+var nextseconds = 0;
 $(document).ready(
     function(){
     setInterval(countdown, 1000);
@@ -80,7 +81,9 @@ $(document).ready(
     setInterval(flash, 1000);
   });
   function flash(){
-    $.ajax({
+    if (nextseconds == 0 || nextseconds % 60 == 0 || nextseconds == 420
+     || nextseconds == 580 || nextseconds == 570 || nextseconds == 560){
+      $.ajax({
           url: 'jsondata',
           type: 'GET',
           dataType: 'json',
@@ -89,31 +92,41 @@ $(document).ready(
           success: function(json) {
 
             thisMovie('luck').countTime(json.seconds);
-
+ 
             if (nextgameid == "")
             {
               nextgameid = json.nextnum;
               thisMovie('luck').hisNum(json.curnum,json.curlog);
               thisMovie('luck').nowNum(json.nextnum);
             }
-
-            if (json.seconds == 420)
+            else
             {
-              thisMovie('luck').reset();
-              thisMovie('luck').nowNum(json.nextnum);
+              if (nextseconds == 420)
+              {
+                thisMovie('luck').reset();
+                thisMovie('luck').nowNum(json.nextnum);
+              }
+              else if (nextseconds == 0)
+              {
+                thisMovie('luck').startLuck();
+              }
+              else if ((nextseconds == 580 || nextseconds == 570 || nextseconds == 560)
+               && nextgameid == json.curnum)
+              {
+                thisMovie('luck').nowLuck(json.curlog);
+                nextgameid = json.nextnum;
+              }
             }
-            else if (json.seconds == 0)
-            {
-              thisMovie('luck').startLuck();
-            }
-            else if (json.seconds == 580 && nextgameid == json.curnum)
-            {
-              thisMovie('luck').nowLuck(json.curlog);
-              nextgameid = json.nextnum;
-            }
+ 
+           nextseconds = parseInt(json.seconds);
           }
         }
       )
+    }
+    else if (nextseconds > 0)
+    {
+        nextseconds -= 1;
+    }
   };
 <% end %>
 
