@@ -21,10 +21,11 @@ class TracelogsController < ApplicationController
 			user = User.find(session[:userid])
 			
 			@result = Array.new
-			@totalcoin = totalcoin
+			@totalcoin = 0
 			@gameid = taskinfo.nextgameid
 
 			if seconds > 60 and user and user.coin > totalcoin
+				@totalcoin = totalcoin
 				curtime = Time.new
 				for i in 1..9
 					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or 
@@ -74,21 +75,20 @@ class TracelogsController < ApplicationController
 				user.update(coin: user.coin-totalcoin)
 			end
 			respond_to do |format|
-			format.html {}
-			format.js {}
-			format.json {}
-		end
-	else
-		respond_to do |format|
-			format.html {}
-			format.js {}
-			format.json {}
+				format.html {}
+				format.js {}
+				format.json {}
+			end
+		else
+			respond_to do |format|
+				format.html {}
+				format.js {}
+				format.json {}
+			end
 		end
 	end
-end
 
 	def single
-
 		if session[:userid] != nil and session[:userid] != 0
 			taskinfo = Tasklog.last
 			seconds = (taskinfo.nexttime - Time.new).to_i
@@ -96,10 +96,11 @@ end
 			user = User.find(session[:userid])
 
 			@result = Array.new
-			@totalcoin = totalcoin
+			@totalcoin = 0
 			@gameid = taskinfo.nextgameid
 
 			if seconds > 60 and user and user.coin > totalcoin
+				@totalcoin = totalcoin
 				curtime = Time.new
 
 				for i in 1..9
@@ -321,115 +322,116 @@ end
 	end
 
 	def combination
-		taskinfo = Tasklog.last
-		seconds = (taskinfo.nexttime - Time.new).to_i
-		totalcoin = params[:tracelogs][:totalcoin].to_i
-		user = User.find(session[:userid])
+		if session[:userid] != nil and session[:userid] != 0
+			taskinfo = Tasklog.last
+			seconds = (taskinfo.nexttime - Time.new).to_i
+			totalcoin = params[:tracelogs][:totalcoin].to_i
+			user = User.find(session[:userid])
 
-		@result = Array.new
-		@totalcoin = totalcoin
-		@gameid = taskinfo.nextgameid
+			@result = Array.new
+			@totalcoin = totalcoin
+			@gameid = taskinfo.nextgameid
 
-		if seconds > 60 and user and user.coin > totalcoin
+			if seconds > 60 and user and user.coin > totalcoin
+				@totalcoin = totalcoin
+				curtime = Time.new
+				for i in 1..6
+					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or params[:tracelogs]["flag#{i}_3"].to_i > 0
+						if params[:tracelogs]["flag#{i}_1"].to_i > 0
+							tracelog = Tracelog.new
+							tracelog.pos = i
+							tracelog.maintype = 1
+							tracelog.userid = session[:userid]
 
-			curtime = Time.new
+							tracelog.gameid = taskinfo.nextgameid
+							tracelog.status = 0
+							tracelog.useraccount = session[:account]
 
-			for i in 1..6
-				if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or params[:tracelogs]["flag#{i}_3"].to_i > 0
-					if params[:tracelogs]["flag#{i}_1"].to_i > 0
-						tracelog = Tracelog.new
-						tracelog.pos = i
-						tracelog.maintype = 1
-						tracelog.userid = session[:userid]
+							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 
-						tracelog.gameid = taskinfo.nextgameid
-						tracelog.status = 0
-						tracelog.useraccount = session[:account]
+							tracelog.mulbability = Gridconfig.find_by_gridtype(1).mulbability
+							tracelog.gametype = 1
+							tracelog.coin = params[:tracelogs]["flag#{i}_1"]
+							tracelog.save
 
-						tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
+									"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
+						end
+						if params[:tracelogs]["flag#{i}_2"].to_i > 0
+							tracelog = Tracelog.new
+							tracelog.pos = i
+							tracelog.maintype = 1
+							tracelog.userid = session[:userid]
 
-						tracelog.mulbability = Gridconfig.find_by_gridtype(1).mulbability
-						tracelog.gametype = 1
-						tracelog.coin = params[:tracelogs]["flag#{i}_1"]
-						tracelog.save
+							tracelog.gameid = taskinfo.nextgameid
+							tracelog.status = 0
+							tracelog.useraccount = session[:account]
 
-						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
-					end
-					if params[:tracelogs]["flag#{i}_2"].to_i > 0
-						tracelog = Tracelog.new
-						tracelog.pos = i
-						tracelog.maintype = 1
-						tracelog.userid = session[:userid]
+							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 
-						tracelog.gameid = taskinfo.nextgameid
-						tracelog.status = 0
-						tracelog.useraccount = session[:account]
+							tracelog.mulbability = Gridconfig.find_by_gridtype(2).mulbability
+							tracelog.gametype = 2
+							tracelog.coin = params[:tracelogs]["flag#{i}_2"]
+							tracelog.save
 
-						tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
+									"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
+						end
+						if params[:tracelogs]["flag#{i}_3"].to_i > 0
+							tracelog = Tracelog.new
+							tracelog.pos = i
+							tracelog.maintype = 1
+							tracelog.userid = session[:userid]
 
-						tracelog.mulbability = Gridconfig.find_by_gridtype(2).mulbability
-						tracelog.gametype = 2
-						tracelog.coin = params[:tracelogs]["flag#{i}_2"]
-						tracelog.save
+							tracelog.gameid = taskinfo.nextgameid
+							tracelog.status = 0
+							tracelog.useraccount = session[:account]
 
-						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
-					end
-					if params[:tracelogs]["flag#{i}_3"].to_i > 0
-						tracelog = Tracelog.new
-						tracelog.pos = i
-						tracelog.maintype = 1
-						tracelog.userid = session[:userid]
+							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 
-						tracelog.gameid = taskinfo.nextgameid
-						tracelog.status = 0
-						tracelog.useraccount = session[:account]
+							tracelog.mulbability = Gridconfig.find_by_gridtype(3).mulbability
+							tracelog.gametype = 3
+							tracelog.coin = params[:tracelogs]["flag#{i}_3"]
+							tracelog.save
 
-						tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
+							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
+									"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
+						end
+						if params[:tracelogs]["flag#{i}_4"].to_i > 0
+							tracelog = Tracelog.new
+							tracelog.pos = i
+							tracelog.maintype = 1
+							tracelog.userid = session[:userid]
 
-						tracelog.mulbability = Gridconfig.find_by_gridtype(3).mulbability
-						tracelog.gametype = 3
-						tracelog.coin = params[:tracelogs]["flag#{i}_3"]
-						tracelog.save
+							tracelog.gameid = taskinfo.nextgameid
+							tracelog.status = 0
+							tracelog.useraccount = session[:account]
 
-						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
-					end
-					if params[:tracelogs]["flag#{i}_4"].to_i > 0
-						tracelog = Tracelog.new
-						tracelog.pos = i
-						tracelog.maintype = 1
-						tracelog.userid = session[:userid]
+							tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
 
-						tracelog.gameid = taskinfo.nextgameid
-						tracelog.status = 0
-						tracelog.useraccount = session[:account]
+							tracelog.mulbability = Gridconfig.find_by_gridtype(4).mulbability
+							tracelog.gametype = 4
+							tracelog.coin = params[:tracelogs]["flag#{i}_4"]
+							tracelog.save
 
-						tracelog.time = curtime.strftime("%Y-%m-%d %H:%M:%S")
-
-						tracelog.mulbability = Gridconfig.find_by_gridtype(4).mulbability
-						tracelog.gametype = 4
-						tracelog.coin = params[:tracelogs]["flag#{i}_4"]
-						tracelog.save
-
-						@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
-								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
+							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
+									"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
+						end
 					end
 				end
+				user.update(coin: user.coin-totalcoin)
 			end
-			user.update(coin: user.coin-totalcoin)
-		end
-		respond_to do |format|
-			format.html {}
-			format.js {}
-			format.json {}
-		end
-	else
-		respond_to do |format|
-			format.html {}
-			format.js {}
-			format.json {}
+			respond_to do |format|
+				format.html {}
+				format.js {}
+				format.json {}
+			end
+		else
+			respond_to do |format|
+				format.html {}
+				format.js {}
+				format.json {}
+			end
 		end
 	end
 end
