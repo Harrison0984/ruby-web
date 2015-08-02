@@ -82,7 +82,7 @@ $(document).ready(
   });
   function flash(){
     if (nextseconds == 0 || nextseconds % 60 == 0 || nextseconds == 420
-     || nextseconds == 580 || nextseconds == 570 || nextseconds == 560){
+     || nextseconds == 585 || nextseconds == 580 || nextseconds == 570){
       $.ajax({
           url: 'jsondata',
           type: 'GET',
@@ -110,7 +110,7 @@ $(document).ready(
               {
                 thisMovie('luck').startLuck();
               }
-              else if ((nextseconds == 580 || nextseconds == 570 || nextseconds == 560)
+              else if ((nextseconds == 585 || nextseconds == 580 || nextseconds == 570)
                && nextgameid == json.curnum)
               {
                 thisMovie('luck').nowLuck(json.curlog);

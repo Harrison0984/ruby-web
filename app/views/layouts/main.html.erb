@@ -38,7 +38,7 @@
             <span><%= link_to "退出", session_path(@user.id), method: "delete" %></span>
             <% end %>
             <span class="line">|</span>
-            <%if @user and @user.level==1%>
+            <%if @user and @user.level!=1%>
             <span class="res"><%=link_to "控制台", controller:'manage', action: 'index'%></span>
             <%else%>
             <span class="res"><a href="/home/feedback" target="_blank">用户反馈</a></span>

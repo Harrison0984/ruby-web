@@ -10,8 +10,8 @@ class UsersController < ApplicationController
 	end
 	
 	def create
-
 		level = isadmin(session[:userid])
+		@admin = User.find(session[:userid])
 
 		if level != 0		
 			admin = User.find(session[:userid])
@@ -25,9 +25,9 @@ class UsersController < ApplicationController
 			end
 
 			@user = User.new(params.require(:user).permit(:account, :password, 
-				:nickname, :coin, :level, :lowerlimit, :upperlimit, :regionid, :action))
+				:nickname, :coin, :level, :lowerlimit, :upperlimit, :action))
 			@user.action = 1
-			@user.regionid = session[:userid]
+			@user.regionname = admin.account
 
 			if @user.save
 				curtime = Time.new
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 			if @admin.level == 1
 				@users = User.all
 			else
-				@users = User.where("regionid = ?", @admin.id)
+				@users = User.where("regionname = ?", @admin.account)
 			end
 		end
 	end
@@ -152,7 +152,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:format])
 		if user
 			if user.level > 1
-				User.where("regionid = ?", user.id).each do |childuser|
+				User.where("regionname = ?", user.account).each do |childuser|
 					childuser.update(action: 0)
 				end
 			end
@@ -167,7 +167,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:format])
 		if user
 			if user.level > 1
-				User.where("regionid = ?", user.id).each do |childuser|
+				User.where("regionname = ?", user.account).each do |childuser|
 					childuser.update(action: 1)
 				end
 			end
