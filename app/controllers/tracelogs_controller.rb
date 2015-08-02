@@ -7,7 +7,7 @@ class TracelogsController < ApplicationController
 			if @admin.level == 1
 				@tracelogs = Tracelog.all
 			elsif @admin.level == 2
-				users = User.where("regionid = ?", @admin.id)
+				users = User.where("regionname = ?", @admin.account)
 				@tracelogs = Tracelog.where(userid: users)
 			end
 		end
