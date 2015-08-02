@@ -22,6 +22,7 @@
     </li>
 <% end %>
 
+<%if @user%>
 <% content_for :script do %>
 var nextgameid = "";
 var nextseconds = 0;
@@ -151,3 +152,4 @@ $(document).ready(
 </p>
 <p id="resultp"></p>
 </div>
+<%end%>

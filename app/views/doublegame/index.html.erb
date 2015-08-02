@@ -27,6 +27,7 @@
     </li>
 <% end %>
 
+<%if @user%>
 <% content_for :script do %>
 $(document).ready(
     function(){
@@ -292,3 +293,4 @@ function xprint() {
         </table> 
     </div>
 </div>
+<%end%>

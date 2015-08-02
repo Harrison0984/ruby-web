@@ -1,3 +1,28 @@
+<% content_for :menus do %>
+    <li data-tag="idx">
+        <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
+    </li>
+    <li data-tag="kj">
+        <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
+    </li>
+    <li  data-tag="zhl">
+        <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
+    </li>
+    <li  data-tag="dshl">
+        <%= link_to '组合盘', controller: 'combinationgame', action: 'index' %>
+    </li>
+    <li   data-tag="sxpl">
+        <%= link_to '双面盘', controller: 'doublegame', action: 'index' %>
+    </li>
+    <li   data-tag="kjs">
+        <%= link_to '九宫格开奖直播', controller: 'flashview', action: 'index' %>
+    </li>
+    <li class=hover data-tag="mfc">
+        <%= link_to '游戏记录', controller: 'traceresult', action: 'index' %>
+    </li>
+<% end %>
+
+<%if @user%>
 <% content_for :script do %>
 $(document).ready(
     function(){
@@ -22,30 +47,6 @@ $(document).ready(
           second.innerHTML = newSeconds;
         }
     }
-<% end %>
-
-<% content_for :menus do %>
-    <li data-tag="idx">
-        <%= link_to '幸运九宫格', controller: 'main', action: 'index' %>
-    </li>
-    <li data-tag="kj">
-        <%= link_to '历史开奖号码', controller: 'mainhistory', action: 'index' %>
-    </li>
-    <li  data-tag="zhl">
-        <%= link_to '单选盘', controller: 'singlegame', action: 'index' %>
-    </li>
-    <li  data-tag="dshl">
-        <%= link_to '组合盘', controller: 'combinationgame', action: 'index' %>
-    </li>
-    <li   data-tag="sxpl">
-        <%= link_to '双面盘', controller: 'doublegame', action: 'index' %>
-    </li>
-    <li   data-tag="kjs">
-        <%= link_to '九宫格开奖直播', controller: 'flashview', action: 'index' %>
-    </li>
-    <li class=hover data-tag="mfc">
-        <%= link_to '游戏记录', controller: 'traceresult', action: 'index' %>
-    </li>
 <% end %>
 
 <table class="lot-table" id="history">
@@ -129,6 +130,7 @@ $(document).ready(
     <% end %>
     <% end %>
 </table>
+<%end%>
 <div class="lot-about mt10" style="width: 980px;">
     <div class="l-title">
         <h2>

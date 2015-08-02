@@ -27,6 +27,7 @@
     </li>
 <% end %>
 
+<%if @user%>
 <% content_for :script do %>
 $(".reccheck").blur(function(){
         var coinitems = document.getElementsByClassName("reccheck");
@@ -258,3 +259,4 @@ function xprint() {
         </table> 
     </div>
 </div>
+<%end%>
