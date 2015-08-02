@@ -69,62 +69,61 @@ $(document).ready(
     <% if @gridlogs %>
     <% @gridlogs.reverse_each do |log| %>
     <tr class='even'>
-        <td>
-            <p class="p"><%=log.gameid%></p>
-        </td>
+        <td><p class="p"><%=log.gameid%></p></td>
         <% if log.maintype == 1 %>
-        <% if log.gametype == 1 %>
-        <td>三筒</td>
-        <% elsif log.gametype == 2 %>
-        <td>同花</td>
-        <% elsif log.gametype == 3 %>
-        <td>顺子</td>
-        <% end %>
+            <% if log.gametype == 1 %>
+                <td>三筒</td>
+                <% elsif log.gametype == 2 %>
+                <td>同花</td>
+                <% elsif log.gametype == 3 %>
+                <td>顺子</td>
+                <% else %>
+                <td>对子</td>
+            <% end %>
         <% elsif log.maintype == 3 %>
-        <% if log.gametype == 1 %>
-        <td>大</td>
-        <% elsif log.gametype == 2 %>
-        <td>合</td>
-        <% elsif log.gametype == 3 %>
-        <td>小</td>
-        <% end %>
-        <% else %>
-        <% if log.gametype == 1 %>
-        <td>A</td>
-        <% elsif log.gametype <= 10 %>
-        <td><%= log.gametype %></td>
-        <% elsif log.gametype == 11 %>
-        <td>J</td>
-        <% elsif log.gametype == 12 %>
-        <td>Q</td>
-        <% elsif log.gametype == 13 %>
-        <td>K</td>
-        <% end %>
-        <% end %>
-        <% if log.maintype == 1 %>
-        <% if log.pos == 1 %>
-        <td>横一</td>
-        <% elsif log.pos == 2 %>
-        <td>横二</td>
-        <% elsif log.pos == 3 %>
-        <td>横三</td>
-        <% elsif log.pos == 4 %>
-        <td>纵一</td>
-        <% elsif log.pos == 5 %>
-        <td>纵二</td>
-        <% elsif log.pos == 6 %>
-        <td>纵三</td>
-        <% end %>
-        <% else %>
+            <% if log.gametype == 1 %>
+                <td>大</td>
+                <% elsif log.gametype == 2 %>
+                <td>小</td>
+            <% end %>
+        <% elsif log.maintype == 4 %>
+            <% if log.gametype == 1 %>
+                <td>方</td>
+            <% elsif log.gametype == 2 %>
+                <td>红</td>
+            <% elsif log.gametype == 3 %>
+                <td>黑</td>
+            <% elsif log.gametype == 4 %>
+                <td>梅</td>
+            <% end %>
+        <% elsif log.maintype == 2 %>
+            <% if log.gametype == 1 %>
+                <td>A</td>
+            <% elsif log.gametype == 2 %>
+                <td>9</td>
+            <% elsif log.gametype == 3 %>
+                <td>10</td>
+            <% elsif log.gametype == 4 %>
+                <td>J</td>
+            <% elsif log.gametype == 5 %>
+                <td>Q</td>
+            <% elsif log.gametype == 6 %>
+                <td>K</td>
+            <% else %>
+                <td>error</td>
+            <% end %>
+        <%end%>
+        
         <td><%= log.pos %></td>
-        <% end %>
+
         <% if log.status == 1 %>
-        <td><font color="red">+<%= log.coin * log.mulbability %></font></td>
+            <td><font color="red">+<%= log.coin * log.mulbability %></font></td>
         <% elsif log.status == -1 %>
-        <td><%= -log.coin %></td>
+            <td><font color="green"><%= -log.coin %></font></td>
         <% else %>
-        <td><%= log.coin %>
+            <td><%= log.coin %>
         <% end %>
+        
         <td><% if log.status == 0 %>未开奖<%elsif log.status == 1 %>恭喜中奖<% else %> 未中奖 <% end %></td>
     </tr>
     <% end %>

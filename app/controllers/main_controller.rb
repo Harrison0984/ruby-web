@@ -15,6 +15,8 @@ class MainController < ApplicationController
 			@issue = (tasklog.nextgameid.to_i-1).to_s
 
 			@grid = Grid.find_by_gameid(@issue)
+			Rails.logger.debug @issue
+			Rails.logger.debug @grid
 		end
 		
 		if @minutes and @minutes < 0

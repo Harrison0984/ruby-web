@@ -12,9 +12,7 @@ objindex = 0
 day_same = 0
 day_color = 0
 day_order = 0
-day_small = 0
 day_double = 0
-day_big = 0
 
 #
 left_count = 0
@@ -32,8 +30,8 @@ def randomGrid
 		object[i] = idx
 	end
 
-	lssame, lsorder, lssmall, lsbig, lsdouble, lscolor = checkGrid(object)
-	return object,lssame.length,lsorder.length,lssmall.length,lsbig.length,lsdouble.length,lscolor.length
+	lssame, lsorder, lsdouble, lscolor = checkGrid(object)
+	return object,lssame.length,lsorder.length,lsdouble.length,lscolor.length
 end
 
 def processprize (userid, coin)
@@ -49,8 +47,10 @@ end
 def cardnum(num)
 	if num%13 == 1
 		return 14
+	elsif num%13 == 0
+		return 13
 	else
-		return num%14
+		return num%13
 	end
 end
 
@@ -58,8 +58,6 @@ def checkGrid (object)
 
 	lssame = []
 	lsorder = []
-	lssmall = []
-	lsbig = []
 	lsdouble = []
 	lscolor = []
 
@@ -89,24 +87,6 @@ def checkGrid (object)
 		big = cards.max
 		if big-small == 2 and cards[0] != cards[1] and cards[1] != cards[2] and cards[0] != cards[2]
 			lsorder[lsorder.length] = i+4
-		end
-	end
-
-	#all big && small
-	for i in 0..2
-		cards = [cardnum(object[i*3]), cardnum(object[i*3+1]), cardnum(object[i*3+2])]
-
-		if cards[0] + cards[1] + cards[2] > 31
-			lsbig[lsbig.length] = i+1
-		elsif cards[0] + cards[1] +cards[2] < 31
-			lssmall[lssmall.length] = i+1
-		end
-
-		cards = [cardnum(object[i]), cardnum(object[i+3]), cardnum(object[i+6])]		
-		if cards[0] + cards[1] + cards[2] > 31
-			lsbig[lsbig.length] = i+4
-		elsif cards[0] + cards[1] + cards[2] < 31
- 			lssmall[lssmall.length] = i+4
 		end
 	end
 
@@ -144,7 +124,7 @@ def checkGrid (object)
 		end
 	end
 
-	return lssame,lsorder,lssmall,lsbig,lsdouble,lscolor
+	return lssame,lsorder,lsdouble,lscolor
 end
 
 s.cron '00 02 * * *', :first_at => Time.now + 1 do
@@ -201,12 +181,10 @@ s.cron '56 09 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		objects = []
 		objindex = 0
 		for i in 0..left_count-1
-			object, samenum, ordernum, smallnum, bignum, doublenum, colornum = randomGrid
+			object, samenum, ordernum, doublenum, colornum = randomGrid
 
 			day_same += samenum
 			day_order += ordernum
-			day_small += smallnum
-			day_big += bignum
 			day_double += doublenum
 			day_color += colornum
 
@@ -216,8 +194,6 @@ s.cron '56 09 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 		Rails.logger.debug left_count
 		Rails.logger.debug day_same
 		Rails.logger.debug day_order
-		Rails.logger.debug day_small
-		Rails.logger.debug day_big
 		Rails.logger.debug day_double
 		Rails.logger.debug day_color
 
@@ -240,7 +216,7 @@ s.cron '*/10 * * * *' do
 		curtime = Time.new
 
 		grid = Grid.new
-		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s
+		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s.rjust(2, '0')
 		grid.x1 = objects[objindex][0]
 		grid.x2 = objects[objindex][1]
 		grid.x3 = objects[objindex][2]
@@ -256,7 +232,7 @@ s.cron '*/10 * * * *' do
 		Rails.logger.debug grid
 		grid.save
 
-		lssame, lsorder, lssmall, lsbig, lscolor = checkGrid(objects[objindex])
+		lssame, lsorder, lsdouble, lscolor = checkGrid(objects[objindex])
 
 		totalcoin = 0
 		prizecoin = 0
@@ -267,11 +243,11 @@ s.cron '*/10 * * * *' do
   				prizecoin = log.coin * log.mulbability
   				processprize(log.userid, prizecoin)
   				log.update(status: 1)
-  			elsif log.gametype == 2 and lsorder.include?(log.pos)
+  			elsif log.gametype == 2 and lscolor.include?(log.pos)
   				prizecoin = log.coin * log.mulbability
   				processprize(log.userid, prizecoin)
   				log.update(status: 1)
-  			elsif log.gametype == 3 and lssmall.include?(log.pos)
+  			elsif log.gametype == 3 and lsorder.include?(log.pos)
   				prizecoin = log.coin * log.mulbability
   				processprize(log.userid, prizecoin)
   				log.update(status: 1)
@@ -284,9 +260,30 @@ s.cron '*/10 * * * *' do
   			end
 		end
 
+		#single
 		Tracelog.where("gameid = ? and maintype = 2", grid.gameid).each do |log|
 			totalcoin += log.coin
-			if object[objindex][log.pos-1] % 14 == log.gametype
+			if log.gametype == 1 and objects[objindex][log.pos-1]%13 == 1
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 2 and objects[objindex][log.pos-1]%13 == 9
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 3 and objects[objindex][log.pos-1]%13 == 10
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 4 and objects[objindex][log.pos-1]%13 == 11
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 5 and objects[objindex][log.pos-1]%13 == 12
+				prizecoin = log.coin * log.mulbability
+				processprize(log.userid, prizecoin)
+				log.update(status: 1)
+			elsif log.gametype == 6 and objects[objindex][log.pos-1]%13 == 0
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
@@ -295,17 +292,14 @@ s.cron '*/10 * * * *' do
 			end
 		end
 
+		#double
 		Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
 			totalcoin += log.coin
-			if log.gametype == 1 and object[objindex][log.pos-1] % 14 < 7
+			if log.gametype == 1 and (objects[objindex][log.pos-1]%13 == 1 or objects[objindex][log.pos-1]%13 == 12 or objects[objindex][log.pos-1]%13 == 0)
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and objindex[objindex][log.pos-1] % 14 == 7
-				prizecoin = log.coin * log.mulbability
-				processprize(log.userid, prizecoin)
-				log.update(status: 1)
-			elsif log.gametype == 3 and objindex[objindex][log.pos-1] % 14 > 7
+			elsif log.gametype == 2 and objects[objindex][log.pos-1]%13 == 11 and objects[objindex][log.pos-1]%13 == 10 and objects[objindex][log.pos-1]%13 == 9
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
@@ -314,21 +308,22 @@ s.cron '*/10 * * * *' do
 			end
 		end
 
-		Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
+		#card class
+		Tracelog.where("gameid = ? and maintype = 4", grid.gameid).each do |log|
 			totalcoin += log.coin
-			if log.gametype == 1 and object[objindex][log.pos-1] <= 13
+			if log.gametype == 1 and objects[objindex][log.pos-1] <= 13
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and object[objindex][log.pos-1] > 13 and object[objindex][log.pos-1] <= 26
+			elsif log.gametype == 2 and objects[objindex][log.pos-1] > 13 and objects[objindex][log.pos-1] <= 26
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 3 and object[objindex][log.pos-1] > 26 and object[objindex][log.pos-1] <= 39
+			elsif log.gametype == 3 and objects[objindex][log.pos-1] > 26 and objects[objindex][log.pos-1] <= 39
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 4 and object[objindex][log.pos-1] > 39
+			elsif log.gametype == 4 and objects[objindex][log.pos-1] > 39
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
@@ -355,12 +350,12 @@ s.cron '*/10 * * * *' do
 			tasklog.taskdate = curtime.strftime("%Y-%m-%d")
 			tasklog.runtime = curtime.strftime("%H:%M")
 			tasklog.nexttime = nexttime.strftime("%Y-%m-%d %H:%M")
-			tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s
+			tasklog.nextgameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s.rjust(2, '0')
 			tasklog.save
 		else
 			tasklog.update(totalbar: left_count, currentbar: objindex+1, totalcoin: totalcoin, 
 				prizecoin: prizecoin, runtime: curtime.strftime("%H:%M"),
-				nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s,
+				nextgameid: curtime.strftime("%Y%m%d")+(begin_count+objindex+2).to_s.rjust(2, '0'),
 				nexttime: nexttime.strftime("%Y-%m-%d %H:%M"))
 		end
 
