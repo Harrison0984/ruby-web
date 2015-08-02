@@ -44,15 +44,15 @@
 			  </p>
 			  <p>
 			    <%= f.label :coin, '信用额度:' %>
-			    <%= f.text_field :coin, class:"form-control", placeholder:"信用额度", value:"5000"%>
+			    <%= f.text_field :coin, class:"form-control", placeholder:"信用额度", value:"50000"%>
 			  </p>
 			  <p>
 			    <%= f.label :lowerlimit, '每日上限:' %>
 			    <%= f.text_field :lowerlimit, class:"form-control", placeholder:"下限", value:"1" %>
 			  </p>
 			  <p>
-			    <%= f.label :upperlimit, '每注下限:' %>
-			    <%= f.text_field :upperlimit, class:"form-control", placeholder:"下限", value:"10000" %>
+			    <%= f.label :upperlimit, '每注上限:' %>
+			    <%= f.text_field :upperlimit, class:"form-control", placeholder:"上限", value:"10000" %>
 			  </p>
 			  <p>
 			  	<%= f.radio_button :level, "0", checked:"checked" %>会员
