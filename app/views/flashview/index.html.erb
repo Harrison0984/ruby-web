@@ -82,8 +82,7 @@ $(document).ready(
     setInterval(flash, 1000);
   });
   function flash(){
-    if (nextseconds == 0 || nextseconds % 60 == 0 || nextseconds == 420
-     || nextseconds == 585 || nextseconds == 580 || nextseconds == 570){
+    if (nextseconds == 0 || nextseconds % 60 == 0 || nextseconds == 585 || nextseconds == 580 || nextseconds == 570){
       $.ajax({
           url: 'jsondata',
           type: 'GET',
@@ -102,7 +101,7 @@ $(document).ready(
             }
             else
             {
-              if (nextseconds == 420)
+              if (nextseconds == 60)
               {
                 thisMovie('luck').reset();
                 thisMovie('luck').nowNum(json.nextnum);
