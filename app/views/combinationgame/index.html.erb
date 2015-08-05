@@ -27,7 +27,7 @@
     </li>
 <% end %>
 
-<%if @user%>
+<%if @user and @user.level == 0%>
 <% content_for :script do %>
 $(".reccheck").blur(function(){
         var coinitems = document.getElementsByClassName("reccheck");

@@ -22,7 +22,7 @@
     </li>
 <% end %>
 
-<%if @user%>
+<%if @user and @user.level == 0%>
 <% content_for :script do %>
 $(document).ready(
     function(){
