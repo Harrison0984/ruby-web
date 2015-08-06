@@ -24,8 +24,12 @@
 
 <%if @user%>
 <% content_for :script do %>
-var nextgameid = "";
+var needdata = 1;
+var firsted = 1;
 var nextseconds = 0;
+var nextnum = "";
+var curlog = "";
+var fixtime = 0;
 $(document).ready(
     function(){
     setInterval(countdown, 1000);
@@ -60,73 +64,79 @@ function thisMovie(movieName) {
     }
 }
 
-    function nowNum(){
-        thisMovie('luck').nowNum(2015071688,"3,3,3,4,5,6,7,8,8");
-    }
-    function nextNum(){
-        thisMovie('luck').nextNum(2015071689);
-    }
-    function nextTime(){
-        thisMovie('luck').nextTime("14:25:26");
-    }
-    function countTime(){
-        thisMovie('luck').countTime(10)
-    }
-    function hisNum(){
-        thisMovie('luck').hisNum(2015071602,"2,2,2,4,5,6,7,8,8",1);
-        thisMovie('luck').hisNum(2015071601,"1,1,1,4,5,6,7,8,8",2);
-    }
-
 $(document).ready(
   function(){
     setInterval(flash, 1000);
   });
   function flash(){
-    if (nextseconds == 0 || nextseconds % 60 == 0 || nextseconds == 585 || nextseconds == 580 || nextseconds == 570){
+    if (needdata == 1){
+      needdata = 0;
       $.ajax({
           url: 'jsondata',
           type: 'GET',
           dataType: 'json',
-          complete: function(json) {
+          error: function(json) {
+            needdata = 1;
           },
           success: function(json) {
 
-            thisMovie('luck').countTime(json.seconds);
- 
-            if (nextgameid == "")
+            if (firsted)
             {
-              nextgameid = json.nextnum;
-              thisMovie('luck').hisNum(json.curnum,json.curlog);
+              thisMovie('luck').nowLuck(json.curlog);
               thisMovie('luck').nowNum(json.nextnum);
+              
+              firsted = 0;
             }
             else
             {
-              if (nextseconds == 60)
-              {
-                thisMovie('luck').reset();
-                thisMovie('luck').nowNum(json.nextnum);
-              }
-              else if (nextseconds == 0)
-              {
-                thisMovie('luck').startLuck();
-              }
-              else if ((nextseconds == 585 || nextseconds == 580 || nextseconds == 570)
-               && nextgameid == json.curnum)
-              {
-                thisMovie('luck').nowLuck(json.curlog);
-                nextgameid = json.nextnum;
-              }
+              curlog = json.curlog;            
             }
- 
-           nextseconds = parseInt(json.seconds);
+
+            nextnum = json.nextnum;
+            nextseconds = parseInt(json.seconds);
           }
         }
       )
     }
-    else if (nextseconds > 0)
+    else
     {
-        nextseconds -= 1;
+        if (nextseconds == 60)
+        {
+          thisMovie('luck').nowNum(nextnum);
+          thisMovie('luck').reset();
+        }
+        else if (nextseconds == 0)
+        {
+          thisMovie('luck').startLuck();
+          needdata = 1;
+        }
+        else if (nextseconds < 580 && curlog != "")
+        {
+          thisMovie('luck').nowLuck(curlog);
+          curlog = "";
+        }
+        else if (nextseconds % 60 == 0)
+        {
+          fixtime = 1;
+        }
+
+        if (nextseconds > 0) nextseconds -= 1;
     }
+
+    if (fixtime == 1){
+      fixtime = 0;
+      $.ajax({
+          url: 'jsondata',
+          type: 'GET',
+          dataType: 'json',
+          success: function(json) {
+            nextseconds = parseInt(json.seconds);
+          }
+        }
+      )
+    }
+
+    thisMovie('luck').countTime(nextseconds);
   };
 <% end %>
 
