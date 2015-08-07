@@ -30,6 +30,7 @@ var nextseconds = 0;
 var nextnum = "";
 var curlog = "";
 var fixtime = 0;
+var isok = 0;
 $(document).ready(
     function(){
     setInterval(countdown, 1000);
@@ -94,11 +95,12 @@ $(document).ready(
 
             nextnum = json.nextnum;
             nextseconds = parseInt(json.seconds);
+            isok = 1;
           }
         }
       )
     }
-    else
+    else if (isok == 1)
     {
         if (nextseconds == 60)
         {
