@@ -336,7 +336,7 @@ class TracelogsController < ApplicationController
 				@totalcoin = totalcoin
 				curtime = Time.new
 				for i in 1..6
-					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or params[:tracelogs]["flag#{i}_3"].to_i > 0
+					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or params[:tracelogs]["flag#{i}_3"].to_i > 0 or params[:tracelogs]["flag#{i}_4"].to_i > 0
 						if params[:tracelogs]["flag#{i}_1"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
