@@ -14,9 +14,9 @@
             <%if info["maintype"]==2%>
             <td>牌面:<%if info["gametype"]==1%>A<%elsif info["gametype"]==2%>9<%elsif info["gametype"]==3%>10
             <%elsif info["gametype"]==4%>J<%elsif info["gametype"]==5%>Q<%else%>K<%end%></td>
-            <%else%>
-            <td>牌面:<%if info["gametype"]==1%>红<%elsif info["gametype"]==2%>方<%elsif info["maintype"]==3%>黑
-            <%else%>梅花<%end%></td>
+            <%end%>
+            <%if info["maintype"]==4%>
+            <td>牌面:<%if info["gametype"]==1%>红<%elsif info["gametype"]==2%>方<%elsif info["gametype"]==3%>黑<%else%>梅花<%end%></td>
             <%end%>
         </tr>
         <tr>

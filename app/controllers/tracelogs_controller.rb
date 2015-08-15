@@ -25,11 +25,13 @@ class TracelogsController < ApplicationController
 			@gameid = taskinfo.nextgameid
 
 			if seconds > 60 and user and user.coin > totalcoin
-				@totalcoin = totalcoin
 				curtime = Time.new
 				for i in 1..9
 					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or 
 						params[:tracelogs]["flag#{i}_3"].to_i > 0
+					if params[:tracelogs]["flag#{i}_1"].to_i < 1000 and params[:tracelogs]["flag#{i}_2"].to_i < 1000 and 
+						params[:tracelogs]["flag#{i}_3"].to_i < 1000
+						@totalcoin = totalcoin
 						if params[:tracelogs]["flag#{i}_1"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
@@ -71,6 +73,7 @@ class TracelogsController < ApplicationController
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 					end
+					end
 				end
 				user.update(coin: user.coin-totalcoin)
 			end
@@ -100,7 +103,6 @@ class TracelogsController < ApplicationController
 			@gameid = taskinfo.nextgameid
 
 			if seconds > 60 and user and user.coin > totalcoin
-				@totalcoin = totalcoin
 				curtime = Time.new
 
 				for i in 1..9
@@ -109,8 +111,14 @@ class TracelogsController < ApplicationController
 						params[:tracelogs]["flag#{i}_5"].to_i > 0 or params[:tracelogs]["flag#{i}_6"].to_i > 0 or
 						params[:tracelogs]["flag#{i}_7"].to_i > 0 or params[:tracelogs]["flag#{i}_8"].to_i > 0 or
 						params[:tracelogs]["flag#{i}_9"].to_i > 0 or params[:tracelogs]["flag#{i}_10"].to_i > 0 or
-						params[:tracelogs]["flag#{i}_11"].to_i > 0 or params[:tracelogs]["flag#{i}_12"].to_i > 0 or
-						params[:tracelogs]["flag#{i}_13"].to_i > 0
+						params[:tracelogs]["flag#{i}_11"].to_i > 0
+					if params[:tracelogs]["flag#{i}_1"].to_i < 1000 and params[:tracelogs]["flag#{i}_2"].to_i < 1000 and 
+						params[:tracelogs]["flag#{i}_3"].to_i < 1000 and params[:tracelogs]["flag#{i}_4"].to_i < 1000 and
+						params[:tracelogs]["flag#{i}_5"].to_i < 1000 and params[:tracelogs]["flag#{i}_6"].to_i < 1000 and
+						params[:tracelogs]["flag#{i}_7"].to_i < 1000 and params[:tracelogs]["flag#{i}_8"].to_i < 1000 and
+						params[:tracelogs]["flag#{i}_9"].to_i < 1000 and params[:tracelogs]["flag#{i}_10"].to_i < 1000 and
+						params[:tracelogs]["flag#{i}_11"].to_i < 1000
+						@totalcoin = totalcoin
 						if params[:tracelogs]["flag#{i}_1"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
@@ -303,6 +311,7 @@ class TracelogsController < ApplicationController
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
 					end
+					end
 				end
 
 				user.update(coin: user.coin-totalcoin)
@@ -333,10 +342,13 @@ class TracelogsController < ApplicationController
 			@gameid = taskinfo.nextgameid
 
 			if seconds > 60 and user and user.coin > totalcoin
-				@totalcoin = totalcoin
 				curtime = Time.new
 				for i in 1..6
-					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or params[:tracelogs]["flag#{i}_3"].to_i > 0 or params[:tracelogs]["flag#{i}_4"].to_i > 0
+					if params[:tracelogs]["flag#{i}_1"].to_i > 0 or params[:tracelogs]["flag#{i}_2"].to_i > 0 or 
+						params[:tracelogs]["flag#{i}_3"].to_i > 0 or params[:tracelogs]["flag#{i}_4"].to_i > 0
+					if params[:tracelogs]["flag#{i}_1"].to_i < 1000 and params[:tracelogs]["flag#{i}_2"].to_i < 1000 and 
+						params[:tracelogs]["flag#{i}_3"].to_i < 1000 and params[:tracelogs]["flag#{i}_4"].to_i < 1000
+						@totalcoin = totalcoin
 						if params[:tracelogs]["flag#{i}_1"].to_i > 0
 							tracelog = Tracelog.new
 							tracelog.pos = i
@@ -417,6 +429,7 @@ class TracelogsController < ApplicationController
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 									"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
 						end
+					end
 					end
 				end
 				user.update(coin: user.coin-totalcoin)
