@@ -38,7 +38,7 @@ def processprize (userid, coin)
 	user = User.find(userid)
 	if user != nil
 		totalcoin = user.coin + coin
-		user.update(coin: totalcoin)
+		user.update(coin: totalcoin.to_i)
 	else
 		Rails.logger.error "can't find user #{userid}"
 	end
@@ -152,7 +152,7 @@ s.cron '00 02 * * *', :first_at => Time.now + 1 do
 			gridconfig = Gridconfig.new
 			gridconfig.gridtype = i
 			gridconfig.probability = 1.0
-			gridconfig.mulbability = 1.0
+			gridconfig.mulbability = 2.0
 			gridconfig.save
 		end
 	end
@@ -169,14 +169,6 @@ s.cron '56 09 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 
 	if left_count > 0
 		begin_count = 90 - left_count
-
-		#reset user daycoin every day at 5am
-		if Time.now.hour == 5
-			users = User.all
-			users.each do |user|
-				user.update(todaycoin: 0)
-			end
-		end
 
 		objects = []
 		objindex = 0

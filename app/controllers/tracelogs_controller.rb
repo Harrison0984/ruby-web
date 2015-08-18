@@ -47,6 +47,8 @@ class TracelogsController < ApplicationController
 
 							tracelog.gametype = 1
 							tracelog.coin = params[:tracelogs]["flag#{i}_1"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -67,6 +69,8 @@ class TracelogsController < ApplicationController
 
 							tracelog.gametype = 2
 							tracelog.coin = params[:tracelogs]["flag#{i}_2"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -75,7 +79,7 @@ class TracelogsController < ApplicationController
 					end
 					end
 				end
-				user.update(coin: user.coin-totalcoin)
+				user.update(coin: user.coin)
 			end
 			respond_to do |format|
 				format.html {}
@@ -134,6 +138,8 @@ class TracelogsController < ApplicationController
 
 							tracelog.gametype = 1
 							tracelog.coin = params[:tracelogs]["flag#{i}_1"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -154,6 +160,8 @@ class TracelogsController < ApplicationController
 
 							tracelog.gametype = 2
 							tracelog.coin = params[:tracelogs]["flag#{i}_2"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -173,6 +181,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 3
 							tracelog.coin = params[:tracelogs]["flag#{i}_3"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -192,6 +202,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 4
 							tracelog.coin = params[:tracelogs]["flag#{i}_4"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -211,6 +223,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 5
 							tracelog.coin = params[:tracelogs]["flag#{i}_5"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -230,6 +244,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 6
 							tracelog.coin = params[:tracelogs]["flag#{i}_6"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -249,6 +265,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 1
 							tracelog.coin = params[:tracelogs]["flag#{i}_8"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -268,6 +286,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 2
 							tracelog.coin = params[:tracelogs]["flag#{i}_9"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -287,6 +307,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 3
 							tracelog.coin = params[:tracelogs]["flag#{i}_10"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -306,6 +328,8 @@ class TracelogsController < ApplicationController
 							
 							tracelog.gametype = 4
 							tracelog.coin = params[:tracelogs]["flag#{i}_11"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
 								"maintype"=>tracelog.maintype,"coin"=>tracelog.coin}
@@ -314,7 +338,7 @@ class TracelogsController < ApplicationController
 					end
 				end
 
-				user.update(coin: user.coin-totalcoin)
+				user.update(coin: user.coin)
 			end
 			respond_to do |format|
 				format.html {}
@@ -364,6 +388,8 @@ class TracelogsController < ApplicationController
 							tracelog.mulbability = Gridconfig.find_by_gridtype(1).mulbability
 							tracelog.gametype = 1
 							tracelog.coin = params[:tracelogs]["flag#{i}_1"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -384,6 +410,8 @@ class TracelogsController < ApplicationController
 							tracelog.mulbability = Gridconfig.find_by_gridtype(2).mulbability
 							tracelog.gametype = 2
 							tracelog.coin = params[:tracelogs]["flag#{i}_2"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -404,6 +432,8 @@ class TracelogsController < ApplicationController
 							tracelog.mulbability = Gridconfig.find_by_gridtype(3).mulbability
 							tracelog.gametype = 3
 							tracelog.coin = params[:tracelogs]["flag#{i}_3"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -424,6 +454,8 @@ class TracelogsController < ApplicationController
 							tracelog.mulbability = Gridconfig.find_by_gridtype(4).mulbability
 							tracelog.gametype = 4
 							tracelog.coin = params[:tracelogs]["flag#{i}_4"]
+							user.coin -= tracelog.coin
+							tracelog.usercoin = user.coin
 							tracelog.save
 
 							@result[@result.length] = {"pos"=>i,"gametype"=>tracelog.gametype,
@@ -432,7 +464,7 @@ class TracelogsController < ApplicationController
 					end
 					end
 				end
-				user.update(coin: user.coin-totalcoin)
+				user.update(coin: user.coin)
 			end
 			respond_to do |format|
 				format.html {}
