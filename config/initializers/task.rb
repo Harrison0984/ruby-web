@@ -4,19 +4,15 @@ require 'rufus-scheduler'
 #
 s = Rufus::Scheduler.new
 
-#task list
-objects = Array.new(90)
-
 #current task index
 objindex = 0 
-day_same = 0
-day_color = 0
-day_order = 0
-day_double = 0
 
 #
 left_count = 0
 begin_count = 0
+
+#day coin
+totalcoin = 0
 
 def randomGrid
 
@@ -30,15 +26,14 @@ def randomGrid
 		object[i] = idx
 	end
 
-	lssame, lsorder, lsdouble, lscolor = checkGrid(object)
-	return object,lssame.length,lsorder.length,lsdouble.length,lscolor.length
+	return object
 end
 
 def processprize (userid, coin)
 	user = User.find(userid)
 	if user != nil
-		totalcoin = user.coin + coin
-		user.update(coin: totalcoin.to_i)
+		tmpcoin = user.coin + coin
+		user.update(coin: tmpcoin.to_i)
 	else
 		Rails.logger.error "can't find user #{userid}"
 	end
@@ -168,34 +163,10 @@ s.cron '56 09 * * *', :first_at => Time.now + 1, :timeout => '30m' do
 	end
 
 	if left_count > 0
+		totalcoin = 0
 		begin_count = 90 - left_count
 
-		objects = []
 		objindex = 0
-		for i in 0..left_count-1
-			object, samenum, ordernum, doublenum, colornum = randomGrid
-
-			day_same += samenum
-			day_order += ordernum
-			day_double += doublenum
-			day_color += colornum
-
-			objects[i] = object
-		end
-
-		Rails.logger.debug left_count
-		Rails.logger.debug day_same
-		Rails.logger.debug day_order
-		Rails.logger.debug day_double
-		Rails.logger.debug day_color
-
-		for i in 0..left_count-1
-			srand()
-			index = rand(left_count)
-			tmp = objects[index]
-			objects[index] = objects[i]
-			objects[i] = tmp
-		end
 	end
 end
 
@@ -207,30 +178,103 @@ s.cron '*/10 * * * *' do
 		Rails.logger.debug "start task"
 		curtime = Time.new
 
+		globalgrid = 0
 		grid = Grid.new
 		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s.rjust(2, '0')
-		grid.x1 = objects[objindex][0]
-		grid.x2 = objects[objindex][1]
-		grid.x3 = objects[objindex][2]
-		grid.y1 = objects[objindex][3]
-		grid.y2 = objects[objindex][4]
-		grid.y3 = objects[objindex][5]
-		grid.z1 = objects[objindex][6]
-		grid.z2 = objects[objindex][7]
-		grid.z3 = objects[objindex][8]
+		loopCount = 0
 
+		begin
+			localcoin = totalcoin
+			localgrid = randomGrid
+			prizetotal = 0
+			lssame, lsorder, lsdouble, lscolor = checkGrid(localgrid)
+			
+			Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
+				localcoin += log.coin
+	  			if log.gametype == 1 and lssame.include?(log.pos)
+	  				prizetotal += log.coin * log.mulbability
+	  			elsif log.gametype == 2 and lscolor.include?(log.pos)
+	  				prizetotal += log.coin * log.mulbability
+	  			elsif log.gametype == 3 and lsorder.include?(log.pos)
+	  				prizetotal += log.coin * log.mulbability
+	  			elsif log.gametype == 4 and lsdouble.include?(log.pos)
+	  				prizetotal += log.coin * log.mulbability
+	  			end
+			end
+
+			#single
+			Tracelog.where("gameid = ? and maintype = 2", grid.gameid).each do |log|
+				localcoin += log.coin
+				if log.gametype == 1 and localgrid[log.pos-1]%13 == 1
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 2 and localgrid[log.pos-1]%13 == 9
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 3 and localgrid[log.pos-1]%13 == 10
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 4 and localgrid[log.pos-1]%13 == 11
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 5 and localgrid[log.pos-1]%13 == 12
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 6 and localgrid[log.pos-1]%13 == 0
+					prizetotal += log.coin * log.mulbability
+				end
+			end
+
+			#double
+			Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
+				localcoin += log.coin
+				if log.gametype == 1 and (localgrid[log.pos-1]%13 == 1 or localgrid[log.pos-1]%13 == 12 or localgrid[log.pos-1]%13 == 0)
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 2 and localgrid[log.pos-1]%13 == 11 and localgrid[log.pos-1]%13 == 10 and localgrid[log.pos-1]%13 == 9
+					prizetotal += log.coin * log.mulbability
+				end
+			end
+
+			#card class
+			Tracelog.where("gameid = ? and maintype = 4", grid.gameid).each do |log|
+				localcoin += log.coin
+				if log.gametype == 1 and localgrid[log.pos-1] <= 13
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 2 and localgrid[log.pos-1] > 13 and localgrid[log.pos-1] <= 26
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 3 and localgrid[log.pos-1] > 26 and localgrid[log.pos-1] <= 39
+					prizetotal += log.coin * log.mulbability
+				elsif log.gametype == 4 and localgrid[log.pos-1] > 39
+					prizetotal += log.coin * log.mulbability
+				end
+			end
+
+			localcoin -= prizetotal
+			loopCount += 1
+
+			if localcoin >= 0 or loopCount > 99 then
+				globalgrid = localgrid
+				totalcoin = localcoin
+				break
+			end
+		end while true
+
+################################################################################################################################################################
+		
+		grid.x1 = globalgrid[0]
+		grid.x2 = globalgrid[1]
+		grid.x3 = globalgrid[2]
+		grid.y1 = globalgrid[3]
+		grid.y2 = globalgrid[4]
+		grid.y3 = globalgrid[5]
+		grid.z1 = globalgrid[6]
+		grid.z2 = globalgrid[7]
+		grid.z3 = globalgrid[8]
 		grid.time = curtime.strftime("%Y-%m-%d %H:%M")
 
 		Rails.logger.debug grid
 		grid.save
 
-		lssame, lsorder, lsdouble, lscolor = checkGrid(objects[objindex])
+		#start user prize
+		lssame, lsorder, lsdouble, lscolor = checkGrid(globalgrid)
+		prizecoin = 0;
 
-		totalcoin = 0
-		prizecoin = 0
-		
 		Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
-			totalcoin += log.coin
   			if log.gametype == 1 and lssame.include?(log.pos)
   				prizecoin = log.coin * log.mulbability
   				processprize(log.userid, prizecoin)
@@ -254,28 +298,27 @@ s.cron '*/10 * * * *' do
 
 		#single
 		Tracelog.where("gameid = ? and maintype = 2", grid.gameid).each do |log|
-			totalcoin += log.coin
-			if log.gametype == 1 and objects[objindex][log.pos-1]%13 == 1
+			if log.gametype == 1 and globalgrid[log.pos-1]%13 == 1
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and objects[objindex][log.pos-1]%13 == 9
+			elsif log.gametype == 2 and globalgrid[log.pos-1]%13 == 9
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 3 and objects[objindex][log.pos-1]%13 == 10
+			elsif log.gametype == 3 and globalgrid[log.pos-1]%13 == 10
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 4 and objects[objindex][log.pos-1]%13 == 11
+			elsif log.gametype == 4 and globalgrid[log.pos-1]%13 == 11
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 5 and objects[objindex][log.pos-1]%13 == 12
+			elsif log.gametype == 5 and globalgrid[log.pos-1]%13 == 12
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 6 and objects[objindex][log.pos-1]%13 == 0
+			elsif log.gametype == 6 and globalgrid[log.pos-1]%13 == 0
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
@@ -286,12 +329,11 @@ s.cron '*/10 * * * *' do
 
 		#double
 		Tracelog.where("gameid = ? and maintype = 3", grid.gameid).each do |log|
-			totalcoin += log.coin
-			if log.gametype == 1 and (objects[objindex][log.pos-1]%13 == 1 or objects[objindex][log.pos-1]%13 == 12 or objects[objindex][log.pos-1]%13 == 0)
+			if log.gametype == 1 and (globalgrid[log.pos-1]%13 == 1 or globalgrid[log.pos-1]%13 == 12 or globalgrid[log.pos-1]%13 == 0)
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and objects[objindex][log.pos-1]%13 == 11 and objects[objindex][log.pos-1]%13 == 10 and objects[objindex][log.pos-1]%13 == 9
+			elsif log.gametype == 2 and globalgrid[log.pos-1]%13 == 11 and globalgrid[log.pos-1]%13 == 10 and globalgrid[log.pos-1]%13 == 9
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
@@ -302,20 +344,19 @@ s.cron '*/10 * * * *' do
 
 		#card class
 		Tracelog.where("gameid = ? and maintype = 4", grid.gameid).each do |log|
-			totalcoin += log.coin
-			if log.gametype == 1 and objects[objindex][log.pos-1] <= 13
+			if log.gametype == 1 and globalgrid[log.pos-1] <= 13
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and objects[objindex][log.pos-1] > 13 and objects[objindex][log.pos-1] <= 26
+			elsif log.gametype == 2 and globalgrid[log.pos-1] > 13 and globalgrid[log.pos-1] <= 26
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 3 and objects[objindex][log.pos-1] > 26 and objects[objindex][log.pos-1] <= 39
+			elsif log.gametype == 3 and globalgrid[log.pos-1] > 26 and globalgrid[log.pos-1] <= 39
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 4 and objects[objindex][log.pos-1] > 39
+			elsif log.gametype == 4 and globalgrid[log.pos-1] > 39
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
