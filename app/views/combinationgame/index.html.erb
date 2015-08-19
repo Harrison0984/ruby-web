@@ -250,7 +250,7 @@ function xprint() {
                     总投注额:<span style="color:red;margin-right:10px" id="coinnums">0</span>
                     <%= f.hidden_field :totalcoin, id:"cointotal", value:0 %>
                     <button type="button", style="height:20px;width:60px;margin-right:10px", onclick="resetcoin()">重填</button>
-                    <%= f.submit "下注", style:"height:20px;width:60px", :onclick=>'return confirm("确认下注");'%>
+                    <%= f.submit "下注", style:"height:20px;width:60px", :onclick=>'var r=confirm("确认下注");if(r) resetcoin();return r'%>
                     </div></td>
                 </tfoot>
                 <%end%>
