@@ -183,7 +183,7 @@ s.cron '*/10 * * * *' do
 		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s.rjust(2, '0')
 
 		begin
-			localcoin = (totalcoin).abs * 0.9
+			localcoin = (totalcoin).abs * 0.8
 			Rails.logger.debug localcoin
 			localgrid = randomGrid
 			prizetotal = 0
