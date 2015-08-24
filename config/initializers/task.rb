@@ -182,11 +182,11 @@ s.cron '*/10 * * * *' do
 		grid = Grid.new
 		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s.rjust(2, '0')
 
-		prizetotal = 0
 		begin
 			localcoin = (totalcoin).abs * 0.95
 			Rails.logger.debug localcoin
 			localgrid = randomGrid
+			prizetotal = 0
 			lssame, lsorder, lsdouble, lscolor = checkGrid(localgrid)
 			
 			Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
