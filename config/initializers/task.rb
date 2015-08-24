@@ -181,13 +181,12 @@ s.cron '*/10 * * * *' do
 		globalgrid = 0
 		grid = Grid.new
 		grid.gameid = curtime.strftime("%Y%m%d")+(begin_count+objindex+1).to_s.rjust(2, '0')
-		loopCount = 0
 
+		prizetotal = 0
 		begin
 			localcoin = (totalcoin).abs * 0.95
 			Rails.logger.debug localcoin
 			localgrid = randomGrid
-			prizetotal = 0
 			lssame, lsorder, lsdouble, lscolor = checkGrid(localgrid)
 			
 			Tracelog.where("gameid = ? and maintype = 1", grid.gameid).each do |log|
@@ -246,10 +245,10 @@ s.cron '*/10 * * * *' do
 			end
 
 			localcoin -= prizetotal
-			loopCount += 1
+			Rails.logger.debug prizetotal
 			Rails.logger.debug localcoin
 
-			if localcoin >= 0 or loopCount > 99 then
+			if localcoin >= 0 then
 				globalgrid = localgrid
 				totalcoin += localcoin
 				break
