@@ -184,7 +184,8 @@ s.cron '*/10 * * * *' do
 		loopCount = 0
 
 		begin
-			localcoin = totalcoin
+			localcoin = (totalcoin).abs * 0.95
+			Rails.logger.debug localcoin
 			localgrid = randomGrid
 			prizetotal = 0
 			lssame, lsorder, lsdouble, lscolor = checkGrid(localgrid)
@@ -246,10 +247,11 @@ s.cron '*/10 * * * *' do
 
 			localcoin -= prizetotal
 			loopCount += 1
+			Rails.logger.debug localcoin
 
 			if localcoin >= 0 or loopCount > 99 then
 				globalgrid = localgrid
-				totalcoin = localcoin
+				totalcoin += localcoin
 				break
 			end
 		end while true
