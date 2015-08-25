@@ -250,7 +250,7 @@ s.cron '*/10 * * * *' do
 
 			if localcoin >= 0 then
 				globalgrid = localgrid
-				totalcoin += localcoin
+				totalcoin = localcoin
 				break
 			end
 		end while true
