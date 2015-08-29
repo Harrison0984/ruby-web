@@ -248,7 +248,7 @@ s.cron '*/10 * * * *' do
 			Rails.logger.debug prizetotal
 			Rails.logger.debug localcoin
 
-			if localcoin >= totalcoin*0.15 then
+			if localcoin >= totalcoin*0.2 then
 				globalgrid = localgrid
 				totalcoin = localcoin
 				break
