@@ -225,7 +225,7 @@ s.cron '*/10 * * * *' do
 				localcoin += log.coin
 				if log.gametype == 1 and (localgrid[log.pos-1]%13 == 1 or localgrid[log.pos-1]%13 == 12 or localgrid[log.pos-1]%13 == 0)
 					prizetotal += log.coin * log.mulbability
-				elsif log.gametype == 2 and localgrid[log.pos-1]%13 == 11 and localgrid[log.pos-1]%13 == 10 and localgrid[log.pos-1]%13 == 9
+				elsif log.gametype == 2 and (localgrid[log.pos-1]%13 == 11 or localgrid[log.pos-1]%13 == 10 or localgrid[log.pos-1]%13 == 9)
 					prizetotal += log.coin * log.mulbability
 				end
 			end
@@ -334,7 +334,7 @@ s.cron '*/10 * * * *' do
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and globalgrid[log.pos-1]%13 == 11 and globalgrid[log.pos-1]%13 == 10 and globalgrid[log.pos-1]%13 == 9
+			elsif log.gametype == 2 and (globalgrid[log.pos-1]%13 == 11 or globalgrid[log.pos-1]%13 == 10 or globalgrid[log.pos-1]%13 == 9)
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
