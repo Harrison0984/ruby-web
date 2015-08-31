@@ -233,9 +233,9 @@ s.cron '*/10 * * * *' do
 			#card class
 			Tracelog.where("gameid = ? and maintype = 4", grid.gameid).each do |log|
 				localcoin += log.coin
-				if log.gametype == 1 and localgrid[log.pos-1] <= 13
+				if log.gametype == 2 and localgrid[log.pos-1] <= 13
 					prizetotal += log.coin * log.mulbability
-				elsif log.gametype == 2 and localgrid[log.pos-1] > 13 and localgrid[log.pos-1] <= 26
+				elsif log.gametype == 1 and localgrid[log.pos-1] > 13 and localgrid[log.pos-1] <= 26
 					prizetotal += log.coin * log.mulbability
 				elsif log.gametype == 3 and localgrid[log.pos-1] > 26 and localgrid[log.pos-1] <= 39
 					prizetotal += log.coin * log.mulbability
