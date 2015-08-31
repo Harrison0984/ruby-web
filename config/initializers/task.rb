@@ -345,11 +345,11 @@ s.cron '*/10 * * * *' do
 
 		#card class
 		Tracelog.where("gameid = ? and maintype = 4", grid.gameid).each do |log|
-			if log.gametype == 1 and globalgrid[log.pos-1] <= 13
+			if log.gametype == 2 and globalgrid[log.pos-1] <= 13
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
-			elsif log.gametype == 2 and globalgrid[log.pos-1] > 13 and globalgrid[log.pos-1] <= 26
+			elsif log.gametype == 1 and globalgrid[log.pos-1] > 13 and globalgrid[log.pos-1] <= 26
 				prizecoin = log.coin * log.mulbability
 				processprize(log.userid, prizecoin)
 				log.update(status: 1)
